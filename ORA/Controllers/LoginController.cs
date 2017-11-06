@@ -91,6 +91,31 @@ namespace ORA.Controllers
                         }
                     }
                 }
+                else
+                {
+                    List<LoginVM> list = Mapper.Map<List<LoginVM>>(LoginDAL.ViewLogins());
+                    List<string> emails = new List<string>();
+                    List<string> passwords = new List<string>();
+                    List<string> salts = new List<string>();
+                    foreach (LoginVM login in list)
+                    {
+                        emails.Add(login.Email);
+                        passwords.Add(login.Password);
+                        salts.Add(login.Salt);
+                    }
+                    if (!emails.Contains(info.Email))
+                    {
+                        ModelState.AddModelError("Email", "Email Does not Exist");
+                    }
+                    for(int i=0;i <= (passwords.Count - 1);i++)
+                    {
+                        if(!passwords.Contains(ORA_Data.Hash.GetHash(info.Password + salts[i])))
+                        {
+                            ModelState.AddModelError("Password", "Password not valid");
+                        }
+                        
+                    }
+                }
                 return View();
             }
             catch (Exception ex)
