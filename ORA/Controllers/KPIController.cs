@@ -51,7 +51,7 @@ namespace ORA.Controllers
                 EmployeeVM lead = Mapper.Map<EmployeeVM>(EmployeeMap.GetEmployeeById(id));
                 foreach (KPIVM assess in list)
                 {
-                    if (assess.Employee.TeamId == lead.TeamId)
+                    if (assess.Employee.TeamId == lead.TeamId && assess.Employee.EmployeeId != lead.EmployeeId)
                     {
                         teamList.Add(assess);
                     }
