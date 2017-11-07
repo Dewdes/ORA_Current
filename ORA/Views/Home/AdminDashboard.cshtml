@@ -128,7 +128,7 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="/Login/LogOut">
                                     Log out
                                 </a>
                             </li>
@@ -387,7 +387,7 @@
 
         $.notify({
             icon: 'pe-7s-gift',
-            message: "Welcome Glenn."
+            message: "Welcome @Session["Name"].ToString().Split(' ')[0]."
 
         }, {
                 type: 'info',

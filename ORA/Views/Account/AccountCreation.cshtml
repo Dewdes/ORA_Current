@@ -215,6 +215,10 @@
             </div>
         </div>
 
+        @Html.HiddenFor(model => model.TeamList)
+        @Html.HiddenFor(model => model.AssignmentList)
+        @Html.HiddenFor(model => model.RoleList)
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
