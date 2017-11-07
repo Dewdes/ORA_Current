@@ -1,41 +1,32 @@
-﻿using System;
+﻿using ORA_Data.Model;
+using System;
 using System.Data;
 using System.Data.SqlClient;
-using ORA_Data.Model;
 
 namespace ORA_Data.DAL
 {
     public class AccountDAL
     {
-        #region CREATE METHODS
-        public static void CreateAccountBio(AccountBioDM accountBio,  int empID)
+
+        public static void DeleteEmployeeRecords(long emp_ID)
         {
             try
             {
-                using (SqlCommand command = new SqlCommand("CREATE_ACCOUNT_BIO", SqlConnect.Connection))
+                using (SqlCommand cmd = new SqlCommand("DELETE_EMPLOYEE_RECORDS", SqlConnect.Connection))
                 {
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@Profile_Image", accountBio.ProfileImage);
-                    command.Parameters.AddWithValue("@Account_Status", accountBio.AccountStatus);
-                    command.Parameters.AddWithValue("@Banner_Background_Img", accountBio.BannerBackgroundImg);
-                    command.Parameters.AddWithValue("@About_Me", accountBio.AboutMe);
-                    command.Parameters.AddWithValue("@Employee_ID", empID);
-
-                    command.Connection.Open();
-                    command.ExecuteNonQuery();
-                    command.Connection.Close();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Employee_ID", emp_ID);
+                    SqlConnect.Connection.Open();
+                    cmd.ExecuteNonQuery();
+                    SqlConnect.Connection.Close();
                 }
             }
             catch (Exception ex)
             {
-                throw (ex);
-            }
-
-            finally
-            {
                 SqlConnect.Connection.Close();
+                //Write to error log
+                throw ex;
             }
         }
-        #endregion
     }
 }

@@ -105,6 +105,12 @@ namespace ORA.Controllers
             EmployeeMap.DeleteEmployee(employee);
             return RedirectToAction("ViewEmployees");
         }
+
+        public ActionResult DeleteEmployeeRecords(EmployeeVM employee)
+        {
+            AccountDAL.DeleteEmployeeRecords(employee.EmployeeId);
+            return RedirectToAction("ViewEmployees");
+        }
         #endregion
     }
 }

@@ -115,7 +115,7 @@ namespace ORA_Data.DAL
                 using (SqlCommand command = new SqlCommand("READ_LOGIN_BY_ID", SqlConnect.Connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@Login_ID", loginId);
+                    command.Parameters.AddWithValue("@Employee_ID", loginId);
                     command.Connection.Open();
                     using (SqlDataReader reader = command.ExecuteReader())
                     {

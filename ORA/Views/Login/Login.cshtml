@@ -21,10 +21,12 @@
                 <span id="reauth-email" class="reauth-email"></span>
                 <div type="email" id="inputEmail" required autofocus>
                     @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "Email Address", required = "required" } })
+                    @Html.ValidationMessageFor(model => model.Email)
                 </div>
                 &nbsp; &nbsp; 
                 <div type="password" id="inputPassword"  required>
                     @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "Password", required = "required" } })
+                    @Html.ValidationMessageFor(model => model.Password)
                 </div>
                 
                 <div id="remember" class="checkbox">

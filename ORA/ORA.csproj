@@ -241,6 +241,7 @@
     <Content Include="Content\Dashboard.css" />
     <Content Include="Content\js\wizard.js" />
     <Content Include="Content\Login.css" />
+    <Content Include="Content\Resume.css" />
     <Content Include="Content\wizard.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

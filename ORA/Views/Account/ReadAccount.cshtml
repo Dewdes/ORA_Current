@@ -88,11 +88,11 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        @if ((string)Session["Role"] == "Manager")
+                        @if (Session["Role"].ToString().ToUpper().Contains("MANAGER"))
                         {
                             <a class="navbar-brand" href="#">MANAGER DASHBOARD</a>
                         }
-                        @if ((string)Session["Role"] == "Team Lead")
+                        @if (Session["Role"].ToString().ToUpper().Contains("Team Lead"))
                         {
                             <a class="navbar-brand" href="#">TEAM LEAD DASHBOARD</a>
                         }
@@ -107,7 +107,7 @@
                                     Account
                                 </a>
                             </li>
-                            @if ((string)Session["Role"] == "Manager" || (string)Session["Role"] == "Team Lead")
+                            @if (Session["Role"].ToString().ToUpper().Contains("Manager") || Session["Role"].ToString().ToUpper().Contains("Team Lead"))
                             {
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -167,6 +167,12 @@
                                                         @Html.DisplayTextFor(model => model.Address.Email)
                                                     </div>
                                                 </div>
+                                                @*<div class="col-md-4">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.Address.Email)
+                                                        @Html.EditorFor(model => model.Address.Email, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "Email", required = "required" } })
+                                                    </div>
+                                                </div>*@
                                             </div>
                                             @Html.HiddenFor(model => model.EmployeeId)
                                             @Html.HiddenFor(model => model.EmployeeNumber)
@@ -229,6 +235,12 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group">
+                                                        @Html.LabelFor(model => model.Address.Phone)
+                                                        @Html.EditorFor(model => model.Address.Phone, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "Phone Number", required = "required" } })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
                                                         @Html.LabelFor(model => model.Address.Zip_Code)
                                                         @Html.EditorFor(model => model.Address.Zip_Code, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "Zip Code", required = "required" } })
                                                     </div>
@@ -258,7 +270,7 @@
                                             <a href="#">
                                                 <img class="avatar border-gray" src="https://static-cdn.jtvnw.net/jtv_user_pictures/panel-105458682-image-30bb3ea9145a9b30-320-320.jpeg?imenable=1&impolicy=panel-images&imwidth=320" alt="..." />
                                                 <h4 class="title">
-                                                    @Session["Email"]<br />
+                                                    @Session["Name"].ToString().Split(' ')[0]<br />
                                                     @*<small>testname</small>*@
                                                 </h4>
                                             </a>
