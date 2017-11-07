@@ -9,6 +9,7 @@ namespace ORA_Data.DAL
     public class ResumeDAL
     {
         #region CREATE METHODS
+
         /// <summary>
         /// Creates a blank resume on employee account creation for the employee to utilize later
         /// Uses the CREATE_RESUME stored procedure
@@ -40,7 +41,7 @@ namespace ORA_Data.DAL
         /// Uses the UPDATE_EDUCATION stored procedure
         /// </summary>
         /// <param name="_education"></param>
-        public static void CreateEducation(EducationDM _education)
+        public static void CreateEducation(EducationDM _education, int resumeID)
         {
             try
             {
@@ -50,10 +51,10 @@ namespace ORA_Data.DAL
                     cmd.Parameters.AddWithValue("@Insitution_Name", _education.InsitutionName);
                     cmd.Parameters.AddWithValue("@Attended_Start_Date", _education.Attended_Start_Date);
                     cmd.Parameters.AddWithValue("@Attended_End_Date", _education.Attended_End_Date);
-                    cmd.Parameters.AddWithValue("@Institution_Location", _education.InstitutionLocation);
-                    cmd.Parameters.AddWithValue("@Education_Earned", _education.EducationEarned);
-                    cmd.Parameters.AddWithValue("@Area_Of_Study", _education.AreaOfStudy);
-                    cmd.Parameters.AddWithValue("@Resume_ID", _education.ResumeID);
+                    cmd.Parameters.AddWithValue("@Institution_Location", _education.InstitutionLocation ?? "Default");
+                    cmd.Parameters.AddWithValue("@Education_Earned", _education.EducationEarned ?? "Default");
+                    cmd.Parameters.AddWithValue("@Area_Of_Study", _education.AreaOfStudy ?? "Default");
+                    cmd.Parameters.AddWithValue("@Resume_ID", resumeID);
                     SqlConnect.Connection.Open();
                     cmd.ExecuteNonQuery();
                     SqlConnect.Connection.Close();
@@ -144,6 +145,7 @@ namespace ORA_Data.DAL
         #endregion
 
         #region READ METHODS
+
         /// <summary>
         ///This will grab the employee resume from the resume table where the employee ID foreign key is equal to the current logged in users ID (i.e users employee ID)
         /// Uses the READ_RESUME stored procedure
@@ -186,6 +188,12 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// This gets a resume based on the employee id given
+        /// Uses the READ_RESUME_ID
+        /// </summary>
+        /// <param name="employeeNum"></param>
+        /// <returns></returns>
         public static int ReadResumeId(long employeeNum)
         {
             try
@@ -545,7 +553,7 @@ namespace ORA_Data.DAL
             catch (Exception e)
             {
                 SqlConnect.Connection.Close();
-               throw (e);
+                throw (e);
             }
         }
 
@@ -566,8 +574,8 @@ namespace ORA_Data.DAL
                     if (_workHistory.OrganizationName != null)
                         cmd.Parameters.AddWithValue("@Organization_Name", _workHistory.OrganizationName);
                     else
-                        cmd.Parameters.AddWithValue("@Organization_Name", DBNull.Value);        
-                    
+                        cmd.Parameters.AddWithValue("@Organization_Name", DBNull.Value);
+
                     cmd.Parameters.AddWithValue("@Work_Place_Start_Date", _workHistory.WorkPlaceStartDate);
                     cmd.Parameters.AddWithValue("@Work_Place_End_Date", _workHistory.WorkPlaceEndDate);
 

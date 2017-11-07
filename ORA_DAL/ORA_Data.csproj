@@ -59,6 +59,7 @@
     <Compile Include="DAL\TimeDAL.cs" />
     <Compile Include="DAL\Work_StatusDAL.cs" />
     <Compile Include="Hash.cs" />
+    <Compile Include="Model\AccountBioDM.cs" />
     <Compile Include="Model\AddressDM.cs" />
     <Compile Include="Model\AssessmentDM.cs" />
     <Compile Include="Model\AssignmentDM.cs" />

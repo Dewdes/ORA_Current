@@ -32,6 +32,7 @@ namespace ORA.Controllers
         [HttpPost]
         public ActionResult AccountCreation(EmployeeVM employee)
         {
+            //AccountBioVM accountBio = new AccountBioVM();
             EmployeeMap.CreateEmployee(employee);
             employee.EmployeeId = EmployeeMap.GetEmployeeId(employee.EmployeeNumber);
             employee.Login.Email = employee.Address.Email;
@@ -42,6 +43,8 @@ namespace ORA.Controllers
             Work_StatusDAL.CreateStatus(Mapper.Map<StatusDM>(employee.Status), employee.EmployeeId);
             TimeDAL.CreateEmptyTime(employee.EmployeeId);
             ResumeDAL.CreateResume(employee.EmployeeId);
+            employee.Resume = Mapper.Map<ResumeVM>(ResumeDAL.GetResumeByID((long)Session["ID"]));
+
             return Redirect("AdminDashboard");
         }
 

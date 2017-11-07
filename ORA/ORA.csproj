@@ -176,6 +176,7 @@
     <Compile Include="Mapping\Sprint.cs" />
     <Compile Include="Mapping\StoryMap.cs" />
     <Compile Include="Mapping\TeamMap.cs" />
+    <Compile Include="Models\AccountBioVM.cs" />
     <Compile Include="Models\AddressVM.cs" />
     <Compile Include="Models\AssessmentVM.cs" />
     <Compile Include="Models\AssignmentVM.cs" />
