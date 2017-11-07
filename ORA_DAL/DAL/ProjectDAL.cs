@@ -13,6 +13,8 @@ namespace ORA_Data.DAL
         /// </summary>
 
         #region Project DAL METHODS
+
+        private static ErrorLog errorLog = new ErrorLog();
         public static void CreateProject(ProjectDM _project)
         {
             try
@@ -33,8 +35,12 @@ namespace ORA_Data.DAL
             }
             catch (Exception e)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("CreateProject", DateTime.Now, e.Message);
                 throw (e);
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 
@@ -70,8 +76,12 @@ namespace ORA_Data.DAL
             }
             catch (Exception ex)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("ReadProjects", DateTime.Now, ex.Message);
                 throw ex;
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 
@@ -106,8 +116,12 @@ namespace ORA_Data.DAL
             }
             catch (Exception ex)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("ReadProjectByID", DateTime.Now, ex.Message);
                 throw ex;
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 
@@ -131,8 +145,12 @@ namespace ORA_Data.DAL
             }
             catch (Exception e)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("UpdateProject", DateTime.Now, e.Message);
                 throw (e);
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 
@@ -151,9 +169,13 @@ namespace ORA_Data.DAL
             }
             catch (Exception ex)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("DeleteProject", DateTime.Now, ex.Message);
                 //Write to error log
                 throw ex;
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
         #endregion

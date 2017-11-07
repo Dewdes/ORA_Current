@@ -8,6 +8,7 @@ namespace ORA_Data.DAL
 {
     public class ResumeDAL
     {
+        private static ErrorLog errorLog = new ErrorLog();
         #region CREATE METHODS
         /// <summary>
         /// Creates a blank resume on employee account creation for the employee to utilize later
@@ -30,8 +31,12 @@ namespace ORA_Data.DAL
             }
             catch (Exception e)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("CreateResume", DateTime.Now, e.Message);
                 throw (e);
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 
@@ -61,8 +66,12 @@ namespace ORA_Data.DAL
             }
             catch (Exception e)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("CreateEducation", DateTime.Now, e.Message);
                 throw (e);
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 
@@ -106,8 +115,12 @@ namespace ORA_Data.DAL
             }
             catch (Exception e)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("CreateSkills", DateTime.Now, e.Message);
                 throw (e);
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 
@@ -136,8 +149,12 @@ namespace ORA_Data.DAL
             }
             catch (Exception e)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("CreateWorkHistory", DateTime.Now, e.Message);
                 throw (e);
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 
@@ -178,6 +195,7 @@ namespace ORA_Data.DAL
             }
             catch (Exception e)
             {
+                errorLog.ErrorLogger("GetResumeByID", DateTime.Now, e.Message);
                 throw (e);
             }
             finally
@@ -212,6 +230,7 @@ namespace ORA_Data.DAL
             }
             catch (Exception ex)
             {
+                errorLog.ErrorLogger("ReadResumeId", DateTime.Now, ex.Message);
                 throw (ex);
             }
             finally
@@ -259,6 +278,7 @@ namespace ORA_Data.DAL
             }
             catch (Exception e)
             {
+                errorLog.ErrorLogger("GetEducationByResumeID", DateTime.Now, e.Message);
                 throw (e);
             }
             finally
@@ -307,6 +327,7 @@ namespace ORA_Data.DAL
             }
             catch (Exception e)
             {
+                errorLog.ErrorLogger("GetWorkHistoryByResumeID", DateTime.Now, e.Message);
                 throw (e);
             }
             finally
@@ -368,6 +389,7 @@ namespace ORA_Data.DAL
             }
             catch (Exception e)
             {
+                errorLog.ErrorLogger("GetSkillsByResumeID", DateTime.Now, e.Message);
                 throw (e);
             }
             finally
@@ -400,8 +422,12 @@ namespace ORA_Data.DAL
             }
             catch (Exception e)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("UpdateResume", DateTime.Now, e.Message);
                 throw (e);
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 
@@ -450,8 +476,12 @@ namespace ORA_Data.DAL
             }
             catch (Exception e)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("UpdateEducation", DateTime.Now, e.Message);
                 throw (e);
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 
@@ -544,8 +574,12 @@ namespace ORA_Data.DAL
             }
             catch (Exception e)
             {
+                errorLog.ErrorLogger("UpdateSkills", DateTime.Now, e.Message);
+                throw (e);
+            }
+            finally
+            {
                 SqlConnect.Connection.Close();
-               throw (e);
             }
         }
 
@@ -588,8 +622,12 @@ namespace ORA_Data.DAL
             }
             catch (Exception e)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("UpdateWorkHistory", DateTime.Now, e.Message);
                 throw (e);
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 

@@ -15,6 +15,7 @@ namespace ORA_Data.DAL
 
         #region LOGIN DAL METHODS
 
+        private static ErrorLog errorLog = new ErrorLog();
         public static bool Login(LoginDM login)
         {
             try
@@ -47,8 +48,12 @@ namespace ORA_Data.DAL
             }
             catch (Exception ex)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("Login", DateTime.Now, ex.Message);
                 throw (ex);
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 
@@ -70,8 +75,12 @@ namespace ORA_Data.DAL
             }
             catch (Exception ex)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("Register", DateTime.Now, ex.Message);
                 throw (ex);
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 
@@ -102,8 +111,12 @@ namespace ORA_Data.DAL
             }
             catch (Exception ex)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("ViewLogins", DateTime.Now, ex.Message);
                 throw (ex);
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 
@@ -133,8 +146,12 @@ namespace ORA_Data.DAL
             }
             catch (Exception ex)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("ReadLoginById", DateTime.Now, ex.Message);
                 throw (ex);
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 
@@ -164,8 +181,12 @@ namespace ORA_Data.DAL
             }
             catch (Exception ex)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("ReadLoginByEmail", DateTime.Now, ex.Message);
                 throw (ex);
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 
@@ -188,8 +209,12 @@ namespace ORA_Data.DAL
             }
             catch (Exception e)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("UpdateLogin", DateTime.Now, e.Message);
                 throw (e);
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 
@@ -208,8 +233,12 @@ namespace ORA_Data.DAL
             }
             catch (Exception ex)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("DeleteLogin", DateTime.Now, ex.Message);
                 throw (ex);
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 

@@ -16,6 +16,7 @@ namespace ORA_Data.DAL
 
         #region EMPLOYEE DAL METHODS
 
+        private static ErrorLog errorLog = new ErrorLog();
         //Creates the Employee in the database
         public void CreateEmployee(EmployeeDM employee)
         {
@@ -42,7 +43,7 @@ namespace ORA_Data.DAL
             }
             catch (Exception ex)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("CreateEmployee", DateTime.Now, ex.Message);
                 throw (ex);
             }
 
@@ -88,7 +89,7 @@ namespace ORA_Data.DAL
             }
             catch (Exception ex)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("ReadEmployeeByID", DateTime.Now, ex.Message);
                 throw (ex);
             }
             finally
@@ -123,7 +124,7 @@ namespace ORA_Data.DAL
             }
             catch (Exception ex)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("ReadEmployeeID", DateTime.Now, ex.Message);
                 throw (ex);
             }
             finally
@@ -217,7 +218,7 @@ namespace ORA_Data.DAL
             }
             catch (Exception ex)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("ReadEmployees", DateTime.Now, ex.Message);
                 throw ex;
             }
             finally
@@ -251,8 +252,12 @@ namespace ORA_Data.DAL
             }
             catch (Exception e)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("UpdateEmployee", DateTime.Now, e.Message);
                 throw (e);
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 
@@ -271,9 +276,12 @@ namespace ORA_Data.DAL
             }
             catch (Exception ex)
             {
-                SqlConnect.Connection.Close();
-                //Write to error log
+                errorLog.ErrorLogger("DeleteEmployee", DateTime.Now, ex.Message);
                 throw ex;
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 

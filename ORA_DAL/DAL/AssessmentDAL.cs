@@ -14,6 +14,8 @@ namespace ORA_Data.DAL
         /// 
 
         #region Assessment DAL Methods
+        private static ErrorLog errorLog = new ErrorLog();
+        
         public static void CreateAssessment(AssessmentDM _assessment)
         {
             try
@@ -75,6 +77,7 @@ namespace ORA_Data.DAL
             }
             catch (Exception e)
             {
+                errorLog.ErrorLogger("CreateAssessment", DateTime.Now, e.Message);
                 throw (e);
             }
             finally
@@ -157,6 +160,7 @@ namespace ORA_Data.DAL
             catch (Exception ex)
             {
                 SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("ReadAssessments", DateTime.Now, ex.Message);
                 throw ex;
             }
         }
@@ -234,6 +238,7 @@ namespace ORA_Data.DAL
             catch (Exception ex)
             {
                 SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("ReadAssessmentByID", DateTime.Now, ex.Message);
                 throw ex;
             }
         }
@@ -313,6 +318,7 @@ namespace ORA_Data.DAL
             catch (Exception ex)
             {
                 SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("ReadMyAssessmentByID", DateTime.Now, ex.Message);
                 throw ex;
             }
         }
@@ -350,6 +356,7 @@ namespace ORA_Data.DAL
             catch (Exception e)
             {
                 SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("ReadAssessDescriptions", DateTime.Now, e.Message);
                 throw (e);
             }
         }
@@ -414,6 +421,7 @@ namespace ORA_Data.DAL
             catch (Exception e)
             {
                 SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("UpdateAssessment", DateTime.Now, e.Message);
                 throw (e);
             }
         }
@@ -434,6 +442,7 @@ namespace ORA_Data.DAL
             catch (Exception e)
             {
                 SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("DeleteAssessment", DateTime.Now, e.Message);
                 throw (e);
             }
         }

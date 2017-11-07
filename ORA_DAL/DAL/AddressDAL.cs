@@ -13,6 +13,8 @@ namespace ORA_Data.DAL
         /// </summary>
 
         #region ADDRESS DAL METHODS
+
+        private static ErrorLog errorLog = new ErrorLog();
         public static void CreateAddress(AddressDM address, long empID)
         {
             try
@@ -37,6 +39,7 @@ namespace ORA_Data.DAL
             catch (Exception e)
             {
                 SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("CreateAddress", DateTime.Now, e.Message);
                 throw e;
             }
         }
@@ -76,6 +79,7 @@ namespace ORA_Data.DAL
             catch (Exception ex)
             {
                 SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("ReadAllAddress", DateTime.Now, ex.Message);
                 throw ex;
             }
         }
@@ -113,6 +117,7 @@ namespace ORA_Data.DAL
             catch (Exception ex)
             {
                 SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("ReadAddressByID", DateTime.Now, ex.Message);
                 throw ex;
             }
         }
@@ -141,6 +146,7 @@ namespace ORA_Data.DAL
             catch (Exception e)
             {
                 SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("UpdateAddress", DateTime.Now, e.Message);
                 throw (e);
             }
         }
@@ -161,7 +167,7 @@ namespace ORA_Data.DAL
             catch (Exception ex)
             {
                 SqlConnect.Connection.Close();
-                //Write to error log
+                errorLog.ErrorLogger("DeleteAddress", DateTime.Now, ex.Message);
                 throw ex;
             }
         }

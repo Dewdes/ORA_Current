@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -238,8 +239,10 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Dashboard.css" />
+    <Content Include="Content\SearchBarEmployee.css" />
     <Content Include="Content\js\wizard.js" />
     <Content Include="Content\Login.css" />
+    <Content Include="Content\ReadAssessmentsbyID.css" />
     <Content Include="Content\wizard.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -249,6 +252,8 @@
     <Content Include="Images\Onshore.png" />
     <Content Include="Images\OnshoreLogo.png" />
     <Content Include="Images\OnshoreLogoWhite.png" />
+    <Content Include="Images\search-icon-light-grey-hi.png" />
+    <Content Include="Images\tinysearchicon.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -326,6 +331,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\SearchEmployeeTable.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
