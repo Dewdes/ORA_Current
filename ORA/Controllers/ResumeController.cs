@@ -27,6 +27,18 @@ namespace ORA.Controllers
         }
 
         [HttpGet]
+        public ActionResult CreateEducation()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateEducation(EducationDM _education)
+        {
+            return Redirect("ReadResumeById");
+        }
+
+        [HttpGet]
         public ActionResult UpdateResume()
         {
             ResumeVM resume = new ResumeVM();

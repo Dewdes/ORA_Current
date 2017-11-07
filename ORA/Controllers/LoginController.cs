@@ -75,18 +75,18 @@ namespace ORA.Controllers
                     info.Role = Mapper.Map<RolesVM>(RolesDAL.ReadRoleByID(info.Employee.RoleId));
                     Session["Role"] = info.Role.RoleName;
                     Session["ID"] = info.EmployeeId;
+                    Session["Email"] = info.Email;
+                    Session["Name"] = info.Employee.EmployeeName;
                     FormsAuthentication.RedirectFromLoginPage(info.Role.RoleName, true);
                     FormsAuthentication.SetAuthCookie(info.Email, false);
                     if ((bool)Session["LoggedIn"])
                     {
-                        if ((string)Session["Role"] == "ADMIN" || ((string)Session["Role"] == "DIRECTOR"))
+                        if (Session["Role"].ToString().ToUpper().Contains("ADMIN") || Session["Role"].ToString().ToUpper().Contains("DIRECTOR"))
                         {
-                            Session["Email"] = info.Email;
                             return RedirectToAction("AdminDashboard", "Home", new { area = "Default" });
                         }
                         else
                         {
-                            Session["Email"] = info.Email;
                             return RedirectToAction("ReadAccount", "Account", new { area = "Default" });
                         }
                     }
@@ -107,13 +107,13 @@ namespace ORA.Controllers
                     {
                         ModelState.AddModelError("Email", "Email Does not Exist");
                     }
-                    for(int i=0;i <= (passwords.Count - 1);i++)
+                    for (int i = 0; i <= (passwords.Count - 1); i++)
                     {
-                        if(!passwords.Contains(ORA_Data.Hash.GetHash(info.Password + salts[i])))
+                        if (!passwords.Contains(ORA_Data.Hash.GetHash(info.Password + salts[i])))
                         {
                             ModelState.AddModelError("Password", "Password not valid");
                         }
-                        
+
                     }
                 }
                 return View();

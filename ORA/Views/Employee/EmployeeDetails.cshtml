@@ -10,13 +10,8 @@
     <h4>EmployeeVM</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.EmployeeId)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.EmployeeId)
-        </dd>
+            @Html.HiddenFor(model => model.EmployeeId)
 
         <dt>
             @Html.DisplayNameFor(model => model.EmployeeNumber)
@@ -75,35 +70,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.AddressID)
+            @*@Html.DisplayNameFor(model => model.LoginId)*@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AddressID)
+            @Html.ActionLink("Login", "ReadLoginByID", "Login", new { id = Model.EmployeeId }, new { })
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TimeID)
+            @*@Html.DisplayNameFor(model => model.AddressId)*@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.TimeID)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.WorkStatusID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.WorkStatusID)
-        </dd>
-        
-        <dt>
-            @Html.DisplayNameFor(model => model.address.City)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.address.City)
+            @Html.ActionLink("Address", "ReadAddressByID", "Address", new { id = Model.EmployeeId }, new { })
         </dd>
 
     </dl>

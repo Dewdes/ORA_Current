@@ -150,7 +150,6 @@
     <Compile Include="Controllers\AssessmentController.cs" />
     <Compile Include="Controllers\AssignmentController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
-    <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KPIController.cs" />
@@ -177,6 +176,7 @@
     <Compile Include="Mapping\Sprint.cs" />
     <Compile Include="Mapping\StoryMap.cs" />
     <Compile Include="Mapping\TeamMap.cs" />
+    <Compile Include="Models\AccountBioVM.cs" />
     <Compile Include="Models\AddressVM.cs" />
     <Compile Include="Models\AssessmentVM.cs" />
     <Compile Include="Models\AssignmentVM.cs" />
@@ -243,6 +243,7 @@
     <Content Include="Content\js\wizard.js" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\ReadAssessmentsbyID.css" />
+    <Content Include="Content\Resume.css" />
     <Content Include="Content\wizard.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
