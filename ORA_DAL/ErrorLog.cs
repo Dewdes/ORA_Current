@@ -12,7 +12,7 @@ namespace ORA_Data
     {
         public void ErrorLogger(string level, DateTime timeStamp, string errorMsg)
         {
-            string path = HttpContext.Current.Server.MapPath(@"~\ErrorLogDAL.txt");
+            string path = HttpContext.Current.Server.MapPath(@"~\Tools\ErrorLogDAL.txt");
             using (FileStream outputFileStream = new FileStream(path, FileMode.Append, FileAccess.Write))
             {
                 using (StreamWriter writer = new StreamWriter(outputFileStream))
