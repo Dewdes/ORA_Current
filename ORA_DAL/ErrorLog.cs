@@ -11,7 +11,7 @@ namespace ORA_Data
     {
         public void ErrorLogger(string level, DateTime timeStamp, string errorMsg)
         {
-            using (StreamWriter writer = new StreamWriter("DAL_ERROR_LOG.txt", true))
+            using (StreamWriter writer = new StreamWriter("C:\\Users\\Onshore\\Desktop\\ORA_Version_0.1\\ORA\\Tools\\ErrorLogDAL.txt", true))
             {
                 writer.WriteLine("Level: " + level + "   Time: " + timeStamp + "   Error: " + errorMsg);
             }

@@ -52,11 +52,18 @@ namespace ORA.Controllers
         [HttpPost]
         public ActionResult UpdateResume(ResumeVM resume)
         {
-            resume.ResumeID = ResumeDAL.ReadResumeId((long)Session["ID"]);
-            ResumeDAL.UpdateEducation(Mapper.Map<EducationDM>(resume.Education), resume.ResumeID);
-            ResumeDAL.UpdateSkills(Mapper.Map<SkillsDM>(resume.Skills), resume.ResumeID);
-            ResumeDAL.UpdateWorkHistory(Mapper.Map<WorkHistoryDM>(resume.WorkHistory), resume.ResumeID);
-            return Redirect("ReadAccount");
+            if (ModelState.IsValid)
+            {
+                resume.ResumeID = ResumeDAL.ReadResumeId((long)Session["ID"]);
+                ResumeDAL.UpdateEducation(Mapper.Map<EducationDM>(resume.Education), resume.ResumeID);
+                ResumeDAL.UpdateSkills(Mapper.Map<SkillsDM>(resume.Skills), resume.ResumeID);
+                ResumeDAL.UpdateWorkHistory(Mapper.Map<WorkHistoryDM>(resume.WorkHistory), resume.ResumeID);
+                return Redirect("ReadAccount");
+            }
+            else
+            {
+                return View();
+            }
         }
     }
 }

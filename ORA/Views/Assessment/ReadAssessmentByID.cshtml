@@ -320,12 +320,14 @@
                 </div>
             </div>
         </div>
+        <div class="btn-group-sm">
+        <div class="pull-right">
+            @Html.ActionLink("Update", "UpdateAssessment", null, new { id = Model.AssessmentId, @class = "btn btn-primary" })
+        </div>
+        </div>
     </div>
 </body>
 
 
-<p>
-    | @Html.ActionLink("Update", "UpdateAssessment", new { id = Model.AssessmentId }) |
-</p>
 
 
