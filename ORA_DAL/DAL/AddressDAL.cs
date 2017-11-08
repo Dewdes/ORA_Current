@@ -8,13 +8,15 @@ namespace ORA_Data.DAL
 {
     public class AddressDAL
     {
-        /// <summary>
-        /// Basic CRUD methods for address information. AddressDM is the model being used here.
-        /// </summary>
-
         #region ADDRESS DAL METHODS
 
         private static ErrorLog errorLog = new ErrorLog();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="address"></param>
+        /// <param name="empID"></param>
         public static void CreateAddress(AddressDM address, long empID)
         {
             try
@@ -44,6 +46,10 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static List<AddressDM> ReadAllAddress()
         {
             List<AddressDM> addressList = new List<AddressDM>();
@@ -84,6 +90,11 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public static AddressDM ReadAddressByID(string id)
         {
             try
@@ -122,6 +133,10 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="address"></param>
         public static void UpdateAddress(AddressDM address)
         {
             try
@@ -151,6 +166,10 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="address"></param>
         public static void DeleteAddress(AddressDM address)
         {
             try

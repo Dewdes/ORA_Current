@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using ORA.Mapping;
 using ORA.Models;
 using ORA_Data.DAL;
 using ORA_Data.Model;
@@ -20,7 +19,7 @@ namespace ORA.Controllers
         public ActionResult CreateKPI()
         {
             KPIVM kpi = new KPIVM();
-            kpi.EmployeeList = Mapper.Map<List<EmployeeVM>>(EmployeeMap.ReadEmployees());
+            kpi.EmployeeList = Mapper.Map<List<EmployeeVM>>(EmployeeDAL.ReadEmployees());
             kpi.Assignments = Mapper.Map<List<AssignmentVM>>(AssignmentDAL.ReadAssignments());
             kpi.Projects = Mapper.Map<List<ProjectVM>>(ProjectDAL.ReadProjects());
             kpi.Sprints = Mapper.Map<List<SprintVM>>(SprintDAL.ReadSprints());
@@ -43,12 +42,12 @@ namespace ORA.Controllers
             List<KPIVM> list = Mapper.Map<List<KPIVM>>(KPI_DAL.ReadKPIs());
             foreach (KPIVM item in list)
             {
-                item.Employee = EmployeeMap.GetEmployeeById(item.EmployeeId);
+                item.Employee = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById(item.EmployeeId));
                 item.Employee.Team = Mapper.Map<TeamsVM>(TeamsDAL.ReadTeamById(item.Employee.TeamId.ToString()));
             }
             if (Session["Role"].ToString() == "Team Lead")
             {
-                EmployeeVM lead = Mapper.Map<EmployeeVM>(EmployeeMap.GetEmployeeById(id));
+                EmployeeVM lead = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById(id));
                 foreach (KPIVM assess in list)
                 {
                     if (assess.Employee.TeamId == lead.TeamId && assess.Employee.EmployeeId != lead.EmployeeId)
@@ -66,7 +65,7 @@ namespace ORA.Controllers
             List<KPIVM> kpis = Mapper.Map<List<KPIVM>>(KPI_DAL.ReadMyKPIsById(id));
             foreach (KPIVM info in kpis)
             {
-                info.Employee = Mapper.Map<EmployeeVM>(EmployeeMap.GetEmployeeById(id));
+                info.Employee = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById(id));
             }
             return View(kpis);
         }
@@ -74,7 +73,7 @@ namespace ORA.Controllers
         public ActionResult ReadKPIByID(string id)
         {
             KPIVM kpi = Mapper.Map<KPIVM>(KPI_DAL.ReadKPIById(id));
-            kpi.Employee = Mapper.Map<EmployeeVM>(EmployeeMap.GetEmployeeById(kpi.EmployeeId));
+            kpi.Employee = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById(kpi.EmployeeId));
             return View(kpi);
         }
 
@@ -82,7 +81,7 @@ namespace ORA.Controllers
         {
             KPIVM kpi = new KPIVM();
             kpi = Mapper.Map<KPIVM>(KPI_DAL.ReadKPIById(id));
-            kpi.Employee = Mapper.Map<EmployeeVM>(EmployeeMap.GetEmployeeById(kpi.EmployeeId));
+            kpi.Employee = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById(kpi.EmployeeId));
             kpi.Stories = Mapper.Map<List<StoryVM>>(StoryDAL.ReadStorys());
             kpi.Projects = Mapper.Map<List<ProjectVM>>(ProjectDAL.ReadProjects());
             kpi.Sprints = Mapper.Map<List<SprintVM>>(SprintDAL.ReadSprints());

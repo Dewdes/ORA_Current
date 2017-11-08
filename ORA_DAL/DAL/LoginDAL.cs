@@ -8,14 +8,15 @@ namespace ORA_Data.DAL
 {
     public class LoginDAL
     {
-        /// <summary>
-        /// Basic methods for Logging in and Registering information.
-        /// </summary>
-        /// 
-
         #region LOGIN DAL METHODS
 
         private static ErrorLog errorLog = new ErrorLog();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns></returns>
         public static bool Login(LoginDM login)
         {
             try
@@ -57,6 +58,11 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="login"></param>
+        /// <param name="EmpID"></param>
         public static void Register(LoginDM login, long EmpID)
         {
             try
@@ -84,7 +90,10 @@ namespace ORA_Data.DAL
             }
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static List<LoginDM> ViewLogins()
         {
             try
@@ -120,6 +129,11 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="loginId"></param>
+        /// <returns></returns>
         public static LoginDM ReadLoginById(string loginId)
         {
             try
@@ -155,6 +169,11 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         public static long ReadLoginByEmail(string email)
         {
             try
@@ -190,6 +209,10 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="login"></param>
         public static void UpdateLogin(LoginDM login)
         {
             try
@@ -218,6 +241,10 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="login"></param>
         public static void DeleteLogin(LoginDM login)
         {
             try

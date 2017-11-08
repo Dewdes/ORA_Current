@@ -8,14 +8,14 @@ namespace ORA_Data.DAL
 {
     public class AssignmentDAL
     {
-        /// <summary>
-        /// Basic CRUD methods for Assignment information. AssignmentDM is the model being used here.
-        /// </summary>
-        /// 
-
         #region ASSIGNMENT DAL Methods
 
         private static ErrorLog errorLog = new ErrorLog();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_assignment"></param>
         public static void CreateAssignment(AssignmentDM _assignment)
         {
             try
@@ -48,6 +48,10 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static List<AssignmentDM> ReadAssignments()
         {
             List<AssignmentDM> _assignmentList = new List<AssignmentDM>();
@@ -89,6 +93,11 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="assignmentId"></param>
+        /// <returns></returns>
         public static AssignmentDM ReadAssignmentByID(string assignmentId)
         {
             AssignmentDM _assignment = new AssignmentDM();
@@ -129,6 +138,10 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_assignment"></param>
         public static void UpdateAssignment(AssignmentDM _assignment)
         {
             try
@@ -161,6 +174,10 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_assignment"></param>
         public static void DeleteAssignment(AssignmentDM _assignment)
         {
             try

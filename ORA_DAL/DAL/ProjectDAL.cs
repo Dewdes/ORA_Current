@@ -8,18 +8,18 @@ namespace ORA_Data.DAL
 {
     public class ProjectDAL
     {
-        /// <summary>
-        /// Basic CRUD methods for Project information. ProjectDM is the model being used here.
-        /// </summary>
-
         #region Project DAL METHODS
 
         private static ErrorLog errorLog = new ErrorLog();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_project"></param>
         public static void CreateProject(ProjectDM _project)
         {
             try
             {
-                //Creating a way of adding new user information to my database 
                     using (SqlCommand cmd = new SqlCommand("CREATE_PROJECT", SqlConnect.Connection))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
@@ -44,6 +44,10 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static List<ProjectDM> ReadProjects()
         {
             List<ProjectDM> projectList = new List<ProjectDM>();
@@ -85,6 +89,11 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
         public static ProjectDM ReadProjectById(string projectId)
         {
             ProjectDM _project = new ProjectDM();
@@ -125,6 +134,10 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_project"></param>
         public static void UpdateProject(ProjectDM _project)
         {
             try
@@ -154,6 +167,10 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_project"></param>
         public static void DeleteProject(ProjectDM _project)
         {
             try

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ORA_Data.Model
+﻿namespace ORA_Data.Model
 {
     public class AddressDM
     {

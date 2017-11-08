@@ -8,13 +8,15 @@ namespace ORA_Data.DAL
 {
     public class TeamsDAL
     {
-        /// <summary>
-        /// Basic CRUD methods for Team information. TeamDM is the model being used here.
-        /// </summary>
-
         #region Team DAL METHODS
 
         private static ErrorLog errorLog = new ErrorLog();
+
+        /// <summary>
+        /// CreateTeam: Creates a new team. Duh.
+        /// Uses the...wait for it....CREATE_TEAM stored procedure
+        /// </summary>
+        /// <param name="_team"></param>
         public static void CreateTeam(TeamsDM _team)
         {
             try
@@ -41,6 +43,11 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// ReadTeams: Reads all created teams...
+        /// Uses the READ_TEAMS stored procedure
+        /// </summary>
+        /// <returns></returns>
         public static List<TeamsDM> ReadTeams()
         {
             List<TeamsDM> teamList = new List<TeamsDM>();
@@ -79,6 +86,12 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// ReadTeamyId: Reads a teams information for the teamId equal to the given teamId
+        /// Uses the READ_TEAM_BY_ID stored procedure
+        /// </summary>
+        /// <param name="teamId"></param>
+        /// <returns></returns>
         public static TeamsDM ReadTeamById(string teamId)
         {
             TeamsDM _team = new TeamsDM();
@@ -116,6 +129,11 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// UpdateTeam: Can update a team/
+        /// Uses the UPDATE_TEAM stored procedure
+        /// </summary>
+        /// <param name="_team"></param>
         public static void UpdateTeam(TeamsDM _team)
         {
             try
@@ -142,6 +160,11 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// DeleteTeam: Deletes a team from the database
+        /// Uses the DELETE_TEAM stored procedure
+        /// </summary>
+        /// <param name="_team"></param>
         public static void DeleteTeam(TeamsDM _team)
         {
             try

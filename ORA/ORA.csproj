@@ -164,18 +164,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Mapping\AccountMap.cs" />
-    <Compile Include="Mapping\AssessmentMap.cs" />
-    <Compile Include="Mapping\AssignmentMap.cs" />
-    <Compile Include="Mapping\ClientsMap.cs" />
-    <Compile Include="Mapping\EmployeeMap.cs" />
-    <Compile Include="Mapping\KPIMap.cs" />
-    <Compile Include="Mapping\PositionMap.cs" />
-    <Compile Include="Mapping\ProjectMap.cs" />
-    <Compile Include="Mapping\RolesMap.cs" />
-    <Compile Include="Mapping\Sprint.cs" />
-    <Compile Include="Mapping\StoryMap.cs" />
-    <Compile Include="Mapping\TeamMap.cs" />
     <Compile Include="Models\AccountBioVM.cs" />
     <Compile Include="Models\AddressVM.cs" />
     <Compile Include="Models\AssessmentVM.cs" />
@@ -467,6 +455,8 @@
           <DevelopmentServerPort>63602</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:63602/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:63602/Login/Login?ReturnUrl=%2f</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

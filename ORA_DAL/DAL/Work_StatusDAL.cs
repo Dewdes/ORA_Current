@@ -8,13 +8,17 @@ namespace ORA_Data.DAL
 {
     public class Work_StatusDAL
     {
-        /// <summary>
-        /// Basic CRUD methods for status information. StatusDM is the model being used here.
-        /// </summary>
-
+       
         #region STATUS DAL METHODS
 
         private static ErrorLog errorLog = new ErrorLog();
+
+        /// <summary>
+        /// CreateStatus: Creates a work status for the employee when a new employee is created. Can be updated to reflect the current or former employees working status
+        /// Uses the CREATE_WORK_STATUS stored procedure
+        /// </summary>
+        /// <param name="_status"></param>
+        /// <param name="empID"></param>
         public static void CreateStatus(StatusDM _status, long empID)
         {
             try
@@ -47,6 +51,11 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// ReadAllStatus: Reads all the working status's for all current and former employees.
+        /// Uses the READ_WORK_STATUS stored procedure
+        /// </summary>
+        /// <returns></returns>
         public static List<StatusDM> ReadAllStatus()
         {
             List<StatusDM> customerList = new List<StatusDM>();
@@ -90,6 +99,12 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// ReadStatusById: Reads the working status for the given individual using the statusId as a parameter
+        /// Uses the READ_WORK_STATUS_BY_ID stored procedure.
+        /// </summary>
+        /// <param name="statusId"></param>
+        /// <returns></returns>
         public static StatusDM ReadStatusById(string statusId)
         {
             StatusDM _status = new StatusDM();
@@ -132,6 +147,11 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// UpdateStatus: Using this method allows you to update a current or former employees work status.
+        /// Uses the UPDATE_WORK_STATUS stored procedure
+        /// </summary>
+        /// <param name="_status"></param>
         public static void UpdateStatus(StatusDM _status)
         {
             try
@@ -163,6 +183,11 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// DeleteStatus: Deletes a work status for a given employee
+        /// Uses the DELETE_WORK_STATUS stored procedure
+        /// </summary>
+        /// <param name="_status"></param>
         public static void DeleteStatus(StatusDM _status)
         {
             try

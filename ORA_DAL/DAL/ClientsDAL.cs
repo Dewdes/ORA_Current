@@ -6,17 +6,17 @@ using System.Data.SqlClient;
 
 namespace ORA_Data.DAL
 {
-    /// <summary>
-    /// Basic CRUD methods for Client information. ClientsDM is the model being used here.
-    /// </summary>
-    /// 
-
     #region CLIENTS DAL METHODS
 
     
     public class ClientsDAL
     {
         private static ErrorLog errorLog = new ErrorLog();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_client"></param>
         public static void CreateClient(ClientsDM _client)
         {
             try
@@ -43,6 +43,10 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static List<ClientsDM> ReadClients()
         {
             List<ClientsDM> _clientList = new List<ClientsDM>();
@@ -81,6 +85,11 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="clientId"></param>
+        /// <returns></returns>
         public static ClientsDM ReadClientById(string clientId)
         {
             ClientsDM _client = new ClientsDM();
@@ -118,6 +127,10 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_client"></param>
         public static void UpdateClient(ClientsDM _client)
         {
             try
@@ -144,6 +157,10 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_client"></param>
         public static void DeleteClient(ClientsDM _client)
         {
             try
