@@ -124,6 +124,8 @@ namespace ORA.Controllers
         [HttpPost]
         public ActionResult UpdateAssessment(AssessmentVM assessment)
         {
+            assessment.ModifiedBy = Session["Email"].ToString();
+            assessment.Modified = DateTime.Now;
             AssessmentDAL.UpdateAssessment(Mapper.Map<AssessmentDM>(assessment));
             return View(assessment);
         }
