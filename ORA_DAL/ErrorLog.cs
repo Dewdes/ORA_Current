@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Web;
 
 namespace ORA_Data
 {
@@ -11,9 +12,13 @@ namespace ORA_Data
     {
         public void ErrorLogger(string level, DateTime timeStamp, string errorMsg)
         {
-            using (StreamWriter writer = new StreamWriter("C:\\Users\\Onshore\\Desktop\\ORA_Version_0.1\\ORA\\Tools\\ErrorLogDAL.txt", true))
+            string path = HttpContext.Current.Server.MapPath(@"~\ErrorLogDAL.txt");
+            using (FileStream outputFileStream = new FileStream(path, FileMode.Append, FileAccess.Write))
             {
-                writer.WriteLine("Level: " + level + "   Time: " + timeStamp + "   Error: " + errorMsg);
+                using (StreamWriter writer = new StreamWriter(outputFileStream))
+                {
+                    writer.WriteLine("Level: " + level + "   Time: " + timeStamp + "   Error: " + errorMsg);
+                }
             }
         }
     }
