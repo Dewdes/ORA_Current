@@ -414,6 +414,8 @@
     <Content Include="Views\Resume\CreateResume.cshtml" />
     <Content Include="Views\Resume\ReadResumeById.cshtml" />
     <Content Include="Views\Resume\UpdateResume.cshtml" />
+    <Content Include="Views\Shared\SideBar_Left.cshtml" />
+    <Content Include="Views\Shared\TopBar.cshtml" />
     <Content Include="Views\Resume\CreateEducation.cshtml" />
   </ItemGroup>
   <ItemGroup>
