@@ -2,6 +2,7 @@
 using ORA.Models;
 using ORA_Data.DAL;
 using ORA_Data.Model;
+using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -23,6 +24,10 @@ namespace ORA.Controllers
         [HttpPost]
         public ActionResult CreateSprint(SprintVM sprint)
         {
+            //sprint.CreatedBy = Session["Email"].ToString();
+            //sprint.ModifiedBy = Session["Email"].ToString();
+            sprint.Created = DateTime.Now;
+            sprint.Modified = DateTime.Now;
             SprintDAL.CreateSprint(Mapper.Map<SprintDM>(sprint));
             return View();
         }
@@ -45,6 +50,7 @@ namespace ORA.Controllers
         [HttpPost]
         public ActionResult UpdateSprint(SprintVM sprint)
         {
+            sprint.Modified = DateTime.Now;
             SprintDAL.UpdateSprint(Mapper.Map<SprintDM>(sprint));
             return View();
         }

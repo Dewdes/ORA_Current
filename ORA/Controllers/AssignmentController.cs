@@ -18,17 +18,19 @@ namespace ORA.Controllers
 
         public ActionResult CreateAssignment()
         {
-            AssignmentVM assignmment = new AssignmentVM();
-            assignmment.Created = DateTime.Now;
-            assignmment.Modify = DateTime.Now;
-            assignmment.Clients = Mapper.Map<List<ClientsVM>>(ClientsDAL.ReadClients());
-            assignmment.Positions = Mapper.Map<List<PositionsVM>>(PositionsDAL.ReadPositions());
-            return View(assignmment);
+            AssignmentVM assignment = new AssignmentVM();
+            assignment.Clients = Mapper.Map<List<ClientsVM>>(ClientsDAL.ReadClients());
+            assignment.Positions = Mapper.Map<List<PositionsVM>>(PositionsDAL.ReadPositions());
+            return View(assignment);
         }
 
         [HttpPost]
         public ActionResult CreateAssignment(AssignmentVM assignment)
         {
+            assignment.CreatedBy = Session["Email"].ToString();
+            assignment.ModifiedBy = Session["Email"].ToString();
+            assignment.Created = DateTime.Now;
+            assignment.Modify = DateTime.Now;
             AssignmentDAL.CreateAssignment(Mapper.Map<AssignmentDM>(assignment));
             return View();
         }
@@ -52,6 +54,10 @@ namespace ORA.Controllers
         [HttpPost]
         public ActionResult UpdateAssignment(AssignmentVM assignment)
         {
+            assignment.CreatedBy = Session["Email"].ToString();
+            assignment.ModifiedBy = Session["Email"].ToString();
+            assignment.Created = DateTime.Now;
+            assignment.Modify = DateTime.Now;
             AssignmentDAL.UpdateAssignment(Mapper.Map<AssignmentDM>(assignment));
             return View();
         }

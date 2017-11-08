@@ -50,6 +50,7 @@ namespace ORA.Controllers
         [HttpPost]
         public ActionResult UpdateStory(StoryVM story)
         {
+            story.Modified = DateTime.Now;
             StoryDAL.UpdateStory(Mapper.Map<StoryDM>(story));
             return View();
         }
