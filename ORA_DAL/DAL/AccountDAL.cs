@@ -6,7 +6,10 @@ namespace ORA_Data.DAL
 {
     public class AccountDAL
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="emp_ID"></param>
         public static void DeleteEmployeeRecords(long emp_ID)
         {
             try

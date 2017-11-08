@@ -8,19 +8,18 @@ namespace ORA_Data.DAL
 {
     public class PositionsDAL
     {
-        /// <summary>
-        /// Basic CRUD methods for Position information. PositionsDM is the model being used here.
-        /// </summary>
-        /// 
-
         #region POSITION DAL METHODS
 
         private static ErrorLog errorLog = new ErrorLog();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_position"></param>
         public static void CreatePosition(PositionsDM _position)
         {
             try
             {
-                //Creating a way of adding new user information to my database 
                 using (SqlCommand cmd = new SqlCommand("CREATE_POSITION", SqlConnect.Connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -41,6 +40,10 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static List<PositionsDM> ReadPositions()
         {
             List<PositionsDM> _positionList = new List<PositionsDM>();
@@ -78,6 +81,11 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="positionId"></param>
+        /// <returns></returns>
         public static PositionsDM ReadPositionById(string positionId)
         {
             PositionsDM _position = new PositionsDM();
@@ -114,6 +122,10 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_position"></param>
         public static void UpdatePosition(PositionsDM _position)
         {
             try
@@ -139,6 +151,10 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_position"></param>
         public static void DeletePosition(PositionsDM _position)
         {
             try

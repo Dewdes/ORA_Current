@@ -8,13 +8,16 @@ namespace ORA_Data.DAL
 {
     public class TimeDAL
     {
-        /// <summary>
-        /// Basic CRUD methods for EmployeeTime information. EmployeeTimeDM is the model being used here.
-        /// </summary>
 
         #region TIME DAL METHODS
 
         private static ErrorLog errorLog = new ErrorLog();
+
+        /// <summary>
+        /// CreateTime: On employee creation this is called to create a basic employee time (think PTO and OTO)
+        /// Uses the CREATE_EMPLOYEE_TIME stored procedure
+        /// </summary>
+        /// <param name="time"></param>
         public static void CreateTime(EmployeeTimeDM time)
         {
             try
@@ -49,7 +52,6 @@ namespace ORA_Data.DAL
         {
             try
             {
-                //Creating a way of adding new user information to my database 
                 using (SqlCommand cmd = new SqlCommand("CREATE_EMPTY_EMPLOYEE_TIME", SqlConnect.Connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -70,6 +72,11 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// Reads all times for employees. Could be used in the future to see cumulative times accrued by all employees.
+        /// Uses the READ_ALL_TIME stored procedure
+        /// </summary>
+        /// <returns></returns>
         public static List<EmployeeTimeDM> ReadAllTime()
         {
             List<EmployeeTimeDM> timeList = new List<EmployeeTimeDM>();
@@ -112,6 +119,12 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// ReadTimeByID: Reads times for the where the timeID matches the timeID in the database
+        /// Uses the READ_TIME_BY_ID stored procedure
+        /// </summary>
+        /// <param name="timeId"></param>
+        /// <returns></returns>
         public static EmployeeTimeDM ReadTimeByID(string timeId)
         {
             try
@@ -151,6 +164,11 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// UpdateTime: Updates the time for a given employee
+        /// Uses the UPDATE_EMPLOYEE_TIME stored procedure
+        /// </summary>
+        /// <param name="time"></param>
         public static void UpdateTime(EmployeeTimeDM time)
         {
             try
@@ -181,11 +199,16 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// DeleteTime: Deletes Time for an employee
+        /// Uses the DELETE_TIME stored procedure
+        /// </summary>
+        /// <param name="time"></param>
         public static void DeleteTime(EmployeeTimeDM time)
         {
             try
             {
-                using (SqlCommand cmd = new SqlCommand("DELETE_ADDRESS", SqlConnect.Connection))
+                using (SqlCommand cmd = new SqlCommand("DELETE_TIME", SqlConnect.Connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Time_ID", time.Time_ID);

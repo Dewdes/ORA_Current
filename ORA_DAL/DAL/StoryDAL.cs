@@ -8,13 +8,15 @@ namespace ORA_Data.DAL
 {
     public class StoryDAL
     {
-        /// <summary>
-        /// Basic CRUD methods for Story information. StoryDM is the model being used here.
-        /// </summary>
-
         #region Story DAL METHODS
 
         private static ErrorLog errorLog = new ErrorLog();
+
+        /// <summary>
+        /// Creates stories
+        /// Uses the CREATE_STORY stored procedure
+        /// </summary>
+        /// <param name="_story"></param>
         public static void CreateStory(StoryDM _story)
         {
             try
@@ -44,6 +46,10 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static List<StoryDM> ReadStorys()
         {
             List<StoryDM> storyList = new List<StoryDM>();
@@ -85,6 +91,11 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="storyId"></param>
+        /// <returns></returns>
         public static StoryDM ReadStoryById(string storyId)
         {
             StoryDM _story = new StoryDM();
@@ -125,6 +136,10 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_story"></param>
         public static void UpdateStory(StoryDM _story)
         {
             try
@@ -154,6 +169,10 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_story"></param>
         public static void DeleteStory(StoryDM _story)
         {
             try
