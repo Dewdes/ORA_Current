@@ -30,9 +30,24 @@
 </head>
 <body style="padding-bottom:0;padding-top:0;">
     <div class="wrapper">
-        @Html.Partial("SideBar_Left")
+        @if (Session["Role"].ToString().ToUpper().Contains("ADMIN") || Session["Role"].ToString().ToUpper().Contains("DIRECTOR"))
+        {
+            @Html.Partial(@"\Nav\Admin_Side")
+        }
+        else
+        {
+            @Html.Partial(@"\Nav\Employee_Side")
+        }
         <div class="main-panel">
-            @Html.Partial("TopBar")
+
+            @if (Session["Role"].ToString().ToUpper().Contains("ADMIN") || Session["Role"].ToString().ToUpper().Contains("DIRECTOR"))
+            {
+                @Html.Partial(@"\Nav\Admin_Top")
+            }
+            else
+            {
+            @Html.Partial(@"\Nav\Employee_Top")
+            }
 
             <div class="content">
                 <div class="container-fluid">
