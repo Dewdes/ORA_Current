@@ -6,7 +6,6 @@ using AutoMapper;
 using ORA_Data.Model;
 using System.Configuration;
 using System.Collections.Generic;
-using ORA.Mapping;
 using System.Web.Security;
 
 namespace ORA.Controllers
@@ -71,7 +70,7 @@ namespace ORA.Controllers
                 {
                     Session["LoggedIn"] = true;
                     info.EmployeeId = LoginDAL.ReadLoginByEmail(info.Email);
-                    info.Employee = EmployeeMap.GetEmployeeById(info.EmployeeId);
+                    info.Employee = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById(info.EmployeeId));
                     info.Role = Mapper.Map<RolesVM>(RolesDAL.ReadRoleByID(info.Employee.RoleId));
                     Session["Role"] = info.Role.RoleName;
                     Session["ID"] = info.EmployeeId;

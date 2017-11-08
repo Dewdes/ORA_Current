@@ -1,5 +1,4 @@
-﻿using ORA_Data.Model;
-using System;
+﻿using System;
 using System.Data;
 using System.Data.SqlClient;
 
