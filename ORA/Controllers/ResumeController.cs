@@ -10,8 +10,6 @@ namespace ORA.Controllers
     {
         public ActionResult ReadResumeById()
         {
-            //Call each method and save it the the Resume Vm object, then place the resume Vm object inside of the View parameter
-            //Allows us to view data from multiple modals in one view
             ResumeVM resume = new ResumeVM();
             resume = Mapper.Map<ResumeVM>(ResumeDAL.GetResumeByID((long)Session["ID"]));
             resume.Education = Mapper.Map<EducationVM>(ResumeDAL.GetEducationByResumeID(resume.ResumeID));
