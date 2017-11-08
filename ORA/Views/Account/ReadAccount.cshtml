@@ -31,9 +31,8 @@
 </head>
 <body>
     <div class="wrapper">
-        <div class="sidebar" data-color="green" data-image="assets/img/sidebar-5.jpg">
-            <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
-
+        <div id="sideBarColor" class="sidebar" data-color="azure" data-image="assets/img/sidebar-5.jpg">
+            <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->           
             <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li class="active">
@@ -58,6 +57,18 @@
                         <li>
                             <i class="pe-7s-note2"></i>
                             @Html.ActionLink("Team KPI's", "ReadKPIs", "KPI", new { id = Model.EmployeeId }, new { })
+                        </li>
+
+                    }
+                    @if ((string)Session["Role"].ToString().ToUpper() == "MANAGER")
+                    {
+                        <li>
+                            <i class="pe-7s-note2"></i>
+                            @Html.ActionLink("Employee Assessments", "ReadAssessments", "Assessment", new { id = Model.EmployeeId }, new { })
+                        </li>
+                        <li>
+                            <i class="pe-7s-note2"></i>
+                            @Html.ActionLink("Employee KPI's", "ReadKPIs", "KPI", new { id = Model.EmployeeId }, new { })
                         </li>
 
                     }
@@ -107,7 +118,7 @@
                                     Account
                                 </a>
                             </li>
-                            @if (Session["Role"].ToString().ToUpper().Contains("Manager") || Session["Role"].ToString().ToUpper().Contains("Team Lead"))
+                            @if (Session["Role"].ToString().ToUpper().Contains("MANAGER") || Session["Role"].ToString().ToUpper().Contains("Team Lead"))
                             {
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -154,12 +165,6 @@
                                                         <input type="text" class="form-control" disabled placeholder="Company" value="Onshore Outsourcing">
                                                     </div>
                                                 </div>
-                                                @*<div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label>Username</label>
-                                                            <input type="text" class="form-control" disabled placeholder="Username" value="michael23">
-                                                        </div>
-                                                    </div>*@
                                                 <div class="col-md-5">
                                                     <div class="form-group">
                                                         @Html.LabelFor(model => model.Address.Email)
@@ -167,12 +172,6 @@
                                                         @Html.DisplayTextFor(model => model.Address.Email)
                                                     </div>
                                                 </div>
-                                                @*<div class="col-md-4">
-                                                        <div class="form-group">
-                                                            @Html.LabelFor(model => model.Address.Email)
-                                                            @Html.EditorFor(model => model.Address.Email, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "Email", required = "required" } })
-                                                        </div>
-                                                    </div>*@
                                             </div>
                                             @Html.HiddenFor(model => model.EmployeeId)
                                             @Html.HiddenFor(model => model.EmployeeNumber)
@@ -281,7 +280,6 @@
                                                 <img class="avatar border-gray" src="https://static-cdn.jtvnw.net/jtv_user_pictures/panel-105458682-image-30bb3ea9145a9b30-320-320.jpeg?imenable=1&impolicy=panel-images&imwidth=320" alt="..." />
                                                 <h4 class="title">
                                                     @Session["Name"].ToString().Split(' ')[0]<br />
-                                                    @*<small>testname</small>*@
                                                 </h4>
                                             </a>
                                         </div>
@@ -299,23 +297,7 @@
             <footer class="footer">
                 <div class="container-fluid">
                     <nav class="pull-left">
-                        <ul>
-                            <li>
-                                <a href="#">
-                                    Home
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Company
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Portfolio
-                                </a>
-                            </li>
-                        </ul>
+                      
                     </nav>
                     <p class="copyright pull-right">
                         &copy; 2017 ORA
@@ -342,114 +324,3 @@
 <script src="~/Content/assets/js/light-bootstrap-dashboard.js"></script>
 <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
 <script src="~/Content/assets/js/demo.js"></script>
-
-
-@*<h2>ReadAccount</h2>
-
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-horizontal">
-            <h4>EmployeeVM</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.EmployeeId, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.EmployeeId, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.EmployeeId, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.EmployeeNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.EmployeeNumber, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.EmployeeNumber, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.EmployeeName, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.EmployeeName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.EmployeeName, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.EmployeeFirstName, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.EmployeeFirstName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.EmployeeFirstName, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.EmployeeMiddle, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.EmployeeMiddle, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.EmployeeMiddle, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.EmployeeLastName, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.EmployeeLastName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.EmployeeLastName, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Age, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.BirthDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.BirthDate, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.AddressID, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.AddressID, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.AddressID, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.TimeID, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.TimeID, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.TimeID, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.WorkStatusID, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.WorkStatusID, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.WorkStatusID, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-default" />
-                </div>
-            </div>
-        </div>
-    }
-
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>*@
