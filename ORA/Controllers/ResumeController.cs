@@ -15,20 +15,8 @@ namespace ORA.Controllers
             resume.Education = Mapper.Map<EducationVM>(ResumeDAL.GetEducationByResumeID(resume.ResumeID));
             resume.Skills = Mapper.Map<SkillsVM>(ResumeDAL.GetSkillsByResumeID(resume.ResumeID));
             resume.WorkHistory = Mapper.Map<WorkHistoryVM>(ResumeDAL.GetWorkHistoryByResumeID(resume.ResumeID));
-            resume.Employee =  Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById((long)Session["ID"]));
+            resume.Employee = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById((long)Session["ID"]));
             return View(resume);
-        }
-
-        [HttpGet]
-        public ActionResult CreateEducation()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult CreateEducation(EducationDM _education)
-        {
-            return Redirect("ReadResumeById");
         }
 
         [HttpGet]
@@ -54,6 +42,25 @@ namespace ORA.Controllers
                 return Redirect("ReadAccount");
             }
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult CreateEducation()
+        {
+            EducationVM education = new EducationVM();
+            return PartialView(education);
+        }
+
+        [HttpPost]
+        public ActionResult AddEducation(EducationVM education)
+        {
+            if (ModelState.IsValid)
+            {
+                ResumeVM resume = new ResumeVM();
+                resume.ResumeID = ResumeDAL.ReadResumeId((long) Session["ID"]);
+                ResumeDAL.CreateEducation(Mapper.Map<EducationDM>(education), resume.ResumeID);
+            }
+            return Redirect("ReadAccount");
         }
     }
 }

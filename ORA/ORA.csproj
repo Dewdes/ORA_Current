@@ -414,6 +414,7 @@
     <Content Include="Views\Resume\CreateResume.cshtml" />
     <Content Include="Views\Resume\ReadResumeById.cshtml" />
     <Content Include="Views\Resume\UpdateResume.cshtml" />
+    <Content Include="Views\Resume\CreateEducation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
