@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ORA.Models.EducationVM>
+
+@{
+    ViewBag.Title = "ReadResumeEducationById";
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EducationID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InsitutionName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Attended_Start_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Attended_End_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InstitutionLocation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EducationEarned)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AreaOfStudy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ResumeID)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EducationID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InsitutionName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Attended_Start_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Attended_End_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InstitutionLocation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EducationEarned)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AreaOfStudy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ResumeID)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

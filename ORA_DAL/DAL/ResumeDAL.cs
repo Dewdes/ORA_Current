@@ -53,7 +53,7 @@ namespace ORA_Data.DAL
                 using (SqlCommand cmd = new SqlCommand("CREATE_EDUCATION", SqlConnect.Connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@Insitution_Name", _education.InsitutionName);
+                    cmd.Parameters.AddWithValue("@Institution_Name", _education.InsitutionName);
                     cmd.Parameters.AddWithValue("@Attended_Start_Date", _education.Attended_Start_Date);
                     cmd.Parameters.AddWithValue("@Attended_End_Date", _education.Attended_End_Date);
                     cmd.Parameters.AddWithValue("@Institution_Location", _education.InstitutionLocation ?? "Default");

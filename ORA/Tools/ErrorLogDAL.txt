@@ -1,0 +1,13 @@
+Level: CreateEducation   Time: 11/9/2017 10:13:08 AM   Error: Procedure or function 'CREATE_EDUCATION' expects parameter '@Institution_Name', which was not supplied.
+Level: UpdateEducation   Time: 11/9/2017 11:12:52 AM   Error: Object reference not set to an instance of an object.
+Level: UpdateEducation   Time: 11/9/2017 11:33:07 AM   Error: Object reference not set to an instance of an object.
+Level: UpdateEducation   Time: 11/9/2017 11:34:48 AM   Error: Object reference not set to an instance of an object.
+Level: UpdateEducation   Time: 11/9/2017 11:35:05 AM   Error: Object reference not set to an instance of an object.
+Level: UpdateEducation   Time: 11/9/2017 11:35:23 AM   Error: Object reference not set to an instance of an object.
+Level: UpdateEducation   Time: 11/9/2017 1:04:16 PM   Error: Object reference not set to an instance of an object.
+Level: UpdateEducation   Time: 11/9/2017 1:04:35 PM   Error: Object reference not set to an instance of an object.
+Level: UpdateEducation   Time: 11/9/2017 1:04:46 PM   Error: Object reference not set to an instance of an object.
+Level: UpdateEducation   Time: 11/9/2017 1:07:10 PM   Error: Object reference not set to an instance of an object.
+Level: UpdateEducation   Time: 11/9/2017 1:10:04 PM   Error: Object reference not set to an instance of an object.
+Level: UpdateEducation   Time: 11/9/2017 1:41:57 PM   Error: Object reference not set to an instance of an object.
+Level: UpdateEducation   Time: 11/9/2017 1:42:30 PM   Error: Object reference not set to an instance of an object.
