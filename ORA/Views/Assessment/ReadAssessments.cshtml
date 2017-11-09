@@ -1,14 +1,21 @@
 ﻿@model IEnumerable<ORA.Models.AssessmentVM>
 
 @{
-    ViewBag.Title = "ReadAssessments";
+    if (Session["Role"].ToString() == "Team Lead")
+    {
+        ViewBag.Title = "Team Assessments";
+    }
+    else
+    {
+        ViewBag.Title = "Assessments";
+    }
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <script src="~/Scripts/SearchEmployeeTable.js"></script>
 <link href="~/Content/SearchBarEmployee.css" rel="stylesheet"/>
 
-<h2>Assessments</h2>
+@*<h2>Assessments</h2>*@
 
 
 <div class="pull-right">@Html.ActionLink("Create New Assessment", "CreateAssessment",null, new { @class = "btn btn-primary"})</div>

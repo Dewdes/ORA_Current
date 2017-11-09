@@ -1,18 +1,15 @@
 ﻿@model ORA.Models.SprintVM
 
 @{
-    ViewBag.Title = "UpdateSprint";
+    ViewBag.Title = "Update Sprint";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>UpdateSprint</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>SprintVM</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @*<div class="form-group">

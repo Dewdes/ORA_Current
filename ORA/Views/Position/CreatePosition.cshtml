@@ -1,18 +1,15 @@
 ﻿@model ORA.Models.PositionsVM
 
 @{
-    ViewBag.Title = "CreatePosition";
+    ViewBag.Title = "Position Creation";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>CreatePosition</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>PositionsVM</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">

@@ -4,7 +4,7 @@
 
     <div class="sidebar-wrapper">
         <div>
-            <a href="~/Account/ReadAccount" style="color: #FFFFFF; text-decoration: none;">
+            <a href="~/Home/Index" style="color: #FFFFFF; text-decoration: none;">
                 <img src="~/Images/OnshoreLogo.png" width="50px" style="position: center;" />
                 @if ((bool)Session["LoggedIn"])
             {
@@ -16,9 +16,9 @@
         <ul class="nav">
 
 
-            <li class="active">
+            <li>
                 <i class="pe-7s-user"></i>
-                <p>User Profile</p>
+                @Html.ActionLink("User Profile", "ReadAccount", "Account", new { id = Session["ID"] }, new { })
             </li>
             <li>
                 <i class="pe-7s-note2"></i>
