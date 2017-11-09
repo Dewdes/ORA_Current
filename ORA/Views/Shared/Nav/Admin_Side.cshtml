@@ -1,0 +1,44 @@
+﻿<div class="sidebar" data-color="red" data-image="assets/img/sidebar-5.jpg">
+    <!--
+
+        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
+        Tip 2: you can also add an image using data-image tag
+
+    -->
+    <div class="sidebar-wrapper">
+        <div class="logo">
+        </div>
+        <ul class="nav">
+            <li class="active">
+                <a href="AdminDashboard.cshtml">
+                    <i class="pe-7s-graph"></i>
+                    <p>Dashboard</p>
+                </a>
+            </li>
+            <li>
+                <i class="pe-7s-user"></i>
+                <p>User Profile</p>
+            </li>
+            <li>
+                <i class="pe-7s-note2"></i>
+                @Html.ActionLink("Employee List", "ViewEmployees", "Employee")
+            </li>
+            <li>
+                <i class="pe-7s-news-paper"></i>
+                <p>Future Tools</p>
+            </li>
+            <li>
+                <i class="pe-7s-science"></i>
+                <p>Reports</p>
+            </li>
+            <li>
+                <i class="pe-7s-note2"></i>
+                <p>Export Report Excel</p>
+            </li>
+            <li>
+                <i class="pe-7s-note2"></i>
+                <p>Export Report PDF</p>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -30,39 +30,68 @@
 </head>
 <body style="padding-bottom:0;padding-top:0;">
     <div class="wrapper">
-        @Html.Partial("SideBar_Left")
+        @if (Session["Role"].ToString().ToUpper().Contains("ADMIN") || Session["Role"].ToString().ToUpper().Contains("DIRECTOR"))
+        {
+            @Html.Partial(@"\Nav\Admin_Side")
+        }
+        else
+        {
+            @Html.Partial(@"\Nav\Employee_Side")
+        }
         <div class="main-panel">
-            @Html.Partial("TopBar")
+
+            @if (Session["Role"].ToString().ToUpper().Contains("ADMIN") || Session["Role"].ToString().ToUpper().Contains("DIRECTOR"))
+            {
+                @Html.Partial(@"\Nav\Admin_Top")
+            }
+            else
+            {
+                @Html.Partial(@"\Nav\Employee_Top")
+            }
 
             <div class="content">
                 <div class="container-fluid">
-                    @RenderBody()
-                </div>
-            </div>
-            <hr class="footLine" />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - ORA</p>
-            </footer>
-        </div>
+                    <div class="row">
+                        <div class="col-md-8">
 
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)
-        <!--   Core JS Files   -->
-        <script src="~/Content/assets/js/jquery-1.10.2.js"></script>
-        <script src="~/Content/assets/js/bootstrap.min.js"></script>
-        <!--  Checkbox, Radio & Switch Plugins -->
-        <script src="~/Content/assets/js/bootstrap-checkbox-radio-switch.js"></script>
-        <!--  Charts Plugin -->
-        <script src="~/Content/assets/js/chartist.min.js"></script>
-        <!--  Notifications Plugin    -->
-        <script src="~/Content/assets/js/bootstrap-notify.js"></script>
-        <!--  Google Maps Plugin    -->
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-        <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-        <script src="~/Content/assets/js/light-bootstrap-dashboard.js"></script>
-        <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-        <script src="~/Content/assets/js/demo.js"></script>
-    </div>
+                            <div class="content">
+                                <div class="container-fluid">
+                                    @RenderBody()
+                                </div>
+                            </div>
+                        </div>
+                        @if (ViewBag.About == null || ViewBag.About)
+                        {
+                            <div class="col-md-4">
+                                @Html.Partial(@"\Nav\About")
+                            </div>
+                        }
+                    </div>
+                </div>
+                <hr class="footLine" />
+                <footer>
+                    <p>&copy; @DateTime.Now.Year - ORA</p>
+                </footer>
+            </div>
+
+            @Scripts.Render("~/bundles/jquery")
+            @Scripts.Render("~/bundles/bootstrap")
+            @RenderSection("scripts", required: false)
+            <!--   Core JS Files   -->
+            <script src="~/Content/assets/js/jquery-1.10.2.js"></script>
+            <script src="~/Content/assets/js/bootstrap.min.js"></script>
+            <!--  Checkbox, Radio & Switch Plugins -->
+            <script src="~/Content/assets/js/bootstrap-checkbox-radio-switch.js"></script>
+            <!--  Charts Plugin -->
+            <script src="~/Content/assets/js/chartist.min.js"></script>
+            <!--  Notifications Plugin    -->
+            <script src="~/Content/assets/js/bootstrap-notify.js"></script>
+            <!--  Google Maps Plugin    -->
+            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+            <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
+            <script src="~/Content/assets/js/light-bootstrap-dashboard.js"></script>
+            <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
+            <script src="~/Content/assets/js/demo.js"></script>
+        </div>
 </body>
 </html>
