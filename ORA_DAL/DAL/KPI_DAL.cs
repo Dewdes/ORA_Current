@@ -8,12 +8,14 @@ namespace ORA_Data.DAL
 {
     public class KPI_DAL
     {
-        /// <summary>
-        /// Basic CRUD methods for KPI information. KPIDM is the model being used here.
-        /// </summary>
-
         #region KPI DAL METHODS
 
+        private static ErrorLog errorLog = new ErrorLog();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_kpi"></param>
         public static void CreateKPI(KPIDM _kpi)
         {
             try
@@ -56,11 +58,19 @@ namespace ORA_Data.DAL
             }
             catch (Exception e)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("CreateKPI", DateTime.Now, e.Message);
                 throw (e);
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static List<KPIDM> ReadKPIs()
         {
             List<KPIDM> _kpiList = new List<KPIDM>();
@@ -115,11 +125,20 @@ namespace ORA_Data.DAL
             }
             catch (Exception e)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("ReadKPIs", DateTime.Now, e.Message);
                 throw (e);
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="kpiId"></param>
+        /// <returns></returns>
         public static KPIDM ReadKPIById(string kpiId)
         {
             KPIDM _kpi = new KPIDM();
@@ -172,11 +191,20 @@ namespace ORA_Data.DAL
             }
             catch (Exception e)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("ReadKPIbyID", DateTime.Now, e.Message);
                 throw (e);
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public static List<KPIDM> ReadMyKPIsById(int id)
         {
             KPIDM _kpi = new KPIDM();
@@ -232,11 +260,19 @@ namespace ORA_Data.DAL
             }
             catch (Exception e)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("ReadMyKPIsByID", DateTime.Now, e.Message);
                 throw (e);
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_kpi"></param>
         public static void UpdateKPI(KPIDM _kpi)
         {
             try
@@ -274,11 +310,19 @@ namespace ORA_Data.DAL
             }
             catch (Exception e)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("UpdateKPI", DateTime.Now, e.Message);
                 throw (e);
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_kpi"></param>
         public static void DeleteKPI(KPIDM _kpi)
         {
             try
@@ -294,8 +338,12 @@ namespace ORA_Data.DAL
             }
             catch (Exception e)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("DeleteKPI", DateTime.Now, e.Message);
                 throw (e);
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 

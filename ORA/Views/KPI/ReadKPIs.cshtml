@@ -5,16 +5,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script src="~/Scripts/SearchEmployeeTable.js"></script>
+<link href="~/Content/SearchBarEmployee.css" rel="stylesheet" />
+
 <h2>KPI REPORTS</h2>
 
-<p>
-    @Html.ActionLink("Create New", "CreateKPI")
-</p>
-<table>
-    @{var counter = 1; }
+
+<div class="pull-right">@Html.ActionLink("Create New", "CreateKPI",null, new { @class ="btn btn-primary"})</div>
+
+<input type="text" id="SearchInput" onkeyup="SearchEmployeeFunction()" placeholder="Search for Employees..">
+
+<table id="EmployeeTable">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Employee.EmployeeName)
+            Employee Name
         </th>
     </tr>
     @foreach (var item in Model)
@@ -22,10 +26,12 @@
         @Html.HiddenFor(modelItem => item.KPIID)
         <tr>
             <td>
-                @Html.ActionLink(item.Employee.EmployeeName, "ReadKPIByID", "KPI", new { id = item.KPIID }, new { })
+                <span class="glyphicon glyphicon-user"></span> @Html.ActionLink(item.Employee.EmployeeName, "ReadKPIByID", "KPI", new { id = item.KPIID }, new { })
             </td>
             @Html.HiddenFor(modelItem => item.EmployeeId)
         </tr>
     }
 </table>
+
+
 

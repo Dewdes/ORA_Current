@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using ORA.Mapping;
 using ORA.Models;
 using ORA_Data.DAL;
 using ORA_Data.Model;
@@ -58,7 +57,7 @@ namespace ORA.Controllers
         public ActionResult CreateAssessment()
         {
             AssessmentVM assessment = new AssessmentVM();
-            assessment.EmployeeList = EmployeeMap.ReadEmployees();
+            assessment.EmployeeList = Mapper.Map<List<EmployeeVM>>(EmployeeDAL.ReadEmployees());
             assessment.Descriptions = Mapper.Map<List<DescriptionVM>>(AssessmentDAL.ReadAssessDescriptions());
             return View(assessment);
         }
@@ -80,12 +79,12 @@ namespace ORA.Controllers
             List<AssessmentVM> list = Mapper.Map<List<AssessmentVM>>(AssessmentDAL.ReadAssessments());
             foreach (AssessmentVM item in list)
             {
-                item.Employee = EmployeeMap.GetEmployeeById(item.EmployeeID);
+                item.Employee = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById(item.EmployeeID));
                 item.Employee.Team = Mapper.Map<TeamsVM>(TeamsDAL.ReadTeamById(item.Employee.TeamId.ToString()));
             }
             if(Session["Role"].ToString() == "Team Lead")
             {
-                EmployeeVM lead = Mapper.Map<EmployeeVM>(EmployeeMap.GetEmployeeById(id));
+                EmployeeVM lead = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById(id));
                 foreach(AssessmentVM assess in list)
                 {
                     if(assess.Employee.TeamId == lead.TeamId && assess.Employee.EmployeeId != lead.EmployeeId)
@@ -101,17 +100,17 @@ namespace ORA.Controllers
         public ActionResult ReadAssessmentByID(string id)
         {
             AssessmentVM assess = Mapper.Map<AssessmentVM>(AssessmentDAL.ReadAssessmentByID(id));
-            assess.Employee = Mapper.Map<EmployeeVM>(EmployeeMap.GetEmployeeById(assess.EmployeeID));
+            assess.Employee = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById(assess.EmployeeID));
             return View(assess);
         }
 
         public ActionResult ReadMyAssessments(int id)
         {
-            EmployeeVM employee = EmployeeMap.GetEmployeeById(id);
+            EmployeeVM employee = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById(id));
             List<AssessmentVM> list = Mapper.Map<List<AssessmentVM>>(AssessmentDAL.ReadMyAssessmentsByID(id));
             foreach (AssessmentVM item in list)
             {
-                item.Employee = EmployeeMap.GetEmployeeById(item.EmployeeID);
+                item.Employee = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById(item.EmployeeID));
                 item.Employee.Team = Mapper.Map<TeamsVM>(TeamsDAL.ReadTeamById(item.Employee.TeamId.ToString()));
             }
             return View(list);
@@ -125,6 +124,8 @@ namespace ORA.Controllers
         [HttpPost]
         public ActionResult UpdateAssessment(AssessmentVM assessment)
         {
+            assessment.ModifiedBy = Session["Email"].ToString();
+            assessment.Modified = DateTime.Now;
             AssessmentDAL.UpdateAssessment(Mapper.Map<AssessmentDM>(assessment));
             return View(assessment);
         }
@@ -141,19 +142,5 @@ namespace ORA.Controllers
             AssessmentDAL.DeleteAssessment(Mapper.Map<AssessmentDM>(assessment));
             return View(assessment);
         }
-
-        //Get Assessments
-
-        //Get Assessments for different Roles
-
-        //Update Assessments
-
-        //Delete Assessments
-
-        //Get Average for each Position
-
-        //Average for each team
-
-        //Average for each client
     }
 }

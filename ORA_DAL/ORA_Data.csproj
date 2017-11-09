@@ -33,6 +33,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -58,7 +59,9 @@
     <Compile Include="DAL\TeamsDAL.cs" />
     <Compile Include="DAL\TimeDAL.cs" />
     <Compile Include="DAL\Work_StatusDAL.cs" />
+    <Compile Include="ErrorLog.cs" />
     <Compile Include="Hash.cs" />
+    <Compile Include="Model\AccountBioDM.cs" />
     <Compile Include="Model\AddressDM.cs" />
     <Compile Include="Model\AssessmentDM.cs" />
     <Compile Include="Model\AssignmentDM.cs" />

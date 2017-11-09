@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -163,18 +164,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Mapping\AccountMap.cs" />
-    <Compile Include="Mapping\AssessmentMap.cs" />
-    <Compile Include="Mapping\AssignmentMap.cs" />
-    <Compile Include="Mapping\ClientsMap.cs" />
-    <Compile Include="Mapping\EmployeeMap.cs" />
-    <Compile Include="Mapping\KPIMap.cs" />
-    <Compile Include="Mapping\PositionMap.cs" />
-    <Compile Include="Mapping\ProjectMap.cs" />
-    <Compile Include="Mapping\RolesMap.cs" />
-    <Compile Include="Mapping\Sprint.cs" />
-    <Compile Include="Mapping\StoryMap.cs" />
-    <Compile Include="Mapping\TeamMap.cs" />
+    <Compile Include="Models\AccountBioVM.cs" />
     <Compile Include="Models\AddressVM.cs" />
     <Compile Include="Models\AssessmentVM.cs" />
     <Compile Include="Models\AssignmentVM.cs" />
@@ -237,8 +227,11 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Dashboard.css" />
+    <Content Include="Content\SearchBarEmployee.css" />
     <Content Include="Content\js\wizard.js" />
     <Content Include="Content\Login.css" />
+    <Content Include="Content\ReadAssessmentsbyID.css" />
+    <Content Include="Content\Resume.css" />
     <Content Include="Content\wizard.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -248,6 +241,8 @@
     <Content Include="Images\Onshore.png" />
     <Content Include="Images\OnshoreLogo.png" />
     <Content Include="Images\OnshoreLogoWhite.png" />
+    <Content Include="Images\search-icon-light-grey-hi.png" />
+    <Content Include="Images\tinysearchicon.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -325,6 +320,8 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\SearchEmployeeTable.js" />
+    <Content Include="Tools\ErrorLogDAL.txt" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -417,6 +414,12 @@
     <Content Include="Views\Resume\CreateResume.cshtml" />
     <Content Include="Views\Resume\ReadResumeById.cshtml" />
     <Content Include="Views\Resume\UpdateResume.cshtml" />
+    <Content Include="Views\Shared\Nav\Employee_Side.cshtml" />
+    <Content Include="Views\Shared\Nav\Employee_Top.cshtml" />
+    <Content Include="Views\Resume\CreateEducation.cshtml" />
+    <Content Include="Views\Shared\Nav\Admin_Side.cshtml" />
+    <Content Include="Views\Shared\Nav\Admin_Top.cshtml" />
+    <Content Include="Views\Shared\Nav\About.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -458,6 +461,8 @@
           <DevelopmentServerPort>63602</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:63602/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:63602/Login/Login?ReturnUrl=%2f</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

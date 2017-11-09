@@ -2,6 +2,7 @@
 using ORA.Models;
 using ORA_Data.DAL;
 using ORA_Data.Model;
+using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -25,6 +26,10 @@ namespace ORA.Controllers
         [HttpPost]
         public ActionResult CreateProject(ProjectVM project)
         {
+            project.CreatedBy = Session["Email"].ToString();
+            project.ModifiedBy = Session["Email"].ToString();
+            project.Created = DateTime.Now;
+            project.Modified = DateTime.Now;
             ProjectDAL.CreateProject(Mapper.Map<ProjectDM>(project));
             return View();
         }
@@ -50,6 +55,8 @@ namespace ORA.Controllers
         [HttpPost]
         public ActionResult UpdateProject(ProjectVM project)
         {
+            project.ModifiedBy = Session["Email"].ToString();
+            project.Modified = DateTime.Now;
             ProjectDAL.UpdateProject(Mapper.Map<ProjectDM>(project));
             return View();
         }

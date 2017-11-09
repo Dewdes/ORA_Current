@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using AutoMapper;
-using ORA.Mapping;
 using ORA.Models;
 using ORA_Data.DAL;
 using ORA_Data.Model;
@@ -15,14 +10,12 @@ namespace ORA.Controllers
     {
         public ActionResult ReadResumeById()
         {
-            //Call each method and save it the the Resume Vm object, then place the resume Vm object inside of the View parameter
-            //Allows us to view data from multiple modals in one view
             ResumeVM resume = new ResumeVM();
             resume = Mapper.Map<ResumeVM>(ResumeDAL.GetResumeByID((long)Session["ID"]));
             resume.Education = Mapper.Map<EducationVM>(ResumeDAL.GetEducationByResumeID(resume.ResumeID));
             resume.Skills = Mapper.Map<SkillsVM>(ResumeDAL.GetSkillsByResumeID(resume.ResumeID));
             resume.WorkHistory = Mapper.Map<WorkHistoryVM>(ResumeDAL.GetWorkHistoryByResumeID(resume.ResumeID));
-            resume.Employee =  Mapper.Map<EmployeeVM>(EmployeeMap.GetEmployeeById((long)Session["ID"]));
+            resume.Employee = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById((long)Session["ID"]));
             return View(resume);
         }
 
@@ -40,10 +33,33 @@ namespace ORA.Controllers
         [HttpPost]
         public ActionResult UpdateResume(ResumeVM resume)
         {
-            resume.ResumeID = ResumeDAL.ReadResumeId((long)Session["ID"]);
-            ResumeDAL.UpdateEducation(Mapper.Map<EducationDM>(resume.Education), resume.ResumeID);
-            ResumeDAL.UpdateSkills(Mapper.Map<SkillsDM>(resume.Skills), resume.ResumeID);
-            ResumeDAL.UpdateWorkHistory(Mapper.Map<WorkHistoryDM>(resume.WorkHistory), resume.ResumeID);
+            if (ModelState.IsValid)
+            {
+                resume.ResumeID = ResumeDAL.ReadResumeId((long)Session["ID"]);
+                ResumeDAL.UpdateEducation(Mapper.Map<EducationDM>(resume.Education), resume.ResumeID);
+                ResumeDAL.UpdateSkills(Mapper.Map<SkillsDM>(resume.Skills), resume.ResumeID);
+                ResumeDAL.UpdateWorkHistory(Mapper.Map<WorkHistoryDM>(resume.WorkHistory), resume.ResumeID);
+                return Redirect("ReadAccount");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult CreateEducation()
+        {
+            EducationVM education = new EducationVM();
+            return PartialView(education);
+        }
+
+        [HttpPost]
+        public ActionResult AddEducation(EducationVM education)
+        {
+            if (ModelState.IsValid)
+            {
+                ResumeVM resume = new ResumeVM();
+                resume.ResumeID = ResumeDAL.ReadResumeId((long) Session["ID"]);
+                ResumeDAL.CreateEducation(Mapper.Map<EducationDM>(education), resume.ResumeID);
+            }
             return Redirect("ReadAccount");
         }
     }

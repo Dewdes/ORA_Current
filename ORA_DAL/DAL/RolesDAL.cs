@@ -14,6 +14,7 @@ namespace ORA_Data.DAL
 
         #region ROLE DAL METHODS
 
+        private static ErrorLog errorLog = new ErrorLog();
         public static void CreateRole(RolesDM _role)
         {
             try
@@ -31,8 +32,12 @@ namespace ORA_Data.DAL
             }
             catch (Exception e)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("CreateRole", DateTime.Now, e.Message);
                 throw (e);
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 
@@ -65,8 +70,12 @@ namespace ORA_Data.DAL
             }
             catch (Exception ex)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("ReadRoles", DateTime.Now, ex.Message);
                 throw ex;
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 
@@ -98,8 +107,12 @@ namespace ORA_Data.DAL
             }
             catch (Exception ex)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("ReadRoleByID", DateTime.Now, ex.Message);
                 throw ex;
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 
@@ -130,8 +143,12 @@ namespace ORA_Data.DAL
             }
             catch (Exception ex)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("ReadRoleForEmployee", DateTime.Now, ex.Message);
                 throw ex;
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 
@@ -153,8 +170,12 @@ namespace ORA_Data.DAL
             }
             catch (Exception e)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("UpdateRole", DateTime.Now, e.Message);
                 throw (e);
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 
@@ -173,9 +194,13 @@ namespace ORA_Data.DAL
             }
             catch (Exception ex)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("DeleteRole", DateTime.Now, ex.Message);
                 //Write to error log
                 throw ex;
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
         #endregion

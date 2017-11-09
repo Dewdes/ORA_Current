@@ -8,12 +8,13 @@ namespace ORA_Data.DAL
 {
     public class AssessmentDAL
     {
-        /// <summary>
-        /// Basic CRUD methods for Assessment information. AssessmentDM is the model being used here.
-        /// </summary>
-        /// 
-
         #region Assessment DAL Methods
+        private static ErrorLog errorLog = new ErrorLog();
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_assessment"></param>
         public static void CreateAssessment(AssessmentDM _assessment)
         {
             try
@@ -75,6 +76,7 @@ namespace ORA_Data.DAL
             }
             catch (Exception e)
             {
+                errorLog.ErrorLogger("CreateAssessment", DateTime.Now, e.Message);
                 throw (e);
             }
             finally
@@ -83,6 +85,10 @@ namespace ORA_Data.DAL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static List<AssessmentDM> ReadAssessments()
         {
             List<AssessmentDM> assessmentList = new List<AssessmentDM>();
@@ -157,10 +163,16 @@ namespace ORA_Data.DAL
             catch (Exception ex)
             {
                 SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("ReadAssessments", DateTime.Now, ex.Message);
                 throw ex;
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="assessmentId"></param>
+        /// <returns></returns>
         public static AssessmentDM ReadAssessmentByID(string assessmentId)
         {
             try
@@ -234,10 +246,16 @@ namespace ORA_Data.DAL
             catch (Exception ex)
             {
                 SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("ReadAssessmentByID", DateTime.Now, ex.Message);
                 throw ex;
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="employeeId"></param>
+        /// <returns></returns>
         public static List<AssessmentDM> ReadMyAssessmentsByID(long employeeId)
         {
             try
@@ -313,10 +331,15 @@ namespace ORA_Data.DAL
             catch (Exception ex)
             {
                 SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("ReadMyAssessmentByID", DateTime.Now, ex.Message);
                 throw ex;
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static List<DescriptionDM> ReadAssessDescriptions()
         {
             List<DescriptionDM> descriptions = new List<DescriptionDM>();
@@ -350,10 +373,15 @@ namespace ORA_Data.DAL
             catch (Exception e)
             {
                 SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("ReadAssessDescriptions", DateTime.Now, e.Message);
                 throw (e);
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_assessment"></param>
         public static void UpdateAssessment(AssessmentDM _assessment)
         {
             try
@@ -414,10 +442,15 @@ namespace ORA_Data.DAL
             catch (Exception e)
             {
                 SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("UpdateAssessment", DateTime.Now, e.Message);
                 throw (e);
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_assessment"></param>
         public static void DeleteAssessment(AssessmentDM _assessment)
         {
             try
@@ -434,6 +467,7 @@ namespace ORA_Data.DAL
             catch (Exception e)
             {
                 SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("DeleteAssessment", DateTime.Now, e.Message);
                 throw (e);
             }
         }

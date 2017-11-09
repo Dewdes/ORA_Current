@@ -5,15 +5,22 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ReadAssessments</h2>
+<script src="~/Scripts/SearchEmployeeTable.js"></script>
+<link href="~/Content/SearchBarEmployee.css" rel="stylesheet"/>
 
-        <p>
-            @Html.ActionLink("Create New Assessment", "CreateAssessment")
-        </p>
-<table>
+<h2>Assessments</h2>
+
+
+<div class="pull-right">@Html.ActionLink("Create New Assessment", "CreateAssessment",null, new { @class = "btn btn-primary"})</div>
+
+
+<input type="text" id="SearchInput" onkeyup="SearchEmployeeFunction()" placeholder="Search for Employees..">
+
+<p></p>
+<table id="EmployeeTable">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Employee.EmployeeName)
+            Employee Name
         </th>
     </tr>
     @foreach (var item in Model)
@@ -21,10 +28,12 @@
         <tr>
             @Html.HiddenFor(modelItem => item.AssessmentId)
             <td>
-                @Html.ActionLink(item.Employee.EmployeeName, "ReadAssessmentByID", "Assessment", new { id = item.AssessmentId }, new { })
+               <span class="glyphicon glyphicon-user"></span> @Html.ActionLink(item.Employee.EmployeeName, "ReadAssessmentByID", "Assessment", new { id = item.AssessmentId }, new { })
             </td>
             @Html.HiddenFor(modelItem => item.EmployeeID)
         </tr>
     }
 </table>
+
+
 

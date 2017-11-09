@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using ORA.Mapping;
 using ORA.Models;
 using ORA_Data.DAL;
 using ORA_Data.Model;
@@ -18,7 +17,7 @@ namespace ORA.Controllers
             //{
             //    if (Session["Roles"].ToString().ToUpper().Trim().Contains("DIRECTOR") || Session["Roles"].ToString().ToUpper().Trim().Contains("ADMINISTRATOR"))
             //    {
-            return View(EmployeeMap.ReadEmployees());
+            return View(EmployeeDAL.ReadEmployees());
             //    }
 
             //    /*Service managers will team Leads and employees for specific Client AND Location*/
@@ -44,7 +43,7 @@ namespace ORA.Controllers
 
         public ActionResult EmployeeDetails(int id)
         {
-            return View(Mapper.Map<EmployeeVM>(EmployeeMap.GetEmployeeById(id)));
+            return View(Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById(id)));
         }
 
         [HttpGet]
@@ -58,7 +57,7 @@ namespace ORA.Controllers
         {
             try
             {
-                EmployeeMap.CreateEmployee(employee);
+                EmployeeDAL.CreateEmployee(Mapper.Map<EmployeeDM>(employee));
                 return RedirectToAction("Register", "Login", new { area = "Default" });
             }
             catch
@@ -78,13 +77,13 @@ namespace ORA.Controllers
         [HttpGet]
         public ActionResult UpdateEmployee(int employeeId)
         {
-            return View(Mapper.Map<EmployeeVM>(EmployeeMap.GetEmployeeById(employeeId)));
+            return View(Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById(employeeId)));
         }
 
         [HttpPost]
         public ActionResult UpdateEmployee(EmployeeVM employee)
         {
-            EmployeeMap.UpdateEmployee(employee);
+            EmployeeDAL.UpdateEmployee(Mapper.Map<EmployeeDM>(employee));
             ModelState.Clear();
             return RedirectToAction("ViewEmployees");
         }
@@ -96,13 +95,13 @@ namespace ORA.Controllers
         [HttpGet]
         public ActionResult DeleteEmployee(int employeeId)
         {
-            return View(Mapper.Map<EmployeeVM>(EmployeeMap.GetEmployeeById(employeeId)));
+            return View(Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById(employeeId)));
         }
 
         [HttpPost]
         public ActionResult DeleteEmployee(EmployeeVM employee)
         {
-            EmployeeMap.DeleteEmployee(employee);
+            EmployeeDAL.DeleteEmployee(Mapper.Map<EmployeeDM>(employee));
             return RedirectToAction("ViewEmployees");
         }
 

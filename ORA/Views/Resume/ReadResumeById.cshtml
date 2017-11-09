@@ -1,63 +1,24 @@
 ﻿@model ORA.Models.ResumeVM
 @{
-    Layout = null;
+    //Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @Styles.Render("~/Content/css")
 @Scripts.Render("~/bundles/modernizr")
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/bootstrap")
-<style>
-    .sections {
-        text-transform: uppercase;
-        font-size: 20px;
-        font-weight: 500;
-        color: #2d7788;
-        position: relative;
-        margin-top: 0;
-        margin-bottom: 20px;
-    }
+<link href="~/Content/Resume.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
 
-    .backGround {
-        margin: auto 10px;
-        width: auto;
-        height: 2000px;
-        background-repeat: no-repeat;
-        background-image: linear-gradient(rgb(244,244,244),rgb(3,51,89));
-    }
-
-    input.hidden {
-        position: absolute;
-        left: -9999px;
-    }
-
-    #profile-image1 {
-        cursor: pointer;
-        width: 100px;
-        height: 100px;
-        border: 2px solid #03b1ce;
-    }
-
-    .tital {
-        font-size: 16px;
-        font-weight: 500;
-    }
-
-    .bot-border {
-        border-bottom: 1px #f8f8f8 solid;
-        margin: 5px 0 5px 0
-    }
-</style>
 <html>
 <body class="backGround">
-    <div class="container">
+    @*<div class="container">*@
         <div class="row">
             <div class="col-lg-12 ">
                 <div class="panel panel-default">
                     <div class="panel-heading">  <h4>Your Resume</h4></div>
                     <div class="panel-body">
-
                         <div class="box box-info">
-
                             <div class="box-body">
                                 <div class="col-sm-6">
                                     <div align="left">
@@ -423,6 +384,88 @@
                                 </div>
                                 <div class="clearfix"></div>
                                 <div class="bot-border"></div>
+                                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+                                <!-- Modal -->
+                                <div id="myModal" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">Modal Header</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form id="myForm" class="form-horizontal">
+                                                    <div id="AddEducationForm">
+                                                        <hr />
+                                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.Education.InsitutionName, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                            <div class="col-md-10">
+                                                                @Html.EditorFor(model => model.Education.InsitutionName, new { htmlAttributes = new { @class = "form-control" } })
+                                                                @Html.ValidationMessageFor(model => model.Education.InsitutionName, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.Education.Attended_Start_Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                            <div class="col-md-10">
+                                                                @Html.EditorFor(model => model.Education.Attended_Start_Date, new { htmlAttributes = new { @class = "form-control" } })
+                                                                @Html.ValidationMessageFor(model => model.Education.Attended_Start_Date, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.Education.Attended_End_Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                            <div class="col-md-10">
+                                                                @Html.EditorFor(model => model.Education.Attended_End_Date, new { htmlAttributes = new { @class = "form-control" } })
+                                                                @Html.ValidationMessageFor(model => model.Education.Attended_End_Date, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.Education.InstitutionLocation, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                            <div class="col-md-10">
+                                                                @Html.EditorFor(model => model.Education.InstitutionLocation, new { htmlAttributes = new { @class = "form-control" } })
+                                                                @Html.ValidationMessageFor(model => model.Education.InstitutionLocation, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.Education.EducationEarned, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                            <div class="col-md-10">
+                                                                @Html.EditorFor(model => model.Education.EducationEarned, new { htmlAttributes = new { @class = "form-control" } })
+                                                                @Html.ValidationMessageFor(model => model.Education.EducationEarned, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.Education.AreaOfStudy, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                            <div class="col-md-10">
+                                                                @Html.EditorFor(model => model.Education.AreaOfStudy, new { htmlAttributes = new { @class = "form-control" } })
+                                                                @Html.ValidationMessageFor(model => model.Education.AreaOfStudy, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.ResumeID, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                            <div class="col-md-10">
+                                                                @Html.EditorFor(model => model.ResumeID, new { htmlAttributes = new { @class = "form-control" } })
+                                                                @Html.ValidationMessageFor(model => model.ResumeID, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
 
                                 <div class="clearfix"></div>
                                 <div class="bot-border"></div>
@@ -435,10 +478,10 @@
                 </div>
             </div>
         </div>
-        <buttom style="btn btn-primary btn-lg btn-block">
-            @Html.ActionLink("Update Resume", "UpdateResume", "Resume");
-        </buttom>
-    </div>
+        <button class="btn btn-primary btn-sm btn-block">
+            @Html.ActionLink("Update Resume", "UpdateResume", "Resume")
+        </button>
+    @*</div>*@
 </body>
 </html>
 <script>

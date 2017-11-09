@@ -2,22 +2,22 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using ORA_Data.Model;
 
 namespace ORA_Data.DAL
 {
     public class EmployeeDAL
     {
-        /// <summary>
-        /// Basic CRUD methods for Employee information. EmployeeDM is the model being used here.
-        /// </summary>
-        /// 
-
         #region EMPLOYEE DAL METHODS
 
-        //Creates the Employee in the database
-        public void CreateEmployee(EmployeeDM employee)
+        private static ErrorLog errorLog = new ErrorLog();
+
+        ///<summary>
+        /// Used to create an employee. Only admins will create new employees.
+        /// Uses the CREATE_EMPLOYEE stored procedure.
+        /// </summary>
+        /// <param name="employee"></param>
+        public static void CreateEmployee(EmployeeDM employee)
         {
             try
             {
@@ -42,7 +42,7 @@ namespace ORA_Data.DAL
             }
             catch (Exception ex)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("CreateEmployee", DateTime.Now, ex.Message);
                 throw (ex);
             }
 
@@ -52,7 +52,13 @@ namespace ORA_Data.DAL
             }
         }
 
-        public EmployeeDM ReadEmployeeById(long employeeId)
+        /// <summary>
+        /// Reads employees by the given employee ID
+        /// Uses the READ_EMPLOYEE_BY_ID stored procedure
+        /// </summary>
+        /// <param name="employeeId"></param>
+        /// <returns></returns>
+        public static EmployeeDM ReadEmployeeById(long employeeId)
         {
             try
             {
@@ -88,7 +94,7 @@ namespace ORA_Data.DAL
             }
             catch (Exception ex)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("ReadEmployeeByID", DateTime.Now, ex.Message);
                 throw (ex);
             }
             finally
@@ -97,7 +103,13 @@ namespace ORA_Data.DAL
             }
         }
 
-        public long ReadEmployeeId(string employeeNum)
+        /// <summary>
+        /// Reads employee by using the given employee number
+        /// Uses the READ_EMPLOYEE_ID stored procedure
+        /// </summary>
+        /// <param name="employeeNum"></param>
+        /// <returns></returns>
+        public static long ReadEmployeeId(string employeeNum)
         {
             try
             {
@@ -123,7 +135,7 @@ namespace ORA_Data.DAL
             }
             catch (Exception ex)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("ReadEmployeeID", DateTime.Now, ex.Message);
                 throw (ex);
             }
             finally
@@ -132,7 +144,12 @@ namespace ORA_Data.DAL
             }
         }
 
-        public List<EmployeeDM> ReadEmployees()
+        /// <summary>
+        /// Reads all employees. Pretty simple.
+        /// Uses the READ_EMPLOYEES stored procedure.
+        /// </summary>
+        /// <returns></returns>
+        public static List<EmployeeDM> ReadEmployees()
         {
             List<EmployeeDM> employeeList = new List<EmployeeDM>();
             try
@@ -148,16 +165,7 @@ namespace ORA_Data.DAL
                         {
                             //Creating objects of the modals inside the loop so that 
                             //the object can be used for new information every iteration of the loop.
-                            #region Modal Objects
                             EmployeeDM employee = new EmployeeDM();
-                            AddressDM address = new AddressDM();
-                            EmployeeTimeDM EmployeeTime = new EmployeeTimeDM();
-                            PositionsDM position = new PositionsDM();
-                            StatusDM Status = new StatusDM();
-                            #endregion
-
-                            #region Pulling Employee Table Information
-
                             employee.EmployeeId = (Int64)reader["Employee_ID"];
                             employee.EmployeeNumber = (string)reader["Employee_Number"];
                             employee.EmployeeName = (string)reader["Employee_Name"];
@@ -173,41 +181,6 @@ namespace ORA_Data.DAL
                             if (reader["Assignment_ID"] != DBNull.Value)
                                 employee.AssignmentID = (Int64)reader["Assignment_ID"];
 
-                            #endregion
-
-                            //#region Pulling Address Table Information
-                            //address.Address = (string)reader["Address"];
-                            //address.City = (string)reader["City"];
-                            //address.State = (string)reader["State"];
-                            //address.Country = (string)reader["Country"];
-                            //address.Zip_Code = (int)reader["Zip_Code"];
-                            //address.Phone = (string)reader["Phone"];
-                            //address.Email = (string)reader["Email"];
-                            //#endregion
-
-                            //#region Pulls Employee Time Table Information
-                            //EmployeeTime.Other_Total = (decimal)reader["Other_Total"];
-                            //EmployeeTime.Other_Available = (decimal)reader["Other_Available"];
-                            //EmployeeTime.Other_Used = (decimal)reader["Other_Used"];
-                            //EmployeeTime.Payed_Total = (decimal)reader["Payed_Total"];
-                            //EmployeeTime.Payed_Used = (decimal)reader["Payed_Total"];
-                            //#endregion
-
-                            //#region Pulls Employee Work Status Information
-
-                            //Status.EmployeeStatus = (string)reader["Employee_Status"];
-                            //Status.HireDate = (DateTime)reader["Hire_Date"];
-                            //Status.PayType = (string)reader["Pay_Type"];
-                            //Status.ServiceLength = (string)reader["Service_Length"];
-                            //Status.EmploymentType = (string)reader["Employment_Type"];
-                            //Status.OfficeLocation = (string)reader["Office_Location"];
-                            //if (reader["Termination_Date"] != DBNull.Value)
-                            //    Status.TerminationDate = (DateTime)reader["Termination_Date"];
-                            //#endregion
-
-                            ////Adding the object properties to the employment object to be used together for the view modal
-                            //employee.address = address; employee.EmployeeTime = EmployeeTime; employee.Status = Status;
-
                             employeeList.Add(employee);
                         }
                     }
@@ -217,7 +190,7 @@ namespace ORA_Data.DAL
             }
             catch (Exception ex)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("ReadEmployees", DateTime.Now, ex.Message);
                 throw ex;
             }
             finally
@@ -226,7 +199,13 @@ namespace ORA_Data.DAL
             }
         }
 
-        public void UpdateEmployee(EmployeeDM employee)
+        /// <summary>
+        /// This method is used to update basic employee information from the employee table. This is NOT used to update employee personal bio,
+        /// address or anything else.
+        /// Uses the UPDATE_EMPLOYEE stored procedure.
+        /// </summary>
+        /// <param name="employee"></param>
+        public static void UpdateEmployee(EmployeeDM employee)
         {
             try
             {
@@ -251,12 +230,22 @@ namespace ORA_Data.DAL
             }
             catch (Exception e)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("UpdateEmployee", DateTime.Now, e.Message);
                 throw (e);
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 
-        public void DeleteEmployee(EmployeeDM employee)
+        /// <summary>
+        /// Used to delete an employee, should ONLY be used by an admin IF AND ONLY IF an employee was created BY MISTAKE
+        /// Employees that are no longer working for onshore will be disabled, not deleted.
+        /// Uses the DELETE_EMPLOYEE stored procedure.
+        /// </summary>
+        /// <param name="employee"></param>
+        public static void DeleteEmployee(EmployeeDM employee)
         {
             try
             {
@@ -271,9 +260,12 @@ namespace ORA_Data.DAL
             }
             catch (Exception ex)
             {
-                SqlConnect.Connection.Close();
-                //Write to error log
+                errorLog.ErrorLogger("DeleteEmployee", DateTime.Now, ex.Message);
                 throw ex;
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 

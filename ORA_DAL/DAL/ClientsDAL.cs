@@ -6,15 +6,17 @@ using System.Data.SqlClient;
 
 namespace ORA_Data.DAL
 {
-    /// <summary>
-    /// Basic CRUD methods for Client information. ClientsDM is the model being used here.
-    /// </summary>
-    /// 
-
     #region CLIENTS DAL METHODS
 
+    
     public class ClientsDAL
     {
+        private static ErrorLog errorLog = new ErrorLog();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_client"></param>
         public static void CreateClient(ClientsDM _client)
         {
             try
@@ -32,11 +34,19 @@ namespace ORA_Data.DAL
             }
             catch (Exception e)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("CreateClient", DateTime.Now, e.Message);
                 throw (e);
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static List<ClientsDM> ReadClients()
         {
             List<ClientsDM> _clientList = new List<ClientsDM>();
@@ -66,11 +76,20 @@ namespace ORA_Data.DAL
             }
             catch (Exception e)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("ReadClients", DateTime.Now, e.Message);
                 throw (e);
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="clientId"></param>
+        /// <returns></returns>
         public static ClientsDM ReadClientById(string clientId)
         {
             ClientsDM _client = new ClientsDM();
@@ -99,11 +118,19 @@ namespace ORA_Data.DAL
             }
             catch (Exception e)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("ReadClientByID", DateTime.Now, e.Message);
                 throw (e);
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_client"></param>
         public static void UpdateClient(ClientsDM _client)
         {
             try
@@ -121,11 +148,19 @@ namespace ORA_Data.DAL
             }
             catch (Exception e)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("UpdateClient", DateTime.Now, e.Message);
                 throw (e);
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_client"></param>
         public static void DeleteClient(ClientsDM _client)
         {
             try
@@ -141,8 +176,12 @@ namespace ORA_Data.DAL
             }
             catch (Exception e)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("DeleteClient", DateTime.Now, e.Message);
                 throw (e);
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
     }

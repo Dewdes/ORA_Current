@@ -8,11 +8,15 @@ namespace ORA_Data.DAL
 {
     public class StoryDAL
     {
-        /// <summary>
-        /// Basic CRUD methods for Story information. StoryDM is the model being used here.
-        /// </summary>
-
         #region Story DAL METHODS
+
+        private static ErrorLog errorLog = new ErrorLog();
+
+        /// <summary>
+        /// Creates stories
+        /// Uses the CREATE_STORY stored procedure
+        /// </summary>
+        /// <param name="_story"></param>
         public static void CreateStory(StoryDM _story)
         {
             try
@@ -33,11 +37,19 @@ namespace ORA_Data.DAL
             }
             catch (Exception e)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("CreateStory", DateTime.Now, e.Message);
                 throw (e);
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static List<StoryDM> ReadStorys()
         {
             List<StoryDM> storyList = new List<StoryDM>();
@@ -70,11 +82,20 @@ namespace ORA_Data.DAL
             }
             catch (Exception ex)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("ReadStorys", DateTime.Now, ex.Message);
                 throw ex;
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="storyId"></param>
+        /// <returns></returns>
         public static StoryDM ReadStoryById(string storyId)
         {
             StoryDM _story = new StoryDM();
@@ -106,11 +127,19 @@ namespace ORA_Data.DAL
             }
             catch (Exception ex)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("ReadStoryById", DateTime.Now, ex.Message);
                 throw ex;
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_story"></param>
         public static void UpdateStory(StoryDM _story)
         {
             try
@@ -131,11 +160,19 @@ namespace ORA_Data.DAL
             }
             catch (Exception e)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("UpdateStory", DateTime.Now, e.Message);
                 throw (e);
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_story"></param>
         public static void DeleteStory(StoryDM _story)
         {
             try
@@ -151,9 +188,13 @@ namespace ORA_Data.DAL
             }
             catch (Exception ex)
             {
-                SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("DeleteStory", DateTime.Now, ex.Message);
                 //Write to error log
                 throw ex;
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
             }
         }
         #endregion

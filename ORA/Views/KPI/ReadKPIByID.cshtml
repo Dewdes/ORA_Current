@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Html.DisplayFor(model => model.Employee.EmployeeFirstName)</h2>
+<h2>@Html.DisplayFor(model => model.Employee.EmployeeFirstName) @Html.DisplayFor(model => model.Employee.EmployeeFirstName)</h2>
 
 <div>
     <hr />
@@ -219,3 +219,13 @@
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+<style>
+    dl{
+        columns: 2;
+    }
+
+    dd{
+        break-before: avoid;
+    }
+</style>

@@ -8,11 +8,15 @@ namespace ORA_Data.DAL
 {
     public class AddressDAL
     {
-        /// <summary>
-        /// Basic CRUD methods for address information. AddressDM is the model being used here.
-        /// </summary>
-
         #region ADDRESS DAL METHODS
+
+        private static ErrorLog errorLog = new ErrorLog();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="address"></param>
+        /// <param name="empID"></param>
         public static void CreateAddress(AddressDM address, long empID)
         {
             try
@@ -37,10 +41,15 @@ namespace ORA_Data.DAL
             catch (Exception e)
             {
                 SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("CreateAddress", DateTime.Now, e.Message);
                 throw e;
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static List<AddressDM> ReadAllAddress()
         {
             List<AddressDM> addressList = new List<AddressDM>();
@@ -76,10 +85,16 @@ namespace ORA_Data.DAL
             catch (Exception ex)
             {
                 SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("ReadAllAddress", DateTime.Now, ex.Message);
                 throw ex;
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public static AddressDM ReadAddressByID(string id)
         {
             try
@@ -113,10 +128,15 @@ namespace ORA_Data.DAL
             catch (Exception ex)
             {
                 SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("ReadAddressByID", DateTime.Now, ex.Message);
                 throw ex;
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="address"></param>
         public static void UpdateAddress(AddressDM address)
         {
             try
@@ -141,10 +161,15 @@ namespace ORA_Data.DAL
             catch (Exception e)
             {
                 SqlConnect.Connection.Close();
+                errorLog.ErrorLogger("UpdateAddress", DateTime.Now, e.Message);
                 throw (e);
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="address"></param>
         public static void DeleteAddress(AddressDM address)
         {
             try
@@ -161,7 +186,7 @@ namespace ORA_Data.DAL
             catch (Exception ex)
             {
                 SqlConnect.Connection.Close();
-                //Write to error log
+                errorLog.ErrorLogger("DeleteAddress", DateTime.Now, ex.Message);
                 throw ex;
             }
         }
