@@ -92,5 +92,9 @@ namespace ORA.Models
         public SkillsVM Skills { get; set; }
 
         public WorkHistoryVM WorkHistory { get; set; }
+
+        public long BioId { get; set; }
+
+        public AccountBioVM Bio { get; set; }
     }
 }

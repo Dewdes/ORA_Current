@@ -1,0 +1,5 @@
+Level: ReadBioByID   Time: 11/9/2017 2:11:16 PM   Error: Unable to cast object of type 'System.DBNull' to type 'System.String'.
+Level: ReadBioByID   Time: 11/9/2017 2:14:52 PM   Error: Unable to cast object of type 'System.DBNull' to type 'System.String'.
+Level: ReadBioByID   Time: 11/9/2017 2:16:11 PM   Error: Unable to cast object of type 'System.DBNull' to type 'System.String'.
+Level: ReadBioByID   Time: 11/9/2017 2:16:28 PM   Error: Unable to cast object of type 'System.DBNull' to type 'System.String'.
+Level: ReadBioByID   Time: 11/9/2017 2:16:49 PM   Error: Unable to cast object of type 'System.DBNull' to type 'System.String'.
