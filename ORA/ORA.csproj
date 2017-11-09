@@ -419,6 +419,7 @@
     <Content Include="Views\Resume\CreateEducation.cshtml" />
     <Content Include="Views\Shared\Nav\Admin_Side.cshtml" />
     <Content Include="Views\Shared\Nav\Admin_Top.cshtml" />
+    <Content Include="Views\Shared\Nav\About.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

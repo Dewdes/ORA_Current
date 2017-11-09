@@ -29,6 +29,9 @@
     .row {
         margin-top: -40px;
     }
+    .form-horizontal .radio {
+        min-height: 20px;
+    }
 </style>
 
 @using (Html.BeginForm())
@@ -37,7 +40,7 @@
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
     <div class="form-horizontal">
-        <div class="container">
+        @*<div class="container">*@
             <div class="row">
                 <section>
                     <div class="wizard">
@@ -671,5 +674,5 @@
                 </section>
             </div>
         </div>
-    </div>
+    @*</div>*@
 }

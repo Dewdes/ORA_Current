@@ -1,6 +1,7 @@
 ﻿@model ORA.Models.ResumeVM
 @{
-    Layout = null;
+    //Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @Styles.Render("~/Content/css")
 @Scripts.Render("~/bundles/modernizr")
@@ -11,7 +12,7 @@
 
 <html>
 <body class="backGround">
-    <div class="container">
+    @*<div class="container">*@
         <div class="row">
             <div class="col-lg-12 ">
                 <div class="panel panel-default">
@@ -480,7 +481,7 @@
         <button class="btn btn-primary btn-sm btn-block">
             @Html.ActionLink("Update Resume", "UpdateResume", "Resume")
         </button>
-    </div>
+    @*</div>*@
 </body>
 </html>
 <script>

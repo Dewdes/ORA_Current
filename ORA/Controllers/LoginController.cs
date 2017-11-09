@@ -128,7 +128,7 @@ namespace ORA.Controllers
         {
             Session["LoggedIn"] = false;
             FormsAuthentication.SignOut();
-            return View();
+            return RedirectToAction("Login", "Login", new { area = "Default" });
         }
 
         public ActionResult ReadLogins()
