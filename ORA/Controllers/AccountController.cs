@@ -39,6 +39,7 @@ namespace ORA.Controllers
                 LoginDAL.Register(Mapper.Map<LoginDM>(employee.Login), employee.EmployeeId);
                 AddressDAL.CreateAddress(Mapper.Map<AddressDM>(employee.Address), employee.EmployeeId);
                 Work_StatusDAL.CreateStatus(Mapper.Map<StatusDM>(employee.Status), employee.EmployeeId);
+                AccountDAL.CreateBio(Mapper.Map<AccountBioDM>(employee.Bio), employee.EmployeeId);
                 TimeDAL.CreateEmptyTime(employee.EmployeeId);
                 ResumeDAL.CreateResume(employee.EmployeeId);
                 return Redirect("AdminDashboard");
@@ -60,6 +61,7 @@ namespace ORA.Controllers
         {
             EmployeeVM employee = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById((long)Session["ID"]));
             employee.Address = Mapper.Map<AddressVM>(AddressDAL.ReadAddressByID(employee.EmployeeId.ToString()));
+            employee.Bio = Mapper.Map<AccountBioVM>(AccountDAL.ReadBioById(employee.EmployeeId.ToString()));
             return View(employee);
         }
 
@@ -68,6 +70,7 @@ namespace ORA.Controllers
         {
             EmployeeDAL.UpdateEmployee(Mapper.Map<EmployeeDM>(item));
             AddressDAL.UpdateAddress(Mapper.Map<AddressDM>(item.Address));
+            AccountDAL.UpdateAboutMe(item.EmployeeId, item.Bio.AboutMe);
             return View(item);
         }
 

@@ -8,7 +8,7 @@
 <h2>ReadAssignments</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "CreateAssignment")
 </p>
 <table class="table">
     <tr>
@@ -78,9 +78,9 @@
             @Html.DisplayFor(modelItem => item.CreatedBy)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Edit", "UpdateAssignment", new { id=item.AssignmentId  }) |
+            @Html.ActionLink("Details", "ReadAssignmentByID", new { id = item.AssignmentId }) |
+            @Html.ActionLink("Delete", "DeleteAssignment", new { id = item.AssignmentId })
         </td>
     </tr>
 }

@@ -68,5 +68,9 @@ namespace ORA_Data.Model
         public AssignmentDM Role { get; set; }
 
         public List<AssignmentDM> RoleList { get; set; }
+
+        public long BioId { get; set; }
+
+        public AccountBioDM Bio { get; set; }
     }
 }

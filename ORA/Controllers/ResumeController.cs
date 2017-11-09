@@ -26,13 +26,16 @@ namespace ORA.Controllers
             return View(resume);
         }
 
-        public ActionResult ReadResumeEducationById()
+        public ActionResult test()
+        {
+            return View();
+        }
+
+        public ActionResult ReadResumeEducationById(EducationVM education)
         {
             ResumeVM resume = new ResumeVM();
-            resume = Mapper.Map<ResumeVM>(ResumeDAL.GetResumeByID((long)Session["ID"]));
-            List<EducationVM> education = new List<EducationVM>();
-            education.Add(Mapper.Map<EducationVM>(ResumeDAL.GetEducationByResumeID(resume.ResumeID)));
-            return View(education);
+            EducationVM list = Mapper.Map<List<EducationVM>>(ResumeDAL.GetEducationByResumeID(resume.ResumeID));
+            return View(list);
         }
 
         public ActionResult UpdateResumeEducation()

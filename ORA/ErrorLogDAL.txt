@@ -1,4 +1,0 @@
-Level: Login   Time: 11/8/2017 1:05:46 PM   Error: A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 26 - Error Locating Server/Instance Specified)
-Level: ReadAssessmentByID   Time: 11/8/2017 1:09:58 PM   Error: Procedure or function 'READ_ASSESSMENT_BY_ID' expects parameter '@Assessment_ID', which was not supplied.
-Level: CreateAssessment   Time: 11/8/2017 1:10:34 PM   Error: The INSERT statement conflicted with the FOREIGN KEY constraint "FK_Assessment_Employee". The conflict occurred in database "ORA_Test", table "dbo.Employee", column 'Employee_ID'.
-The statement has been terminated.
