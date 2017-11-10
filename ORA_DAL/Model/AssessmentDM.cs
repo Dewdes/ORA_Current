@@ -59,6 +59,8 @@ namespace ORA_Data.Model
 
         public long EmployeeID { get; set; }
 
+        public DateTime DateCreatedFor { get; set; }
+
         public DateTime Created { get; set; }
 
         public string CreatedBy { get; set; }

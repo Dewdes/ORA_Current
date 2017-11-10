@@ -88,6 +88,9 @@ namespace ORA.Models
 
         public List<AssignmentVM> Assignments { get; set; }
 
+        [DisplayName("Assessed For")]
+        public DateTime DateCreatedFor { get; set; }
+
         public DateTime Created { get; set; }
 
         public string CreatedBy { get; set; }
