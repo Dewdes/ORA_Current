@@ -11,12 +11,6 @@ namespace ORA.Controllers
 {
     public class AssessmentController : Controller
     {
-        // GET: Assessment
-        //public ActionResult Index()
-        //{
-        //    return View();
-        //}
-
         public ActionResult Sort(string Sorting_Order, List<AssessmentVM> assessments)
         {
             List<AssessmentVM> SortedList = new List<AssessmentVM>();
@@ -82,6 +76,7 @@ namespace ORA.Controllers
             {
                 item.Employee = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById(item.EmployeeID));
                 item.Employee.Team = Mapper.Map<TeamsVM>(TeamsDAL.ReadTeamById(item.Employee.TeamId.ToString()));
+                item.Employee.Assignment = Mapper.Map<AssignmentVM>(AssignmentDAL.ReadAssignmentByID(item.Employee.AssignmentId.ToString()));
             }
             if(Session["Role"].ToString() == "Team Lead")
             {
@@ -89,6 +84,19 @@ namespace ORA.Controllers
                 foreach(AssessmentVM assess in list)
                 {
                     if(assess.Employee.TeamId == lead.TeamId && assess.Employee.EmployeeId != lead.EmployeeId)
+                    {
+                        teamList.Add(assess);
+                    }
+                }
+                return View(teamList);
+            }
+            if (Session["Role"].ToString() == "Manager")
+            {
+                EmployeeVM manager = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById(id));
+                manager.Assignment = Mapper.Map<AssignmentVM>(AssignmentDAL.ReadAssignmentByID(manager.AssignmentId.ToString()));
+                foreach (AssessmentVM assess in list)
+                {
+                    if (assess.Employee.Assignment.ClientId == manager.Assignment.ClientId && assess.Employee.EmployeeId != manager.EmployeeId)
                     {
                         teamList.Add(assess);
                     }

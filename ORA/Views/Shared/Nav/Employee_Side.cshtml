@@ -41,6 +41,18 @@
                 </li>
 
             }
+            @if ((string)Session["Role"] == "Manager")
+            {
+                <li>
+                    <i class="pe-7s-note2"></i>
+                    @Html.ActionLink("Employee Assessments", "ReadAssessments", "Assessment", new { id = Session["ID"] }, new { })
+                </li>
+                <li>
+                    <i class="pe-7s-note2"></i>
+                    @Html.ActionLink("Employee KPI's", "ReadKPIs", "KPI", new { id = Session["ID"] }, new { })
+                </li>
+
+            }
             <li>
                 <i class="pe-7s-note2"></i>
                 @Html.ActionLink("My Resume", "ReadResumeById", "Resume")
