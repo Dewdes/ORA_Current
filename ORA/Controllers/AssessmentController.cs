@@ -76,7 +76,7 @@ namespace ORA.Controllers
             {
                 item.Employee = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById(item.EmployeeID));
                 item.Employee.Team = Mapper.Map<TeamsVM>(TeamsDAL.ReadTeamById(item.Employee.TeamId.ToString()));
-                item.Employee.Client = Mapper.Map<ClientsVM>(ClientsDAL.ReadClientById(item.Employee.Team.ClientId.ToString()));
+                item.Employee.Assignment = Mapper.Map<AssignmentVM>(AssignmentDAL.ReadAssignmentByID(item.Employee.AssignmentId.ToString()));
             }
             if(Session["Role"].ToString() == "Team Lead")
             {
@@ -92,10 +92,11 @@ namespace ORA.Controllers
             }
             if (Session["Role"].ToString() == "Manager")
             {
-                EmployeeVM lead = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById(id));
+                EmployeeVM manager = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById(id));
+                manager.Assignment = Mapper.Map<AssignmentVM>(AssignmentDAL.ReadAssignmentByID(manager.AssignmentId.ToString()));
                 foreach (AssessmentVM assess in list)
                 {
-                    if (assess.Employee.TeamId == lead.TeamId && assess.Employee.EmployeeId != lead.EmployeeId)
+                    if (assess.Employee.Assignment.ClientId == manager.Assignment.ClientId && assess.Employee.EmployeeId != manager.EmployeeId)
                     {
                         teamList.Add(assess);
                     }
