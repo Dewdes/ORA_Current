@@ -34,7 +34,7 @@
     }
 </style>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("CreateAssessment","Assessment", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -101,14 +101,14 @@
                                         <div class="form-group">
                                             @Html.LabelFor(model => model.EmployeeID, htmlAttributes: new { @class = "control-label col-md-2" })
                                             <div class="col-md-10">
-                                                @Html.DropDownListFor(model => model.EmployeeID, new SelectList(Model.EmployeeList, "EmployeeId", "EmployeeName"), "Select Employee")
+                                                @Html.DropDownListFor(model => model.EmployeeID, new SelectList(Model.EmployeeList, "EmployeeId", "EmployeeName"), "Select Employee", htmlAttributes: new { @class="form-control"})
                                                 @Html.ValidationMessageFor(model => model.EmployeeID, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            @Html.LabelFor(model => model.DateCreatedFor, htmlAttributes: new { @class= "control-label col-md-12"})
-                                            <div class="col-md-10">
-                                                @Html.TextBoxFor(model => model.DateCreatedFor.Date, htmlAttributes: new { @class="form-control", type="date"})
+                                            @Html.LabelFor(model => model.DateCreatedFor, htmlAttributes: new { @class= "control-label col-md-2"})
+                                            <div class="col-md-7">
+                                                @Html.EditorFor(model => model.DateCreatedFor, new { htmlAttributes = new { @class = "form-control", type = "date", @Value = Model.DateCreatedFor.ToString("yyyy-MM-dd") } })
                                             </div>
                                         </div>
 
@@ -125,7 +125,7 @@
                                                         {
                                                             <div class="radio-inline" title="@info.Name: @info.Desc">
                                                                 <label>
-                                                                    @Html.RadioButtonFor(model => model.TDProblemSolving, item, new { @class = "radio" })
+                                                                    @Html.RadioButtonFor(model => model.TDProblemSolving, info.Number, new { @class = "radio", required = "required" })
                                                                     @item
                                                                 </label>
                                                             </div>
@@ -148,7 +148,7 @@
                                                         {
                                                             <div class="radio-inline" title="@info.Name: @info.Desc">
                                                                 <label>
-                                                                    @Html.RadioButtonFor(model => model.TDQualityOfWork, item, new { @class = "radio" })
+                                                                    @Html.RadioButtonFor(model => model.TDQualityOfWork, item @*, new { @class = "radio" }*@)
                                                                     @item
                                                                 </label>
                                                             </div>
@@ -171,7 +171,7 @@
                                                         {
                                                             <div class="radio-inline" title="@info.Name: @info.Desc">
                                                                 <label>
-                                                                    @Html.RadioButtonFor(model => model.TDProductivity, item, new { @class = "radio" })
+                                                                    @Html.RadioButtonFor(model => model.TDProductivity, item @*, new { @class = "radio" }*@)
                                                                     @item
                                                                 </label>
                                                             </div>
@@ -194,7 +194,7 @@
                                                         {
                                                             <div class="radio-inline" title="@info.Name: @info.Desc">
                                                                 <label>
-                                                                    @Html.RadioButtonFor(model => model.TDProductKnowledge, item, new { @class = "radio" })
+                                                                    @Html.RadioButtonFor(model => model.TDProductKnowledge, item@*, new { @class = "radio" }*@)
                                                                     @item
                                                                 </label>
                                                             </div>
@@ -236,7 +236,7 @@
                                                         {
                                                             <div class="radio-inline" title="@info.Name: @info.Desc">
                                                                 <label>
-                                                                    @Html.RadioButtonFor(model => model.CSRProfesionalismTeamwork, item, new { @class = "radio" })
+                                                                    @Html.RadioButtonFor(model => model.CSRProfesionalismTeamwork, item@*, new { @class = "radio" }*@)
                                                                     @item
                                                                 </label>
                                                             </div>
@@ -259,7 +259,7 @@
                                                         {
                                                             <div class="radio-inline" title="@info.Name: @info.Desc">
                                                                 <label>
-                                                                    @Html.RadioButtonFor(model => model.CSRVerbalSkills, item, new { @class = "radio" })
+                                                                    @Html.RadioButtonFor(model => model.CSRVerbalSkills, item@*, new { @class = "radio" }*@)
                                                                     @item
                                                                 </label>
                                                             </div>
@@ -282,7 +282,7 @@
                                                         {
                                                             <div class="radio-inline" title="@info.Name: @info.Desc">
                                                                 <label>
-                                                                    @Html.RadioButtonFor(model => model.CSRWrittenSkills, item, new { @class = "radio" })
+                                                                    @Html.RadioButtonFor(model => model.CSRWrittenSkills, item@*, new { @class = "radio" }*@)
                                                                     @item
                                                                 </label>
                                                             </div>
@@ -305,7 +305,7 @@
                                                         {
                                                             <div class="radio-inline" title="@info.Name: @info.Desc">
                                                                 <label>
-                                                                    @Html.RadioButtonFor(model => model.CSRListeningSkills, item, new { @class = "radio" })
+                                                                    @Html.RadioButtonFor(model => model.CSRListeningSkills, item@*, new { @class = "radio" }*@)
                                                                     @item
                                                                 </label>
                                                             </div>
@@ -345,7 +345,7 @@
                                                         {
                                                             <div class="radio-inline" title="@info.Name: @info.Desc">
                                                                 <label>
-                                                                    @Html.RadioButtonFor(model => model.ADAttendence, item, new { @class = "radio" })
+                                                                    @Html.RadioButtonFor(model => model.ADAttendence, item@*, new { @class = "radio" }*@)
                                                                     @item
                                                                 </label>
                                                             </div>
@@ -368,7 +368,7 @@
                                                         {
                                                             <div class="radio-inline" title="@info.Name: @info.Desc">
                                                                 <label>
-                                                                    @Html.RadioButtonFor(model => model.ADEthicalBehavior, item, new { @class = "radio" })
+                                                                    @Html.RadioButtonFor(model => model.ADEthicalBehavior, item@*, new { @class = "radio" }*@)
                                                                     @item
                                                                 </label>
                                                             </div>
@@ -391,7 +391,7 @@
                                                         {
                                                             <div class="radio-inline" title="@info.Name: @info.Desc">
                                                                 <label>
-                                                                    @Html.RadioButtonFor(model => model.ADMeetDeadlines, item, new { @class = "radio" })
+                                                                    @Html.RadioButtonFor(model => model.ADMeetDeadlines, item@*, new { @class = "radio" }*@)
                                                                     @item
                                                                 </label>
                                                             </div>
@@ -414,7 +414,7 @@
                                                         {
                                                             <div class="radio-inline" title="@info.Name: @info.Desc">
                                                                 <label>
-                                                                    @Html.RadioButtonFor(model => model.ADOrganizeDetailedWork, item, new { @class = "radio" })
+                                                                    @Html.RadioButtonFor(model => model.ADOrganizeDetailedWork, item@*, new { @class = "radio" }*@)
                                                                     @item
                                                                 </label>
                                                             </div>
@@ -456,7 +456,7 @@
                                                         {
                                                             <div class="radio-inline" title="@info.Name: @info.Desc">
                                                                 <label>
-                                                                    @Html.RadioButtonFor(model => model.TMResourceUse, item, new { @class = "radio" })
+                                                                    @Html.RadioButtonFor(model => model.TMResourceUse, item@*, new { @class = "radio" }*@)
                                                                     @item
                                                                 </label>
                                                             </div>
@@ -479,7 +479,7 @@
                                                         {
                                                             <div class="radio-inline" title="@info.Name: @info.Desc">
                                                                 <label>
-                                                                    @Html.RadioButtonFor(model => model.TMFeedback, item, new { @class = "radio" })
+                                                                    @Html.RadioButtonFor(model => model.TMFeedback, item@*, new { @class = "radio" }*@)
                                                                     @item
                                                                 </label>
                                                             </div>
@@ -502,7 +502,7 @@
                                                         {
                                                             <div class="radio-inline" title="@info.Name: @info.Desc">
                                                                 <label>
-                                                                    @Html.RadioButtonFor(model => model.TMTechnicalMonitoring, item, new { @class = "radio" })
+                                                                    @Html.RadioButtonFor(model => model.TMTechnicalMonitoring, item@*, new { @class = "radio" }*@)
                                                                     @item
                                                                 </label>
                                                             </div>
@@ -525,7 +525,7 @@
                                                         {
                                                             <div class="radio-inline" title="@info.Name: @info.Desc">
                                                                 <label>
-                                                                    @Html.RadioButtonFor(model => model.TMAskingQuestions, item, new { @class = "radio" })
+                                                                    @Html.RadioButtonFor(model => model.TMAskingQuestions, item@*, new { @class = "radio" }*@)
                                                                     @item
                                                                 </label>
                                                             </div>
@@ -567,7 +567,7 @@
                                                         {
                                                             <div class="radio-inline" title="@info.Name: @info.Desc">
                                                                 <label>
-                                                                    @Html.RadioButtonFor(model => model.MIAttitudeWork, item, new { @class = "radio" })
+                                                                    @Html.RadioButtonFor(model => model.MIAttitudeWork, item@*, new { @class = "radio" }*@)
                                                                     @item
                                                                 </label>
                                                             </div>
@@ -590,7 +590,7 @@
                                                         {
                                                             <div class="radio-inline" title="@info.Name: @info.Desc">
                                                                 <label>
-                                                                    @Html.RadioButtonFor(model => model.MIGroomingAppearance, item, new { @class = "radio" })
+                                                                    @Html.RadioButtonFor(model => model.MIGroomingAppearance, item@*, new { @class = "radio" }*@)
                                                                     @item
                                                                 </label>
                                                             </div>
@@ -613,7 +613,7 @@
                                                         {
                                                             <div class="radio-inline" title="@info.Name: @info.Desc">
                                                                 <label>
-                                                                    @Html.RadioButtonFor(model => model.MIPersonalGrowth, item, new { @class = "radio" })
+                                                                    @Html.RadioButtonFor(model => model.MIPersonalGrowth, item@*, new { @class = "radio" }*@)
                                                                     @item
                                                                 </label>
                                                             </div>
@@ -636,7 +636,7 @@
                                                         {
                                                             <div class="radio-inline" title="@info.Name: @info.Desc">
                                                                 <label>
-                                                                    @Html.RadioButtonFor(model => model.MIPotentialAdvancement, item, new { @class = "radio" })
+                                                                    @Html.RadioButtonFor(model => model.MIPotentialAdvancement, item@*, new { @class = "radio" }*@)
                                                                     @item
                                                                 </label>
                                                             </div>

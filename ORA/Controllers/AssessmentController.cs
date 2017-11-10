@@ -57,6 +57,7 @@ namespace ORA.Controllers
         public ActionResult CreateAssessment()
         {
             AssessmentVM assessment = new AssessmentVM();
+            assessment.DateCreatedFor = DateTime.Now.Date;
             assessment.EmployeeList = Mapper.Map<List<EmployeeVM>>(EmployeeDAL.ReadEmployees());
             assessment.Descriptions = Mapper.Map<List<DescriptionVM>>(AssessmentDAL.ReadAssessDescriptions());
             return View(assessment);
@@ -70,7 +71,7 @@ namespace ORA.Controllers
             assessment.Created = DateTime.Now;
             assessment.Modified = DateTime.Now;
             AssessmentDAL.CreateAssessment(Mapper.Map<AssessmentDM>(assessment));
-            return RedirectToAction("ReadAssessments");
+            return RedirectToAction("ReadAssessments",new { id = Session["ID"] });
         }
 
         public ActionResult ReadAssessments(int id)

@@ -20,3 +20,7 @@ Level: ReadBioByID   Time: 11/9/2017 2:16:28 PM   Error: Unable to cast object o
 Level: ReadBioByID   Time: 11/9/2017 2:16:49 PM   Error: Unable to cast object of type 'System.DBNull' to type 'System.String'.
 >>>>>>> f3d9eb77008e7c7b35177f5c2706a4cfc3226f60
 Level: ReadBioByID   Time: 11/9/2017 3:27:07 PM   Error: Could not find stored procedure 'READ_BIO_BY_ID'.
+Level: CreateAssessment   Time: 11/10/2017 12:17:44 PM   Error: The INSERT statement conflicted with the FOREIGN KEY constraint "FK_Assessment_Employee". The conflict occurred in database "ORA_Test", table "dbo.Employee", column 'Employee_ID'.
+The statement has been terminated.
+Level: CreateAssessment   Time: 11/10/2017 1:45:17 PM   Error: The INSERT statement conflicted with the FOREIGN KEY constraint "FK_Assessment_Employee". The conflict occurred in database "ORA_Test", table "dbo.Employee", column 'Employee_ID'.
+The statement has been terminated.
