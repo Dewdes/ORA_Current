@@ -256,7 +256,6 @@ namespace ORA_Data.DAL
         public static List<EducationDM> GetListOfEducationsByResumeID(int resumeID)
         {
             List<EducationDM> educationList = new List<EducationDM>();
-            EducationDM _education = new EducationDM();
             try
             {
                 using (SqlCommand cmd = new SqlCommand("VIEW_EDUCATION_BY_RESUME_ID", SqlConnect.Connection))
@@ -270,6 +269,8 @@ namespace ORA_Data.DAL
                         {
                             while (reader.Read())
                             {
+                                EducationDM _education = new EducationDM();
+
                                 _education.ResumeID = (int)reader["Resume_ID"];
                                 _education.EducationID = (int)reader["Education_ID"];
                                 _education.InsitutionName = (string)reader["Institution_Name"];
