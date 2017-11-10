@@ -182,7 +182,7 @@ namespace ORA_Data.DAL
         /// </summary>
         /// <param name="assessmentId"></param>
         /// <returns></returns>
-        public static AssessmentDM ReadAssessmentByID(string assessmentId)
+        public static AssessmentDM ReadAssessmentByID(int assessmentId)
         {
             try
             {

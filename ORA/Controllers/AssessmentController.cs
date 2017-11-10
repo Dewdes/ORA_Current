@@ -98,7 +98,7 @@ namespace ORA.Controllers
             return View(list);
         }
 
-        public ActionResult ReadAssessmentByID(string id)
+        public ActionResult ReadAssessmentByID(int id)
         {
             AssessmentVM assess = Mapper.Map<AssessmentVM>(AssessmentDAL.ReadAssessmentByID(id));
             assess.Employee = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById(assess.EmployeeID));
@@ -117,7 +117,7 @@ namespace ORA.Controllers
             return View(list);
         }
 
-        public ActionResult UpdateAssessment(string id)
+        public ActionResult UpdateAssessment(int id)
         {
             return View(Mapper.Map<AssessmentVM>(AssessmentDAL.ReadAssessmentByID(id)));
         }
@@ -131,7 +131,7 @@ namespace ORA.Controllers
             return View(assessment);
         }
 
-        public ActionResult DeleteAssessment(string id)
+        public ActionResult DeleteAssessment(int id)
         {
             AssessmentVM assessment = Mapper.Map<AssessmentVM>(AssessmentDAL.ReadAssessmentByID(id));
             return View(assessment);
