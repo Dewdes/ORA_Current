@@ -19,3 +19,4 @@ Level: ReadBioByID   Time: 11/9/2017 2:16:11 PM   Error: Unable to cast object o
 Level: ReadBioByID   Time: 11/9/2017 2:16:28 PM   Error: Unable to cast object of type 'System.DBNull' to type 'System.String'.
 Level: ReadBioByID   Time: 11/9/2017 2:16:49 PM   Error: Unable to cast object of type 'System.DBNull' to type 'System.String'.
 >>>>>>> f3d9eb77008e7c7b35177f5c2706a4cfc3226f60
+Level: ReadBioByID   Time: 11/9/2017 3:27:07 PM   Error: Could not find stored procedure 'READ_BIO_BY_ID'.

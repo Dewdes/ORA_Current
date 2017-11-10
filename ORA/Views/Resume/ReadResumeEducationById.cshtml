@@ -2,74 +2,124 @@
 
 @{
     ViewBag.Title = "ReadResumeEducationById";
+    Layout = null;
 }
+<link href="~/Content/Resume.css" rel="stylesheet" />
 
-<h2>ReadResumeEducationById</h2>
+@foreach (var item in Model)
+{
+    <div class="row">
+        <div class="col-lg-12 ">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>
+                        <i class="glyphicon glyphicon-book"></i>
+                        EDUCATION
+                    </h4>
+                </div>
+                <div class="panel-body">
+                    <div class="box box-info">
+                        <div class="box-body">
+                            <div>
+                                <div class="col-sm-5 col-xs-6 tital">
+                                    @Html.DisplayNameFor(model => model.InsitutionName)
+                                </div>
+                                <div class="col-sm-7">
+                                    @Html.DisplayFor(modelItem => item.InsitutionName)
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="bot-border"></div>
+                            </div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.EducationID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.InsitutionName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Attended_Start_Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Attended_End_Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.InstitutionLocation)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EducationEarned)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AreaOfStudy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ResumeID)
-        </th>
-        <th></th>
-    </tr>
+                            <div>
+                                <div class="col-sm-5 col-xs-6 tital">
+                                    @Html.DisplayNameFor(model => model.Attended_Start_Date)
+                                </div>
+                                <div class="col-sm-7">
+                                    @Html.DisplayFor(modelItem => item.Attended_Start_Date)
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="bot-border"></div>
+                            </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.EducationID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.InsitutionName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Attended_Start_Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Attended_End_Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.InstitutionLocation)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EducationEarned)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AreaOfStudy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ResumeID)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
+                            <div>
+                                <div class="col-sm-5 col-xs-6 tital">
+                                    @Html.DisplayNameFor(model => model.Attended_End_Date)
+                                </div>
+                                <div class="col-sm-7">
+                                    @Html.DisplayFor(modelItem => item.Attended_End_Date)
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="bot-border"></div>
+                            </div>
+
+                            <div>
+                                <div class="col-sm-5 col-xs-6 tital">
+                                    @Html.DisplayNameFor(model => model.InstitutionLocation)
+                                </div>
+                                <div class="col-sm-7">
+                                    @Html.DisplayFor(modelItem => item.InstitutionLocation)
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="bot-border"></div>
+                            </div>
+
+                            <div>
+                                <div class="col-sm-5 col-xs-6 tital">
+                                    @Html.DisplayNameFor(model => model.EducationEarned)
+                                </div>
+                                <div class="col-sm-7">
+                                    @Html.DisplayFor(modelItem => item.EducationEarned)
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="bot-border"></div>
+                            </div>
+
+                            <div>
+                                <div class="col-sm-5 col-xs-6 tital">
+                                    @Html.DisplayNameFor(model => model.AreaOfStudy)
+                                </div>
+                                <div class="col-sm-7">
+                                    @Html.DisplayFor(modelItem => item.AreaOfStudy)
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="bot-border" style="border-bottom-width: 15px; border-bottom-color: darkgrey;"></div>
+                            </div>
+                            <!-- Button trigger modal -->
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="button" id="mymodal" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+        Update Education
+    </button>
+
+    <!-- Modal -->
+    <div class="modal" tabindex="-1" id="myModal" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Education</h4>
+                </div>
+                <div class="modal-content">
+                    @Html.Action("UpdateResumeEducation")
+                </div>
+                @*<div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                            </div>*@
+            </div>
+        </div>
+    </div>
 }
+<script>
+    jQuery(document).ready(function (e) {
+        jQuery('#mymodal').trigger('click');
+    });
 
-</table>
+    $('#myModal').appendTo("body"); 
+</script>

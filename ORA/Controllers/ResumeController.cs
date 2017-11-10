@@ -11,7 +11,6 @@ namespace ORA.Controllers
     {
         public ActionResult ReadMyResume()
         {
-
             return View();
         }
 
@@ -19,38 +18,33 @@ namespace ORA.Controllers
         {
             ResumeVM resume = new ResumeVM();
             resume = Mapper.Map<ResumeVM>(ResumeDAL.GetResumeByID((long)Session["ID"]));
-            resume.Education = Mapper.Map<EducationVM>(ResumeDAL.GetEducationByResumeID(resume.ResumeID));
             resume.Skills = Mapper.Map<SkillsVM>(ResumeDAL.GetSkillsByResumeID(resume.ResumeID));
             resume.WorkHistory = Mapper.Map<WorkHistoryVM>(ResumeDAL.GetWorkHistoryByResumeID(resume.ResumeID));
             resume.Employee = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById((long)Session["ID"]));
             return View(resume);
         }
 
-        public ActionResult test()
-        {
-            return View();
-        }
-
         public ActionResult ReadResumeEducationById(EducationVM education)
         {
             ResumeVM resume = new ResumeVM();
-            EducationVM list = Mapper.Map<List<EducationVM>>(ResumeDAL.GetEducationByResumeID(resume.ResumeID));
+            resume = Mapper.Map<ResumeVM>(ResumeDAL.GetResumeByID((long)Session["ID"]));
+            IEnumerable<EducationVM> list = Mapper.Map<List<EducationVM>>(ResumeDAL.GetListOfEducationsByResumeID(resume.ResumeID));
             return View(list);
         }
 
         public ActionResult UpdateResumeEducation()
         {
             ResumeVM resume = new ResumeVM();
-            resume = Mapper.Map<ResumeVM>(ResumeDAL.GetResumeByID((long)Session["ID"]));
-            resume.Education = Mapper.Map<EducationVM>(ResumeDAL.GetEducationByResumeID(resume.ResumeID));
-            return View(resume);
+            resume.ResumeID = ResumeDAL.ReadResumeId((long)Session["ID"]);
+            return View(Mapper.Map<EducationVM>(ResumeDAL.GetEducationsByResumeID(resume.ResumeID)));
         }
 
         [HttpPost]
-        public ActionResult UpdateResumeEducation(ResumeVM resume)
+        public ActionResult UpdateResumeEducation(EducationVM education)
         {
+            ResumeVM resume = new ResumeVM();
             resume.ResumeID = ResumeDAL.ReadResumeId((long)Session["ID"]);
-            ResumeDAL.UpdateEducation(Mapper.Map<EducationDM>(resume.Education), resume.ResumeID);
+            ResumeDAL.UpdateEducation(Mapper.Map<EducationDM>(education), resume.ResumeID);
             return View();
         }
 

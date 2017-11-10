@@ -248,12 +248,63 @@ namespace ORA_Data.DAL
         }
 
         /// <summary>
-        /// This gets the Education fields that has a unique resume key that is attached to a single employee
+        /// This gets ALL the Education fields that has a unique resume key that is attached to a single employee
         /// Uses the VIEW_EDUCATION_BY_RESUME_ID stored procedure
         /// </summary>
         /// <param name="resumeID"></param>
         /// <returns></returns>
-        public static EducationDM GetEducationByResumeID(int resumeID)
+        public static List<EducationDM> GetListOfEducationsByResumeID(int resumeID)
+        {
+            List<EducationDM> educationList = new List<EducationDM>();
+            EducationDM _education = new EducationDM();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("VIEW_EDUCATION_BY_RESUME_ID", SqlConnect.Connection))
+                {
+                    SqlConnect.Connection.Open();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Resume_ID", resumeID);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                _education.ResumeID = (int)reader["Resume_ID"];
+                                _education.EducationID = (int)reader["Education_ID"];
+                                _education.InsitutionName = (string)reader["Institution_Name"];
+                                _education.Attended_Start_Date = (DateTime)reader["Attended_Start_Date"];
+                                _education.Attended_End_Date = (DateTime)reader["Attended_End_Date"];
+                                _education.AreaOfStudy = (string)reader["Area_Of_Study"];
+                                _education.EducationEarned = (string)reader["Education_Earned"];
+                                _education.InstitutionLocation = (string)reader["Institution_Location"];
+
+                                educationList.Add(_education);
+                            }
+                        }
+                    }
+                    SqlConnect.Connection.Close();
+                }
+                return (educationList);
+            }
+            catch (Exception e)
+            {
+                errorLog.ErrorLogger("GetEducationByResumeID", DateTime.Now, e.Message);
+                throw (e);
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
+            }
+        }
+
+        /// <summary>
+        /// This gets a single Education row that has a unique resume key that is attached to a single employee
+        /// Uses the VIEW_EDUCATION_BY_RESUME_ID stored procedure
+        /// </summary>
+        /// <param name="resumeID"></param>
+        /// <returns></returns>
+        public static EducationDM GetEducationsByResumeID(int resumeID)
         {
             EducationDM _education = new EducationDM();
             try
