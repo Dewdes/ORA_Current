@@ -1,5 +1,22 @@
+<<<<<<< HEAD
+Level: CreateEducation   Time: 11/9/2017 10:13:08 AM   Error: Procedure or function 'CREATE_EDUCATION' expects parameter '@Institution_Name', which was not supplied.
+Level: UpdateEducation   Time: 11/9/2017 11:12:52 AM   Error: Object reference not set to an instance of an object.
+Level: UpdateEducation   Time: 11/9/2017 11:33:07 AM   Error: Object reference not set to an instance of an object.
+Level: UpdateEducation   Time: 11/9/2017 11:34:48 AM   Error: Object reference not set to an instance of an object.
+Level: UpdateEducation   Time: 11/9/2017 11:35:05 AM   Error: Object reference not set to an instance of an object.
+Level: UpdateEducation   Time: 11/9/2017 11:35:23 AM   Error: Object reference not set to an instance of an object.
+Level: UpdateEducation   Time: 11/9/2017 1:04:16 PM   Error: Object reference not set to an instance of an object.
+Level: UpdateEducation   Time: 11/9/2017 1:04:35 PM   Error: Object reference not set to an instance of an object.
+Level: UpdateEducation   Time: 11/9/2017 1:04:46 PM   Error: Object reference not set to an instance of an object.
+Level: UpdateEducation   Time: 11/9/2017 1:07:10 PM   Error: Object reference not set to an instance of an object.
+Level: UpdateEducation   Time: 11/9/2017 1:10:04 PM   Error: Object reference not set to an instance of an object.
+Level: UpdateEducation   Time: 11/9/2017 1:41:57 PM   Error: Object reference not set to an instance of an object.
+Level: UpdateEducation   Time: 11/9/2017 1:42:30 PM   Error: Object reference not set to an instance of an object.
+=======
 Level: ReadBioByID   Time: 11/9/2017 2:11:16 PM   Error: Unable to cast object of type 'System.DBNull' to type 'System.String'.
 Level: ReadBioByID   Time: 11/9/2017 2:14:52 PM   Error: Unable to cast object of type 'System.DBNull' to type 'System.String'.
 Level: ReadBioByID   Time: 11/9/2017 2:16:11 PM   Error: Unable to cast object of type 'System.DBNull' to type 'System.String'.
 Level: ReadBioByID   Time: 11/9/2017 2:16:28 PM   Error: Unable to cast object of type 'System.DBNull' to type 'System.String'.
 Level: ReadBioByID   Time: 11/9/2017 2:16:49 PM   Error: Unable to cast object of type 'System.DBNull' to type 'System.String'.
+>>>>>>> f3d9eb77008e7c7b35177f5c2706a4cfc3226f60
+Level: ReadBioByID   Time: 11/9/2017 3:27:07 PM   Error: Could not find stored procedure 'READ_BIO_BY_ID'.

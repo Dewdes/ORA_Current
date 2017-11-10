@@ -413,13 +413,14 @@
     <Content Include="Views\KPI\ReadMyKPIs.cshtml" />
     <Content Include="Views\Resume\CreateResume.cshtml" />
     <Content Include="Views\Resume\ReadResumeById.cshtml" />
-    <Content Include="Views\Resume\UpdateResume.cshtml" />
     <Content Include="Views\Shared\Nav\Employee_Side.cshtml" />
     <Content Include="Views\Shared\Nav\Employee_Top.cshtml" />
     <Content Include="Views\Resume\CreateEducation.cshtml" />
     <Content Include="Views\Shared\Nav\Admin_Side.cshtml" />
     <Content Include="Views\Shared\Nav\Admin_Top.cshtml" />
     <Content Include="Views\Shared\Nav\About.cshtml" />
+    <Content Include="Views\Resume\ReadResumeEducationById.cshtml" />
+    <Content Include="Views\Resume\UpdateResumeEducation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

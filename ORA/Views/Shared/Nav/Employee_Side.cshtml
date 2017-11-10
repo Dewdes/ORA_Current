@@ -1,10 +1,10 @@
 ﻿
-<div class="sidebar" data-color="green" data-image="assets/img/sidebar-5.jpg">
+<div class="sidebar" data-color="green" data-image="/Content/assets/img/sidebar-5.jpg">
     <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
 
     <div class="sidebar-wrapper">
         <div>
-            <a href="~/Account/ReadAccount" style="color: #FFFFFF; text-decoration: none;">
+            <a href="~/Home/Index" style="color: #FFFFFF; text-decoration: none;">
                 <img src="~/Images/OnshoreLogo.png" width="50px" style="position: center;" />
                 @if ((bool)Session["LoggedIn"])
             {
@@ -16,9 +16,9 @@
         <ul class="nav">
 
 
-            <li class="active">
+            <li>
                 <i class="pe-7s-user"></i>
-                <p>User Profile</p>
+                @Html.ActionLink("User Profile", "ReadAccount", "Account", new { id = Session["ID"] }, new { })
             </li>
             <li>
                 <i class="pe-7s-note2"></i>
