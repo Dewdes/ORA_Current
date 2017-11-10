@@ -28,9 +28,9 @@ namespace ORA.Controllers
         [HttpPost]
         public ActionResult AccountCreation(EmployeeVM employee)
         {
-            LoginVM login = Mapper.Map<LoginVM>(LoginDAL.ReadLoginById(LoginDAL.ReadLoginByEmail(employee.Address.Email).ToString()));
-            if (login == null)
-            {
+            //LoginVM login = Mapper.Map<LoginVM>(LoginDAL.ReadLoginById(LoginDAL.ReadLoginByEmail(employee.Address.Email).ToString()));
+            //if (login == null)
+            //{
                 EmployeeDAL.CreateEmployee(Mapper.Map<EmployeeDM>(employee));
                 employee.EmployeeId = EmployeeDAL.ReadEmployeeId(employee.EmployeeNumber);
                 employee.Login.Email = employee.Address.Email;
@@ -39,16 +39,16 @@ namespace ORA.Controllers
                 LoginDAL.Register(Mapper.Map<LoginDM>(employee.Login), employee.EmployeeId);
                 AddressDAL.CreateAddress(Mapper.Map<AddressDM>(employee.Address), employee.EmployeeId);
                 Work_StatusDAL.CreateStatus(Mapper.Map<StatusDM>(employee.Status), employee.EmployeeId);
-                AccountDAL.CreateBio(Mapper.Map<AccountBioDM>(employee.Bio), employee.EmployeeId);
+                //AccountDAL.CreateBio(Mapper.Map<AccountBioDM>(employee.Bio), employee.EmployeeId);
                 TimeDAL.CreateEmptyTime(employee.EmployeeId);
                 ResumeDAL.CreateResume(employee.EmployeeId);
-                return Redirect("AdminDashboard");
-            }
-            else
-            {
-                ModelState.AddModelError("Email", "Email already exist");
-                return View(employee);
-            }
+                return RedirectToAction("AdminDashboard","Home");
+            //}
+            //else
+            //{
+            //    ModelState.AddModelError("Email", "Email already exist");
+            //    return View(employee);
+            //}
         }
 
         public ActionResult CreateAccount()

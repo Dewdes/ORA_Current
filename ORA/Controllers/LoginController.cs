@@ -55,7 +55,7 @@ namespace ORA.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("ReadAccount", "Account", new { area = "Default" });
+                    return RedirectToAction("Index", "Home", new { area = "Default" });
                 }
             }
             return View();
@@ -87,7 +87,7 @@ namespace ORA.Controllers
                         }
                         else
                         {
-                            return RedirectToAction("ReadAccount", "Account", new { area = "Default" });
+                            return RedirectToAction("Index", "Home", new { area = "Default" });
                         }
                     }
                 }
@@ -105,13 +105,13 @@ namespace ORA.Controllers
                     }
                     if (!emails.Contains(info.Email))
                     {
-                        ModelState.AddModelError("Email", "Email Does not Exist");
+                        ModelState.AddModelError("Email", "Incorrect Email or Password");
                     }
                     for (int i = 0; i <= (passwords.Count - 1); i++)
                     {
                         if (!passwords.Contains(ORA_Data.Hash.GetHash(info.Password + salts[i])))
                         {
-                            ModelState.AddModelError("Password", "Password not valid");
+                            ModelState.AddModelError("Password", "Incorrect Email or Password");
                         }
 
                     }
