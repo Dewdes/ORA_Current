@@ -1,15 +1,12 @@
 ﻿@model ORA.Models.EmployeeVM
 
 @{
-    ViewBag.Title = "DeleteEmployee";
+    ViewBag.Title = "Delete Employee";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>DeleteEmployee</h2>
-
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>EmployeeVM</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -74,30 +71,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.BirthDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AddressID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AddressID)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TimeID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TimeID)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.WorkStatusID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.WorkStatusID)
         </dd>
 
     </dl>

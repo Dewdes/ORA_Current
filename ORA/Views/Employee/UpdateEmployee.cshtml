@@ -1,18 +1,15 @@
 ﻿@model ORA.Models.EmployeeVM
 
 @{
-    ViewBag.Title = "UpdateEmployee";
+    ViewBag.Title = "Update Employee";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>UpdateEmployee</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 }
 <div class="form-horizontal">
-    <h4>EmployeeVM</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">

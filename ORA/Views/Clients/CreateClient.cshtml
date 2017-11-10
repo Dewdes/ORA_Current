@@ -1,18 +1,16 @@
 ﻿@model ORA.Models.ClientsVM
 
 @{
-    ViewBag.Title = "CreateClient";
+    ViewBag.Title = "Client Creation";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>CreateClient</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>ClientsVM</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">

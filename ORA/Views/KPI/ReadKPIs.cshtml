@@ -1,14 +1,21 @@
 ﻿@model IEnumerable<ORA.Models.KPIVM>
 
 @{
-    ViewBag.Title = "ReadKPIs";
+    if (Session["Role"].ToString() == "Team Lead")
+    {
+        ViewBag.Title = "Team KPI Reports";
+    }
+    else
+    {
+        ViewBag.Title = "KPI Reports";
+    }
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <script src="~/Scripts/SearchEmployeeTable.js"></script>
 <link href="~/Content/SearchBarEmployee.css" rel="stylesheet" />
 
-<h2>KPI REPORTS</h2>
+@*<h2>KPI Reports</h2>*@
 
 
 <div class="pull-right">@Html.ActionLink("Create New", "CreateKPI",null, new { @class ="btn btn-primary"})</div>
