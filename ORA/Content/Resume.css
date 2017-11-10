@@ -8,14 +8,6 @@
      margin-bottom: 20px;
  }
 
-.backGround {
-    margin: auto 10px;
-    width: auto;
-    height: 2000px;
-    background-repeat: no-repeat;
-    background-image: linear-gradient(rgb(244,244,244),rgb(3,51,89));
-}
-
 input.hidden {
     position: absolute;
     left: -9999px;
