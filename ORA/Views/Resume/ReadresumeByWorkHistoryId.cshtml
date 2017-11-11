@@ -1,7 +1,7 @@
-﻿@model IEnumerable<ORA.Models.EducationVM>
+﻿@model IEnumerable<ORA.Models.WorkHistoryVM>
 
 @{
-    ViewBag.Title = "ReadResumeEducationById";
+    ViewBag.Title = "ReadresumeByWorkHistoryId";
     Layout = null;
 }
 <link href="~/Content/Resume.css" rel="stylesheet" />
@@ -10,8 +10,8 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4>
-                    <i class="glyphicon glyphicon-book"></i>
-                    EDUCATION
+                    <i class="glyphicon glyphicon-wrench"></i>
+                    WORK HISTORY
                 </h4>
             </div>
             <div class="panel-body">
@@ -22,10 +22,10 @@
                         {
                             <div>
                                 <div class="col-sm-5 col-xs-6 tital">
-                                    @Html.DisplayName("Insitution")
+                                    @Html.DisplayNameFor(model => model.OrganizationName)
                                 </div>
                                 <div class="col-sm-7">
-                                    @Html.DisplayFor(modelItem => item.InsitutionName)
+                                    @Html.DisplayFor(modelItem => item.OrganizationName)
                                 </div>
                                 <div class="clearfix"></div>
                                 <div class="bot-border"></div>
@@ -33,10 +33,10 @@
 
                             <div>
                                 <div class="col-sm-5 col-xs-6 tital">
-                                    @Html.DisplayName("Start Date")
+                                    @Html.DisplayNameFor(model => model.WorkPlaceLocation)
                                 </div>
                                 <div class="col-sm-7">
-                                    @Html.DisplayFor(modelItem => item.Attended_Start_Date)
+                                    @Html.DisplayFor(modelItem => item.WorkPlaceLocation)
                                 </div>
                                 <div class="clearfix"></div>
                                 <div class="bot-border"></div>
@@ -44,10 +44,10 @@
 
                             <div>
                                 <div class="col-sm-5 col-xs-6 tital">
-                                    @Html.DisplayName("End Date")
+                                    @Html.DisplayNameFor(model => model.WorkPlaceStartDate)
                                 </div>
                                 <div class="col-sm-7">
-                                    @Html.DisplayFor(modelItem => item.Attended_End_Date)
+                                    @Html.DisplayFor(modelItem => item.WorkPlaceStartDate)
                                 </div>
                                 <div class="clearfix"></div>
                                 <div class="bot-border"></div>
@@ -55,10 +55,10 @@
 
                             <div>
                                 <div class="col-sm-5 col-xs-6 tital">
-                                    @Html.DisplayName("Location")
+                                    @Html.DisplayNameFor(model => model.WorkPlaceEndDate)
                                 </div>
                                 <div class="col-sm-7">
-                                    @Html.DisplayFor(modelItem => item.InstitutionLocation)
+                                    @Html.DisplayFor(modelItem => item.WorkPlaceEndDate)
                                 </div>
                                 <div class="clearfix"></div>
                                 <div class="bot-border"></div>
@@ -66,31 +66,22 @@
 
                             <div>
                                 <div class="col-sm-5 col-xs-6 tital">
-                                    @Html.DisplayName("Level Of Education Earned")
+                                    @Html.DisplayNameFor(model => model.JobDescription)
                                 </div>
                                 <div class="col-sm-7">
-                                    @Html.DisplayFor(modelItem => item.EducationEarned)
+                                    @Html.DisplayFor(modelItem => item.JobDescription)
                                 </div>
                                 <div class="clearfix"></div>
                                 <div class="bot-border"></div>
                             </div>
 
-                            <div>
-                                <div class="col-sm-5 col-xs-6 tital">
-                                    @Html.DisplayName("Area of Study")
-                                </div>
-                                <div class="col-sm-7">
-                                    @Html.DisplayFor(modelItem => item.AreaOfStudy)
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
                             <div class="bot-border"></div>
 
                             <!-- Button trigger modal -->
 
 
                             <button type="button" id="mymodal" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
-                                Update Education
+                                Update WorkHistory
                             </button>
                             <div class="bot-border" style="border-bottom-width: 15px; border-bottom-color: darkgrey;"></div>
 
@@ -102,12 +93,8 @@
                                             <h4 class="modal-title" id="myModalLabel">Education</h4>
                                         </div>
                                         <div class="modal-content">
-                                            @Html.Action("UpdateResumeEducation")
+                                            @*@Html.Action("UpdateWorkHistory")*@
                                         </div>
-                                        @*<div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Save changes</button>
-                                            </div>*@
                                     </div>
                                 </div>
                             </div>

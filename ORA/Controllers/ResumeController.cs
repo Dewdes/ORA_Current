@@ -19,7 +19,6 @@ namespace ORA.Controllers
             ResumeVM resume = new ResumeVM();
             resume = Mapper.Map<ResumeVM>(ResumeDAL.GetResumeByID((long)Session["ID"]));
             resume.Skills = Mapper.Map<SkillsVM>(ResumeDAL.GetSkillsByResumeID(resume.ResumeID));
-            resume.WorkHistory = Mapper.Map<WorkHistoryVM>(ResumeDAL.GetWorkHistoryByResumeID(resume.ResumeID));
             resume.Employee = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById((long)Session["ID"]));
             return View(resume);
         }
@@ -29,6 +28,14 @@ namespace ORA.Controllers
             ResumeVM resume = new ResumeVM();
             resume = Mapper.Map<ResumeVM>(ResumeDAL.GetResumeByID((long)Session["ID"]));
             IEnumerable<EducationVM> list = Mapper.Map<List<EducationVM>>(ResumeDAL.GetListOfEducationsByResumeID(resume.ResumeID));
+            return View(list);
+        }
+
+        public ActionResult ReadresumeByWorkHistoryId(WorkHistoryVM workHistory)
+        {
+            ResumeVM resume = new ResumeVM();
+            resume = Mapper.Map<ResumeVM>(ResumeDAL.GetResumeByID((long) Session["ID"]));
+            IEnumerable<WorkHistoryVM> list = Mapper.Map<List<WorkHistoryVM>>(ResumeDAL.GetListOfWorkHistoryByResumeID(resume.ResumeID));
             return View(list);
         }
 

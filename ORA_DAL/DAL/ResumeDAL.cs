@@ -353,9 +353,8 @@ namespace ORA_Data.DAL
         /// </summary>
         /// <param name="resumeID"></param>
         /// <returns></returns>
-        public static WorkHistoryDM GetWorkHistoryByResumeID(int resumeID)
+        public static List<WorkHistoryDM> GetListOfWorkHistoryByResumeID(int resumeID)
         {
-            WorkHistoryDM _workHistory = new WorkHistoryDM();
             List<WorkHistoryDM> workHistoryList = new List<WorkHistoryDM>();
             try
             {
@@ -370,6 +369,7 @@ namespace ORA_Data.DAL
                         {
                             while (reader.Read())
                             {
+                                WorkHistoryDM _workHistory = new WorkHistoryDM();
                                 _workHistory.ResumeID = (int)reader["Resume_ID"];
                                 _workHistory.WorkHistoryID = (int)reader["Work_History_ID"];
                                 _workHistory.OrganizationName = (string)reader["Organization_Name"];
@@ -377,13 +377,14 @@ namespace ORA_Data.DAL
                                 _workHistory.WorkPlaceStartDate = (DateTime)reader["Work_Place_Start_Date"];
                                 _workHistory.WorkPlaceEndDate = (DateTime)reader["Work_Place_End_Date"];
                                 _workHistory.WorkPlaceLocation = (string)reader["Work_Place_Location"];
+
                                 workHistoryList.Add(_workHistory);
                             }
                         }
                     }
                     SqlConnect.Connection.Close();
                 }
-                return (_workHistory);
+                return (workHistoryList);
             }
             catch (Exception e)
             {

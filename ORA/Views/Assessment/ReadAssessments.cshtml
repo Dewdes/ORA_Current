@@ -5,6 +5,10 @@
     {
         ViewBag.Title = "Team Assessments";
     }
+    else if (Session["Role"].ToString() == "Manager")
+    {
+        ViewBag.Title = "Employee Assessments";
+    }
     else
     {
         ViewBag.Title = "Assessments";
@@ -15,13 +19,11 @@
 <script src="~/Scripts/SearchEmployeeTable.js"></script>
 <link href="~/Content/SearchBarEmployee.css" rel="stylesheet" />
 
-@*<h2>Assessments</h2>*@
-
 <div class="panel">
     <div class="panel-heading">
         <ul>
             <li><img id="PanelHeadPic" src="~/Images/Onshore.png" /></li>
-            <li><h2>Team Assessments</h2></li>
+            <li><h2>@ViewBag.Title</h2></li>
         </ul>
     </div>
     <div class="panel-body">
