@@ -1,0 +1,11 @@
+Admin - Email: admin@admin.admin Pass: Adminpass9
+
+Director - Email: dir@dir.dir Pass: Dirpass9
+
+Manager - Email: manager@manager.manager Pass: Managerpass9
+
+Team Lead - Email: lead@lead.lead Pass: Leadpass9
+
+Employee - Email: emp@emp.emp	Pass: Emppass9
+
+Bench - Email: bench@bench.bench Pass: Benchpass9

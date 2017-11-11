@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel;
 
 namespace ORA.Models
 {
@@ -9,6 +6,7 @@ namespace ORA.Models
     {
         public int PositionId { get; set; }
 
+        [DisplayName("Position Name")]
         public string PositionName { get; set; }
     }
 }

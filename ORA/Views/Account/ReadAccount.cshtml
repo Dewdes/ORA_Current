@@ -1,0 +1,127 @@
+﻿@model ORA.Models.EmployeeVM
+
+@{
+    ViewBag.Title = "Account";
+    //Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!doctype html>
+<html lang="en">
+<body>
+    @using (Html.BeginForm())
+            {
+        @Html.AntiForgeryToken()
+        <div class="content">
+            <div class="container-fluid">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Edit Profile</h4>
+                    </div>
+                    <div class="content">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label>Company (disabled)</label>
+                                        <input type="text" class="form-control" disabled placeholder="Company" value="Onshore Outsourcing">
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Address.Email)
+                                        <br />
+                                        @Html.DisplayTextFor(model => model.Address.Email)
+                                    </div>
+                                </div>
+                            </div>
+                            @Html.HiddenFor(model => model.EmployeeId)
+                            @Html.HiddenFor(model => model.EmployeeNumber)
+                            @Html.HiddenFor(model => model.Age)
+                            @Html.HiddenFor(model => model.BirthDate)
+                            @Html.HiddenFor(model => model.TeamId)
+                            @Html.HiddenFor(model => model.RoleId)
+                            @Html.HiddenFor(model => model.AssignmentId)
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.EmployeeFirstName)
+                                        @Html.EditorFor(model => model.EmployeeFirstName, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "First Name", required = "required" } })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.EmployeeMiddle)
+                                        @Html.EditorFor(model => model.EmployeeMiddle, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "Middle Name/Initial", required = "required" } })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.EmployeeLastName)
+                                        @Html.EditorFor(model => model.EmployeeLastName, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "Last Name", required = "required" } })
+                                    </div>
+                                </div>
+                            </div>
+
+                            @Html.HiddenFor(model => model.Address.Email)
+                            @Html.HiddenFor(model => model.Address.Phone)
+                            @Html.HiddenFor(model => model.Address.Address_ID)
+                            @Html.HiddenFor(model => model.Address.Employee_ID)
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Address.Address)
+                                        @Html.EditorFor(model => model.Address.Address, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "Address", required = "required" } })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Address.City)
+                                        @Html.EditorFor(model => model.Address.City, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "City", required = "required" } })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Address.State)
+                                        @Html.EditorFor(model => model.Address.State, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "State", required = "required" } })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Address.Country)
+                                        @Html.EditorFor(model => model.Address.Country, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "Country", required = "required" } })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Address.Phone)
+                                        @Html.EditorFor(model => model.Address.Phone, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "Phone Number", required = "required" } })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Address.Zip_Code)
+                                        @Html.EditorFor(model => model.Address.Zip_Code, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "Zip Code", required = "required" } })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>About Me</label>
+                                        @Html.EditorFor(model => model.Bio.AboutMe, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "About Me" @*, required = "required"*@ } })
+                                    </div>
+                                </div>
+                            </div>
+                                <button type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</body>
+</html>

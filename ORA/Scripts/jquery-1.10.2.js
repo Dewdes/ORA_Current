@@ -8620,7 +8620,7 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 });
 var xhrCallbacks, xhrSupported,
 	xhrId = 0,
-	// #5280: Internet Explorer will keep connections alive if we don't abort on unload
+	// #5280: Internet Explorer will keep SqlConnect.Connections alive if we don't abort on unload
 	xhrOnUnloadAbort = window.ActiveXObject && function() {
 		// Abort all pending requests
 		var key;

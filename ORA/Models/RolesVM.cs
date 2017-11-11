@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel;
 
 namespace ORA.Models
 {
@@ -9,8 +6,10 @@ namespace ORA.Models
     {
         public int RoleId { get; set; }
 
+        [DisplayName("Role Name")]
         public string RoleName { get; set; }
 
+        [DisplayName("Role Description")]
         public string RoleDescription { get; set; }
     }
 }

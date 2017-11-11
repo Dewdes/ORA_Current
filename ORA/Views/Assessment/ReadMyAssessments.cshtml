@@ -1,0 +1,28 @@
+﻿@model IEnumerable<ORA.Models.AssessmentVM>
+
+@{
+    ViewBag.Title = "My Assessments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>My Assessments</h2>*@
+
+<table>
+    @{var counter = 1; }
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee.EmployeeName)
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            @Html.HiddenFor(modelItem => item.AssessmentId)
+            <td>
+                @Html.ActionLink(item.Employee.EmployeeName, "ReadAssessmentByID", "Assessment", new { id = item.AssessmentId }, new { })
+            </td>
+            @Html.HiddenFor(modelItem => item.EmployeeID)
+        </tr>
+    }
+</table>
+

@@ -1,0 +1,416 @@
+﻿
+@model ORA.Models.EmployeeVM
+
+@{
+    ViewBag.Title = "Account Creation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.About = false;
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <div class="form-horizontal">
+        <h4>Employee</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.EmployeeNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EmployeeNumber, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.EmployeeNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EmployeeFirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EmployeeFirstName, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.EmployeeFirstName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EmployeeMiddle, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EmployeeMiddle, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.EmployeeMiddle, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EmployeeLastName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EmployeeLastName, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.EmployeeLastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Age, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BirthDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BirthDate, new { htmlAttributes = new { @class = "form-control", required = "required", type = "date" } })
+                @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Status.EmployeeStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Status.EmployeeStatus, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.Status.EmployeeStatus, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Status.EmploymentType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Status.EmploymentType, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.Status.EmploymentType, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Status.HireDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Status.HireDate, new { htmlAttributes = new { @class = "form-control", required = "required", type = "date" } })
+                @Html.ValidationMessageFor(model => model.Status.HireDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.Status.TerminationDate, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                @*@Html.ValidationMessageFor(model => model.Status.TerminationDate, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Status.ServiceLength, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Status.ServiceLength, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Status.ServiceLength, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Status.PayType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Status.PayType, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.Status.PayType, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Status.OfficeLocation, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Status.OfficeLocation, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.Status.OfficeLocation, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Address.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Address.Address, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.Address.Address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Address.City, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Address.City, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.Address.City, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Address.State, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Address.State, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.Address.State, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Address.Country, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Address.Country, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.Address.Country, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Address.Zip_Code, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Address.Zip_Code, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.Address.Zip_Code, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Address.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Address.Email, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.Address.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Address.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Address.Phone, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.Address.Phone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Login.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Login.Password, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.Login.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Login.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Login.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.Login.ConfirmPassword, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TeamId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.TeamId, new SelectList(Model.TeamList, "TeamId", "TeamName"), "Select Team")
+                @Html.ValidationMessageFor(model => model.TeamId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AssignmentId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.AssignmentId, new SelectList(Model.AssignmentList, "AssignmentId", "AssignmentName"), "Select Assignment")
+                @Html.ValidationMessageFor(model => model.AssignmentId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RoleId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.RoleId, new SelectList(Model.RoleList, "RoleId", "RoleName"), "Select Role")
+                @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @Html.HiddenFor(model => model.TeamList)
+        @Html.HiddenFor(model => model.AssignmentList)
+        @Html.HiddenFor(model => model.RoleList)
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "ViewEmployees")
+</div>
+
+
+@*<!doctype html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+        <link rel="icon" type="image/png" href="assets/img/favicon.png">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+        <meta name="viewport" content="width=device-width" />
+        <!--     Fonts and icons     -->
+        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css" rel="stylesheet">
+        <!-- CSS Files -->
+        <link href="~/Content/WizardAssets/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="~/Content/WizardAssets/css/gsdk-bootstrap-wizard.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="image-container set-full-height" style="background-image: url('~/Content/WizardAssets/img/wizard.jpg')">
+            <div class="logo-container">
+                <div class="logo">
+                    <img src="assets/img/new_logo.png">
+                </div>
+            </div>
+            <!--   Big container   -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-2">
+                        <!--      Wizard container        -->
+                        <div class="wizard-container">
+                            <div class="card wizard-card" data-color="orange" id="wizardProfile">
+                                <form action="" method="">
+                                    <!--        You can switch ' data-color="orange" '  with one of the next bright colors: "blue", "green", "orange", "red"          -->
+                                    <div class="wizard-header">
+                                        <h3>
+                                            <b>CREATE</b> NEW EMPLOYEE <br>
+                                            <small>This form will help create a new employee</small>
+                                        </h3>
+                                    </div>
+                                    <div class="wizard-navigation">
+                                        <ul>
+                                            <li><a href="#about" data-toggle="tab">Employee</a></li>
+                                            <li><a href="#account" data-toggle="tab">Account</a></li>
+                                            <li><a href="#address" data-toggle="tab">Address</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="tab-content">
+                                        <div class="tab-pane" id="about">
+                                            <div class="row">
+                                                <h4 class="info-text"> Let's start with the basic information (with validation)</h4>
+                                                <div class="col-sm-4 col-sm-offset-1">
+                                                    <div class="picture-container">
+                                                        <div class="picture">
+                                                            <img src="assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
+                                                            <input type="file" id="wizard-picture">
+                                                        </div>
+                                                        <h6>Choose Picture</h6>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>First Name <small>(required)</small></label>
+                                                        <input name="firstname" type="text" class="form-control" placeholder="Andrew...">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Last Name <small>(required)</small></label>
+                                                        <input name="lastname" type="text" class="form-control" placeholder="Smith...">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-10 col-sm-offset-1">
+                                                    <div class="form-group">
+                                                        <label>Email <small>(required)</small></label>
+                                                        <input name="email" type="email" class="form-control" placeholder="andrew@creative-tim.com">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="account">
+                                            <h4 class="info-text"> What are you doing? (checkboxes) </h4>
+                                            <div class="row">
+                                                <div class="col-sm-10 col-sm-offset-1">
+                                                    <div class="col-sm-4">
+                                                        <div class="choice" data-toggle="wizard-checkbox">
+                                                            <input type="checkbox" name="jobb" value="Design">
+                                                            <div class="icon">
+                                                                <i class="fa fa-pencil"></i>
+                                                            </div>
+                                                            <h6>Design</h6>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <div class="choice" data-toggle="wizard-checkbox">
+                                                            <input type="checkbox" name="jobb" value="Code">
+                                                            <div class="icon">
+                                                                <i class="fa fa-terminal"></i>
+                                                            </div>
+                                                            <h6>Code</h6>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <div class="choice" data-toggle="wizard-checkbox">
+                                                            <input type="checkbox" name="jobb" value="Develop">
+                                                            <div class="icon">
+                                                                <i class="fa fa-laptop"></i>
+                                                            </div>
+                                                            <h6>Develop</h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="address">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <h4 class="info-text"> Are you living in a nice area? </h4>
+                                                </div>
+                                                <div class="col-sm-7 col-sm-offset-1">
+                                                    <div class="form-group">
+                                                        <label>Street Name</label>
+                                                        <input type="text" class="form-control" placeholder="5h Avenue">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <div class="form-group">
+                                                        <label>Street Number</label>
+                                                        <input type="text" class="form-control" placeholder="242">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-5 col-sm-offset-1">
+                                                    <div class="form-group">
+                                                        <label>City</label>
+                                                        <input type="text" class="form-control" placeholder="New York...">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-5">
+                                                    <div class="form-group">
+                                                        <label>Country</label><br>
+                                                        <select name="country" class="form-control">
+                                                            <option value="United States"> United States </option>
+                                                            <option value="...">...</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="wizard-footer height-wizard">
+                                        <div class="pull-right">
+                                            <input type='button' class='btn btn-next btn-fill btn-warning btn-wd btn-sm' name='next' value='Next' />
+                                            <input type='button' class='btn btn-finish btn-fill btn-warning btn-wd btn-sm' name='finish' value='Finish' />
+                                        </div>
+                                        <div class="pull-left">
+                                            <input type='button' class='btn btn-previous btn-fill btn-default btn-wd btn-sm' name='previous' value='Previous' />
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div> <!-- wizard container -->
+                    </div>
+                </div><!-- end row -->
+            </div> <!--  big container -->
+            <div class="footer">
+                <div class="container">
+                    ORA
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    <!--   Core JS Files   -->
+    <script src="~/Content/WizardAssets/js/jquery-2.2.4.min.js"></script>
+    <script src="~/Content/WizardAssets/js/bootstrap.min.js"></script>
+    <script src="~/Content/WizardAssets/js/jquery.bootstrap.wizard.js"></script>
+    <!--  Plugin for the Wizard -->
+    <script src="~/Content/WizardAssets/js/gsdk-bootstrap-wizard.js"></script>
+    <!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
+    <script src="~/Content/WizardAssets/js/jquery.validate.min.js"></script>*@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

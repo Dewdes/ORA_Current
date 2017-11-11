@@ -1,0 +1,88 @@
+﻿@model IEnumerable<ORA.Models.AssignmentVM>
+
+@{
+    ViewBag.Title = "Assignment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Assignments</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateAssignment")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AssignmentName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AssignmentId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClientId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PositionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Modify)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModifiedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Created)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.AssignmentName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssignmentId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ClientId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PositionId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Modify)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModifiedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Created)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedBy)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "UpdateAssignment", new { id=item.AssignmentId  }) |
+            @Html.ActionLink("Details", "ReadAssignmentByID", new { id = item.AssignmentId }) |
+            @Html.ActionLink("Delete", "DeleteAssignment", new { id = item.AssignmentId })
+        </td>
+    </tr>
+}
+
+</table>

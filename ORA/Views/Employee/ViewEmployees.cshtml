@@ -1,0 +1,74 @@
+﻿@model IEnumerable<ORA.Models.EmployeeVM>
+
+@{
+    ViewBag.Title = "Employees";
+}
+
+@*<h2>Employees</h2>*@
+
+<p>
+    @Html.ActionLink("Create New Employee", "AccountCreation", "Account")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeFirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeMiddle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeLastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeeId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeeNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeeFirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeeMiddle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeeLastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Age)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BirthDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit Employee", "UpdateEmployee", new {employeeId = item.EmployeeId}) |
+            @Html.ActionLink("Details", "EmployeeDetails", new {id = item.EmployeeId}) |
+            @Html.ActionLink("Delete", "DeleteEmployeeRecords", new { employeeId = item.EmployeeId})
+        </td>
+    </tr>
+}
+</table>

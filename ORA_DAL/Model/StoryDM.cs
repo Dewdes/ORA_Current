@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
-namespace ORA.Models
+namespace ORA_Data.Model
 {
     public class StoryDM
     {
-        public int StoryId { get; set; }
+        public long StoryId { get; set; }
 
         public string StoryName { get; set; }
 
-        public int StoryNumber { get; set; }
+        public string StoryNumber { get; set; }
 
         public DateTime StartDate { get; set; }
 
@@ -20,5 +17,7 @@ namespace ORA.Models
         public DateTime Created { get; set; }
 
         public DateTime Modified { get; set; }
+
+        public long ClientId { get; set; }
     }
 }

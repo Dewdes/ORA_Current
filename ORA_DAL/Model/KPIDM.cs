@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
-namespace ORA.Models
+namespace ORA_Data.Model
 {
     public class KPIDM
     {
-        public int KPIID { get; set; }
+        public long KPIID { get; set; }
 
         public DateTime CreateDate { get; set; }
 
@@ -43,16 +40,34 @@ namespace ORA.Models
 
         public decimal TotalHrsFixingBugs { get; set; }
 
-        public int AssignmentId { get; set; }
+        public long Velocity { get; set; }
 
-        public int ProjectId { get; set; }
+        public long Collaboration { get; set; }
 
-        public int SprintId { get; set; }
+        public DateTime Start_Date { get; set; }
 
-        public int StoryId { get; set; }
+        public DateTime End_Date { get; set; }
+
+        public long AssignmentId { get; set; }
+
+        public long ProjectId { get; set; }
+
+        public long SprintId { get; set; }
+
+        public long StoryId { get; set; }
+
+        public long EmployeeId { get; set; }
 
         public DateTime Modified { get; set; }
 
         public DateTime Created { get; set; }
+
+        public ProjectDM Project { get; set; }
+
+        public StoryDM Story { get; set; }
+
+        public SprintDM Sprint { get; set; }
+
+        public EmployeeDM Employee { get; set; }
     }
 }

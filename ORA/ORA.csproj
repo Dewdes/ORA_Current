@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -45,6 +46,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -141,38 +145,173 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AddressController.cs" />
+    <Compile Include="Controllers\AssessmentController.cs" />
+    <Compile Include="Controllers\AssignmentController.cs" />
+    <Compile Include="Controllers\ClientsController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KPIController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PositionController.cs" />
+    <Compile Include="Controllers\ProjectController.cs" />
+    <Compile Include="Controllers\ResumeController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\SprintController.cs" />
+    <Compile Include="Controllers\StoryController.cs" />
+    <Compile Include="Controllers\TeamController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AccountBioVM.cs" />
+    <Compile Include="Models\AddressVM.cs" />
     <Compile Include="Models\AssessmentVM.cs" />
     <Compile Include="Models\AssignmentVM.cs" />
     <Compile Include="Models\ClientsVM.cs" />
+    <Compile Include="Models\EducationVM.cs" />
+    <Compile Include="Models\EmloyeeTimeVM.cs" />
     <Compile Include="Models\EmployeeVM.cs" />
     <Compile Include="Models\KPIVM.cs" />
     <Compile Include="Models\PositionsVM.cs" />
     <Compile Include="Models\ProjectVM.cs" />
+    <Compile Include="Models\LoginVM.cs" />
+    <Compile Include="Models\ResumeVM.cs" />
     <Compile Include="Models\RolesVM.cs" />
+    <Compile Include="Models\SkillsVM.cs" />
     <Compile Include="Models\SprintVM.cs" />
+    <Compile Include="Models\StatusVM.cs" />
     <Compile Include="Models\StoryVM.cs" />
     <Compile Include="Models\TeamsVM.cs" />
+    <Compile Include="Models\WorkHistoryVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\Mapping.cs" />
+    <Compile Include="Tools\Salt.cs" />
+    <Compile Include="Tools\SessionTool.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\assets\css\animate.min.css" />
+    <Content Include="Content\assets\css\bootstrap.min.css" />
+    <Content Include="Content\assets\css\demo.css" />
+    <Content Include="Content\assets\css\light-bootstrap-dashboard.css" />
+    <Content Include="Content\assets\css\pe-icon-7-stroke.css" />
+    <Content Include="Content\assets\fonts\Pe-icon-7-stroke.svg" />
+    <Content Include="Content\assets\img\default-avatar.png" />
+    <Content Include="Content\assets\img\faces\face-0.jpg" />
+    <Content Include="Content\assets\img\faces\face-1.jpg" />
+    <Content Include="Content\assets\img\faces\face-2.jpg" />
+    <Content Include="Content\assets\img\faces\face-3.jpg" />
+    <Content Include="Content\assets\img\faces\face-4.jpg" />
+    <Content Include="Content\assets\img\faces\face-5.jpg" />
+    <Content Include="Content\assets\img\faces\face-6.jpg" />
+    <Content Include="Content\assets\img\faces\face-7.jpg" />
+    <Content Include="Content\assets\img\faces\tim_vector.jpe" />
+    <Content Include="Content\assets\img\favicon.ico" />
+    <Content Include="Content\assets\img\loading-bubbles.svg" />
+    <Content Include="Content\assets\img\mask.png" />
+    <Content Include="Content\assets\img\new_logo.png" />
+    <Content Include="Content\assets\img\sidebar-1.jpg" />
+    <Content Include="Content\assets\img\sidebar-2.jpg" />
+    <Content Include="Content\assets\img\sidebar-3.jpg" />
+    <Content Include="Content\assets\img\sidebar-4.jpg" />
+    <Content Include="Content\assets\img\sidebar-5.jpg" />
+    <Content Include="Content\assets\img\tim_80x80.png" />
+    <Content Include="Content\assets\js\bootstrap-checkbox-radio-switch.js" />
+    <Content Include="Content\assets\js\bootstrap-notify.js" />
+    <Content Include="Content\assets\js\bootstrap-select.js" />
+    <Content Include="Content\assets\js\bootstrap.min.js" />
+    <Content Include="Content\assets\js\chartist.min.js" />
+    <Content Include="Content\assets\js\demo.js" />
+    <Content Include="Content\assets\js\jquery-1.10.2.js" />
+    <Content Include="Content\assets\js\light-bootstrap-dashboard.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Dashboard.css" />
+    <Content Include="Content\SearchBarEmployee.css" />
+    <Content Include="Content\js\wizard.js" />
+    <Content Include="Content\Login.css" />
+    <Content Include="Content\ReadAssessmentsbyID.css" />
+    <Content Include="Content\Resume.css" />
+    <Content Include="Content\wizard.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\dropdownIcon.png" />
+    <Content Include="Images\Onshore.png" />
+    <Content Include="Images\OnshoreLogo.png" />
+    <Content Include="Images\OnshoreLogoWhite.png" />
+    <Content Include="Images\search-icon-light-grey-hi.png" />
+    <Content Include="Images\tinysearchicon.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\assets\.DS_Store" />
+    <Content Include="Content\assets\css\.DS_Store" />
+    <Content Include="Content\assets\fonts\.DS_Store" />
+    <Content Include="Content\assets\fonts\Pe-icon-7-stroke.eot" />
+    <Content Include="Content\assets\fonts\Pe-icon-7-stroke.ttf" />
+    <Content Include="Content\assets\fonts\Pe-icon-7-stroke.woff" />
+    <Content Include="Content\assets\img\.DS_Store" />
+    <Content Include="Content\assets\img\faces\.DS_Store" />
+    <Content Include="Content\assets\sass\.DS_Store" />
+    <Content Include="Content\assets\sass\lbd\.DS_Store" />
+    <Content Include="Content\assets\sass\lbd\mixins\_buttons.scss" />
+    <Content Include="Content\assets\sass\lbd\mixins\_cards.scss" />
+    <Content Include="Content\assets\sass\lbd\mixins\_chartist.scss" />
+    <Content Include="Content\assets\sass\lbd\mixins\_icons.scss" />
+    <Content Include="Content\assets\sass\lbd\mixins\_inputs.scss" />
+    <Content Include="Content\assets\sass\lbd\mixins\_labels.scss" />
+    <Content Include="Content\assets\sass\lbd\mixins\_morphing-buttons.scss" />
+    <Content Include="Content\assets\sass\lbd\mixins\_navbars.scss" />
+    <Content Include="Content\assets\sass\lbd\mixins\_social-buttons.scss" />
+    <Content Include="Content\assets\sass\lbd\mixins\_tabs.scss" />
+    <Content Include="Content\assets\sass\lbd\mixins\_transparency.scss" />
+    <Content Include="Content\assets\sass\lbd\mixins\_vendor-prefixes.scss" />
+    <Content Include="Content\assets\sass\lbd\_alerts.scss" />
+    <Content Include="Content\assets\sass\lbd\_buttons.scss" />
+    <Content Include="Content\assets\sass\lbd\_cards.scss" />
+    <Content Include="Content\assets\sass\lbd\_carousel.scss" />
+    <Content Include="Content\assets\sass\lbd\_chartist.scss" />
+    <Content Include="Content\assets\sass\lbd\_checkbox-radio-switch.scss" />
+    <Content Include="Content\assets\sass\lbd\_collapse.scss" />
+    <Content Include="Content\assets\sass\lbd\_datepicker.scss" />
+    <Content Include="Content\assets\sass\lbd\_dropdown.scss" />
+    <Content Include="Content\assets\sass\lbd\_flexisel.scss" />
+    <Content Include="Content\assets\sass\lbd\_footers.scss" />
+    <Content Include="Content\assets\sass\lbd\_icons.scss" />
+    <Content Include="Content\assets\sass\lbd\_inputs.scss" />
+    <Content Include="Content\assets\sass\lbd\_labels.scss" />
+    <Content Include="Content\assets\sass\lbd\_media.scss" />
+    <Content Include="Content\assets\sass\lbd\_misc.scss" />
+    <Content Include="Content\assets\sass\lbd\_mixins.scss" />
+    <Content Include="Content\assets\sass\lbd\_modal.scss" />
+    <Content Include="Content\assets\sass\lbd\_morphing-buttons.scss" />
+    <Content Include="Content\assets\sass\lbd\_navbars.scss" />
+    <Content Include="Content\assets\sass\lbd\_progress-bars.scss" />
+    <Content Include="Content\assets\sass\lbd\_responsive.scss" />
+    <Content Include="Content\assets\sass\lbd\_sections.scss" />
+    <Content Include="Content\assets\sass\lbd\_sidebar-and-main-panel.scss" />
+    <Content Include="Content\assets\sass\lbd\_sliders.scss" />
+    <Content Include="Content\assets\sass\lbd\_social-buttons.scss" />
+    <Content Include="Content\assets\sass\lbd\_tables.scss" />
+    <Content Include="Content\assets\sass\lbd\_tabs-navs-pagination.scss" />
+    <Content Include="Content\assets\sass\lbd\_tags.scss" />
+    <Content Include="Content\assets\sass\lbd\_tooltips-and-popovers.scss" />
+    <Content Include="Content\assets\sass\lbd\_typography.scss" />
+    <Content Include="Content\assets\sass\lbd\_variables.scss" />
+    <Content Include="Content\assets\sass\light-bootstrap-dashboard.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery-3.2.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.2.1.js" />
+    <Content Include="Scripts\jquery-3.2.1.min.js" />
+    <Content Include="Scripts\jquery-3.2.1.slim.js" />
+    <Content Include="Scripts\jquery-3.2.1.slim.min.js" />
+    <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.2.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -181,20 +320,108 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Scripts\SearchEmployeeTable.js" />
+    <Content Include="Tools\ErrorLogDAL.txt" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Account\AccountCreation.cshtml" />
+    <Content Include="Views\Account\ReadAccount.cshtml" />
+    <Content Include="Views\Address\AddressDetails.cshtml" />
+    <Content Include="Views\Address\CreateAddress.cshtml" />
+    <Content Include="Views\Address\DeleteAddress.cshtml" />
+    <Content Include="Views\Address\ReadAddressByID.cshtml" />
+    <Content Include="Views\Address\ReadAllAddress.cshtml" />
+    <Content Include="Views\Address\UpdateAddress.cshtml" />
+    <Content Include="Views\Assessment\CreateAssessment.cshtml" />
+    <Content Include="Views\Assessment\DeleteAssessment.cshtml" />
+    <Content Include="Views\Assessment\ReadAssessmentByID.cshtml" />
+    <Content Include="Views\Assessment\ReadAssessments.cshtml" />
+    <Content Include="Views\Assessment\UpdateAssessment.cshtml" />
+    <Content Include="Views\Assignment\CreateAssignment.cshtml" />
+    <Content Include="Views\Assignment\DeleteAssignment.cshtml" />
+    <Content Include="Views\Assignment\ReadAssignmentByID.cshtml" />
+    <Content Include="Views\Assignment\ReadAssignments.cshtml" />
+    <Content Include="Views\Assignment\UpdateAssignment.cshtml" />
+    <Content Include="Views\Clients\CreateClient.cshtml" />
+    <Content Include="Views\Clients\DeleteClient.cshtml" />
+    <Content Include="Views\Clients\ReadClientByID.cshtml" />
+    <Content Include="Views\Clients\ReadClients.cshtml" />
+    <Content Include="Views\Clients\UpdateClient.cshtml" />
+    <Content Include="Views\Employee\CreateEmployee.cshtml" />
+    <Content Include="Views\Employee\DeleteEmployee.cshtml" />
+    <Content Include="Views\Employee\EmployeeDetails.cshtml" />
+    <Content Include="Views\Employee\UpdateEmployee.cshtml" />
+    <Content Include="Views\Employee\ViewEmployees.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\AdminDashboard.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\KPI\CreateKPI.cshtml" />
+    <Content Include="Views\KPI\DeleteKPI.cshtml" />
+    <Content Include="Views\KPI\ReadKPIByID.cshtml" />
+    <Content Include="Views\KPI\ReadKPIs.cshtml" />
+    <Content Include="Views\KPI\UpdateKPI.cshtml" />
+    <Content Include="Views\Login\DeleteLogin.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Login\LogOut.cshtml" />
+    <Content Include="Views\Login\ReadLoginByID.cshtml" />
+    <Content Include="Views\Login\ReadLogins.cshtml" />
+    <Content Include="Views\Login\Register.cshtml" />
+    <Content Include="Views\Position\CreatePosition.cshtml" />
+    <Content Include="Views\Position\DeletePosition.cshtml" />
+    <Content Include="Views\Position\ReadPositiions.cshtml" />
+    <Content Include="Views\Position\ReadPositionByID.cshtml" />
+    <Content Include="Views\Position\UpdatePosition.cshtml" />
+    <Content Include="Views\Project\CreateProject.cshtml" />
+    <Content Include="Views\Project\DeleteProject.cshtml" />
+    <Content Include="Views\Project\ReadProjectByID.cshtml" />
+    <Content Include="Views\Project\ReadProjects.cshtml" />
+    <Content Include="Views\Project\UpdateProject.cshtml" />
+    <Content Include="Views\Roles\CreateRole.cshtml" />
+    <Content Include="Views\Roles\DeleteRole.cshtml" />
+    <Content Include="Views\Roles\ReadRoleByID.cshtml" />
+    <Content Include="Views\Roles\ReadRoles.cshtml" />
+    <Content Include="Views\Roles\UpdateRole.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Employee.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Sprint\CreateSprint.cshtml" />
+    <Content Include="Views\Sprint\DeleteSprint.cshtml" />
+    <Content Include="Views\Sprint\ReadSprintByID.cshtml" />
+    <Content Include="Views\Sprint\ReadSprints.cshtml" />
+    <Content Include="Views\Sprint\UpdateSprint.cshtml" />
+    <Content Include="Views\Story\CreateStory.cshtml" />
+    <Content Include="Views\Story\DeleteStory.cshtml" />
+    <Content Include="Views\Story\ReadStoryByID.cshtml" />
+    <Content Include="Views\Story\ReadStorys.cshtml" />
+    <Content Include="Views\Story\UpdateStory.cshtml" />
+    <Content Include="Views\Team\CreateTeam.cshtml" />
+    <Content Include="Views\Team\DeleteTeam.cshtml" />
+    <Content Include="Views\Team\ReadTeamByID.cshtml" />
+    <Content Include="Views\Team\ReadTeams.cshtml" />
+    <Content Include="Views\Team\UpdateTeam.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Assessment\ReadMyAssessments.cshtml" />
+    <Content Include="Views\KPI\ReadMyKPIs.cshtml" />
+    <Content Include="Views\Resume\CreateResume.cshtml" />
+    <Content Include="Views\Resume\ReadResumeById.cshtml" />
+    <Content Include="Views\Shared\Nav\Employee_Side.cshtml" />
+    <Content Include="Views\Shared\Nav\Employee_Top.cshtml" />
+    <Content Include="Views\Resume\CreateEducation.cshtml" />
+    <Content Include="Views\Shared\Nav\Admin_Side.cshtml" />
+    <Content Include="Views\Shared\Nav\Admin_Top.cshtml" />
+    <Content Include="Views\Shared\Nav\About.cshtml" />
+    <Content Include="Views\Resume\ReadResumeEducationById.cshtml" />
+    <Content Include="Views\Resume\UpdateResumeEducation.cshtml" />
+    <Content Include="Views\Resume\ReadresumeByWorkHistoryId.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -212,7 +439,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <ProjectReference Include="..\ORA_DAL\ORA_Data.csproj">
+      <Project>{52b20d0b-5c4c-4874-844e-33d28cf421a6}</Project>
+      <Name>ORA_Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -233,6 +463,8 @@
           <DevelopmentServerPort>63602</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:63602/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:63602/Login/Login?ReturnUrl=%2f</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

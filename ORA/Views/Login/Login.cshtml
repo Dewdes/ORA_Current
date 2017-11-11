@@ -1,0 +1,45 @@
+﻿@model ORA.Models.LoginVM
+
+@{
+    ViewBag.Title = "Login";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <link href="~/Content/Login.css" rel="stylesheet" />
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <div class="container">
+        <div class="card card-container">
+            <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+            <img id="profile-img" class="profile-img-card" src="~/Images/OnshoreLogo.png"/>
+            <p id="profile-name" class="profile-name-card"></p>
+            <form class="form-signin">
+                <span id="reauth-email" class="reauth-email"></span>
+                <div type="email" id="inputEmail" required autofocus>
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "Email Address", required = "required" } })
+                    @Html.ValidationMessageFor(model => model.Email)
+                </div>
+                &nbsp; &nbsp; 
+                <div type="password" id="inputPassword"  required>
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "Password", required = "required" } })
+                    @*@Html.ValidationMessageFor(model => model.Password)*@
+                </div>
+                
+                <div id="remember" class="checkbox">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+            </form><!-- /form -->
+            <a href="#" class="forgot-password">
+                Forgot the password?
+            </a>
+        </div><!-- /card-container -->
+    </div><!-- /container -->
+    <!-- /container -->
+}

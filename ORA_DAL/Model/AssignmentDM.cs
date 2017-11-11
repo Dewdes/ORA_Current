@@ -1,34 +1,37 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
-namespace ORA.Models
+namespace ORA_Data.Model
 {
     public class AssignmentDM
     {
-        public int AssignmentId { get; set; }
+        public long AssignmentId { get; set; }
+
+        public string AssignmentName { get; set; }
 
         public DateTime StartDate { get; set; }
 
         public DateTime EndDate { get; set; }
 
-        public int ClientId { get; set; }
+        public long ClientId { get; set; }
 
-        public int EmployeeId { get; set; }
-
-        public int PositionId { get; set; }
-
-        public int RoleId { get; set; }
-
-        public int TeamId { get; set; }
+        public long PositionId { get; set; }
 
         public DateTime Modify { get; set; }
 
         public string ModifiedBy { get; set; }
 
-        public int Created { get; set; }
+        public DateTime Created { get; set; }
 
         public string CreatedBy { get; set; }
+
+        public AssessmentDM Assessment { get; set; }
+
+        public PositionsDM Position { get; set; }
+
+        public RolesDM Role { get; set; }
+
+        public KPIDM KPI { get; set; }
+
+        public ClientsDM Client { get; set; }
     }
 }

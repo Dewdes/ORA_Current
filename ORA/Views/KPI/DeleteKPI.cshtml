@@ -1,0 +1,214 @@
+﻿@model ORA.Models.KPIVM
+
+@{
+    ViewBag.Title = "Delete KPI";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        @*<dt>
+            @Html.DisplayNameFor(model => model.KPIID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KPIID)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Points)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Points)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TCCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TCCreated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TCExecuted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TCExecuted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TCFailed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TCFailed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TCPassed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TCPassed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TCBlocked)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TCBlocked)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DefectsFound)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DefectsFound)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DefectsFixed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DefectsFixed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DefectsAccepted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DefectsAccepted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DefectsRejected)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DefectsRejected)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DefectsDeferred)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DefectsDeferred)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CriticalDefects)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CriticalDefects)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TestHrsPlanned)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TestHrsPlanned)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TestHrsActual)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TestHrsActual)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BugsFoundProduction)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BugsFoundProduction)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalHrsFixingBugs)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalHrsFixingBugs)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AssignmentId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssignmentId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjectId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjectId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SprintId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SprintId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StoryId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StoryId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modified)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modified)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Created)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

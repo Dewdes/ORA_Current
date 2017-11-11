@@ -1,0 +1,25 @@
+﻿@model IEnumerable<ORA.Models.KPIVM>
+
+@{
+    ViewBag.Title = "My KPI Reports";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>My KPI Reports</h2>*@
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee.EmployeeName)
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            @Html.HiddenFor(modelItem => item.KPIID)
+            <td>
+                @Html.ActionLink(item.Employee.EmployeeName, "ReadKPIByID", "KPI", new { id = item.KPIID }, new { })
+            </td>
+            @Html.HiddenFor(modelItem => item.EmployeeId)
+        </tr>
+    }
+</table>

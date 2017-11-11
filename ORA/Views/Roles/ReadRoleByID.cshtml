@@ -1,0 +1,40 @@
+﻿@model ORA.Models.RolesVM
+
+@{
+    ViewBag.Title = "Role Info";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RoleId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoleId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoleName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoleName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoleDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoleDescription)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

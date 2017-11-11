@@ -1,0 +1,263 @@
+﻿@model ORA.Models.AssessmentVM
+
+@{
+    ViewBag.Title = "Assessment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        @*<dt>
+            @Html.DisplayNameFor(model => model.AssessmentId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssessmentId)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TDProblemSolving)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TDProblemSolving)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TDQualityOfWork)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TDQualityOfWork)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TDProductivity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TDProductivity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TDProductKnowledge)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TDProductKnowledge)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TDComments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TDComments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CSRProfesionalismTeamwork)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CSRProfesionalismTeamwork)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CSRVerbalSkills)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CSRVerbalSkills)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CSRWrittenSkills)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CSRWrittenSkills)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CSRListeningSkills)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CSRListeningSkills)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CSRComments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CSRComments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ADAttendence)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ADAttendence)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ADEthicalBehavior)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ADEthicalBehavior)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ADMeetDeadlines)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ADMeetDeadlines)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ADOrganizeDetailedWork)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ADOrganizeDetailedWork)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ADComments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ADComments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TMResourceUse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TMResourceUse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TMFeedback)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TMFeedback)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TMTechnicalMonitoring)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TMTechnicalMonitoring)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TMAskingQuestions)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TMAskingQuestions)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TMComments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TMComments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MIAttitudeWork)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MIAttitudeWork)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MIGroomingAppearance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MIGroomingAppearance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MIPersonalGrowth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MIPersonalGrowth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MIPotentialAdvancement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MIPotentialAdvancement)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MIComments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MIComments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Created)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modified)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modified)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedBy)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

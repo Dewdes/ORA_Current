@@ -1,0 +1,118 @@
+﻿@model ORA.Models.ResumeVM
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/Resume.css" rel="stylesheet" />
+
+<div class="row">
+    <div class="col-lg-12 ">
+        <div class="panel panel-default">
+            <div class="panel-heading">  <h4>Your Resume</h4></div>
+            <div class="panel-body">
+                <div class="box box-info">
+                    <div class="box-body">
+                        <div class="col-sm-6">
+                            <div align="left">
+                                <img alt="User Pic" src="https://static-cdn.jtvnw.net/jtv_user_pictures/panel-105458682-image-30bb3ea9145a9b30-320-320.jpeg?imenable=1&impolicy=panel-images&imwidth=320" id="profile-image1" class="img-circle img-responsive">
+                            </div>
+                            <br>
+                            <!-- /input-group -->
+                        </div>
+                        <div class="col-sm-6">
+                            <div align="right">
+                                <h4 style="color: #00b1b1;">
+                                    @Session["Email"]
+                                </h4>
+                                <span>
+                                    <p>
+                                        @Session["Role"]
+                                    </p>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <hr style="margin:5px 0 5px 0;">
+
+                        <div class="row">
+                            <div class="col-lg-12 ">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4>
+                                            <i class="glyphicon glyphicon-book"></i>
+                                            Basic Information
+                                        </h4>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="box box-info">
+                                            <div class="box-body">
+                                                <div class="bot-border" style="border-bottom-width: 15px; border-bottom-color: darkgrey;"></div>
+                                                <div>
+                                                    <div class="col-sm-5 col-xs-6 tital">
+                                                        @Html.DisplayName("First Name: ")
+                                                    </div>
+                                                    <div class="col-sm-7">
+                                                        @Html.DisplayFor(model => model.Employee.EmployeeFirstName)
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                    <div class="bot-border"></div>
+                                                </div>
+
+                                                <div>
+                                                    <div class="col-sm-5 col-xs-6 tital">
+                                                        @Html.DisplayName("Middle Name: ")
+                                                    </div>
+                                                    <div class="col-sm-7">
+                                                        @Html.DisplayFor(model => model.Employee.EmployeeMiddle)
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                    <div class="bot-border"></div>
+                                                </div>
+
+                                                <div>
+                                                    <div class="col-sm-5 col-xs-6 tital">
+                                                        @Html.DisplayName("Last Name: ")
+                                                    </div>
+                                                    <div class="col-sm-7">
+                                                        @Html.DisplayFor(model => model.Employee.EmployeeLastName)
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                    <div class="bot-border"></div>
+                                                </div>
+
+                                                <div>
+                                                    <div class="col-sm-5 col-xs-6 tital">
+                                                        @Html.DisplayName("DOB: ")
+                                                    </div>
+                                                    <div class="col-sm-7">
+                                                        @Html.DisplayFor(model => model.Employee.BirthDate)
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                    <div class="bot-border"></div>
+                                                </div>
+                                                <div class="bot-border"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div>
+                            @Html.Action("ReadresumeByWorkHistoryId", "Resume")
+                        </div>
+                        <br>
+                        <div>
+                            @Html.Action("ReadResumeEducationById", "Resume")
+                        </div>
+
+                        <div class="clearfix"></div>
+                        <div class="bot-border"></div>
+
+                        <div class="clearfix"></div>
+                        <div class="bot-border"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

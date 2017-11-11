@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ORA", "ORA\ORA.csproj", "{72DF197E-B32E-41BE-811C-9F5E083A8CCA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ORA_DAL", "ORA_DAL\ORA_DAL.csproj", "{52B20D0B-5C4C-4874-844E-33D28CF421A6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ORA_Data", "ORA_DAL\ORA_Data.csproj", "{52B20D0B-5C4C-4874-844E-33D28CF421A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

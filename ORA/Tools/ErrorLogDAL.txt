@@ -1,0 +1,9 @@
+
+Level: ReadAssessments   Time: 11/10/2017 1:32:39 PM   Error: Specified cast is not valid.
+Level: ReadAssessments   Time: 11/10/2017 1:33:51 PM   Error: Specified cast is not valid.
+Level: ReadAssessments   Time: 11/10/2017 1:34:12 PM   Error: Specified cast is not valid.
+Level: ReadAssessmentByID   Time: 11/10/2017 2:14:02 PM   Error: Procedure or function 'READ_ASSESSMENT_BY_ID' expects parameter '@Assessment_ID', which was not supplied.
+Level: ReadAssessmentByID   Time: 11/10/2017 2:26:29 PM   Error: Procedure or function 'READ_ASSESSMENT_BY_ID' expects parameter '@Assessment_ID', which was not supplied.
+Level: ReadMyKPIsByID   Time: 11/10/2017 2:26:33 PM   Error: The connection was not closed. The connection's current state is open.
+Level: ReadAssessmentByID   Time: 11/10/2017 2:52:37 PM   Error: Procedure or function 'READ_ASSESSMENT_BY_ID' expects parameter '@Assessment_ID', which was not supplied.
+Level: Login   Time: 11/10/2017 3:59:47 PM   Error: A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 26 - Error Locating Server/Instance Specified)

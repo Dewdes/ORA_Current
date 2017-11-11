@@ -1,0 +1,72 @@
+﻿
+<div class="sidebar" data-color="green" data-image="/Content/assets/img/sidebar-5.jpg">
+    <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
+
+    <div class="sidebar-wrapper">
+        <div>
+            <a href="~/Home/Index" style="color: #FFFFFF; text-decoration: none;">
+                <img src="~/Images/OnshoreLogo.png" width="50px" style="position: center;" />
+                @if ((bool)Session["LoggedIn"])
+            {
+                    <span>@Session["Name"].ToString().Split(' ')[0]</span>
+                }
+            </a>
+        </div>
+
+        <ul class="nav">
+
+
+            <li>
+                <i class="pe-7s-user"></i>
+                @Html.ActionLink("User Profile", "ReadAccount", "Account", new { id = Session["ID"] }, new { })
+            </li>
+            <li>
+                <i class="pe-7s-note2"></i>
+                @Html.ActionLink("My Assessments", "ReadMyAssessments", "Assessment", new { id = Session["ID"] }, new { })
+            </li>
+            <li>
+                <i class="pe-7s-bookmarks"></i>
+                @Html.ActionLink("My KPI's", "ReadMyKPIs", "KPI", new { id = Session["ID"] }, new { })
+            </li>
+
+            @if ((string)Session["Role"] == "Team Lead")
+            {
+                <li>
+                    <i class="pe-7s-note2"></i>
+                    @Html.ActionLink("Team Assessments", "ReadAssessments", "Assessment", new { id = Session["ID"] }, new { })
+                </li>
+                <li>
+                    <i class="pe-7s-note2"></i>
+                    @Html.ActionLink("Team KPI's", "ReadKPIs", "KPI", new { id = Session["ID"] }, new { })
+                </li>
+
+            }
+            @if ((string)Session["Role"] == "Manager")
+            {
+                <li>
+                    <i class="pe-7s-note2"></i>
+                    @Html.ActionLink("Employee Assessments", "ReadAssessments", "Assessment", new { id = Session["ID"] }, new { })
+                </li>
+                <li>
+                    <i class="pe-7s-note2"></i>
+                    @Html.ActionLink("Employee KPI's", "ReadKPIs", "KPI", new { id = Session["ID"] }, new { })
+                </li>
+
+            }
+            <li>
+                <i class="pe-7s-note2"></i>
+                @Html.ActionLink("My Resume", "ReadResumeById", "Resume")
+            </li>
+            <li>
+                <a href="#">
+                    <i class="pe-7s-news-paper"></i>
+                    <p>My Resources</p>
+                </a>
+            </li>
+            <li>
+                <i class="pe-7s-news-paper"></i>
+                @Html.ActionLink("News Feed", "Index", "Home")
+            </li>
+        </ul>
+    </div>
+</div>

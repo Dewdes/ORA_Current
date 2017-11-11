@@ -1,0 +1,92 @@
+﻿@model ORA.Models.EmployeeVM
+
+@{
+    ViewBag.Title = "Employee Details";
+}
+
+@*<h2>Employee Details</h2>*@
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+
+            @Html.HiddenFor(model => model.EmployeeId)
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeFirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeFirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeMiddle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeMiddle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeLastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeLastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Age)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BirthDate)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.LoginId)*@
+        </dt>
+
+        <dd>
+            @Html.ActionLink("Login", "ReadLoginByID", "Login", new { id = Model.EmployeeId }, new { })
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.AddressId)*@
+        </dt>
+
+        <dd>
+            @Html.ActionLink("Address", "ReadAddressByID", "Address", new { id = Model.EmployeeId }, new { })
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

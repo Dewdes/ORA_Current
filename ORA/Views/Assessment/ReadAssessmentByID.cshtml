@@ -1,0 +1,332 @@
+﻿@model ORA.Models.AssessmentVM
+
+@{
+    ViewBag.Title = "Assessment Info";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //ViewBag.About = false;
+}
+
+<link href="~/Content/ReadAssessmentsbyID.css" rel="stylesheet" />
+<link href='//netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' rel='stylesheet' />
+
+<h2>@Html.DisplayFor(model => model.Employee.EmployeeFirstName) @Html.DisplayFor(model => model.Employee.EmployeeLastName)</h2>
+@*<h2>@Html.DisplayFor(model => model.Employee.EmployeeFirstName)</h2>
+
+    <div class="panel panel-info">
+        <div class="panel panel-heading">@Html.DisplayFor(model => model.Employee.EmployeeFirstName)</div>
+        <hr />
+        <dl class="dl-horizontal">
+
+                @Html.HiddenFor(model => model.AssessmentId)
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TDProblemSolving)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TDProblemSolving)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TDQualityOfWork)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TDQualityOfWork)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TDProductivity)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TDProductivity)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TDProductKnowledge)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TDProductKnowledge)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TDComments)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TDComments)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CSRProfesionalismTeamwork)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CSRProfesionalismTeamwork)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CSRVerbalSkills)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CSRVerbalSkills)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CSRWrittenSkills)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CSRWrittenSkills)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CSRListeningSkills)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CSRListeningSkills)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CSRComments)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CSRComments)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ADAttendence)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ADAttendence)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ADEthicalBehavior)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ADEthicalBehavior)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ADMeetDeadlines)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ADMeetDeadlines)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ADOrganizeDetailedWork)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ADOrganizeDetailedWork)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ADComments)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ADComments)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TMResourceUse)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TMResourceUse)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TMFeedback)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TMFeedback)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TMTechnicalMonitoring)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TMTechnicalMonitoring)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TMAskingQuestions)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TMAskingQuestions)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TMComments)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TMComments)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.MIAttitudeWork)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MIAttitudeWork)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.MIGroomingAppearance)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MIGroomingAppearance)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.MIPersonalGrowth)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MIPersonalGrowth)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.MIPotentialAdvancement)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MIPotentialAdvancement)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.MIComments)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MIComments)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Created)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Created)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CreatedBy)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Modified)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Modified)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ModifiedBy)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ModifiedBy)
+            </dd>
+
+        </dl>
+    </div>*@
+
+
+@Html.HiddenFor(model => model.AssessmentId)
+<body>
+    <div class="row">
+        <div class="col-sm-6">
+            <!-- Category -->
+            <div class="single category">
+                <h3 class="side-title">Technical Delivery</h3>
+                <ul class="list-unstyled">
+                    <li><a href="" title="">@Html.DisplayNameFor(model => model.TDProblemSolving) <span class="pull-right">@Html.DisplayFor(model => model.TDProblemSolving)</span></a></li>
+                    <li><a href="" title="">@Html.DisplayNameFor(model => model.TDQualityOfWork) <span class="pull-right">@Html.DisplayFor(model => model.TDQualityOfWork)</span></a></li>
+                    <li><a href="" title="">@Html.DisplayNameFor(model => model.TDProductKnowledge) <span class="pull-right">@Html.DisplayFor(model => model.TDProductKnowledge)</span></a></li>
+                    <li><a href="" title="">@Html.DisplayNameFor(model => model.TDProductivity) <span class="pull-right">@Html.DisplayFor(model => model.TDProductivity)</span></a></li>
+                    <li><a href="" title="">@Html.DisplayNameFor(model => model.TDComments) <span class="pull-right">@Html.DisplayFor(model => model.TDComments)</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="single category">
+                <h3 class="side-title">CSR</h3>
+                <ul class="list-unstyled">
+                    <li><a href="" title="">@Html.DisplayNameFor(model => model.CSRWrittenSkills) <span class="pull-right">@Html.DisplayFor(model => model.CSRWrittenSkills)</span></a></li>
+                    <li><a href="" title="">@Html.DisplayNameFor(model => model.CSRVerbalSkills) <span class="pull-right">@Html.DisplayFor(model => model.CSRVerbalSkills)</span></a></li>
+                    <li><a href="" title="">@Html.DisplayNameFor(model => model.CSRListeningSkills) <span class="pull-right">@Html.DisplayFor(model => model.CSRListeningSkills)</span></a></li>
+                    <li><a href="" title="">@Html.DisplayNameFor(model => model.CSRProfesionalismTeamwork) <span class="pull-right">@Html.DisplayFor(model => model.CSRProfesionalismTeamwork)</span></a></li>
+                    <li><a href="" title="">@Html.DisplayNameFor(model => model.CSRComments) <span class="pull-right">@Html.DisplayFor(model => model.CSRComments)</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="single category">
+                <h3 class="side-title">AD</h3>
+                <ul class="list-unstyled">
+                    <li><a href="" title="">@Html.DisplayNameFor(model => model.ADAttendence) <span class="pull-right">@Html.DisplayFor(model => model.ADAttendence)</span></a></li>
+                    <li><a href="" title="">@Html.DisplayNameFor(model => model.ADEthicalBehavior) <span class="pull-right">@Html.DisplayFor(model => model.ADEthicalBehavior)</span></a></li>
+                    <li><a href="" title="">@Html.DisplayNameFor(model => model.ADOrganizeDetailedWork) <span class="pull-right">@Html.DisplayFor(model => model.ADOrganizeDetailedWork)</span></a></li>
+                    <li><a href="" title="">@Html.DisplayNameFor(model => model.ADMeetDeadlines) <span class="pull-right">@Html.DisplayFor(model => model.ADMeetDeadlines)</span></a></li>
+                    <li><a href="" title="">@Html.DisplayNameFor(model => model.ADComments) <span class="pull-right">@Html.DisplayFor(model => model.ADComments)</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="single category">
+                <h3 class="side-title">TM</h3>
+                <ul class="list-unstyled">
+                    <li><a href="" title="">@Html.DisplayNameFor(model => model.TMResourceUse) <span class="pull-right">@Html.DisplayFor(model => model.TMResourceUse)</span></a></li>
+                    <li><a href="" title="">@Html.DisplayNameFor(model => model.TMTechnicalMonitoring) <span class="pull-right">@Html.DisplayFor(model => model.TMTechnicalMonitoring)</span></a></li>
+                    <li><a href="" title="">@Html.DisplayNameFor(model => model.TMFeedback) <span class="pull-right">@Html.DisplayFor(model => model.TMFeedback)</span></a></li>
+                    <li><a href="" title="">@Html.DisplayNameFor(model => model.TMAskingQuestions) <span class="pull-right">@Html.DisplayFor(model => model.TMAskingQuestions)</span></a></li>
+                    <li><a href="" title="">@Html.DisplayNameFor(model => model.TMComments) <span class="pull-right">@Html.DisplayFor(model => model.TMComments)</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="single category">
+                <h3 class="side-title">MI</h3>
+                <ul class="list-unstyled">
+                    <li><a href="" title="">@Html.DisplayNameFor(model => model.MIAttitudeWork) <span class="pull-right">@Html.DisplayFor(model => model.MIAttitudeWork)</span></a></li>
+                    <li><a href="" title="">@Html.DisplayNameFor(model => model.MIGroomingAppearance) <span class="pull-right">@Html.DisplayFor(model => model.MIGroomingAppearance)</span></a></li>
+                    <li><a href="" title="">@Html.DisplayNameFor(model => model.MIPersonalGrowth) <span class="pull-right">@Html.DisplayFor(model => model.MIPersonalGrowth)</span></a></li>
+                    <li><a href="" title="">@Html.DisplayNameFor(model => model.MIPotentialAdvancement) <span class="pull-right">@Html.DisplayFor(model => model.MIPotentialAdvancement)</span></a></li>
+                    <li><a href="" title="">@Html.DisplayNameFor(model => model.MIComments) <span class="pull-right">@Html.DisplayFor(model => model.MIComments)</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="btn-group-sm">
+        <div class="pull-right">
+            @Html.ActionLink("Update", "UpdateAssessment", "Assessment",new { id = Model.AssessmentId } ,htmlAttributes: new{ @class = "btn btn-primary" })
+        </div>
+    </div>
+</body>
+
+
+
+

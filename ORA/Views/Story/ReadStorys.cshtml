@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ORA.Models.StoryVM>
+
+@{
+    ViewBag.Title = "Storys";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>Storys</h2>*@
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.StoryId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StoryNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Created)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Modified)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.StoryId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StoryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StoryNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Created)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Modified)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

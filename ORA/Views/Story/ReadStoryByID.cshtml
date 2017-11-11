@@ -1,0 +1,72 @@
+﻿@model ORA.Models.StoryVM
+
+@{
+    ViewBag.Title = "Story Info";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.StoryId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StoryId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StoryNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StoryNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Created)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modified)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modified)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

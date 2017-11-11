@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
-namespace ORA.Models
+namespace ORA_Data.Model
 {
     public class SprintDM
     {
-        public int SprintId { get; set; }
+        public long SprintId { get; set; }
 
-        public int SprintNumber { get; set; }
+        public string SprintNumber { get; set; }
 
         public string SprintName { get; set; }
 
@@ -20,5 +17,7 @@ namespace ORA.Models
         public DateTime Modified { get; set; }
 
         public DateTime Created { get; set; }
+        
+        public long ClientId { get; set; }
     }
 }

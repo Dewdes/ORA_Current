@@ -1,0 +1,42 @@
+﻿@model ORA.Models.ClientsVM
+
+@{
+    ViewBag.Title = "Client Info";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>Clients</h2>*@
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ClientId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClientId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClientName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClientName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClientAbbreviation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClientAbbreviation)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

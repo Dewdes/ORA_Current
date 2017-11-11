@@ -1,0 +1,33 @@
+﻿@model ORA.Models.PositionsVM
+
+@{
+    ViewBag.Title = "Position Info";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PositionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PositionId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PositionName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PositionName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

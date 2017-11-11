@@ -1,0 +1,47 @@
+select skill from list
+
+not able to type their own and scale 1-5
+
+employee can select as many skills as they feel confident
+
+set work history to vertical styling
+
+add where employee can add more than one work history
+
+<<Formatting>>
+Oshore Outsourcing    Glennville, GA    Programmer    StartDate-EndDate
+
+standardized job title not indepth
+
+set assessment month and year
+
+dropdown menu with months and years
+
+need to add a check for assessment and kpi
+
+make sure to seperate kpi by qa and dev
+
+calculate velocity
+
+start date and end date should be a select weeks 1-52 
+
+put all of these dropdowns at begining of form
+<<KPI>>
+Select Employee
+Select Sprint(if no sprint, sprint should be null or default)
+Sprint description and type(new,old,bug,etc.)
+change Assignment to client
+Story/Card
+Add a description(bigger input field)
+
+lookup power bi, google app that uses r, googlevis
+
+assessments total scores add to top of page
+assessment layout should look like spreadsheet
+
+overall score and month to month chart and be able to click a point on the chart
+update score with the selected portion of the chart
+
+add rss feed into account and make the user profile text a link and make an icon above it
+
+

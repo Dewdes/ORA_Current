@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using ORA.Tools;
+using System;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -16,6 +14,11 @@ namespace ORA
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            Tools.Mapping.MappingMethod();
+        }
+        protected void Session_Start(object sender, EventArgs e)
+        {
+            SessionTool.StartSession();
         }
     }
 }
