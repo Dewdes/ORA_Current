@@ -140,6 +140,10 @@ namespace ORA.Models
 
         public List<DescriptionVM> Descriptions { get; set; }
 
+        public WorkHistoryVM WorkHistory { get; set; }
+
+        public List<WorkHistoryVM> WorkHistoryList { get; set; }
+
     }
     public class DescriptionVM
     {
