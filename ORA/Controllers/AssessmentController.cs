@@ -66,6 +66,7 @@ namespace ORA.Controllers
                 assessment.EmployeeList.Remove(assessment.EmployeeList.Single(employee => employee.EmployeeId == (long)Session["ID"]));
                 assessment.EmployeeList.RemoveAll(employee => employee.TeamId != (long)Session["TeamId"]);
                 assessment.EmployeeList.RemoveAll(employee => employee.RoleId == 4);
+                assessment.EmployeeList.RemoveAll(employee => employee.RoleId == 5);
                 assessment.EmployeeList.RemoveAll(employee => (int)employee.RoleId == 6);
 
                 assessment.Descriptions = Mapper.Map<List<DescriptionVM>>(AssessmentDAL.ReadAssessDescriptions());
@@ -184,15 +185,15 @@ namespace ORA.Controllers
 
         public ActionResult DeleteAssessment(int id)
         {
-            AssessmentVM assessment = Mapper.Map<AssessmentVM>(AssessmentDAL.ReadAssessmentByID(id));
-            return View(assessment);
-        }
-
-        [HttpPost]
-        public ActionResult DeleteAssessment(AssessmentVM assessment)
-        {
-            AssessmentDAL.DeleteAssessment(Mapper.Map<AssessmentDM>(assessment));
-            return View(assessment);
+            if ((string)Session["Role"] == "Manager" || (string)Session["Role"] == "Director" || (string)Session["Role"] == "Team Lead")
+            {
+                AssessmentDAL.DeleteAssessment(Mapper.Map<AssessmentDM>(AssessmentDAL.ReadAssessmentByID(id)));
+                return RedirectToAction("ReadAssessments", "Assessment", new { id = (long)Session["ID"] });
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home", new { area = "Default" });
+            }
         }
     }
 }

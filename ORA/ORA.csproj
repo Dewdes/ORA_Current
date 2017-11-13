@@ -340,7 +340,6 @@
     <Content Include="Views\Address\ReadAllAddress.cshtml" />
     <Content Include="Views\Address\UpdateAddress.cshtml" />
     <Content Include="Views\Assessment\CreateAssessment.cshtml" />
-    <Content Include="Views\Assessment\DeleteAssessment.cshtml" />
     <Content Include="Views\Assessment\ReadAssessmentByID.cshtml" />
     <Content Include="Views\Assessment\ReadAssessments.cshtml" />
     <Content Include="Views\Assessment\UpdateAssessment.cshtml" />
@@ -364,7 +363,6 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\KPI\CreateKPI.cshtml" />
-    <Content Include="Views\KPI\DeleteKPI.cshtml" />
     <Content Include="Views\KPI\ReadKPIByID.cshtml" />
     <Content Include="Views\KPI\ReadKPIs.cshtml" />
     <Content Include="Views\KPI\UpdateKPI.cshtml" />
