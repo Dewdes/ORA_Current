@@ -47,7 +47,7 @@ namespace ORA.Controllers
             {
                 if ((string)Session["Role"] == "ADMIN" || ((string)Session["Role"] == "DIRECTOR"))
                 {
-                    return RedirectToAction("AdminDashboard", "Home", new { area = "Default" });
+                    return RedirectToAction("AdminDashboard", "Admin", new { area = "Default" });
                 }
                 else
                 {
@@ -57,8 +57,6 @@ namespace ORA.Controllers
             return View();
         }
 
-
-        readonly EmployeeVM _employee = new EmployeeVM();
         [AllowAnonymous]
         [HttpPost]
         public ActionResult Login(LoginVM info)
