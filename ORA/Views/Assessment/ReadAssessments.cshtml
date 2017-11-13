@@ -27,7 +27,7 @@
         </ul>
     </div>
     <div class="panel-body">
-        <div class="pull-right">@Html.ActionLink("Create New Assessment", "CreateAssessment", null, new { @class = "btn btn-primary" })</div>
+        <div class="pull-right">@Html.ActionLink("Create New Assessment", "CreateAssessment", null, new { @class = "btn btn", style="background-color: #2d7788; color:white;" })</div>
 
 
         <input class="form-control" type="text" id="SearchInput" onkeyup="SearchEmployeeFunction()" placeholder="Search for Employees..">
@@ -45,10 +45,10 @@
                 <tr>
                     @Html.HiddenFor(modelItem => item.AssessmentId)
                     <td>
-                        <span class="glyphicon glyphicon-user"></span> @Html.ActionLink(item.Employee.EmployeeName, "ReadAssessmentByID", "Assessment", new { id = item.AssessmentId }, new { })
+                        <span class="glyphicon glyphicon-user"></span> @Html.ActionLink(item.Employee.EmployeeName, "ReadAssessmentByID", "Assessment", new { id = item.AssessmentId }, htmlAttributes: new { style = "color: #2d7788;" })
                     </td>
                     <td>
-                        <span class="glyphicon glyphicon-calendar"></span> @Html.ActionLink(item.Created.Date.ToShortDateString(), "ReadAssessmentByID", "Assessment", new { id = item.AssessmentId }, new { })
+                        <span class="glyphicon glyphicon-calendar"></span> @Html.ActionLink(item.DateCreatedFor.Date.ToShortDateString(), "ReadAssessmentByID", "Assessment", new { id = item.AssessmentId }, htmlAttributes: new { style = "color: #2d7788;" })
                     </td>
                     @Html.HiddenFor(modelItem => item.EmployeeID)
                 </tr>

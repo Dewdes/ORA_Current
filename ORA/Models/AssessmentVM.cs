@@ -110,6 +110,8 @@ namespace ORA.Models
         public List<AssignmentVM> Assignments { get; set; }
 
         [DisplayName("Assessed For")]
+        [DisplayFormat(DataFormatString = "{0:MMM-yyyy}")]
+        [Required(ErrorMessage = "This is required.")]
         public DateTime DateCreatedFor { get; set; }
 
         public DateTime Created { get; set; }

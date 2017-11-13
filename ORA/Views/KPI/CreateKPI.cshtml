@@ -4,14 +4,45 @@
     ViewBag.Title = "KPI Creation";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link href="~/Content/wizard.css" rel="stylesheet" />
 <script src="~/Content/js/wizard.js"></script>
 
+<script>
+    $(function () {
+        $(document).tooltip();
+    });
+</script>
+<style>
+    label {
+        display: inline-block;
+    }
 
-@using (Html.BeginForm())
+    .wizard .nav-tabs > li {
+        width: 16%;
+    }
+
+    .footLine {
+        margin: 0px;
+    }
+
+    .row {
+        margin-top: -40px;
+    }
+
+    .form-horizontal .radio {
+        min-height: 20px;
+    }
+</style>
+
+@using (Html.BeginForm("CreateKPI","KPI",FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
         @*<div class="container">*@
             <div class="row">
                 <section>
@@ -59,11 +90,11 @@
                                         <div class="form-group">
                                             @Html.LabelFor(model => model.EmployeeId, htmlAttributes: new { @class = "control-label col-md-2" })
                                             <div class="col-md-10">
-                                                @Html.DropDownListFor(model => model.EmployeeId, new SelectList(Model.EmployeeList, "EmployeeId", "EmployeeName"), "Select Employee")
+                                                @Html.DropDownListFor(model => model.EmployeeId, new SelectList(Model.EmployeeList, "EmployeeId", "EmployeeName"), "Select Employee", htmlAttributes: new { @class = "form-control", @required = "required" })
                                                 @Html.ValidationMessageFor(model => model.EmployeeId, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
-
+                                       
                                         <div class="form-group">
                                             @Html.LabelFor(model => model.Velocity, htmlAttributes: new { @class = "control-label col-md-2" })
                                             <div class="col-md-10">

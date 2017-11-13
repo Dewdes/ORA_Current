@@ -51,11 +51,10 @@ namespace ORA.Controllers
         public ActionResult CreateAssessment()
         {
             AssessmentVM assessment = new AssessmentVM();
+            assessment.DateCreatedFor = DateTime.Now.Date;
+            assessment.EmployeeList = Mapper.Map<List<EmployeeVM>>(EmployeeDAL.ReadEmployees());
             if ((string)Session["Role"] == "Director")
             {
-                assessment.DateCreatedFor = DateTime.Now.Date;
-                assessment.EmployeeList = Mapper.Map<List<EmployeeVM>>(EmployeeDAL.ReadEmployees());
-
                 assessment.EmployeeList.Remove(assessment.EmployeeList.Single(employee => employee.EmployeeId == (long)Session["ID"]));
                 assessment.EmployeeList.RemoveAll(employee => (int)employee.RoleId == 6);
 
@@ -64,9 +63,6 @@ namespace ORA.Controllers
             }
             else if((string)Session["Role"] == "Manager")
             {
-                assessment.DateCreatedFor = DateTime.Now.Date;
-                assessment.EmployeeList = Mapper.Map<List<EmployeeVM>>(EmployeeDAL.ReadEmployees());
-
                 assessment.EmployeeList.Remove(assessment.EmployeeList.Single(employee => employee.EmployeeId == (long)Session["ID"]));
                 assessment.EmployeeList.RemoveAll(employee => employee.TeamId != (long)Session["TeamId"]);
                 assessment.EmployeeList.RemoveAll(employee => employee.RoleId == 4);
@@ -77,8 +73,6 @@ namespace ORA.Controllers
             }
             else if((string)Session["Role"] == "Team Lead")
             {
-                assessment.DateCreatedFor = DateTime.Now.Date;
-                assessment.EmployeeList = Mapper.Map<List<EmployeeVM>>(EmployeeDAL.ReadEmployees());
                 assessment.EmployeeList.RemoveAll(employee => employee.TeamId != (long)Session["TeamId"]);
                 assessment.EmployeeList.RemoveAll(employee => (int)employee.RoleId == 3);
                 assessment.EmployeeList.RemoveAll(employee => (int)employee.RoleId == 4);
