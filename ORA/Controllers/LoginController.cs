@@ -71,6 +71,7 @@ namespace ORA.Controllers
                     info.Role = Mapper.Map<RolesVM>(RolesDAL.ReadRoleByID(info.Employee.RoleId));
                     Session["Role"] = info.Role.RoleName;
                     Session["ID"] = info.EmployeeId;
+                    Session["TeamId"] = info.Employee.TeamId;
                     Session["Email"] = info.Email;
                     Session["Name"] = info.Employee.EmployeeName;
                     FormsAuthentication.RedirectFromLoginPage(info.Role.RoleName, true);

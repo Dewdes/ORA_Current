@@ -24,7 +24,38 @@ namespace ORA.Controllers
             kpi.Projects = Mapper.Map<List<ProjectVM>>(ProjectDAL.ReadProjects());
             kpi.Sprints = Mapper.Map<List<SprintVM>>(SprintDAL.ReadSprints());
             kpi.Stories = Mapper.Map<List<StoryVM>>(StoryDAL.ReadStorys());
-            return View(kpi);
+            
+            if((string)Session["Role"] == "Director")
+            {
+                kpi.EmployeeList.RemoveAll(employee => employee.EmployeeId == (long)Session["ID"]);
+                kpi.EmployeeList.RemoveAll(employee => employee.RoleId == 6);
+                kpi.EmployeeList.RemoveAll(employee => employee.RoleId == 5);
+
+                return View(kpi);
+            }
+            else if((string)Session["Role"] == "Manager")
+            {
+                kpi.EmployeeList.RemoveAll(employee => employee.EmployeeId == (long)Session["ID"]);
+                kpi.EmployeeList.RemoveAll(employee => employee.RoleId == 4);
+                kpi.EmployeeList.RemoveAll(employee => employee.RoleId == 5);
+                kpi.EmployeeList.RemoveAll(employee => employee.RoleId == 6);
+
+                return View(kpi);
+            }
+            else if((string)Session["Role"] == "Team Lead")
+            {
+                kpi.EmployeeList.RemoveAll(employee => employee.EmployeeId == (long)Session["ID"]);
+                kpi.EmployeeList.RemoveAll(employee => employee.RoleId == 3);
+                kpi.EmployeeList.RemoveAll(employee => employee.RoleId == 4);
+                kpi.EmployeeList.RemoveAll(employee => employee.RoleId == 5);
+                kpi.EmployeeList.RemoveAll(employee => employee.RoleId == 6);
+
+                return View(kpi);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home", new { area = "Default" });
+            }
         }
 
         [HttpPost]
@@ -33,7 +64,7 @@ namespace ORA.Controllers
             kpi.CreateDate = DateTime.Now;
             kpi.Modified = DateTime.Now;
             KPI_DAL.CreateKPI(Mapper.Map<KPIDM>(kpi));
-            return RedirectToAction("AdminDashboard","Home");
+            return RedirectToAction("ReadKPIs", new { id = Session["ID"]});
         }
 
         public ActionResult ReadKPIs(int id)

@@ -249,7 +249,6 @@ namespace ORA_Data.DAL
                                 _kpi.SprintId = (Int64)reader["Sprint_ID"];
                                 _kpi.StoryId = (Int64)reader["Story_ID"];
                                 _kpi.EmployeeId = (Int64)reader["Employee_ID"];
-
                                 kpiList.Add(_kpi);
                             }
                         }
@@ -302,7 +301,6 @@ namespace ORA_Data.DAL
                     cmd.Parameters.AddWithValue("@Collaboration", _kpi.Collaboration);
                     cmd.Parameters.AddWithValue("@Start_Date", _kpi.Start_Date);
                     cmd.Parameters.AddWithValue("@End_Date", _kpi.End_Date);
-
                     SqlConnect.Connection.Open();
                     cmd.ExecuteNonQuery();
                     SqlConnect.Connection.Close();
