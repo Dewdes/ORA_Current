@@ -42,7 +42,7 @@
 @using (Html.BeginForm("CreateKPI","KPI",FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @*<div class="container">*@
             <div class="row">
                 <section>
