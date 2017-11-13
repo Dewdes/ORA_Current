@@ -129,16 +129,15 @@ namespace ORA.Controllers
 
         public ActionResult DeleteKPI(string id)
         {
-            KPIVM kpi = new KPIVM();
-            kpi = Mapper.Map<KPIVM>(KPI_DAL.ReadKPIById(id));
-            return View(kpi);
-        }
-
-        [HttpPost]
-        public ActionResult DeleteKPI(KPIVM kpi)
-        {
-            KPI_DAL.DeleteKPI(Mapper.Map<KPIDM>(kpi));
-            return View(kpi);
+            if ((string)Session["Role"] == "Manager" || (string)Session["Role"] == "Director" || (string)Session["Role"] == "Team Lead")
+            {
+                KPI_DAL.DeleteKPI(Mapper.Map<KPIDM>(KPI_DAL.ReadKPIById(id)));
+                return RedirectToAction("ReadKPIs", "KPI", new { id = (long)Session["ID"] });
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home", new { area = "Default" });
+            }
         }
     }
 }
