@@ -101,7 +101,7 @@
                                         <div class="form-group">
                                             @Html.LabelFor(model => model.EmployeeID, htmlAttributes: new { @class = "control-label col-md-2" })
                                             <div class="col-md-10">
-                                                @Html.DropDownListFor(model => model.EmployeeID, new SelectList(Model.EmployeeList, "EmployeeId", "EmployeeName"), "Select Employee", htmlAttributes: new { @class="form-control"})
+                                                @Html.DropDownListFor(model => model.EmployeeID, new SelectList(Model.EmployeeList, "EmployeeId", "EmployeeName"), "Select Employee", htmlAttributes: new { @class="form-control", @required="required"})
                                                 @Html.ValidationMessageFor(model => model.EmployeeID, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
@@ -125,7 +125,7 @@
                                                         {
                                                             <div class="radio-inline" title="@info.Name: @info.Desc">
                                                                 <label>
-                                                                    @Html.RadioButtonFor(model => model.TDProblemSolving, item, new { required = "required" })
+                                                                    @Html.RadioButtonFor(model => model.TDProblemSolving, item, new { @required = "required" })
                                                                     @item
                                                                 </label>
                                                             </div>
@@ -133,7 +133,7 @@
                                                     }
                                                 }
                                                 @*@Html.EditorFor(model => model.TDProblemSolving, new { htmlAttributes = new { @class = "form-control" } })*@
-                                                @*@Html.ValidationMessageFor(model => model.TDProblemSolving, "", new { @class = "text-danger" })*@
+                                                @Html.ValidationMessageFor(model => model.TDProblemSolving, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
 
@@ -148,7 +148,7 @@
                                                         {
                                                             <div class="radio-inline" title="@info.Name: @info.Desc">
                                                                 <label>
-                                                                    @Html.RadioButtonFor(model => model.TDQualityOfWork, item, new { required = "required" })
+                                                                    @Html.RadioButtonFor(model => model.TDQualityOfWork, item, new { @required = "required" })
                                                                     @item
                                                                 </label>
                                                             </div>
@@ -668,7 +668,7 @@
                                             </div>*@
                                     </div>
                                 </div>
-
+                                
                                 <div class="tab-pane" role="tabpanel" id="complete">
                                     <h3>Complete</h3>
                                     <p>You have successfully completed all steps.</p>
