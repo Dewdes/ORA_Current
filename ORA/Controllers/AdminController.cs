@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using ORA.Models;
 using ORA_Data.DAL;
 using AutoMapper;
+using Kendo.Mvc;
 
 namespace ORA.Controllers
 {
@@ -15,6 +16,12 @@ namespace ORA.Controllers
 
         public ActionResult AverageAssessmentCharts(AssessmentVM assessment)
         {
+            return View();
+        }
+
+        public ActionResult TestKendo()
+        {
+           
             return View();
         }
     }

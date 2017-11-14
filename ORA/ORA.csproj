@@ -668,9 +668,7 @@
     <Content Include="Views\Resume\CreateResumeWorkHistory.cshtml" />
     <Content Include="Views\Resume\CreateResumeEducation.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>
