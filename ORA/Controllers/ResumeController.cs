@@ -43,7 +43,8 @@ namespace ORA.Controllers
         {
             ResumeVM resume = new ResumeVM();
             resume.ResumeID = ResumeDAL.ReadResumeId((long)Session["ID"]);
-            return View(Mapper.Map<EducationVM>(ResumeDAL.GetEducationsByResumeID(resume.ResumeID)));
+            EducationVM education = Mapper.Map<EducationVM>(ResumeDAL.GetEducationsByResumeID(resume.ResumeID));
+            return View(education);
         }
 
         [HttpPost]
@@ -52,20 +53,36 @@ namespace ORA.Controllers
             ResumeVM resume = new ResumeVM();
             resume.ResumeID = ResumeDAL.ReadResumeId((long)Session["ID"]);
             ResumeDAL.UpdateEducation(Mapper.Map<EducationDM>(education), resume.ResumeID);
-            return View();
+            return View(education);
         }
 
         public ActionResult CreateResumeEducation()
         {
-            ResumeVM resume = new ResumeVM();
-            return View(resume);
+            EducationVM education = new EducationVM();
+            return View(education);
         }
 
         [HttpPost]
-        public ActionResult CreateResumeEducation(ResumeVM resume)
+        public ActionResult CreateResumeEducation(EducationVM education)
         {
+            ResumeVM resume = new ResumeVM();
             resume.ResumeID = ResumeDAL.ReadResumeId((long)Session["ID"]);
             ResumeDAL.CreateEducation(Mapper.Map<EducationDM>(resume.Education), resume.ResumeID);
+            return View();
+        }
+
+        public ActionResult CreateResumeWorkHistory()
+        {
+            WorkHistoryVM workHistory = new WorkHistoryVM();
+            return View(workHistory);
+        }
+
+        [HttpPost]
+        public ActionResult CreateResumeWorkHistory(WorkHistoryVM workHistory)
+        {
+            ResumeVM resume = new ResumeVM();
+            resume.ResumeID = ResumeDAL.ReadResumeId((long) Session["ID"]);
+            ResumeDAL.CreateWorkHistory(Mapper.Map<WorkHistoryDM>(resume.WorkHistory), resume.ResumeID);
             return View();
         }
     }

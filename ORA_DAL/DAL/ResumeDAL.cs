@@ -130,7 +130,7 @@ namespace ORA_Data.DAL
         /// Uses the UPDATE_WORK_HISTORY stored procedure
         /// </summary>
         /// <param name="_workHistory"></param>
-        public static void CreateWorkHistory(WorkHistoryDM _workHistory)
+        public static void CreateWorkHistory(WorkHistoryDM _workHistory, long resumeID)
         {
             try
             {
