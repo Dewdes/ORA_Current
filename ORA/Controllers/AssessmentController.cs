@@ -180,7 +180,7 @@ namespace ORA.Controllers
             assessment.ModifiedBy = Session["Email"].ToString();
             assessment.Modified = DateTime.Now;
             AssessmentDAL.UpdateAssessment(Mapper.Map<AssessmentDM>(assessment));
-            return View(assessment);
+            return RedirectToAction("ReadAssessments", new { id = Session["ID"] });
         }
 
         public ActionResult DeleteAssessment(int id)
