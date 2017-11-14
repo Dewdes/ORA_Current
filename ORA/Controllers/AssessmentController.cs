@@ -164,10 +164,12 @@ namespace ORA.Controllers
             return View(list);
         }
 
+        [HttpGet]
         public ActionResult UpdateAssessment(int id)
         {
             AssessmentVM assessment = new AssessmentVM();
             assessment = Mapper.Map<AssessmentVM>(AssessmentDAL.ReadAssessmentByID(id));
+            assessment.AssessmentId = id;
             assessment.Descriptions = Mapper.Map<List<DescriptionVM>>(AssessmentDAL.ReadAssessDescriptions());
             assessment.EmployeeList = Mapper.Map<List<EmployeeVM>>(EmployeeDAL.ReadEmployees());
 
