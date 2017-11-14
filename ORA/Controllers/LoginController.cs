@@ -80,7 +80,7 @@ namespace ORA.Controllers
                     {
                         if (Session["Role"].ToString().ToUpper().Contains("ADMIN") || Session["Role"].ToString().ToUpper().Contains("DIRECTOR"))
                         {
-                            return RedirectToAction("AdminDashboard", "Home", new { area = "Default" });
+                            return RedirectToAction("AdminDashboard", "Admin", new { area = "Default" });
                         }
                         else
                         {
