@@ -3463,6 +3463,13 @@
       <Project>{52b20d0b-5c4c-4874-844e-33d28cf421a6}</Project>
       <Name>ORA_Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ORA_Logic\ORA_Logic.csproj">
+      <Project>{c18e571e-bf23-4db7-a4c1-0be748726f2b}</Project>
+      <Name>ORA_Logic</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
