@@ -101,14 +101,15 @@ namespace ORA.Controllers
             return View(kpis);
         }
 
-        public ActionResult ReadKPIByID(string id)
+        public ActionResult ReadKPIByID(int id)
         {
             KPIVM kpi = Mapper.Map<KPIVM>(KPI_DAL.ReadKPIById(id));
             kpi.Employee = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById(kpi.EmployeeId));
             return View(kpi);
         }
 
-        public ActionResult UpdateKPI(string id)
+        [HttpGet]
+        public ActionResult UpdateKPI(int id)
         {
             KPIVM kpi = new KPIVM();
             kpi = Mapper.Map<KPIVM>(KPI_DAL.ReadKPIById(id));
@@ -123,11 +124,12 @@ namespace ORA.Controllers
         [HttpPost]
         public ActionResult UpdateKPI(KPIVM kpi)
         {
+            kpi.Modified = DateTime.Now;
             KPI_DAL.UpdateKPI(Mapper.Map<KPIDM>(kpi));
-            return View(kpi);
+            return RedirectToAction("ReadKPIs", new { id = Session["ID"] });
         }
 
-        public ActionResult DeleteKPI(string id)
+        public ActionResult DeleteKPI(int id)
         {
             if ((string)Session["Role"] == "Manager" || (string)Session["Role"] == "Director" || (string)Session["Role"] == "Team Lead")
             {

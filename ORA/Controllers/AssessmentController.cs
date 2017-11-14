@@ -167,13 +167,20 @@ namespace ORA.Controllers
         [HttpGet]
         public ActionResult UpdateAssessment(int id)
         {
-            AssessmentVM assessment = new AssessmentVM();
-            assessment = Mapper.Map<AssessmentVM>(AssessmentDAL.ReadAssessmentByID(id));
-            assessment.AssessmentId = id;
-            assessment.Descriptions = Mapper.Map<List<DescriptionVM>>(AssessmentDAL.ReadAssessDescriptions());
-            assessment.EmployeeList = Mapper.Map<List<EmployeeVM>>(EmployeeDAL.ReadEmployees());
+            if ((string)Session["Role"] == "Director" || (string)Session["Role"] == "Manager" || (string)Session["Role"] == "Team Lead")
+            {
+                AssessmentVM assessment = new AssessmentVM();
+                assessment = Mapper.Map<AssessmentVM>(AssessmentDAL.ReadAssessmentByID(id));
+                assessment.AssessmentId = id;
+                assessment.Descriptions = Mapper.Map<List<DescriptionVM>>(AssessmentDAL.ReadAssessDescriptions());
+                assessment.EmployeeList = Mapper.Map<List<EmployeeVM>>(EmployeeDAL.ReadEmployees());
 
-            return View(assessment);
+                return View(assessment);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home", new { area = "Default" });
+            }
         }
 
         [HttpPost]

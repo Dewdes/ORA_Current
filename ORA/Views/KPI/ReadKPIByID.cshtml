@@ -11,7 +11,7 @@
     <hr />
     <dl class="dl-horizontal">
 
-            @Html.HiddenFor(model => model.KPIID)
+        @Html.HiddenFor(model => model.KPIID)
 
         <dt>
             @Html.DisplayNameFor(model => model.CreateDate)
@@ -214,18 +214,19 @@
         </dd>
 
     </dl>
+    <p>
+        @Html.ActionLink("Edit", "UpdateKPI", "KPI", new { id = Model.KPIID }, htmlAttributes: new { @class = "btn btn-primary" }) |
+        @Html.ActionLink("Back To List", "ReadKPIs", "KPI", new { id = (long)Session["ID"] }, htmlAttributes: new { @class="btn btn"})
+    </p>
+
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
 
 <style>
-    dl{
+    dl {
         columns: 2;
     }
 
-    dd{
+    dd {
         break-before: avoid;
     }
 </style>
