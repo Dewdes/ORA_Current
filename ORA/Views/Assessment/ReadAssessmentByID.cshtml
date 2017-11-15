@@ -87,7 +87,7 @@
 </div>
 <p>
 
-    @if ((string)Session["Role"] == "Team Lead" || (string)Session["Role"] == "Manager" || (string)Session["Role"] == "Director" && Model.EmployeeID != (long)Session["ID"])
+    @if ((string)Session["Role"] == "Team Lead" && Model.Employee.EmployeeId != (long)Session["ID"] || (string)Session["Role"] == "Manager" && Model.Employee.EmployeeId != (long)Session["ID"] || (string)Session["Role"] == "Director" && Model.EmployeeID != (long)Session["ID"])
     {
         @Html.ActionLink("Update", "UpdateAssessment", "Assessment", new { id = Model.AssessmentId }, htmlAttributes: new { @class = "btn btn-primary" })
     }

@@ -5,27 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*<h2>My Assessments</h2>*@
-
-@*<table>
-    @{var counter = 1; }
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Employee.EmployeeName)
-        </th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            @Html.HiddenFor(modelItem => item.AssessmentId)
-            <td>
-                @Html.ActionLink(item.Employee.EmployeeName, "ReadAssessmentByID", "Assessment", new { id = item.AssessmentId }, new { })
-            </td>
-            @Html.HiddenFor(modelItem => item.EmployeeID)
-        </tr>
-    }
-</table>*@
-
 
 <script src="~/Scripts/SearchEmployeeTable.js"></script>
 <link href="~/Content/SearchBarEmployee.css" rel="stylesheet" />
@@ -42,30 +21,35 @@
         <input class="form-control" type="text" id="SearchInput" onkeyup="SearchEmployeeFunction()" placeholder="Search for Employees..">
 
         <p></p>
-        <table id="EmployeeTable">
-            <tr>
-                <th>
-                    Employee Name
-                </th>
-                <th>Assessment Date</th>
-            </tr>
-            @foreach (var item in Model)
-            {
+        <table class="table" id="EmployeeTable">
+           
                 <tr>
-                    @Html.HiddenFor(modelItem => item.AssessmentId)
-                    <td>
-                        <span class="glyphicon glyphicon-user"></span> @Html.ActionLink(item.Employee.EmployeeName, "ReadAssessmentByID", "Assessment", new { id = item.AssessmentId }, new { })
-                    </td>
-                    <td>
-                        <span class="glyphicon glyphicon-calendar"></span> @Html.ActionLink(item.Created.Date.ToShortDateString(), "ReadAssessmentByID", "Assessment", new { id = item.AssessmentId }, new { })
-                    </td>
-                    @Html.HiddenFor(modelItem => item.EmployeeID)
+                    <th>
+                        Employee Name
+                    </th>
+                    <th>Assessment Date</th>
                 </tr>
-            }
+         
+            <tbody id="tableBody">
+                @foreach (var item in Model)
+                 {
+                    <tr>
+                        @Html.HiddenFor(modelItem => item.AssessmentId)
+                        <td>
+                            <span class="glyphicon glyphicon-user"></span> @Html.ActionLink(item.Employee.EmployeeName, "ReadAssessmentByID", "Assessment", new { id = item.AssessmentId }, new { })
+                        </td>
+                        <td>
+                            <span class="glyphicon glyphicon-calendar"></span> @Html.DisplayFor(modelItem => item.DateCreatedFor) @*@Html.ActionLink(item.Created.Date.ToShortDateString(), "ReadAssessmentByID", "Assessment", new { id = item.AssessmentId }, new { })*@
+                        </td>
+                        @Html.HiddenFor(modelItem => item.EmployeeID)
+                    </tr>
+                 }
+            </tbody>
         </table>
     </div>
     <div class="panel-footer"></div>
 </div>
+
 
 <style>
     .panel-heading {
@@ -106,6 +90,8 @@
     #EmployeeTable th {
         font-size: 20px;
         font-weight: 500;
+        color:black;
+        font-style: normal;
     }
 </style>
 
