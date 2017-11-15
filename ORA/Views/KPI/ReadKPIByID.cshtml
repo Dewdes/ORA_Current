@@ -5,221 +5,235 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Html.DisplayFor(model => model.Employee.EmployeeFirstName) @Html.DisplayFor(model => model.Employee.EmployeeFirstName)</h2>
 
-<div>
-    <hr />
-    <dl class="dl-horizontal">
+<div class="panel">
+    <div class="panel-heading">
+        <h2>@Html.DisplayFor(model => model.Employee.EmployeeFirstName) @Html.DisplayFor(model => model.Employee.EmployeeFirstName)</h2>
+    </div>
+    <div class="panel-body">
 
-        @Html.HiddenFor(model => model.KPIID)
+        <dl class="dl-horizontal">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CreateDate)
-        </dt>
+            @Html.HiddenFor(model => model.KPIID)
 
-        <dd>
-            @Html.DisplayFor(model => model.CreateDate)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Points)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CreateDate)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Points)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Points)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TCCreated)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Points)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.TCCreated)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.TCCreated)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TCExecuted)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TCCreated)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.TCExecuted)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.TCExecuted)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TCFailed)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TCExecuted)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.TCFailed)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.TCFailed)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TCPassed)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TCFailed)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.TCPassed)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.TCPassed)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TCBlocked)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TCPassed)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.TCBlocked)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.TCBlocked)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DefectsFound)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TCBlocked)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DefectsFound)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DefectsFound)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DefectsFixed)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DefectsFound)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DefectsFixed)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DefectsFixed)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DefectsAccepted)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DefectsFixed)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DefectsAccepted)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DefectsAccepted)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DefectsRejected)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DefectsAccepted)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DefectsRejected)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DefectsRejected)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DefectsDeferred)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DefectsRejected)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DefectsDeferred)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DefectsDeferred)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CriticalDefects)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DefectsDeferred)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.CriticalDefects)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CriticalDefects)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TestHrsPlanned)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CriticalDefects)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.TestHrsPlanned)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.TestHrsPlanned)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TestHrsActual)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TestHrsPlanned)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.TestHrsActual)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.TestHrsActual)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.BugsFoundProduction)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TestHrsActual)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.BugsFoundProduction)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.BugsFoundProduction)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TotalHrsFixingBugs)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.BugsFoundProduction)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.TotalHrsFixingBugs)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.TotalHrsFixingBugs)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Velocity)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TotalHrsFixingBugs)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Velocity)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Velocity)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Collaboration)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Velocity)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Collaboration)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Collaboration)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Start_Date)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Collaboration)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Start_Date)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Start_Date)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.End_Date)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Start_Date)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.End_Date)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.End_Date)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AssignmentId)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.End_Date)
+            </dd>
 
-        <dd>
-            @Html.ActionLink("Assignment", "ReadAssignmentByID", "Assignment", new { id = Model.AssignmentId }, new { })
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.AssignmentId)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ProjectId)
-        </dt>
+            <dd>
+                @Html.ActionLink("Assignment", "ReadAssignmentByID", "Assignment", new { id = Model.AssignmentId }, new { })
+            </dd>
 
-        <dd>
-            @Html.ActionLink("Project", "ReadProjectByID", "Project", new { id = Model.ProjectId }, new { })
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ProjectId)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SprintId)
-        </dt>
+            <dd>
+                @Html.ActionLink("Project", "ReadProjectByID", "Project", new { id = Model.ProjectId }, new { })
+            </dd>
 
-        <dd>
-            @Html.ActionLink("Sprint", "ReadSprintByID", "Sprint", new { id = Model.SprintId }, new { })
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.SprintId)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.StoryId)
-        </dt>
+            <dd>
+                @Html.ActionLink("Sprint", "ReadSprintByID", "Sprint", new { id = Model.SprintId }, new { })
+            </dd>
 
-        <dd>
-            @Html.ActionLink("Story", "ReadStoryByID", "Story", new { id = Model.StoryId }, new { })
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.StoryId)
+            </dt>
 
-    </dl>
-    <p>
-        @Html.ActionLink("Edit", "UpdateKPI", "KPI", new { id = Model.KPIID }, htmlAttributes: new { @class = "btn btn-primary" }) |
-        @Html.ActionLink("Back To List", "ReadKPIs", "KPI", new { id = (long)Session["ID"] }, htmlAttributes: new { @class="btn btn"})
-    </p>
+            <dd>
+                @Html.ActionLink("Story", "ReadStoryByID", "Story", new { id = Model.StoryId }, new { })
+            </dd>
 
+        </dl>
+    </div>
+    <div class="panel-footer"></div>
 </div>
+<p>
+    @if ((string)Session["Role"] == "Team Lead" || (string)Session["Role"] == "Manager" || (string)Session["Role"] == "Director" && Model.EmployeeId != (long)Session["ID"])
+    {
+        @Html.ActionLink("Edit", "UpdateKPI", "KPI", new { id = Model.KPIID }, htmlAttributes: new { @class = "btn btn-primary" })
+    }
+    @if ((string)Session["Role"] == "Team Lead" || (string)Session["Role"] == "Manager" || (string)Session["Role"] == "Director")
+    {
+        @Html.ActionLink("Back To List", "ReadKPIs", "KPI", new { id = (long)Session["ID"] }, htmlAttributes: new { @class = "btn btn-danger" })
+    }
+    else
+    {
+        @Html.ActionLink("Back To List", "ReadMyKPIs", "KPI", new { id = (long)Session["ID"] }, htmlAttributes: new { @class = "btn btn-danger" })
+    }
+</p>
 
 <style>
     dl {
@@ -228,5 +242,20 @@
 
     dd {
         break-before: avoid;
+        color: #2d7788;
+    }
+
+    .panel-heading {
+        border-color: #dddddd;
+        background-color: #f5f5f5;
+        color: #2d7788;
+    }
+
+    .panel {
+        border-color: lightgray;
+    }
+
+    .panel-footer {
+        border-color: lightgray;
     }
 </style>

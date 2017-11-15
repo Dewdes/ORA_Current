@@ -81,14 +81,29 @@ namespace ORA.Controllers
                 EmployeeVM lead = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById(id));
                 foreach (KPIVM assess in list)
                 {
-                    if (assess.Employee.TeamId == lead.TeamId && assess.Employee.EmployeeId != lead.EmployeeId)
+                    if (assess.AssignmentId == lead.AssignmentId && assess.Employee.EmployeeId != lead.EmployeeId)
                     {
                         teamList.Add(assess);
                     }
                 }
                 return View(teamList);
             }
-            return View(list);
+            else if ((string)Session["Role"] == "Manager")
+            {
+                EmployeeVM manager = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById(id));
+                foreach (KPIVM kpi in list)
+                {
+                    if (kpi.AssignmentId == manager.AssignmentId && kpi.Employee.EmployeeId != manager.EmployeeId)
+                    {
+                        teamList.Add(kpi);
+                    }
+                }
+                return View(teamList);
+            }
+            else
+            {
+                return View(list);
+            }
         }
 
         public ActionResult ReadMyKPIs(int id)
@@ -111,14 +126,21 @@ namespace ORA.Controllers
         [HttpGet]
         public ActionResult UpdateKPI(int id)
         {
-            KPIVM kpi = new KPIVM();
-            kpi = Mapper.Map<KPIVM>(KPI_DAL.ReadKPIById(id));
-            kpi.Employee = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById(kpi.EmployeeId));
-            kpi.Stories = Mapper.Map<List<StoryVM>>(StoryDAL.ReadStorys());
-            kpi.Projects = Mapper.Map<List<ProjectVM>>(ProjectDAL.ReadProjects());
-            kpi.Sprints = Mapper.Map<List<SprintVM>>(SprintDAL.ReadSprints());
-            kpi.Assignments = Mapper.Map<List<AssignmentVM>>(AssignmentDAL.ReadAssignments());
-            return View(kpi);
+            if ((string)Session["Role"] == "Director" || (string)Session["Role"] == "Manager" || (string)Session["Role"] == "Team Lead")
+            {
+                KPIVM kpi = new KPIVM();
+                kpi = Mapper.Map<KPIVM>(KPI_DAL.ReadKPIById(id));
+                kpi.Employee = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById(kpi.EmployeeId));
+                kpi.Stories = Mapper.Map<List<StoryVM>>(StoryDAL.ReadStorys());
+                kpi.Projects = Mapper.Map<List<ProjectVM>>(ProjectDAL.ReadProjects());
+                kpi.Sprints = Mapper.Map<List<SprintVM>>(SprintDAL.ReadSprints());
+                kpi.Assignments = Mapper.Map<List<AssignmentVM>>(AssignmentDAL.ReadAssignments());
+                return View(kpi);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home", new { area = "Default" });
+            }
         }
 
         [HttpPost]

@@ -122,7 +122,7 @@ namespace ORA.Controllers
                 EmployeeVM lead = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById(id));
                 foreach (AssessmentVM assess in list)
                 {
-                    if (assess.Employee.TeamId == lead.TeamId && assess.Employee.EmployeeId != lead.EmployeeId)
+                    if (assess.Employee.TeamId == lead.TeamId && assess.Employee.EmployeeId != lead.EmployeeId && assess.Employee.RoleId != 3)
                     {
                         teamList.Add(assess);
                     }
