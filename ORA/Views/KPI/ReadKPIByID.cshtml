@@ -218,7 +218,9 @@
 
         </dl>
     </div>
-    <div class="panel-footer"></div>
+    <div class="panel-footer">
+        <p>Last Modifited on: @Html.DisplayFor(model => model.Modified)</p>
+    </div>
 </div>
 <p>
     @if ((string)Session["Role"] == "Team Lead" || (string)Session["Role"] == "Manager" || (string)Session["Role"] == "Director" && Model.EmployeeId != (long)Session["ID"])
