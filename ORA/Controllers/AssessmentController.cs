@@ -127,6 +127,7 @@ namespace ORA.Controllers
                         teamList.Add(assess);
                     }
                 }
+                teamList = teamList.OrderBy(x => x.Employee.EmployeeFirstName).ToList();
                 return View(teamList);
             }
             if (Session["Role"].ToString() == "Manager")

@@ -11,7 +11,7 @@
         <h2>@Html.DisplayFor(model => model.Employee.EmployeeFirstName) @Html.DisplayFor(model => model.Employee.EmployeeFirstName)</h2>
     </div>
     <div class="panel-body">
-
+        <h4>Created by: @Html.DisplayFor(model => model.CreatedBy)</h4>
         <dl class="dl-horizontal">
 
             @Html.HiddenFor(model => model.KPIID)
@@ -219,7 +219,9 @@
         </dl>
     </div>
     <div class="panel-footer">
-        <p>Last Modifited on: @Html.DisplayFor(model => model.Modified)</p>
+        <p><strong>Last Modifited on:</strong> @Html.DisplayFor(model => model.Modified) 
+        <br />
+        <strong>By:</strong> @Html.DisplayFor(model => model.ModifiedBy)</p>
     </div>
 </div>
 <p>

@@ -62,7 +62,9 @@ namespace ORA.Controllers
         public ActionResult CreateKPI(KPIVM kpi)
         {
             kpi.CreateDate = DateTime.Now;
+            kpi.CreatedBy = Session["Email"].ToString();
             kpi.Modified = DateTime.Now;
+            kpi.ModifiedBy = Session["Email"].ToString();
             KPI_DAL.CreateKPI(Mapper.Map<KPIDM>(kpi));
             return RedirectToAction("ReadKPIs", new { id = Session["ID"]});
         }
@@ -147,6 +149,7 @@ namespace ORA.Controllers
         public ActionResult UpdateKPI(KPIVM kpi)
         {
             kpi.Modified = DateTime.Now;
+            kpi.ModifiedBy = Session["Email"].ToString();
             KPI_DAL.UpdateKPI(Mapper.Map<KPIDM>(kpi));
             return RedirectToAction("ReadKPIs", new { id = Session["ID"] });
         }

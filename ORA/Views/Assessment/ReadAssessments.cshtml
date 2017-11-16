@@ -47,6 +47,14 @@
             <tbody id="tableBody">
                 @foreach (var item in Model)
                 {
+                    if (Model.ToList().Count <= 0)
+                    {
+                        <tr>
+                            <td>There are no assessments to show.</td>
+                        </tr>
+                    }
+                    else
+                    {
                     <tr>
                         @Html.HiddenFor(modelItem => item.AssessmentId)
                         <td>
@@ -63,6 +71,7 @@
                         }
                         @Html.HiddenFor(modelItem => item.EmployeeID)
                     </tr>
+                    }
                 }
             </tbody>
         </table>
@@ -116,8 +125,8 @@
     }
 
     #PanelHeadPic {
-        width: 40px;
-        height: 50px;
+        width: 30px;
+        height: 40px;
         display: inline;
         margin-top: 10px;
     }
