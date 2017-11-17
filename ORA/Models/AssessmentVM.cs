@@ -105,6 +105,8 @@ namespace ORA.Models
         [DisplayName("Comments")]
         public string MIComments { get; set; }
 
+        public int AssessmentScore { get; set; }
+
         public int AssignmentID { get; set; }
 
         public List<AssignmentVM> Assignments { get; set; }

@@ -2,6 +2,8 @@
 using ORA.Models;
 using ORA_Data.DAL;
 using ORA_Data.Model;
+using ORA_Logic;
+using ORA_Logic.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -94,6 +96,9 @@ namespace ORA.Controllers
         {
             if (ModelState.IsValid)
             {
+                AssessmentBM assessmentBM = Mapper.Map<AssessmentVM, AssessmentBM>(assessment);
+                AssessmentLogic.CalculateAssessmentScore(assessmentBM);
+                assessment = Mapper.Map<AssessmentBM, AssessmentVM>(assessmentBM);
                 assessment.CreatedBy = Session["Email"].ToString();
                 assessment.ModifiedBy = Session["Email"].ToString();
                 assessment.Created = DateTime.Now;
@@ -141,6 +146,7 @@ namespace ORA.Controllers
                         teamList.Add(assess);
                     }
                 }
+                teamList = teamList.OrderBy(x => x.Employee.EmployeeFirstName).ToList();
                 return View(teamList);
             }
             return View(list);
@@ -187,6 +193,9 @@ namespace ORA.Controllers
         [HttpPost]
         public ActionResult UpdateAssessment(AssessmentVM assessment)
         {
+            AssessmentBM assessmentBM = Mapper.Map<AssessmentVM, AssessmentBM>(assessment);
+            AssessmentLogic.CalculateAssessmentScore(assessmentBM);
+            assessment = Mapper.Map<AssessmentBM, AssessmentVM>(assessmentBM);
             assessment.ModifiedBy = Session["Email"].ToString();
             assessment.Modified = DateTime.Now;
             AssessmentDAL.UpdateAssessment(Mapper.Map<AssessmentDM>(assessment));

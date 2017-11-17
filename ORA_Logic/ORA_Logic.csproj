@@ -293,6 +293,7 @@
   <ItemGroup>
     <Compile Include="AssessmentLogic\AssessmentAverages.cs" />
     <Compile Include="KPILogic\KPIAverages.cs" />
+    <Compile Include="Models\AssessmentBM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

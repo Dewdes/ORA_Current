@@ -69,6 +69,7 @@ namespace ORA_Data.DAL
                     cmd.Parameters.AddWithValue("@Modified", _assessment.Modified.ToShortDateString());
                     cmd.Parameters.AddWithValue("@Modified_By", _assessment.ModifiedBy);
                     cmd.Parameters.AddWithValue("@DateCreatedFor", _assessment.DateCreatedFor.ToShortDateString());
+                    cmd.Parameters.AddWithValue("@AssessmentScore", _assessment.AssessmentScore);
 
                     SqlConnect.Connection.Open();
                     cmd.ExecuteNonQuery();
@@ -160,6 +161,7 @@ namespace ORA_Data.DAL
                                 _assessment.CreatedBy = (string)reader["Created_By"];
                                 _assessment.Modified = (DateTime)reader["Modified"];
                                 _assessment.ModifiedBy = (string)reader["Modified_By"];
+                                _assessment.AssessmentScore = (int)reader["AssessmentScore"];
 
                                 assessmentList.Add(_assessment);
                             }
@@ -245,6 +247,7 @@ namespace ORA_Data.DAL
                                 _assessment.Modified = (DateTime)reader["Modified"];
                                 _assessment.ModifiedBy = (string)reader["Modified_By"];
                                 _assessment.DateCreatedFor = (DateTime)reader["DateCreatedFor"];
+                                _assessment.AssessmentScore = (int)reader["AssessmentScore"];
 
                             }
                         }
@@ -330,6 +333,7 @@ namespace ORA_Data.DAL
                                 _assessment.Modified = (DateTime)reader["Modified"];
                                 _assessment.ModifiedBy = (string)reader["Modified_By"];
                                 _assessment.DateCreatedFor = (DateTime)reader["DateCreatedFor"];
+                                _assessment.AssessmentScore = (int)reader["AssessmentScore"];
 
                                 assessmentList.Add(_assessment);
                             }
@@ -445,6 +449,7 @@ namespace ORA_Data.DAL
                     cmd.Parameters.AddWithValue("@Modified", _assessment.Modified.ToShortDateString());
                     cmd.Parameters.AddWithValue("@Modified_By", _assessment.ModifiedBy);
                     cmd.Parameters.AddWithValue("@DateCreatedFor", _assessment.DateCreatedFor);
+                    cmd.Parameters.AddWithValue("@AssessmentScore", _assessment.AssessmentScore);
                     SqlConnect.Connection.Open();
                     cmd.ExecuteNonQuery();
                     SqlConnect.Connection.Close();
