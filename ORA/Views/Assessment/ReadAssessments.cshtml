@@ -16,8 +16,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<head>
 <script src="~/Scripts/SearchEmployeeTable.js"></script>
 <link href="~/Content/SearchBarEmployee.css" rel="stylesheet" />
+
+</head>
 
 <div class="panel">
     <div class="panel-heading">
@@ -44,28 +47,41 @@
                     <th></th>
                 }
             </tr>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    @Html.HiddenFor(modelItem => item.AssessmentId)
-                    <td>
-                        <span class="glyphicon glyphicon-user"></span> @Html.ActionLink(item.Employee.EmployeeName, "ReadAssessmentByID", "Assessment", new { id = item.AssessmentId }, htmlAttributes: new { style = "color: #2d7788;" })
-                    </td>
-                    <td>
-                        <span class="glyphicon glyphicon-calendar"></span> @Html.ActionLink(item.DateCreatedFor.Date.ToShortDateString(), "ReadAssessmentByID", "Assessment", new { id = item.AssessmentId }, htmlAttributes: new { style = "color: #2d7788;" })
-                    </td>
-                    @if ((string)Session["Role"] == "Director" || (string)Session["Role"] == "Manager" || (string)Session["Role"] == "Team Lead")
+            <tbody id="tableBody">
+                @foreach (var item in Model)
+                {
+                    if (Model.ToList().Count <= 0)
                     {
-                        <td>
-                            <span>@Html.ActionLink(" ", "DeleteAssessment", "Assessment", new { id = item.AssessmentId }, htmlAttributes: new { @class = "glyphicon glyphicon-trash", style = "color:red;", @onclick = "return confirm('Are you sure you want to delete this Assessment?');" })</span>
-                        </td>
+                        <tr>
+                            <td>There are no assessments to show.</td>
+                        </tr>
                     }
-                    @Html.HiddenFor(modelItem => item.EmployeeID)
-                </tr>
-            }
+                    else
+                    {
+                    <tr>
+                        @Html.HiddenFor(modelItem => item.AssessmentId)
+                        <td>
+                            <span class="glyphicon glyphicon-user"></span> @Html.ActionLink(item.Employee.EmployeeName, "ReadAssessmentByID", "Assessment", new { id = item.AssessmentId }, htmlAttributes: new { style = "color: #2d7788;" })
+                        </td>
+                        <td>
+                            <span class="glyphicon glyphicon-calendar"></span> @Html.DisplayFor(modelItem => item.DateCreatedFor)
+                        </td>
+                        @if ((string)Session["Role"] == "Director" || (string)Session["Role"] == "Manager" || (string)Session["Role"] == "Team Lead")
+                        {
+                            <td>
+                                <span>@Html.ActionLink(" ", "DeleteAssessment", "Assessment", new { id = item.AssessmentId }, htmlAttributes: new { @class = "glyphicon glyphicon-trash", style = "color:red;", @onclick = "return confirm('Are you sure you want to delete this Assessment?');" })</span>
+                            </td>
+                        }
+                        @Html.HiddenFor(modelItem => item.EmployeeID)
+                    </tr>
+                    }
+                }
+            </tbody>
         </table>
     </div>
-    <div class="panel-footer"></div>
+    <div class="panel-footer">
+        
+    </div>
 </div>
 
 <style>
@@ -94,8 +110,8 @@
     }
 
     #PanelHeadPic {
-        width: 40px;
-        height: 50px;
+        width: 30px;
+        height: 40px;
         display: inline;
         margin-top: 10px;
     }
@@ -109,3 +125,7 @@
         font-weight: 500;
     }
 </style>
+
+
+
+

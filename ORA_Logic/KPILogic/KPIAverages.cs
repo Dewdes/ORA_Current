@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ORA_Logic.KPILogic
 {
-    class KPIAverages
+    public class KPIAverages
     {
     }
 }

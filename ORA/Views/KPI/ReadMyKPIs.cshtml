@@ -31,6 +31,14 @@
             </tr>
             @foreach (var item in Model)
             {
+                if (Model.ToList().Count <= 0)
+                {
+                    <tr>
+                        <td>No Results</td>
+                    </tr>
+                }
+                else
+                {
                 @Html.HiddenFor(modelItem => item.KPIID)
                 <tr>
                     <td>
@@ -41,6 +49,7 @@
                     </td>
                     @Html.HiddenFor(modelItem => item.EmployeeId)
                 </tr>
+                }
             }
         </table>
     </div>

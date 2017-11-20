@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace ORA_Data.Model
+namespace ORA_Logic.Models
 {
-    public class AssessmentDM
+    public class AssessmentBM
     {
         public long AssessmentId { get; set; }
 
@@ -71,14 +74,14 @@ namespace ORA_Data.Model
 
         public string ModifiedBy { get; set; }
 
-        public List<DescriptionDM> Descriptions { get; set; }
+        public List<DescriptionBM> Descriptions { get; set; }
 
     }
-    public class DescriptionDM
+    public class DescriptionBM
     {
-        public DescriptionDM() { }
+        public DescriptionBM() { }
 
-        public DescriptionDM(string assessName, int num, string name, string desc)
+        public DescriptionBM(string assessName, int num, string name, string desc)
         {
             AssessName = assessName;
             Number = num;
@@ -92,3 +95,4 @@ namespace ORA_Data.Model
         public string Desc { get; set; }
     }
 }
+

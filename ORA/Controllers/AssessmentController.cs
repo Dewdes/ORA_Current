@@ -2,6 +2,8 @@
 using ORA.Models;
 using ORA_Data.DAL;
 using ORA_Data.Model;
+using ORA_Logic;
+using ORA_Logic.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -94,6 +96,9 @@ namespace ORA.Controllers
         {
             if (ModelState.IsValid)
             {
+                AssessmentBM assessmentBM = Mapper.Map<AssessmentVM, AssessmentBM>(assessment);
+                AssessmentLogic.CalculateAssessmentScore(assessmentBM);
+                assessment = Mapper.Map<AssessmentBM, AssessmentVM>(assessmentBM);
                 assessment.CreatedBy = Session["Email"].ToString();
                 assessment.ModifiedBy = Session["Email"].ToString();
                 assessment.Created = DateTime.Now;
@@ -122,11 +127,12 @@ namespace ORA.Controllers
                 EmployeeVM lead = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById(id));
                 foreach (AssessmentVM assess in list)
                 {
-                    if (assess.Employee.TeamId == lead.TeamId && assess.Employee.EmployeeId != lead.EmployeeId)
+                    if (assess.Employee.TeamId == lead.TeamId && assess.Employee.EmployeeId != lead.EmployeeId && assess.Employee.RoleId != 3)
                     {
                         teamList.Add(assess);
                     }
                 }
+                teamList = teamList.OrderBy(x => x.Employee.EmployeeFirstName).ToList();
                 return View(teamList);
             }
             if (Session["Role"].ToString() == "Manager")
@@ -140,6 +146,7 @@ namespace ORA.Controllers
                         teamList.Add(assess);
                     }
                 }
+                teamList = teamList.OrderBy(x => x.Employee.EmployeeFirstName).ToList();
                 return View(teamList);
             }
             return View(list);
@@ -164,19 +171,31 @@ namespace ORA.Controllers
             return View(list);
         }
 
+        [HttpGet]
         public ActionResult UpdateAssessment(int id)
         {
-            AssessmentVM assessment = new AssessmentVM();
-            assessment.Descriptions = Mapper.Map<List<DescriptionVM>>(AssessmentDAL.ReadAssessDescriptions());
-            assessment.EmployeeList = Mapper.Map<List<EmployeeVM>>(EmployeeDAL.ReadEmployees());
-            assessment = Mapper.Map<AssessmentVM>(AssessmentDAL.ReadAssessmentByID(id));
+            if ((string)Session["Role"] == "Director" || (string)Session["Role"] == "Manager" || (string)Session["Role"] == "Team Lead")
+            {
+                AssessmentVM assessment = new AssessmentVM();
+                assessment = Mapper.Map<AssessmentVM>(AssessmentDAL.ReadAssessmentByID(id));
+                assessment.AssessmentId = id;
+                assessment.Descriptions = Mapper.Map<List<DescriptionVM>>(AssessmentDAL.ReadAssessDescriptions());
+                assessment.EmployeeList = Mapper.Map<List<EmployeeVM>>(EmployeeDAL.ReadEmployees());
 
-            return View(assessment);
+                return View(assessment);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home", new { area = "Default" });
+            }
         }
 
         [HttpPost]
         public ActionResult UpdateAssessment(AssessmentVM assessment)
         {
+            AssessmentBM assessmentBM = Mapper.Map<AssessmentVM, AssessmentBM>(assessment);
+            AssessmentLogic.CalculateAssessmentScore(assessmentBM);
+            assessment = Mapper.Map<AssessmentBM, AssessmentVM>(assessmentBM);
             assessment.ModifiedBy = Session["Email"].ToString();
             assessment.Modified = DateTime.Now;
             AssessmentDAL.UpdateAssessment(Mapper.Map<AssessmentDM>(assessment));

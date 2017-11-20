@@ -50,6 +50,9 @@ namespace ORA_Data.DAL
                     cmd.Parameters.AddWithValue("@Sprint_ID", _kpi.SprintId);
                     cmd.Parameters.AddWithValue("@Story_ID", _kpi.StoryId);
                     cmd.Parameters.AddWithValue("@Employee_ID", _kpi.EmployeeId);
+                    cmd.Parameters.AddWithValue("@Modified", _kpi.Modified);
+                    cmd.Parameters.AddWithValue("@Modified_By", _kpi.ModifiedBy);
+                    cmd.Parameters.AddWithValue("@Created_By", _kpi.CreatedBy);
 
                     SqlConnect.Connection.Open();
                     cmd.ExecuteNonQuery();
@@ -114,6 +117,9 @@ namespace ORA_Data.DAL
                                 _kpi.SprintId = (Int64)reader["Sprint_ID"];
                                 _kpi.StoryId = (Int64)reader["Story_ID"];
                                 _kpi.EmployeeId = (Int64)reader["Employee_ID"];
+                                _kpi.CreatedBy = (string)reader["Created_By"];
+                                _kpi.Modified = (DateTime)reader["Modified"];
+                                _kpi.ModifiedBy = (string)reader["Modified_By"];
 
                                 _kpiList.Add(_kpi);
                             }
@@ -139,7 +145,7 @@ namespace ORA_Data.DAL
         /// </summary>
         /// <param name="kpiId"></param>
         /// <returns></returns>
-        public static KPIDM ReadKPIById(string kpiId)
+        public static KPIDM ReadKPIById(long kpiId)
         {
             KPIDM _kpi = new KPIDM();
             try
@@ -182,6 +188,9 @@ namespace ORA_Data.DAL
                                 _kpi.SprintId = (Int64)reader["Sprint_ID"];
                                 _kpi.StoryId = (Int64)reader["Story_ID"];
                                 _kpi.EmployeeId = (Int64)reader["Employee_ID"];
+                                _kpi.CreatedBy = (string)reader["Created_By"];
+                                _kpi.Modified = (DateTime)reader["Modified"];
+                                _kpi.ModifiedBy = (string)reader["Modified_By"];
                             }
                         }
                     }
@@ -249,6 +258,10 @@ namespace ORA_Data.DAL
                                 _kpi.SprintId = (Int64)reader["Sprint_ID"];
                                 _kpi.StoryId = (Int64)reader["Story_ID"];
                                 _kpi.EmployeeId = (Int64)reader["Employee_ID"];
+                                _kpi.CreatedBy = (string)reader["Created_By"];
+                                _kpi.Modified = (DateTime)reader["Modified"];
+                                _kpi.ModifiedBy = (string)reader["Modified_By"];
+
                                 kpiList.Add(_kpi);
                             }
                         }
@@ -280,7 +293,7 @@ namespace ORA_Data.DAL
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@KPI_ID", _kpi.KPIID);
-                    cmd.Parameters.AddWithValue("@Create_Date", _kpi.CreateDate.ToShortDateString());
+                    cmd.Parameters.AddWithValue("@Create_Date", _kpi.CreateDate);
                     cmd.Parameters.AddWithValue("@Points", _kpi.Points);
                     cmd.Parameters.AddWithValue("@TC_Created", _kpi.TCCreated);
                     cmd.Parameters.AddWithValue("@TC_Executed", _kpi.TCExecuted);
@@ -301,6 +314,13 @@ namespace ORA_Data.DAL
                     cmd.Parameters.AddWithValue("@Collaboration", _kpi.Collaboration);
                     cmd.Parameters.AddWithValue("@Start_Date", _kpi.Start_Date);
                     cmd.Parameters.AddWithValue("@End_Date", _kpi.End_Date);
+                    cmd.Parameters.AddWithValue("@Assignment_ID", _kpi.AssignmentId);
+                    cmd.Parameters.AddWithValue("@Project_ID", _kpi.ProjectId);
+                    cmd.Parameters.AddWithValue("@Story_ID", _kpi.StoryId);
+                    cmd.Parameters.AddWithValue("@Sprint_ID", _kpi.SprintId);
+                    cmd.Parameters.AddWithValue("@Employee_ID", _kpi.EmployeeId);
+                    cmd.Parameters.AddWithValue("@Modified", _kpi.Modified);
+                    cmd.Parameters.AddWithValue("@Modified_By", _kpi.ModifiedBy);
                     SqlConnect.Connection.Open();
                     cmd.ExecuteNonQuery();
                     SqlConnect.Connection.Close();

@@ -105,12 +105,14 @@ namespace ORA.Models
         [DisplayName("Comments")]
         public string MIComments { get; set; }
 
+        public int AssessmentScore { get; set; }
+
         public int AssignmentID { get; set; }
 
         public List<AssignmentVM> Assignments { get; set; }
 
         [DisplayName("Assessed For")]
-        [DisplayFormat(DataFormatString = "{0:MMM-yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:MMMM-yyyy}")]
         [Required(ErrorMessage = "This is required.")]
         public DateTime DateCreatedFor { get; set; }
 
