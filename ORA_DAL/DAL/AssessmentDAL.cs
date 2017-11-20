@@ -19,7 +19,6 @@ namespace ORA_Data.DAL
         {
             try
             {
-                //Creating a way of adding new user information to my database 
                 using (SqlCommand cmd = new SqlCommand("CREATE_ASSESSMENT", SqlConnect.Connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;

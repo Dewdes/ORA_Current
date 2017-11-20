@@ -14,3 +14,17 @@ Level: CreateWorkHistory   Time: 11/13/2017 8:30:48 PM   Error: Object reference
 Level: CreateEducation   Time: 11/13/2017 8:35:08 PM   Error: Object reference not set to an instance of an object.
 Level: CreateEducation   Time: 11/13/2017 9:41:45 PM   Error: Object reference not set to an instance of an object.
 Level: CreateEducation   Time: 11/13/2017 9:42:42 PM   Error: Object reference not set to an instance of an object.
+Level: UpdateAssessment   Time: 11/14/2017 2:21:43 PM   Error: Procedure or function 'UPDATE_ASSESSMENT' expects parameter '@Created_By', which was not supplied.
+Level: ReadAssessments   Time: 11/20/2017 1:48:17 AM   Error: AssessmentScore
+Level: ReadAssessments   Time: 11/20/2017 1:50:14 AM   Error: AssessmentScore
+Level: ReadAssessments   Time: 11/20/2017 1:51:01 AM   Error: AssessmentScore
+Level: ReadAssessments   Time: 11/20/2017 1:57:28 AM   Error: AssessmentScore
+Level: ReadAssessments   Time: 11/20/2017 2:18:50 AM   Error: AssessmentScore
+Level: ReadAssessments   Time: 11/20/2017 2:18:58 AM   Error: AssessmentScore
+Level: ReadAssessments   Time: 11/20/2017 2:19:24 AM   Error: AssessmentScore
+Level: ReadAssessments   Time: 11/20/2017 2:20:20 AM   Error: AssessmentScore
+Level: ReadAssessments   Time: 11/20/2017 2:21:10 AM   Error: AssessmentScore
+Level: ReadAssessments   Time: 11/20/2017 2:21:15 AM   Error: AssessmentScore
+Level: ReadAssessments   Time: 11/20/2017 2:21:29 AM   Error: AssessmentScore
+Level: ReadAssessments   Time: 11/20/2017 2:21:54 AM   Error: AssessmentScore
+Level: ReadAssessments   Time: 11/20/2017 10:19:56 AM   Error: AssessmentScore

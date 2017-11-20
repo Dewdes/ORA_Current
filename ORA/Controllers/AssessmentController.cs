@@ -97,7 +97,7 @@ namespace ORA.Controllers
             if (ModelState.IsValid)
             {
                 AssessmentBM assessmentBM = Mapper.Map<AssessmentVM, AssessmentBM>(assessment);
-                AssessmentLogic.CalculateAssessmentScore(assessmentBM);
+                AssessmentFunctions.CalculateAssessmentScore(assessmentBM);
                 assessment = Mapper.Map<AssessmentBM, AssessmentVM>(assessmentBM);
                 assessment.CreatedBy = Session["Email"].ToString();
                 assessment.ModifiedBy = Session["Email"].ToString();
@@ -194,7 +194,7 @@ namespace ORA.Controllers
         public ActionResult UpdateAssessment(AssessmentVM assessment)
         {
             AssessmentBM assessmentBM = Mapper.Map<AssessmentVM, AssessmentBM>(assessment);
-            AssessmentLogic.CalculateAssessmentScore(assessmentBM);
+            AssessmentFunctions.CalculateAssessmentScore(assessmentBM);
             assessment = Mapper.Map<AssessmentBM, AssessmentVM>(assessmentBM);
             assessment.ModifiedBy = Session["Email"].ToString();
             assessment.Modified = DateTime.Now;

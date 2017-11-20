@@ -401,8 +401,6 @@
     <None Include="Content\kendo\2017.3.1026\kendo.uniform.min.css.map" />
     <None Include="Content\kendo\2017.3.1026\kendo.uniform.mobile.min.css.map" />
     <None Include="packages.config" />
-    <None Include="Scripts\jquery-3.2.1.min.map" />
-    <None Include="Scripts\jquery-3.2.1.slim.min.map" />
     <None Include="Scripts\kendo\2017.3.1026\cultures\kendo.culture.aa-DJ.min.js.map" />
     <None Include="Scripts\kendo\2017.3.1026\cultures\kendo.culture.aa-ER.min.js.map" />
     <None Include="Scripts\kendo\2017.3.1026\cultures\kendo.culture.aa-ET.min.js.map" />
@@ -1646,11 +1644,6 @@
     <Content Include="Content\kendo\2017.3.1026\Uniform\sprite_2x.png" />
     <Content Include="Content\kendo\2017.3.1026\Uniform\sprite_kpi.png" />
     <Content Include="Content\kendo\2017.3.1026\Uniform\sprite_kpi_2x.png" />
-    <Content Include="Scripts\jquery-3.2.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.2.1.js" />
-    <Content Include="Scripts\jquery-3.2.1.min.js" />
-    <Content Include="Scripts\jquery-3.2.1.slim.js" />
-    <Content Include="Scripts\jquery-3.2.1.slim.min.js" />
     <Content Include="Scripts\kendo\2017.3.1026\angular.min.js" />
     <Content Include="Scripts\kendo\2017.3.1026\cultures\kendo.culture.aa-DJ.min.js" />
     <Content Include="Scripts\kendo\2017.3.1026\cultures\kendo.culture.aa-ER.min.js" />
