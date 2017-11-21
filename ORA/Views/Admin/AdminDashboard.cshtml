@@ -1,0 +1,180 @@
+﻿@{
+    ViewBag.Title = "AdminDashboard";
+    //Layout = null;
+    ViewBag.About = false;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!doctype html>
+<html lang="en">
+<body>
+            @*<div class="content col-lg-12">*@
+                <div class="container-fluid col-lg-12">
+                    <div class="row col-lg-12">
+                            @Html.Action("AverageAssessmentCharts")
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card ">
+                                <div class="header">
+                                    <h4 class="title">2014 Sales</h4>
+                                    <p class="category">All products including Taxes</p>
+                                </div>
+                                <div class="content">
+                                    <div id="chartActivity" class="ct-chart"></div>
+                                    <div class="footer">
+                                        <div class="legend">
+                                            <i class="fa fa-circle text-info"></i> Tesla Model S
+                                            <i class="fa fa-circle text-danger"></i> BMW 5 Series
+                                        </div>
+                                        <hr>
+                                        <div class="stats">
+                                            <i class="fa fa-check"></i> Data information certified
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card ">
+                                <div class="header">
+                                    <h4 class="title">ORA Development Tasks</h4>
+                                    <p class="category">Backend development</p>
+                                </div>
+                                <div class="content">
+                                    <div class="table-full-width">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <label class="checkbox">
+                                                            <input type="checkbox" value="" data-toggle="checkbox">
+                                                        </label>
+                                                    </td>
+                                                    <td>Make this table editable dynamically</td>
+                                                    <td class="td-actions text-right">
+                                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
+                                                            <i class="fa fa-edit"></i>
+                                                        </button>
+                                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                            <i class="fa fa-times"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="checkbox">
+                                                            <input type="checkbox" value="false" data-toggle="checkbox" checked="">
+                                                        </label>
+                                                    </td>
+                                                    <td>Search By Functionality</td>
+                                                    <td class="td-actions text-right">
+                                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
+                                                            <i class="fa fa-edit"></i>
+                                                        </button>
+                                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                            <i class="fa fa-times"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="checkbox">
+                                                            <input type="checkbox" value="" data-toggle="checkbox" checked="">
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        Create Working Graphs
+                                                    </td>
+                                                    <td class="td-actions text-right">
+                                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
+                                                            <i class="fa fa-edit"></i>
+                                                        </button>
+                                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                            <i class="fa fa-times"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="checkbox">
+                                                            <input type="checkbox" value="" data-toggle="checkbox">
+                                                        </label>
+                                                    </td>
+                                                    <td>Date Range for assessments</td>
+                                                    <td class="td-actions text-right">
+                                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
+                                                            <i class="fa fa-edit"></i>
+                                                        </button>
+                                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                            <i class="fa fa-times"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="checkbox">
+                                                            <input type="checkbox" value="" data-toggle="checkbox">
+                                                        </label>
+                                                    </td>
+                                                    <td>Stuff</td>
+                                                    <td class="td-actions text-right">
+                                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
+                                                            <i class="fa fa-edit"></i>
+                                                        </button>
+                                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                            <i class="fa fa-times"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="checkbox">
+                                                            <input type="checkbox" value="" data-toggle="checkbox">
+                                                        </label>
+                                                    </td>
+                                                    <td>Stuff</td>
+                                                    <td class="td-actions text-right">
+                                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
+                                                            <i class="fa fa-edit"></i>
+                                                        </button>
+                                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                            <i class="fa fa-times"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="footer">
+                                        <hr>
+                                        <div class="stats">
+                                            <i class="fa fa-history"></i> Updated 3 minutes ago
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @*</div>*@
+
+</body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        demo.initChartist();
+
+        $.notify({
+            icon: 'pe-7s-gift',
+            message: "Welcome @Session["Name"].ToString().Split(' ')[0]."
+
+        }, {
+                type: 'info',
+                timer: 4000
+            });
+
+    });
+</script>
+

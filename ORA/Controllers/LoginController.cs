@@ -6,19 +6,13 @@ using AutoMapper;
 using ORA_Data.Model;
 using System.Configuration;
 using System.Collections.Generic;
-using System.Web.ModelBinding;
 using System.Web.Security;
 
 namespace ORA.Controllers
 {
     public class LoginController : Controller
     {
-        // GET: Login
-        public ActionResult Index()
-        {
-            return View();
-        }
-
+        
         public ActionResult Register()
         {
             return View();
@@ -36,7 +30,7 @@ namespace ORA.Controllers
                 //LoginDAL.Register(Mapper.Map<LoginDM>(info));
                 info.Password = "";
                 return ConfigurationManager.AppSettings["RegisterToLogin"].ToLower() == "true"
-                    ? RedirectToAction("Login", "Login", info) : RedirectToAction("Home", "Index", new { area = "Default" });
+                    ? RedirectToAction("Login", "Login", info) : RedirectToAction("Index", "Home", new { area = "Default" });
 
             }
             catch (Exception ex)
@@ -45,13 +39,14 @@ namespace ORA.Controllers
             }
         }
 
+        [AllowAnonymous]
         public ActionResult Login()
         {
             if ((bool)Session["LoggedIn"])
             {
                 if ((string)Session["Role"] == "ADMIN" || ((string)Session["Role"] == "DIRECTOR"))
                 {
-                    return RedirectToAction("AdminDashboard", "Home", new { area = "Default" });
+                    return RedirectToAction("AdminDashboard", "Admin", new { area = "Default" });
                 }
                 else
                 {
@@ -61,7 +56,7 @@ namespace ORA.Controllers
             return View();
         }
 
-        readonly EmployeeVM _employee = new EmployeeVM();
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult Login(LoginVM info)
         {
@@ -75,6 +70,7 @@ namespace ORA.Controllers
                     info.Role = Mapper.Map<RolesVM>(RolesDAL.ReadRoleByID(info.Employee.RoleId));
                     Session["Role"] = info.Role.RoleName;
                     Session["ID"] = info.EmployeeId;
+                    Session["TeamId"] = info.Employee.TeamId;
                     Session["Email"] = info.Email;
                     Session["Name"] = info.Employee.EmployeeName;
                     FormsAuthentication.RedirectFromLoginPage(info.Role.RoleName, true);
@@ -83,7 +79,7 @@ namespace ORA.Controllers
                     {
                         if (Session["Role"].ToString().ToUpper().Contains("ADMIN") || Session["Role"].ToString().ToUpper().Contains("DIRECTOR"))
                         {
-                            return RedirectToAction("AdminDashboard", "Home", new { area = "Default" });
+                            return RedirectToAction("AdminDashboard", "Admin", new { area = "Default" });
                         }
                         else
                         {

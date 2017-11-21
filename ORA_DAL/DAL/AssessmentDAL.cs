@@ -19,7 +19,6 @@ namespace ORA_Data.DAL
         {
             try
             {
-                //Creating a way of adding new user information to my database 
                 using (SqlCommand cmd = new SqlCommand("CREATE_ASSESSMENT", SqlConnect.Connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -69,6 +68,7 @@ namespace ORA_Data.DAL
                     cmd.Parameters.AddWithValue("@Modified", _assessment.Modified.ToShortDateString());
                     cmd.Parameters.AddWithValue("@Modified_By", _assessment.ModifiedBy);
                     cmd.Parameters.AddWithValue("@DateCreatedFor", _assessment.DateCreatedFor.ToShortDateString());
+                    cmd.Parameters.AddWithValue("@AssessmentScore", _assessment.AssessmentScore);
 
                     SqlConnect.Connection.Open();
                     cmd.ExecuteNonQuery();
@@ -160,6 +160,7 @@ namespace ORA_Data.DAL
                                 _assessment.CreatedBy = (string)reader["Created_By"];
                                 _assessment.Modified = (DateTime)reader["Modified"];
                                 _assessment.ModifiedBy = (string)reader["Modified_By"];
+                                _assessment.AssessmentScore = (int)reader["AssessmentScore"];
 
                                 assessmentList.Add(_assessment);
                             }
@@ -245,6 +246,7 @@ namespace ORA_Data.DAL
                                 _assessment.Modified = (DateTime)reader["Modified"];
                                 _assessment.ModifiedBy = (string)reader["Modified_By"];
                                 _assessment.DateCreatedFor = (DateTime)reader["DateCreatedFor"];
+                                _assessment.AssessmentScore = (int)reader["AssessmentScore"];
 
                             }
                         }
@@ -330,6 +332,7 @@ namespace ORA_Data.DAL
                                 _assessment.Modified = (DateTime)reader["Modified"];
                                 _assessment.ModifiedBy = (string)reader["Modified_By"];
                                 _assessment.DateCreatedFor = (DateTime)reader["DateCreatedFor"];
+                                _assessment.AssessmentScore = (int)reader["AssessmentScore"];
 
                                 assessmentList.Add(_assessment);
                             }
@@ -400,6 +403,7 @@ namespace ORA_Data.DAL
                 using (SqlCommand cmd = new SqlCommand("UPDATE_ASSESSMENT", SqlConnect.Connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Assessment_ID", _assessment.AssessmentId);
                     cmd.Parameters.AddWithValue("@TD_Problem_Solving", _assessment.TDProblemSolving);
                     cmd.Parameters.AddWithValue("@TD_Quality_of_Work", _assessment.TDQualityOfWork);
                     cmd.Parameters.AddWithValue("@TD_Productivity", _assessment.TDProductivity);
@@ -441,11 +445,10 @@ namespace ORA_Data.DAL
                     else
                         cmd.Parameters.AddWithValue("@MI_Comments", DBNull.Value);
                     cmd.Parameters.AddWithValue("@Employee_ID", _assessment.EmployeeID);
-                    cmd.Parameters.AddWithValue("@Created", _assessment.Created.ToShortDateString());
-                    cmd.Parameters.AddWithValue("@Created_By", _assessment.CreatedBy);
                     cmd.Parameters.AddWithValue("@Modified", _assessment.Modified.ToShortDateString());
                     cmd.Parameters.AddWithValue("@Modified_By", _assessment.ModifiedBy);
                     cmd.Parameters.AddWithValue("@DateCreatedFor", _assessment.DateCreatedFor);
+                    cmd.Parameters.AddWithValue("@AssessmentScore", _assessment.AssessmentScore);
                     SqlConnect.Connection.Open();
                     cmd.ExecuteNonQuery();
                     SqlConnect.Connection.Close();

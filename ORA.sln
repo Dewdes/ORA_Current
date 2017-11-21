@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ORA", "ORA\ORA.csproj", "{7
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ORA_Data", "ORA_DAL\ORA_Data.csproj", "{52B20D0B-5C4C-4874-844E-33D28CF421A6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ORA_Logic", "ORA_Logic\ORA_Logic.csproj", "{C18E571E-BF23-4DB7-A4C1-0BE748726F2B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{52B20D0B-5C4C-4874-844E-33D28CF421A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52B20D0B-5C4C-4874-844E-33D28CF421A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52B20D0B-5C4C-4874-844E-33D28CF421A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C18E571E-BF23-4DB7-A4C1-0BE748726F2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C18E571E-BF23-4DB7-A4C1-0BE748726F2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C18E571E-BF23-4DB7-A4C1-0BE748726F2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C18E571E-BF23-4DB7-A4C1-0BE748726F2B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

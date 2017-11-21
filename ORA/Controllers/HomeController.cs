@@ -7,22 +7,11 @@ namespace ORA.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return View();
-        }
-
-        public ActionResult AdminDashboard()
-        {
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            return View();
+            if (Session != null)
+            {
+                return View();
+            }
+            return RedirectToAction("Login", "Login");
         }
     }
 }

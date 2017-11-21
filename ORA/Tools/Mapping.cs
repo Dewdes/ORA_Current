@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ORA.Models;
 using ORA_Data.Model;
+using ORA_Logic.Models;
 
 namespace ORA.Tools
 {
@@ -31,6 +32,8 @@ namespace ORA.Tools
                 cfg.CreateMap<SkillsVM, SkillsDM>().ReverseMap();
                 cfg.CreateMap<WorkHistoryVM, WorkHistoryDM>().ReverseMap();
                 cfg.CreateMap<AccountBioVM, AccountBioDM>().ReverseMap();
+
+                cfg.CreateMap<AssessmentVM, AssessmentBM>().ReverseMap();
             });
         }
     }

@@ -57,6 +57,8 @@ namespace ORA_Data.Model
 
         public string MIComments { get; set; }
 
+        public int AssessmentScore { get; set; }
+
         public long EmployeeID { get; set; }
 
         public DateTime DateCreatedFor { get; set; }

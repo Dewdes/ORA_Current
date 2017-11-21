@@ -66,9 +66,13 @@ namespace ORA.Models
 
         public long Collaboration { get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DisplayName("Start Date")]
         public DateTime Start_Date { get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DisplayName("End Date")]
         public DateTime End_Date { get; set; }
 
@@ -105,6 +109,10 @@ namespace ORA.Models
 
         public DateTime Modified { get; set; }
 
+        public string ModifiedBy { get; set; }
+
         public DateTime Created { get; set; }
+
+        public string CreatedBy { get; set; }
     }
 }
