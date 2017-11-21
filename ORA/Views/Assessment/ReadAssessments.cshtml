@@ -1,4 +1,6 @@
-﻿@model IEnumerable<ORA.Models.AssessmentVM>
+﻿@using ORA_Logic
+@using ORA_Logic.Models
+@model IEnumerable<ORA.Models.AssessmentVM>
 
 @{
     if (Session["Role"].ToString() == "Team Lead")
@@ -80,7 +82,6 @@
         </table>
     </div>
     <div class="panel-footer">
-        
     </div>
 </div>
 

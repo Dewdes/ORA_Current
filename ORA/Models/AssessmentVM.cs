@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
+using AutoMapper;
+using ORA_Logic;
 
 namespace ORA.Models
 {
@@ -146,6 +148,13 @@ namespace ORA.Models
 
         public List<WorkHistoryVM> WorkHistoryList { get; set; }
 
+        public double Mean;
+
+        public double StandardDeviation;
+
+        public List<double> MeanList;
+
+        public List<double> StandardDeviationList;
     }
     public class DescriptionVM
     {

@@ -28,3 +28,5 @@ Level: ReadAssessments   Time: 11/20/2017 2:21:15 AM   Error: AssessmentScore
 Level: ReadAssessments   Time: 11/20/2017 2:21:29 AM   Error: AssessmentScore
 Level: ReadAssessments   Time: 11/20/2017 2:21:54 AM   Error: AssessmentScore
 Level: ReadAssessments   Time: 11/20/2017 10:19:56 AM   Error: AssessmentScore
+Level: ReadKPIs   Time: 11/20/2017 7:01:05 PM   Error: Created_By
+Level: ReadKPIs   Time: 11/20/2017 11:04:45 PM   Error: Created_By
