@@ -374,7 +374,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssessmentLogic\AssessmentAverages.cs" />
+    <Compile Include="AssessmentLogic\AssessmentFunctions.cs" />
     <Compile Include="KPILogic\KPIAverages.cs" />
     <Compile Include="Models\AssessmentBM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

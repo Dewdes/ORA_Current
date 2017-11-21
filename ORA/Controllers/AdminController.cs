@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using ORA.Models;
 using ORA_Data.DAL;
-using AutoMapper;
 
 namespace ORA.Controllers
 {
@@ -13,8 +14,14 @@ namespace ORA.Controllers
             return View();
         }
 
-        public ActionResult AverageAssessmentCharts(AssessmentVM assessment)
+        public ActionResult AverageAssessmentCharts(List<AssessmentVM> assessment)
         {
+            return View();
+        }
+
+        public ActionResult TestKendo()
+        {
+           
             return View();
         }
     }
