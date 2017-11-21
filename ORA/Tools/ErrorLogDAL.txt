@@ -7,3 +7,26 @@ Level: ReadAssessmentByID   Time: 11/10/2017 2:26:29 PM   Error: Procedure or fu
 Level: ReadMyKPIsByID   Time: 11/10/2017 2:26:33 PM   Error: The connection was not closed. The connection's current state is open.
 Level: ReadAssessmentByID   Time: 11/10/2017 2:52:37 PM   Error: Procedure or function 'READ_ASSESSMENT_BY_ID' expects parameter '@Assessment_ID', which was not supplied.
 Level: Login   Time: 11/10/2017 3:59:47 PM   Error: A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 26 - Error Locating Server/Instance Specified)
+Level: CreateKPI   Time: 11/13/2017 1:12:04 PM   Error: The INSERT statement conflicted with the FOREIGN KEY constraint "FK_KPI_Assignment". The conflict occurred in database "ORA_Test", table "dbo.Assignment", column 'Assignment_ID'.
+The statement has been terminated.
+Level: Login   Time: 11/13/2017 1:26:44 PM   Error: A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 26 - Error Locating Server/Instance Specified)
+Level: CreateWorkHistory   Time: 11/13/2017 8:30:48 PM   Error: Object reference not set to an instance of an object.
+Level: CreateEducation   Time: 11/13/2017 8:35:08 PM   Error: Object reference not set to an instance of an object.
+Level: CreateEducation   Time: 11/13/2017 9:41:45 PM   Error: Object reference not set to an instance of an object.
+Level: CreateEducation   Time: 11/13/2017 9:42:42 PM   Error: Object reference not set to an instance of an object.
+Level: UpdateAssessment   Time: 11/14/2017 2:21:43 PM   Error: Procedure or function 'UPDATE_ASSESSMENT' expects parameter '@Created_By', which was not supplied.
+Level: ReadAssessments   Time: 11/20/2017 1:48:17 AM   Error: AssessmentScore
+Level: ReadAssessments   Time: 11/20/2017 1:50:14 AM   Error: AssessmentScore
+Level: ReadAssessments   Time: 11/20/2017 1:51:01 AM   Error: AssessmentScore
+Level: ReadAssessments   Time: 11/20/2017 1:57:28 AM   Error: AssessmentScore
+Level: ReadAssessments   Time: 11/20/2017 2:18:50 AM   Error: AssessmentScore
+Level: ReadAssessments   Time: 11/20/2017 2:18:58 AM   Error: AssessmentScore
+Level: ReadAssessments   Time: 11/20/2017 2:19:24 AM   Error: AssessmentScore
+Level: ReadAssessments   Time: 11/20/2017 2:20:20 AM   Error: AssessmentScore
+Level: ReadAssessments   Time: 11/20/2017 2:21:10 AM   Error: AssessmentScore
+Level: ReadAssessments   Time: 11/20/2017 2:21:15 AM   Error: AssessmentScore
+Level: ReadAssessments   Time: 11/20/2017 2:21:29 AM   Error: AssessmentScore
+Level: ReadAssessments   Time: 11/20/2017 2:21:54 AM   Error: AssessmentScore
+Level: ReadAssessments   Time: 11/20/2017 10:19:56 AM   Error: AssessmentScore
+Level: ReadKPIs   Time: 11/20/2017 7:01:05 PM   Error: Created_By
+Level: ReadKPIs   Time: 11/20/2017 11:04:45 PM   Error: Created_By

@@ -5,24 +5,93 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*<h2>My Assessments</h2>*@
 
-<table>
-    @{var counter = 1; }
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Employee.EmployeeName)
-        </th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            @Html.HiddenFor(modelItem => item.AssessmentId)
-            <td>
-                @Html.ActionLink(item.Employee.EmployeeName, "ReadAssessmentByID", "Assessment", new { id = item.AssessmentId }, new { })
-            </td>
-            @Html.HiddenFor(modelItem => item.EmployeeID)
-        </tr>
+<script src="~/Scripts/SearchEmployeeTable.js"></script>
+<link href="~/Content/SearchBarEmployee.css" rel="stylesheet" />
+
+<div class="panel">
+    <div class="panel-heading">
+        <ul>
+            <li><img id="PanelHeadPic" src="~/Images/Onshore.png" /></li>
+            <li><h2>@ViewBag.Title</h2></li>
+        </ul>
+    </div>
+    <div class="panel-body">
+
+        <input class="form-control" type="text" id="SearchInput" onkeyup="SearchEmployeeFunction()" placeholder="Search for Employees..">
+
+        <p></p>
+        <table class="table" id="EmployeeTable">
+           
+                <tr>
+                    <th>
+                        Employee Name
+                    </th>
+                    <th>Assessment Date</th>
+                </tr>
+         
+            <tbody id="tableBody">
+                @foreach (var item in Model)
+                 {
+                    <tr>
+                        @Html.HiddenFor(modelItem => item.AssessmentId)
+                        <td>
+                            <span class="glyphicon glyphicon-user"></span> @Html.ActionLink(item.Employee.EmployeeName, "ReadAssessmentByID", "Assessment", new { id = item.AssessmentId }, new { })
+                        </td>
+                        <td>
+                            <span class="glyphicon glyphicon-calendar"></span> @Html.DisplayFor(modelItem => item.DateCreatedFor) @*@Html.ActionLink(item.Created.Date.ToShortDateString(), "ReadAssessmentByID", "Assessment", new { id = item.AssessmentId }, new { })*@
+                        </td>
+                        @Html.HiddenFor(modelItem => item.EmployeeID)
+                    </tr>
+                 }
+            </tbody>
+        </table>
+    </div>
+    <div class="panel-footer"></div>
+</div>
+
+
+<style>
+    .panel-heading {
+        border-color: #dddddd;
+        background-color: #f5f5f5;
+        color: #2d7788;
     }
-</table>
+
+        .panel-heading ul {
+            list-style-type: none;
+            display: inline-flex;
+            padding-left: 0;
+        }
+
+            .panel-heading ul li {
+                padding-right: 10px;
+            }
+
+    .panel {
+        border-color: lightgray;
+    }
+
+    .panel-footer {
+        border-color: lightgray;
+    }
+
+    #PanelHeadPic {
+        width: 40px;
+        height: 50px;
+        display: inline;
+        margin-top: 10px;
+    }
+
+    #EmployeeTable td {
+        font-size: 15px;
+    }
+
+    #EmployeeTable th {
+        font-size: 20px;
+        font-weight: 500;
+        color:black;
+        font-style: normal;
+    }
+</style>
 
