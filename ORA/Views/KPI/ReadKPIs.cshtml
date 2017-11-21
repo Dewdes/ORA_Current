@@ -11,10 +11,13 @@
     }
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<head>
+    <script src="~/Scripts/SearchEmployeeTable.js"></script>
+    <link href="~/Content/SearchBarEmployee.css" rel="stylesheet" />
 
-<script src="~/Scripts/SearchEmployeeTable.js"></script>
-<link href="~/Content/SearchBarEmployee.css" rel="stylesheet" />
-
+   
+</head>
+@*----------------------DATA TABLE LINKS AND SCRIPTS---------------------*@
 
 <div class="panel">
     <div class="panel-heading">
@@ -24,10 +27,11 @@
         </ul>
     </div>
     <div class="panel-body">
-        <div class="pull-right">@Html.ActionLink("Create New KPI", "CreateKPI", null, new { @class = "btn btn", style= "background-color: #2d7788; color:white;" })</div>
+        <div class="pull-right">@Html.ActionLink("Create New KPI", "CreateKPI", null, new { @class = "btn btn", style = "background-color: #2d7788; color:white;" })</div>
 
         <input class="form-control" type="text" id="SearchInput" onkeyup="SearchEmployeeFunction()" placeholder="Search for Employees..">
-
+        <span id="date-label-from" class="date-label">From: </span><input class="date_range_filter date form-control" type="date" id="datepicker_from" />
+        <span id="date-label-to" class="date-label">To: </span><input class="date_range_filter date form-control" type="date" id="datepicker_to" />
         <table id="EmployeeTable">
             <tr>
                 <th>
@@ -46,10 +50,10 @@
                 @Html.HiddenFor(modelItem => item.KPIID)
                 <tr>
                     <td>
-                        <span class="glyphicon glyphicon-user"></span> @Html.ActionLink(item.Employee.EmployeeName, "ReadKPIByID", "KPI", new { id = item.KPIID }, htmlAttributes: new { style="color: #2d7788;"})
+                        <span class="glyphicon glyphicon-user"></span> @Html.ActionLink(item.Employee.EmployeeName, "ReadKPIByID", "KPI", new { id = item.KPIID }, htmlAttributes: new { style = "color: #2d7788;" })
                     </td>
-                    <td>
-                        <span class="glyphicon glyphicon-calendar"></span>@Html.ActionLink(item.Start_Date.Date.ToShortDateString(),"ReadKPIByID","KPI", new { id = item.KPIID }, htmlAttributes: new { style = "color: #2d7788;" })
+                    <td id="tdDate">
+                        <span class="glyphicon glyphicon-calendar"></span>@Html.ActionLink(item.Start_Date.Date.ToShortDateString(), "ReadKPIByID", "KPI", new { id = item.KPIID }, htmlAttributes: new { style = "color: #2d7788;" })
                     </td>
                     @if ((string)Session["Role"] == "Director" || (string)Session["Role"] == "Manager" || (string)Session["Role"] == "Team Lead")
                     {
@@ -100,6 +104,7 @@
     #EmployeeTable td {
         font-size: 15px;
     }
+
     #EmployeeTable th {
         font-size: 20px;
         font-weight: 500;
