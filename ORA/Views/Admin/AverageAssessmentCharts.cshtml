@@ -22,7 +22,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <base href="http://demos.telerik.com/kendo-ui/bar-charts/date-axis">
+
     <style>
         html {
             font-size: 14px;
@@ -48,6 +48,15 @@
 
     <div id="example">
         <div class="demo-section k-content wide">
+            <div class="container" style="padding-top:10px;">
+                @using (Html.BeginForm("FilterChartByDate", "Admin", FormMethod.Post))
+                {
+                    <label>From:</label><input class="form-control" type="date" name="fromDate" id="fromDate" />
+                    <label>To:</label><input class="form-control" type="date" name="toDate" id="toDate" />
+                    <button type="submit" value="FilterChartByDate">Filter</button>
+
+                }
+            </div>
             <div id="chart" style="background: center no-repeat url('../content/shared/styles/world-map.png');"></div>
         </div>
         <script>

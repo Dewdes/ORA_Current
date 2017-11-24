@@ -45,7 +45,7 @@ namespace ORA_Logic
                 assessmentAvg.Add(item.AssessmentScore);
             }
             return assessmentAvg;
-        }
+        } 
 
         /// <summary>
         /// This method calculates means for a given individual assessment

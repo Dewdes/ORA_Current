@@ -11,6 +11,7 @@ namespace ORA.Models
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [RegularExpression("^(0[1-9]|1[0-9]|2[0-9]|3[0,1])([/+-])(0[1-9]|1[0-2])([/+-])(19|20)[0-9]{2}$", ErrorMessage ="Invalid Date.")]
         [DisplayName("Created Date")]
         public DateTime CreateDate { get; set; }
 
@@ -68,11 +69,13 @@ namespace ORA.Models
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [RegularExpression("^(0[1-9]|1[0-9]|2[0-9]|3[0,1])([/+-])(0[1-9]|1[0-2])([/+-])(19|20)[0-9]{2}$", ErrorMessage = "Invalid Date.")]
         [DisplayName("Start Date")]
         public DateTime Start_Date { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [RegularExpression("^(0[1-9]|1[0-9]|2[0-9]|3[0,1])([/+-])(0[1-9]|1[0-2])([/+-])(19|20)[0-9]{2}$", ErrorMessage = "Invalid Date.")]
         [DisplayName("End Date")]
         public DateTime End_Date { get; set; }
 
