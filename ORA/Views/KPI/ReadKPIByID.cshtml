@@ -11,7 +11,7 @@
         <h2>@Html.DisplayFor(model => model.Employee.EmployeeFirstName) @Html.DisplayFor(model => model.Employee.EmployeeFirstName)</h2>
     </div>
     <div class="panel-body">
-        <h4>Created by: @Html.DisplayFor(model => model.CreatedBy)</h4>
+        <h4><strong>Created by:</strong> @Html.DisplayFor(model => model.CreatedBy)</h4>
         <dl class="dl-horizontal">
 
             @Html.HiddenFor(model => model.KPIID)
@@ -231,11 +231,11 @@
     }
     @if ((string)Session["Role"] == "Team Lead" || (string)Session["Role"] == "Manager" || (string)Session["Role"] == "Director")
     {
-        @Html.ActionLink("Back To List", "ReadKPIs", "KPI", new { id = (long)Session["ID"] }, htmlAttributes: new { @class = "btn btn-danger" })
+        @Html.ActionLink("Back To List", "ReadKPIs", "KPI", new { id = (long)Session["ID"] }, htmlAttributes: new { @class = "btn btn-default" })
     }
     else
     {
-        @Html.ActionLink("Back To List", "ReadMyKPIs", "KPI", new { id = (long)Session["ID"] }, htmlAttributes: new { @class = "btn btn-danger" })
+        @Html.ActionLink("Back To List", "ReadMyKPIs", "KPI", new { id = (long)Session["ID"] }, htmlAttributes: new { @class = "btn btn-default" })
     }
 </p>
 

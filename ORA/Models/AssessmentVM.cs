@@ -122,6 +122,14 @@ namespace ORA.Models
 
         public string CreatedBy { get; set; }
 
+        [DisplayName("From Date")]
+        [Required(ErrorMessage = "Required Field.")]
+        public DateTime StartDateFilter { get; set; }
+
+        [DisplayName("To Date")]
+        [Required(ErrorMessage = "Required Field.")]
+        public DateTime EndDateFilter { get; set; }
+
         public DateTime Modified { get; set; }
 
         public string ModifiedBy { get; set; }

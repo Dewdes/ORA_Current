@@ -11,10 +11,13 @@
     }
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<head>
+    <script src="~/Scripts/SearchEmployeeTable.js"></script>
+    <link href="~/Content/SearchBarEmployee.css" rel="stylesheet" />
 
-<script src="~/Scripts/SearchEmployeeTable.js"></script>
-<link href="~/Content/SearchBarEmployee.css" rel="stylesheet" />
-
+   
+</head>
+@*----------------------DATA TABLE LINKS AND SCRIPTS---------------------*@
 
 <div class="panel">
     <div class="panel-heading">
@@ -24,10 +27,12 @@
         </ul>
     </div>
     <div class="panel-body">
-        <div class="pull-right">@Html.ActionLink("Create New KPI", "CreateKPI", null, new { @class = "btn btn", style= "background-color: #2d7788; color:white;" })</div>
+        <div class="pull-right">@Html.ActionLink("Create New KPI", "CreateKPI", null, new { @class = "btn btn", style = "background-color: #2d7788; color:white;" })</div>
 
         <input class="form-control" type="text" id="SearchInput" onkeyup="SearchEmployeeFunction()" placeholder="Search for Employees..">
-
+        <span id="date-label-from" class="date-label glyphicon glyphicon-calendar">From: </span><input class="date_range_filter date form-control" type="date" id="datepicker_from" value="" />
+        <span id="date-label-to" class="date-label glyphicon glyphicon-calendar">To: </span><input class="date_range_filter date form-control" type="date" id="datepicker_to" value="" />
+        <button class="pull-right btn btn-default" type="button" onclick="dateFunction()">Filter</button>
         <table id="EmployeeTable">
             <tr>
                 <th>
@@ -46,10 +51,10 @@
                 @Html.HiddenFor(modelItem => item.KPIID)
                 <tr>
                     <td>
-                        <span class="glyphicon glyphicon-user"></span> @Html.ActionLink(item.Employee.EmployeeName, "ReadKPIByID", "KPI", new { id = item.KPIID }, htmlAttributes: new { style="color: #2d7788;"})
+                        <span class="glyphicon glyphicon-user"></span> @Html.ActionLink(item.Employee.EmployeeName, "ReadKPIByID", "KPI", new { id = item.KPIID }, htmlAttributes: new { style = "color: #2d7788;" })
                     </td>
-                    <td>
-                        <span class="glyphicon glyphicon-calendar"></span>@Html.ActionLink(item.Start_Date.Date.ToShortDateString(),"ReadKPIByID","KPI", new { id = item.KPIID }, htmlAttributes: new { style = "color: #2d7788;" })
+                    <td id="tdDate" class="dateData">
+                        <span class="glyphicon glyphicon-calendar"></span>@Html.ActionLink(item.Start_Date.Date.ToShortDateString(), "ReadKPIByID", "KPI", new { id = item.KPIID }, htmlAttributes: new { style = "color: #2d7788;" })
                     </td>
                     @if ((string)Session["Role"] == "Director" || (string)Session["Role"] == "Manager" || (string)Session["Role"] == "Team Lead")
                     {
@@ -65,6 +70,36 @@
     <div class="panel-footer"></div>
 </div>
 
+<script>
+
+    function dateFunction() {
+        var toDate, fromDate, checkDate, table, tr, td, i;
+        toDate = new Date($('#datepicker_to').val());
+        Date.parse(toDate);
+
+        fromDate = new Date($('#datepicker_from').val());
+        Date.parse(fromDate);
+       
+        table = document.getElementById("EmployeeTable");
+        tr = table.getElementsByTagName("tr");
+
+        if (toDate != null && fromDate != null) {
+
+            for (i = 0; i < tr.length; i++) {
+                td = (tr[i].cells[1].innerText);
+                td = new Date(td);
+                Date.parse(td);
+                if (td >= fromDate && td <= toDate) {
+                    tr[i].style.display = "";
+                }
+                else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+        
+    }
+</script>
 <style>
     .panel-heading {
         border-color: #dddddd;
@@ -100,6 +135,7 @@
     #EmployeeTable td {
         font-size: 15px;
     }
+
     #EmployeeTable th {
         font-size: 20px;
         font-weight: 500;
