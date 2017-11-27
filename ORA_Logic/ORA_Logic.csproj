@@ -292,7 +292,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssessmentLogic\AssessmentFunctions.cs" />
-    <Compile Include="KPILogic\KPIAverages.cs" />
+    <Compile Include="KPILogic\KPIFunctions.cs" />
     <Compile Include="Models\AssessmentBM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

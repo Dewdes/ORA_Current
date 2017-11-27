@@ -30,3 +30,8 @@ Level: ReadAssessments   Time: 11/20/2017 2:21:54 AM   Error: AssessmentScore
 Level: ReadAssessments   Time: 11/20/2017 10:19:56 AM   Error: AssessmentScore
 Level: ReadKPIs   Time: 11/20/2017 7:01:05 PM   Error: Created_By
 Level: ReadKPIs   Time: 11/20/2017 11:04:45 PM   Error: Created_By
+Level: UpdateAssessment   Time: 11/23/2017 10:39:44 AM   Error: Procedure or function 'UPDATE_ASSESSMENT' expects parameter '@Created_By', which was not supplied.
+Level: UpdateAssessment   Time: 11/23/2017 10:43:35 AM   Error: Procedure or function UPDATE_ASSESSMENT has too many arguments specified.
+Level: UpdateAssessment   Time: 11/23/2017 10:45:16 AM   Error: Procedure or function UPDATE_ASSESSMENT has too many arguments specified.
+Level: UpdateAssessment   Time: 11/23/2017 10:45:45 AM   Error: Procedure or function UPDATE_ASSESSMENT has too many arguments specified.
+Level: UpdateAssessment   Time: 11/23/2017 10:48:47 AM   Error: Procedure or function UPDATE_ASSESSMENT has too many arguments specified.

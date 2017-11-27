@@ -3012,6 +3012,7 @@
     <Content Include="Scripts\Kendo\messages\kendo.messages.zh-CN.min.js.map" />
     <Content Include="Scripts\Kendo\messages\kendo.messages.zh-HK.min.js.map" />
     <Content Include="Scripts\Kendo\messages\kendo.messages.zh-TW.min.js.map" />
+    <Content Include="Views\Admin\TestView.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
