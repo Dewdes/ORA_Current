@@ -12,6 +12,7 @@ namespace ORA.Controllers
 {
     public class AdminController : Controller
     {
+
         public ActionResult AdminDashboard()
         {
             return View();
@@ -22,7 +23,7 @@ namespace ORA.Controllers
             return View();
         }
 
-        public ActionResult TestKendo()
+        public ActionResult TestView(AssessmentVM assessment)
         {
             return View();
         }

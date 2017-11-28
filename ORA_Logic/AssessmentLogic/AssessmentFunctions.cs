@@ -140,38 +140,47 @@ namespace ORA_Logic
             return;
         }
 
-        public static void CalculateMedianAggregateForAllAssessments(List<AssessmentBM> assessmentList)
+        public static double CalculateMedianAggregateForAllAssessments(List<AssessmentBM> assessmentList)
         {
+            if (assessmentList == null || assessmentList.Count == 0)
+                throw new System.Exception("Median of empty array not defined.");
 
-            //var sorted = from n in assessmentList
-            //             orderby n ascending
-            //             select n;
-            //decimal middle = (sorted.Count() + 1) / 2;
-
-            //if (assessmentList == null || assessmentList.Count == 0)
-            //    throw new System.Exception("Median of empty array not defined.");
+            var sorted = from n in assessmentList
+                         orderby n ascending
+                         select n;
 
             //make sure the list is sorted, but use a new array
-            //List<AssessmentBM> sortedPNumbers = new List<AssessmentBM>();
-            //sortedPNumbers = assessmentList;
+            List<double> sortedNumbers = new List<double>();
+            foreach (AssessmentBM assessBM in assessmentList)
+            {
+                sortedNumbers.Add(Convert.ToDouble(assessBM.ADAttendence));
+                sortedNumbers.Add(Convert.ToDouble(assessBM.ADEthicalBehavior));
+                sortedNumbers.Add(Convert.ToDouble(assessBM.ADMeetDeadlines));
+                sortedNumbers.Add(Convert.ToDouble(assessBM.ADOrganizeDetailedWork));
+                sortedNumbers.Add(Convert.ToDouble(assessBM.CSRListeningSkills));
+                sortedNumbers.Add(Convert.ToDouble(assessBM.CSRVerbalSkills));
+                sortedNumbers.Add(Convert.ToDouble(assessBM.CSRWrittenSkills));
+                sortedNumbers.Add(Convert.ToDouble(assessBM.CSRProfesionalismTeamwork));
+                sortedNumbers.Add(Convert.ToDouble(assessBM.MIAttitudeWork));
+                sortedNumbers.Add(Convert.ToDouble(assessBM.MIGroomingAppearance));
+                sortedNumbers.Add(Convert.ToDouble(assessBM.MIPersonalGrowth));
+                sortedNumbers.Add(Convert.ToDouble(assessBM.MIPotentialAdvancement));
+                sortedNumbers.Add(Convert.ToDouble(assessBM.TDProblemSolving));
+                sortedNumbers.Add(Convert.ToDouble(assessBM.TDProductKnowledge));
+                sortedNumbers.Add(Convert.ToDouble(assessBM.TDProductivity));
+                sortedNumbers.Add(Convert.ToDouble(assessBM.TDQualityOfWork));
+                sortedNumbers.Add(Convert.ToDouble(assessBM.TMAskingQuestions));
+                sortedNumbers.Add(Convert.ToDouble(assessBM.TMFeedback));
+                sortedNumbers.Add(Convert.ToDouble(assessBM.TMResourceUse));
+                sortedNumbers.Add(Convert.ToDouble(assessBM.TMTechnicalMonitoring));
+            }
 
             //get the median
-            //int size = sortedPNumbers.Count;
-            //int mid = size / 2;
-            //double median = (size % 2 != 0) ? (double)sortedPNumbers[mid] : ((double)sortedPNumbers[mid] + (double)sortedPNumbers[mid - 1]) / 2;
-            //return median;
+            int size = sortedNumbers.Count;
+            int mid = size / 2;
+            double median = (size % 2 != 0) ? sortedNumbers[mid] : (sortedNumbers[mid] + sortedNumbers[mid - 1]) / 2;
 
-            //if (sorted.Count() % 2 != 0)
-            //{
-            //    double median = Convert.ToDouble(sorted.ElementAt((int)middle - 1));
-            //    return median;
-            //}
-            //else
-            //{
-            //    return assessmentList.Average(new List<int>() { sorted.ElementAt((AssessmentBM)middle - 1), sorted.ElementAt((AssessmentBM)middle) });
-            //}
-
-            //return 0;
+            return median;
         }
     }
 }
