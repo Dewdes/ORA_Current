@@ -15,6 +15,10 @@
     $(function () {
         $(document).tooltip();
     });
+
+    function CommentVal() {
+        
+    }
 </script>
 <style>
     label {
@@ -104,7 +108,7 @@
                                     <h3></h3>
                                     <p>Step 1</p>
                                     <div class="form-horizontal">
-                                        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                                        @Html.ValidationSummary(false, "There are missing fields.", new { @class = "text-danger" })
 
                                         <div class="form-group">
                                             @Html.LabelFor(model => model.EmployeeID, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -132,7 +136,7 @@
                                                         {
                                                             <div class="radio-inline" title="@info.Name: @info.Desc">
                                                                 <label>
-                                                                    @Html.RadioButtonFor(model => model.TDProblemSolving, item, new { @required = "required" })
+                                                                    @Html.RadioButtonFor(model => model.TDProblemSolving, item, htmlAttributes: new { @id="TDbtn", @required = "required" })
                                                                     @item
                                                                 </label>
                                                             </div>
@@ -216,7 +220,7 @@
                                         <div class="form-group">
                                             @Html.LabelFor(model => model.TDComments, htmlAttributes: new { @class = "control-label col-md-2" })
                                             <div class="col-md-10">
-                                                @Html.TextAreaFor(model => model.TDComments, new { htmlAttributes = new { @class = "form-control", @Value = "", @style="height:auto;" } })
+                                                @Html.TextAreaFor(model => model.TDComments, new { htmlAttributes = new { @class = "form-control", @Value = "", @id="TDComments" } })
                                                 @Html.ValidationMessageFor(model => model.TDComments, "", new { @class = "text-danger" })
                                             </div>
                                         </div>

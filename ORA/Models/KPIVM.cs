@@ -117,5 +117,30 @@ namespace ORA.Models
         public DateTime Created { get; set; }
 
         public string CreatedBy { get; set; }
+        //new stuff-----------------
+        public int RTCPassed { get; set; }
+
+        public int RTCFailed { get; set; }
+
+        public int RTCCreated { get; set; }
+
+        public int RTCUpdated { get; set; }
+
+        public int SprintTC_Passed { get; set; }
+
+        public int SprintTC_Failed { get; set; }
+
+        public int SprintTC_Created { get; set; }
+
+        public int Defects_FoundInTesting { get; set; }
+
+        public int Defects_FoundInProd { get; set; }
+
+        public int Defects_RetestedFailed { get; set; }
+
+        public int DefectsClosed { get; set; }
+
+        public string TasksCompleted { get; set; }
+        //end of new stuff--------------
     }
 }

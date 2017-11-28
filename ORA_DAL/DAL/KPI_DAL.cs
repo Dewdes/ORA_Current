@@ -53,6 +53,18 @@ namespace ORA_Data.DAL
                     cmd.Parameters.AddWithValue("@Modified", _kpi.Modified);
                     cmd.Parameters.AddWithValue("@Modified_By", _kpi.ModifiedBy);
                     cmd.Parameters.AddWithValue("@Created_By", _kpi.CreatedBy);
+                    cmd.Parameters.AddWithValue("@RTC_Passed", _kpi.RTCPassed);
+                    cmd.Parameters.AddWithValue("@RTC_Failed", _kpi.RTCFailed);
+                    cmd.Parameters.AddWithValue("@RTC_Created", _kpi.RTCCreated);
+                    cmd.Parameters.AddWithValue("@RTC_Updated", _kpi.RTCUpdated);
+                    cmd.Parameters.AddWithValue("@SprintTC_Passed", _kpi.SprintTC_Passed);
+                    cmd.Parameters.AddWithValue("@SprintTC_Failed", _kpi.SprintTC_Failed);
+                    cmd.Parameters.AddWithValue("@SprintTC_Created", _kpi.SprintTC_Created);
+                    cmd.Parameters.AddWithValue("@Defects_FoundInTesting", _kpi.Defects_FoundInTesting);
+                    cmd.Parameters.AddWithValue("@Defects_FoundInProd", _kpi.Defects_FoundInProd);
+                    cmd.Parameters.AddWithValue("@Defects_RetestedFailed", _kpi.Defects_RetestedFailed);
+                    cmd.Parameters.AddWithValue("@Defects_Closed", _kpi.DefectsClosed);
+                    cmd.Parameters.AddWithValue("@Tasks_Completed", _kpi.TasksCompleted);
 
                     SqlConnect.Connection.Open();
                     cmd.ExecuteNonQuery();
@@ -120,6 +132,54 @@ namespace ORA_Data.DAL
                                 _kpi.CreatedBy = (string)reader["Created_By"];
                                 _kpi.Modified = (DateTime)reader["Modified"];
                                 _kpi.ModifiedBy = (string)reader["Modified_By"];
+                                if (reader["RTC_Passed"] != DBNull.Value)
+                                    _kpi.RTCPassed = (int)reader["RTC_Passed"];
+                                else
+                                    _kpi.RTCPassed = 0;
+                                if (reader["RTC_Failed"] != DBNull.Value)
+                                    _kpi.RTCFailed = (int)reader["RTC_Failed"];
+                                else
+                                    _kpi.RTCFailed = 0;
+                                if (reader["RTC_Created"] != DBNull.Value)
+                                    _kpi.RTCCreated = (int)reader["RTC_Created"];
+                                else
+                                    _kpi.RTCCreated = 0;
+                                if (reader["RTC_Updated"] != DBNull.Value)
+                                    _kpi.RTCUpdated = (int)reader["RTC_Updated"];
+                                else
+                                    _kpi.RTCUpdated = 0;
+                                if (reader["SprintTC_Passed"] != DBNull.Value)
+                                    _kpi.SprintTC_Passed = (int)reader["SprintTC_Passed"];
+                                else
+                                    _kpi.SprintTC_Passed = 0;
+                                if (reader["SprintTC_Failed"] != DBNull.Value)
+                                    _kpi.SprintTC_Failed = (int)reader["SprintTC_Failed"];
+                                else
+                                    _kpi.SprintTC_Failed = 0;
+                                if (reader["SprintTC_Created"] != DBNull.Value)
+                                    _kpi.SprintTC_Created = (int)reader["SprintTC_Created"];
+                                else
+                                    _kpi.SprintTC_Created = 0;
+                                if (reader["Defects_FoundInTesting"] != DBNull.Value)
+                                    _kpi.Defects_FoundInTesting = (int)reader["Defects_FoundInTesting"];
+                                else
+                                    _kpi.Defects_FoundInTesting = 0;
+                                if (reader["Defects_FoundInProd"] != DBNull.Value)
+                                    _kpi.Defects_FoundInProd = (int)reader["Defects_FoundInProd"];
+                                else
+                                    _kpi.Defects_FoundInProd = 0;
+                                if (reader["Defects_RetestedFailed"] != DBNull.Value)
+                                    _kpi.Defects_RetestedFailed = (int)reader["Defects_RetestedFailed"];
+                                else
+                                    _kpi.Defects_RetestedFailed = 0;
+                                if (reader["Defects_Closed"] != DBNull.Value)
+                                    _kpi.DefectsClosed = (int)reader["Defects_Closed"];
+                                else
+                                    _kpi.DefectsClosed = 0;
+                                if (reader["Tasks_Completed"] != DBNull.Value)
+                                    _kpi.TasksCompleted = (string)reader["Tasks_Completed"];
+                                else
+                                    _kpi.TasksCompleted = "";
 
                                 _kpiList.Add(_kpi);
                             }
@@ -191,6 +251,55 @@ namespace ORA_Data.DAL
                                 _kpi.CreatedBy = (string)reader["Created_By"];
                                 _kpi.Modified = (DateTime)reader["Modified"];
                                 _kpi.ModifiedBy = (string)reader["Modified_By"];
+                                if (reader["RTC_Passed"] != DBNull.Value)
+                                    _kpi.RTCPassed = (int)reader["RTC_Passed"];
+                                else
+                                    _kpi.RTCPassed = 0;
+                                if (reader["RTC_Failed"] != DBNull.Value)
+                                    _kpi.RTCFailed = (int)reader["RTC_Failed"];
+                                else
+                                    _kpi.RTCFailed = 0;
+                                if (reader["RTC_Created"] != DBNull.Value)
+                                    _kpi.RTCCreated = (int)reader["RTC_Created"];
+                                else
+                                    _kpi.RTCCreated = 0;
+                                if (reader["RTC_Updated"] != DBNull.Value)
+                                    _kpi.RTCUpdated = (int)reader["RTC_Updated"];
+                                else
+                                    _kpi.RTCUpdated = 0;
+                                if (reader["SprintTC_Passed"] != DBNull.Value)
+                                    _kpi.SprintTC_Passed = (int)reader["SprintTC_Passed"];
+                                else
+                                    _kpi.SprintTC_Passed = 0;
+                                if (reader["SprintTC_Failed"] != DBNull.Value)
+                                    _kpi.SprintTC_Failed = (int)reader["SprintTC_Failed"];
+                                else
+                                    _kpi.SprintTC_Failed = 0;
+                                if (reader["SprintTC_Created"] != DBNull.Value)
+                                    _kpi.SprintTC_Created = (int)reader["SprintTC_Created"];
+                                else
+                                    _kpi.SprintTC_Created = 0;
+                                if (reader["Defects_FoundInTesting"] != DBNull.Value)
+                                    _kpi.Defects_FoundInTesting = (int)reader["Defects_FoundInTesting"];
+                                else
+                                    _kpi.Defects_FoundInTesting = 0;
+                                if (reader["Defects_FoundInProd"] != DBNull.Value)
+                                    _kpi.Defects_FoundInProd = (int)reader["Defects_FoundInProd"];
+                                else
+                                    _kpi.Defects_FoundInProd = 0;
+                                if (reader["Defects_RetestedFailed"] != DBNull.Value)
+                                    _kpi.Defects_RetestedFailed = (int)reader["Defects_RetestedFailed"];
+                                else
+                                    _kpi.Defects_RetestedFailed = 0;
+                                if (reader["Defects_Closed"] != DBNull.Value)
+                                    _kpi.DefectsClosed = (int)reader["Defects_Closed"];
+                                else
+                                    _kpi.DefectsClosed = 0;
+                                if (reader["Tasks_Completed"] != DBNull.Value)
+                                    _kpi.TasksCompleted = (string)reader["Tasks_Completed"];
+                                else
+                                    _kpi.TasksCompleted = "";
+
                             }
                         }
                     }
@@ -261,6 +370,55 @@ namespace ORA_Data.DAL
                                 _kpi.CreatedBy = (string)reader["Created_By"];
                                 _kpi.Modified = (DateTime)reader["Modified"];
                                 _kpi.ModifiedBy = (string)reader["Modified_By"];
+                                if (reader["RTC_Passed"] != DBNull.Value)
+                                    _kpi.RTCPassed = (int)reader["RTC_Passed"];
+                                else
+                                    _kpi.RTCPassed = 0;
+                                if (reader["RTC_Failed"] != DBNull.Value)
+                                    _kpi.RTCFailed = (int)reader["RTC_Failed"];
+                                else
+                                    _kpi.RTCFailed = 0;
+                                if (reader["RTC_Created"] != DBNull.Value)
+                                    _kpi.RTCCreated = (int)reader["RTC_Created"];
+                                else
+                                    _kpi.RTCCreated = 0;
+                                if (reader["RTC_Updated"] != DBNull.Value)
+                                    _kpi.RTCUpdated = (int)reader["RTC_Updated"];
+                                else
+                                    _kpi.RTCUpdated = 0;
+                                if (reader["SprintTC_Passed"] != DBNull.Value)
+                                    _kpi.SprintTC_Passed = (int)reader["SprintTC_Passed"];
+                                else
+                                    _kpi.SprintTC_Passed = 0;
+                                if (reader["SprintTC_Failed"] != DBNull.Value)
+                                    _kpi.SprintTC_Failed = (int)reader["SprintTC_Failed"];
+                                else
+                                    _kpi.SprintTC_Failed = 0;
+                                if (reader["SprintTC_Created"] != DBNull.Value)
+                                    _kpi.SprintTC_Created = (int)reader["SprintTC_Created"];
+                                else
+                                    _kpi.SprintTC_Created = 0;
+                                if (reader["Defects_FoundInTesting"] != DBNull.Value)
+                                    _kpi.Defects_FoundInTesting = (int)reader["Defects_FoundInTesting"];
+                                else
+                                    _kpi.Defects_FoundInTesting = 0;
+                                if (reader["Defects_FoundInProd"] != DBNull.Value)
+                                    _kpi.Defects_FoundInProd = (int)reader["Defects_FoundInProd"];
+                                else
+                                    _kpi.Defects_FoundInProd = 0;
+                                if (reader["Defects_RetestedFailed"] != DBNull.Value)
+                                    _kpi.Defects_RetestedFailed = (int)reader["Defects_RetestedFailed"];
+                                else
+                                    _kpi.Defects_RetestedFailed = 0;
+                                if (reader["Defects_Closed"] != DBNull.Value)
+                                    _kpi.DefectsClosed = (int)reader["Defects_Closed"];
+                                else
+                                    _kpi.DefectsClosed = 0;
+                                if (reader["Tasks_Completed"] != DBNull.Value)
+                                    _kpi.TasksCompleted = (string)reader["Tasks_Completed"];
+                                else
+                                    _kpi.TasksCompleted = "";
+
 
                                 kpiList.Add(_kpi);
                             }
@@ -321,6 +479,18 @@ namespace ORA_Data.DAL
                     cmd.Parameters.AddWithValue("@Employee_ID", _kpi.EmployeeId);
                     cmd.Parameters.AddWithValue("@Modified", _kpi.Modified);
                     cmd.Parameters.AddWithValue("@Modified_By", _kpi.ModifiedBy);
+                    cmd.Parameters.AddWithValue("@RTC_Passed", _kpi.RTCPassed);
+                    cmd.Parameters.AddWithValue("@RTC_Failed", _kpi.RTCFailed);
+                    cmd.Parameters.AddWithValue("@RTC_Created", _kpi.RTCCreated);
+                    cmd.Parameters.AddWithValue("@RTC_Updated", _kpi.RTCUpdated);
+                    cmd.Parameters.AddWithValue("@SprintTC_Passed", _kpi.SprintTC_Passed);
+                    cmd.Parameters.AddWithValue("@SprintTC_Failed", _kpi.SprintTC_Failed);
+                    cmd.Parameters.AddWithValue("@SprintTC_Created", _kpi.SprintTC_Created);
+                    cmd.Parameters.AddWithValue("@Defects_FoundInTesting", _kpi.Defects_FoundInTesting);
+                    cmd.Parameters.AddWithValue("@Defects_FoundInProd", _kpi.Defects_FoundInProd);
+                    cmd.Parameters.AddWithValue("@Defects_RetestedFailed", _kpi.Defects_RetestedFailed);
+                    cmd.Parameters.AddWithValue("@Defects_Closed", _kpi.DefectsClosed);
+                    cmd.Parameters.AddWithValue("@Tasks_Completed", _kpi.TasksCompleted);
                     SqlConnect.Connection.Open();
                     cmd.ExecuteNonQuery();
                     SqlConnect.Connection.Close();
