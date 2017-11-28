@@ -32,12 +32,19 @@
     .form-horizontal .radio {
         min-height: 20px;
     }
+    .validation-summary-valid{
+        display: none;
+    }
+    .validation-message-valid{
+        display: none;
+    }
 </style>
 
-@using (Html.BeginForm("CreateAssessment","Assessment", FormMethod.Post))
+
+@using (Html.BeginForm("CreateAssessment","Assessment", FormMethod.Post, htmlAttributes: new { @id="AssessmentForm"}))
 {
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    
 
     <div class="form-horizontal">
         @*<div class="container">*@
@@ -97,12 +104,13 @@
                                     <h3></h3>
                                     <p>Step 1</p>
                                     <div class="form-horizontal">
+                                        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
                                         <div class="form-group">
                                             @Html.LabelFor(model => model.EmployeeID, htmlAttributes: new { @class = "control-label col-md-2" })
                                             <div class="col-md-10">
                                                 @Html.DropDownListFor(model => model.EmployeeID, new SelectList(Model.EmployeeList, "EmployeeId", "EmployeeName"), "Select Employee", htmlAttributes: new { @class="form-control", @required="required"})
-                                                @Html.ValidationMessageFor(model => model.EmployeeID, "", new { @class = "text-danger" })
+                                                @Html.ValidationMessageFor(model => model.EmployeeID)
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -113,7 +121,6 @@
                                         </div>
 
 
-                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                         <div class="form-group">
                                             @Html.LabelFor(model => model.TDProblemSolving, htmlAttributes: new { @class = "control-label col-md-2" })
                                             <div class="col-md-10">
@@ -133,7 +140,7 @@
                                                     }
                                                 }
                                                 @*@Html.EditorFor(model => model.TDProblemSolving, new { htmlAttributes = new { @class = "form-control" } })*@
-                                                @Html.ValidationMessageFor(model => model.TDProblemSolving, "", new { @class = "text-danger" })
+                                                @Html.ValidationMessageFor(model => model.TDProblemSolving,"",new { @class="text-danger"})
                                             </div>
                                         </div>
 
@@ -202,14 +209,14 @@
                                                     }
                                                 }
                                                 @*@Html.EditorFor(model => model.TDProductKnowledge, new { htmlAttributes = new { @class = "form-control" } })*@
-                                                @*@Html.ValidationMessageFor(model => model.TDProductKnowledge, "", new { @class = "text-danger" })*@
+                                                @Html.ValidationMessageFor(model => model.TDProductKnowledge, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             @Html.LabelFor(model => model.TDComments, htmlAttributes: new { @class = "control-label col-md-2" })
                                             <div class="col-md-10">
-                                                @Html.EditorFor(model => model.TDComments, new { htmlAttributes = new { @class = "form-control", @Value = "" } })
+                                                @Html.TextAreaFor(model => model.TDComments, new { htmlAttributes = new { @class = "form-control", @Value = "", @style="height:auto;" } })
                                                 @Html.ValidationMessageFor(model => model.TDComments, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
@@ -224,6 +231,8 @@
                                     <h3></h3>
                                     <p>Step 2</p>
                                     <div class="form-horizontal">
+                                        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
 
                                         <div class="form-group">
                                             @Html.LabelFor(model => model.CSRProfesionalismTeamwork, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -335,6 +344,9 @@
                                     <p>Step 3</p>
                                     <div class="form-horizontal">
                                         <div class="form-group">
+                                            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+
                                             @Html.LabelFor(model => model.ADAttendence, htmlAttributes: new { @class = "control-label col-md-2" })
                                             <div class="col-md-10">
                                                 @foreach (var item in Model.Points)
@@ -446,6 +458,9 @@
                                     <p>Step 4</p>
                                     <div class="form-horizontal">
                                         <div class="form-group">
+                                            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+
                                             @Html.LabelFor(model => model.TMResourceUse, htmlAttributes: new { @class = "control-label col-md-2" })
                                             <div class="col-md-10">
                                                 @foreach (var item in Model.Points)
@@ -557,6 +572,7 @@
                                     <p>Step 5</p>
                                     <div class="form-horizontal">
                                         <div class="form-group">
+
                                             @Html.LabelFor(model => model.MIAttitudeWork, htmlAttributes: new { @class = "control-label col-md-2" })
                                             <div class="col-md-10">
                                                 @foreach (var item in Model.Points)
@@ -575,7 +591,7 @@
                                                     }
                                                 }
                                                 @*@Html.EditorFor(model => model.MIAttitudeWork, new { htmlAttributes = new { @class = "form-control" } })*@
-                                                @*@Html.ValidationMessageFor(model => model.MIAttitudeWork, "", new { @class = "text-danger" })*@
+                                                @Html.ValidationMessageFor(model => model.MIAttitudeWork, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
 
@@ -598,7 +614,7 @@
                                                     }
                                                 }
                                                 @*@Html.EditorFor(model => model.MIGroomingAppearance, new { htmlAttributes = new { @class = "form-control" } })*@
-                                                @*@Html.ValidationMessageFor(model => model.MIGroomingAppearance, "", new { @class = "text-danger" })*@
+                                                @Html.ValidationMessageFor(model => model.MIGroomingAppearance, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
 
@@ -621,7 +637,7 @@
                                                     }
                                                 }
                                                 @*@Html.EditorFor(model => model.MIPersonalGrowth, new { htmlAttributes = new { @class = "form-control" } })*@
-                                                @*@Html.ValidationMessageFor(model => model.MIPersonalGrowth, "", new { @class = "text-danger" })*@
+                                                @Html.ValidationMessageFor(model => model.MIPersonalGrowth, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
 
@@ -644,7 +660,7 @@
                                                     }
                                                 }
                                                 @*@Html.EditorFor(model => model.MIPotentialAdvancement, new { htmlAttributes = new { @class = "form-control" } })*@
-                                                @*@Html.ValidationMessageFor(model => model.MIPotentialAdvancement, "", new { @class = "text-danger" })*@
+                                                @Html.ValidationMessageFor(model => model.MIPotentialAdvancement, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
 
@@ -656,10 +672,9 @@
                                             </div>
                                         </div>
 
-
                                         <ul class="list-inline pull-right">
                                             <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
-                                            <li><button type="submit" class="btn btn-primary btn-info-full next-step">Submit</button></li>
+                                            <li><button type="submit" class="btn btn-primary btn-info-full">Submit</button></li>
                                         </ul>
                                         @*<div class="form-group">
                                                 <div class="col-md-offset-2 col-md-10">
@@ -672,7 +687,9 @@
                                 <div class="tab-pane" role="tabpanel" id="complete">
                                     <h3>Complete</h3>
                                     <p>You have successfully completed all steps.</p>
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                 </div>
+
                                 <div class="clearfix"></div>
                             </div>
                         </form>
@@ -681,5 +698,9 @@
             </div>
         </div>
     @*</div>*@
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
 }
 
