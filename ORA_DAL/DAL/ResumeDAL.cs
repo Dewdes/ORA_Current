@@ -78,37 +78,19 @@ namespace ORA_Data.DAL
 
         /// <summary>
         /// Updates Skill fields in the Skills table
-        /// Uses the UPDATE_SKILLS stored procedure
+        /// Uses the ADD_SKILLS stored procedure
         /// </summary>
         /// <param name="_skills"></param>
-        public static void CreateSkills(SkillsDM _skills)
+        public static void AddSkills(SkillsDM _skills)
         {
             try
             {
-                using (SqlCommand cmd = new SqlCommand("CREATE_SKILLS", SqlConnect.Connection))
+                using (SqlCommand cmd = new SqlCommand("ADD_SKILLS", SqlConnect.Connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@Skills_1", _skills.Skill_1);
-                    cmd.Parameters.AddWithValue("@Skill_1_Proficiency", _skills.Skill_1_Proficiency);
-                    cmd.Parameters.AddWithValue("@Skills_2", _skills.Skill_2);
-                    cmd.Parameters.AddWithValue("@Skill_2_Proficiency", _skills.Skill_2_Proficiency);
-                    cmd.Parameters.AddWithValue("@Skills_3", _skills.Skill_3);
-                    cmd.Parameters.AddWithValue("@Skill_3_Proficiency", _skills.Skill_3_Proficiency);
-                    cmd.Parameters.AddWithValue("@Skills_4", _skills.Skill_4);
-                    cmd.Parameters.AddWithValue("@Skill_4_Proficiency", _skills.Skill_4_Proficiency);
-                    cmd.Parameters.AddWithValue("@Skills_5", _skills.Skill_5);
-                    cmd.Parameters.AddWithValue("@Skill_5_Proficiency", _skills.Skill_5_Proficiency);
-                    cmd.Parameters.AddWithValue("@Skills_6", _skills.Skill_6);
-                    cmd.Parameters.AddWithValue("@Skill_6_Proficiency", _skills.Skill_6_Proficiency);
-                    cmd.Parameters.AddWithValue("@Skills_7", _skills.Skill_7);
-                    cmd.Parameters.AddWithValue("@Skill_7_Proficiency", _skills.Skill_7_Proficiency);
-                    cmd.Parameters.AddWithValue("@Skills_8", _skills.Skill_8);
-                    cmd.Parameters.AddWithValue("@Skill_8_Proficiency", _skills.Skill_8_Proficiency);
-                    cmd.Parameters.AddWithValue("@Skills_9", _skills.Skill_9);
-                    cmd.Parameters.AddWithValue("@Skill_9_Proficiency", _skills.Skill_9_Proficiency);
-                    cmd.Parameters.AddWithValue("@Skills_10", _skills.Skill_10);
-                    cmd.Parameters.AddWithValue("@Skill_10_Proficiency", _skills.Skill_10_Proficiency);
-                    cmd.Parameters.AddWithValue("@Resume_ID", _skills.ResumeID);
+                    cmd.Parameters.AddWithValue("@SkillLibraryId", _skills.SkillLibraryId);
+                    cmd.Parameters.AddWithValue("@SkillProficiency", _skills.SkillProficiency);
+                    cmd.Parameters.AddWithValue("@Resume_ID", _skills.ResumeId);
                     SqlConnect.Connection.Open();
                     cmd.ExecuteNonQuery();
                     SqlConnect.Connection.Close();
@@ -116,7 +98,7 @@ namespace ORA_Data.DAL
             }
             catch (Exception e)
             {
-                errorLog.ErrorLogger("CreateSkills", DateTime.Now, e.Message);
+                errorLog.ErrorLogger("AddSkills", DateTime.Now, e.Message);
                 throw (e);
             }
             finally
@@ -348,6 +330,53 @@ namespace ORA_Data.DAL
         }
 
         /// <summary>
+        /// This gets a single work history row that has a unique resume key that is attached to a single employee
+        /// Uses the VIEW_WORKK_HISSTORY_BY_RESUME_ID stored procedure
+        /// </summary>
+        /// <param name="resumeID"></param>
+        /// <returns></returns>
+        public static WorkHistoryDM GetWorkHistoryByResumeID(int resumeID)
+        {
+            WorkHistoryDM _workHistory = new WorkHistoryDM();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("VIEW_WORK_HISTORY_BY_RESUME_ID", SqlConnect.Connection))
+                {
+                    SqlConnect.Connection.Open();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Resume_ID", resumeID);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                _workHistory.ResumeID = (int)reader["Resume_ID"];
+                                _workHistory.JobDescription = (string)reader["Job_Description"];
+                                _workHistory.OrganizationName = (string)reader["Organization_Name"];
+                                _workHistory.WorkPlaceStartDate = (DateTime)reader["Work_Place_Start_Date"];
+                                _workHistory.WorkPlaceEndDate = (DateTime)reader["Work_Place_End_Date"];
+                                _workHistory.WorkPlaceLocation = (string)reader["Work_Place_Location"];
+                                _workHistory.WorkHistoryID = (int)reader["Work_History_ID"];
+                            }
+                        }
+                    }
+                    SqlConnect.Connection.Close();
+                }
+                return (_workHistory);
+            }
+            catch (Exception e)
+            {
+                errorLog.ErrorLogger("GetWorkHistoryByResumeID", DateTime.Now, e.Message);
+                throw (e);
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
+            }
+        }
+
+        /// <summary>
         /// This gets the WorkHistory fields that has a unique resume key that is attached to a single employee
         /// Uses the VIEW_WORK_HISTORY_BY_RESUME_ID stored procedure
         /// </summary>
@@ -419,28 +448,9 @@ namespace ORA_Data.DAL
                         {
                             while (reader.Read())
                             {
-                                _skills.ResumeID = (int)reader["Resume_ID"];
-                                _skills.Skills_ID = (int)reader["Skills_ID"];
-                                _skills.Skill_1 = (string)reader["Skill_1"];
-                                _skills.Skill_1_Proficiency = (int)reader["Skill_1_Proficiency"];
-                                _skills.Skill_2 = (string)reader["Skill_2"];
-                                _skills.Skill_2_Proficiency = (int)reader["Skill_2_Proficiency"];
-                                _skills.Skill_3 = (string)reader["Skill_3"];
-                                _skills.Skill_3_Proficiency = (int)reader["Skill_3_Proficiency"];
-                                _skills.Skill_4 = (string)reader["Skill_4"];
-                                _skills.Skill_4_Proficiency = (int)reader["Skill_4_Proficiency"];
-                                _skills.Skill_5 = (string)reader["Skill_5"];
-                                _skills.Skill_5_Proficiency = (int)reader["Skill_5_Proficiency"];
-                                _skills.Skill_6 = (string)reader["Skill_6"];
-                                _skills.Skill_6_Proficiency = (int)reader["Skill_6_Proficiency"];
-                                _skills.Skill_7 = (string)reader["Skill_7"];
-                                _skills.Skill_7_Proficiency = (int)reader["Skill_7_Proficiency"];
-                                _skills.Skill_8 = (string)reader["Skill_8"];
-                                _skills.Skill_8_Proficiency = (int)reader["Skill_8_Proficiency"];
-                                _skills.Skill_9 = (string)reader["Skill_9"];
-                                _skills.Skill_9_Proficiency = (int)reader["Skill_9_Proficiency"];
-                                _skills.Skill_10 = (string)reader["Skill_10"];
-                                _skills.Skill_10_Proficiency = (int)reader["Skill_10_Proficiency"];
+                                _skills.ResumeId = (int)reader["Resume_ID"];
+                                _skills.SkillLibraryId = (int)reader["Skill_Library_ID"];
+                                _skills.SkillProficiency = (int)reader["Skill_Proficiency"];
                             }
                         }
                     }
@@ -458,6 +468,89 @@ namespace ORA_Data.DAL
                 SqlConnect.Connection.Close();
             }
         }
+
+        /// <summary>
+        /// This gets a list of all skills that the employee has added to the resume
+        /// Uses the VIEW_SKILLS_BY_RESUME_ID stored procedure
+        /// </summary>
+        /// <param name="resumeID"></param>
+        /// <returns></returns>
+        public static List<SkillsDM> GetListOfSkillsByResumeID(long resumeID)
+        {
+            List<SkillsDM> skillsList = new List<SkillsDM>();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("VIEW_SKILLS_BY_RESUME_ID", SqlConnect.Connection))
+                {
+                    SqlConnect.Connection.Open();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Resume_ID", resumeID);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                SkillsDM _skills = new SkillsDM();
+                                _skills.ResumeId = (int)reader["Resume_ID"];
+                                _skills.SkillLibraryId = (int)reader["Skill_Library_ID"];
+                                _skills.SkillProficiency = (int)reader["Skill_Proficiency"];
+
+                                skillsList.Add(_skills);
+                            }
+                        }
+                    }
+                    SqlConnect.Connection.Close();
+                }
+                return (skillsList);
+            }
+            catch (Exception e)
+            {
+                errorLog.ErrorLogger("GetListOfSkillsByResumeID", DateTime.Now, e.Message);
+                throw (e);
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
+            }
+        }
+
+        public static SkillLibraryDM GetLibrarySkillsByID(int skillLibraryId)
+        {
+            SkillLibraryDM _skills = new SkillLibraryDM();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("READ_SKILL_LIBRARY_BY_ID", SqlConnect.Connection))
+                {
+                    SqlConnect.Connection.Open();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Resume_ID", skillLibraryId);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                _skills.SkillName = (string)reader["Skill_Name"];
+                                _skills.SkillCategory = (string)reader["Skill_Category"];
+                            }
+                        }
+                    }
+                    SqlConnect.Connection.Close();
+                }
+                return (_skills);
+            }
+            catch (Exception e)
+            {
+                errorLog.ErrorLogger("ReadSkillLibrary", DateTime.Now, e.Message);
+                throw (e);
+            }
+            finally
+            {
+                SqlConnect.Connection.Close();
+            }
+        }
+
         #endregion
 
         #region UPDATE METHODS
@@ -559,75 +652,10 @@ namespace ORA_Data.DAL
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Resume_ID", resumeID);
-                    if (_skills.Skill_1 != null)
-                        cmd.Parameters.AddWithValue("@Skill_1", _skills.Skill_1);
-                    else
-                        cmd.Parameters.AddWithValue("@Skill_1", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@SkillsId", _skills.SkillsId);
+                    cmd.Parameters.AddWithValue("@Skill_Proficiency", _skills.SkillProficiency);
+                    cmd.Parameters.AddWithValue("@SkillLibraryId", _skills.SkillLibraryId);
 
-                    cmd.Parameters.AddWithValue("@Skill_1_Proficiency", _skills.Skill_1_Proficiency);
-
-                    if (_skills.Skill_2 != null)
-                        cmd.Parameters.AddWithValue("@Skill_2", _skills.Skill_2);
-                    else
-                        cmd.Parameters.AddWithValue("@Skill_2", DBNull.Value);
-
-                    cmd.Parameters.AddWithValue("@Skill_2_Proficiency", _skills.Skill_2_Proficiency);
-
-                    if (_skills.Skill_3 != null)
-                        cmd.Parameters.AddWithValue("@Skill_3", _skills.Skill_3);
-                    else
-                        cmd.Parameters.AddWithValue("@Skill_3", DBNull.Value);
-
-                    cmd.Parameters.AddWithValue("@Skill_3_Proficiency", _skills.Skill_3_Proficiency);
-
-                    if (_skills.Skill_4 != null)
-                        cmd.Parameters.AddWithValue("@Skill_4", _skills.Skill_4);
-                    else
-                        cmd.Parameters.AddWithValue("@Skill_4", DBNull.Value);
-
-                    cmd.Parameters.AddWithValue("@Skill_4_Proficiency", _skills.Skill_4_Proficiency);
-
-                    if (_skills.Skill_5 != null)
-                        cmd.Parameters.AddWithValue("@Skill_5", _skills.Skill_5);
-                    else
-                        cmd.Parameters.AddWithValue("@Skill_5", DBNull.Value);
-
-                    cmd.Parameters.AddWithValue("@Skill_5_Proficiency", _skills.Skill_5_Proficiency);
-
-                    if (_skills.Skill_6 != null)
-                        cmd.Parameters.AddWithValue("@Skill_6", _skills.Skill_6);
-                    else
-                        cmd.Parameters.AddWithValue("@Skill_6", DBNull.Value);
-
-                    cmd.Parameters.AddWithValue("@Skill_6_Proficiency", _skills.Skill_6_Proficiency);
-
-                    if (_skills.Skill_7 != null)
-                        cmd.Parameters.AddWithValue("@Skill_7", _skills.Skill_7);
-                    else
-                        cmd.Parameters.AddWithValue("@Skill_7", DBNull.Value);
-
-                    cmd.Parameters.AddWithValue("@Skill_7_Proficiency", _skills.Skill_7_Proficiency);
-
-                    if (_skills.Skill_8 != null)
-                        cmd.Parameters.AddWithValue("@Skill_8", _skills.Skill_8);
-                    else
-                        cmd.Parameters.AddWithValue("@Skill_8", DBNull.Value);
-
-                    cmd.Parameters.AddWithValue("@Skill_8_Proficiency", _skills.Skill_8_Proficiency);
-
-                    if (_skills.Skill_9 != null)
-                        cmd.Parameters.AddWithValue("@Skill_9", _skills.Skill_9);
-                    else
-                        cmd.Parameters.AddWithValue("@Skill_9", DBNull.Value);
-
-                    cmd.Parameters.AddWithValue("@Skill_9_Proficiency", _skills.Skill_9_Proficiency);
-
-                    if (_skills.Skill_10 != null)
-                        cmd.Parameters.AddWithValue("@Skill_10", _skills.Skill_10);
-                    else
-                        cmd.Parameters.AddWithValue("@Skill_10", DBNull.Value);
-
-                    cmd.Parameters.AddWithValue("@Skill_10_Proficiency", _skills.Skill_10_Proficiency);
                     SqlConnect.Connection.Open();
                     cmd.ExecuteNonQuery();
                     SqlConnect.Connection.Close();

@@ -32,7 +32,7 @@ namespace ORA.Tools
                 cfg.CreateMap<SkillsVM, SkillsDM>().ReverseMap();
                 cfg.CreateMap<WorkHistoryVM, WorkHistoryDM>().ReverseMap();
                 cfg.CreateMap<AccountBioVM, AccountBioDM>().ReverseMap();
-
+                cfg.CreateMap<SkillLibraryVM, SkillLibraryDM>().ReverseMap();
                 cfg.CreateMap<AssessmentVM, AssessmentBM>().ReverseMap();
             });
         }
