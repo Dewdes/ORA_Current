@@ -54,8 +54,8 @@
             <div class="container" style="padding-top:10px;">
                 @using (Html.BeginForm("FilterChartByDate", "Admin", FormMethod.Post))
                 {
-                    <label>From:</label><input class="form-control" type="date" name="fromDate" id="fromDate" />
-                    <label>To:</label><input class="form-control" type="date" name="toDate" id="toDate" />
+                    <label>From:</label><input class="form-control" type="date" name="fromDate" id="fromDate" required="required" />
+                    <label>To:</label><input class="form-control" type="date" name="toDate" id="toDate" required="required" />
                     <button type="submit" value="FilterChartByDate">Filter</button>
 
                 }

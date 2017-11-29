@@ -13,11 +13,16 @@
     });
 
     $(".next-step").click(function (e) {
-
-        var $active = $('.wizard .nav-tabs li.active');
-        $active.next().removeClass('disabled');
-        nextTab($active);
-
+        var TDComments = document.getElementById("TDComments").innerText;
+        
+        if (TDComments == "") {
+            alert("Comment must be filled out");
+        }
+        else {
+            var $active = $('.wizard .nav-tabs li.active');
+            $active.next().removeClass('disabled');
+            nextTab($active);
+        }
     });
     $(".prev-step").click(function (e) {
 

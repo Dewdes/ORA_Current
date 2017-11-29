@@ -15,6 +15,10 @@
     $(function () {
         $(document).tooltip();
     });
+
+    function CommentVal() {
+        
+    }
 </script>
 <style>
     label {
@@ -36,14 +40,86 @@
     .form-horizontal .radio {
         min-height: 20px;
     }
+    .validation-summary-valid{
+        display: none;
+    }
+    .validation-message-valid{
+        display: none;
+    }
 </style>
 
-@using (Html.BeginForm("CreateAssessment", "Assessment", FormMethod.Post))
+
+@using (Html.BeginForm("CreateAssessment","Assessment", FormMethod.Post, htmlAttributes: new { @id="AssessmentForm"}))
 {
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    
 
     <div class="form-horizontal">
+        @*<div class="container">*@
+            <div class="row">
+                <section>
+                    <div class="wizard">
+                        <div class="wizard-inner">
+                            <div class="connecting-line"></div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active">
+                                    <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
+                                        <span class="round-tab">
+                                            <i class="glyphicon glyphicon-folder-open"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
+                                        <span class="round-tab">
+                                            <i class="glyphicon glyphicon-pencil"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
+                                        <span class="round-tab">
+                                            <i class="glyphicon glyphicon-picture"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#step4" data-toggle="tab" aria-controls="step4" role="tab" title="Step 4">
+                                        <span class="round-tab">
+                                            <i class="glyphicon glyphicon-user"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#step5" data-toggle="tab" aria-controls="step5" role="tab" title="Step 5">
+                                        <span class="round-tab">
+                                            <i class="glyphicon glyphicon-thumbs-up"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li role="presentation" class="disabled">
+                                    <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
+                                        <span class="round-tab">
+                                            <i class="glyphicon glyphicon-ok"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <form role="form">
+                            <div class="tab-content">
+                                <div class="tab-pane active" role="tabpanel" id="step1">
+                                    <h3></h3>
+                                    <p>Step 1</p>
+                                    <div class="form-horizontal">
+                                        @Html.ValidationSummary(false, "There are missing fields.", new { @class = "text-danger" })
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.EmployeeID, htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.DropDownListFor(model => model.EmployeeID, new SelectList(Model.EmployeeList, "EmployeeId", "EmployeeName"), "Select Employee", htmlAttributes: new { @class="form-control", @required="required"})
+                                                @Html.ValidationMessageFor(model => model.EmployeeID)
+                                            </div>
         <div class="row">
             <section>
                 <div class="wizard">
@@ -116,6 +192,10 @@
                                     </div>
 
 
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.TDProblemSolving, htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @foreach (var item in Model.Points)
                                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                     <div class="form-group">
                                         @Html.LabelFor(model => model.TDProblemSolving, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -126,6 +206,20 @@
                                                 {
                                                     if (info.AssessName == "TD_Problem_Solving" && info.Number == item)
                                                     {
+                                                        if (info.AssessName == "TD_Problem_Solving" && info.Number == item)
+                                                        {
+                                                            <div class="radio-inline" title="@info.Name: @info.Desc">
+                                                                <label>
+                                                                    @Html.RadioButtonFor(model => model.TDProblemSolving, item, htmlAttributes: new { @id="TDbtn", @required = "required" })
+                                                                    @item
+                                                                </label>
+                                                            </div>
+                                                        }
+                                                    }
+                                                }
+                                                @*@Html.EditorFor(model => model.TDProblemSolving, new { htmlAttributes = new { @class = "form-control" } })*@
+                                                @Html.ValidationMessageFor(model => model.TDProblemSolving,"",new { @class="text-danger"})
+                                            </div>
                                                         <div class="radio-inline" title="@info.Name: @info.Desc">
                                                             <label>
                                                                 @Html.RadioButtonFor(model => model.TDProblemSolving, item, new { @required = "required" })
@@ -198,10 +292,19 @@
                                                         </div>
                                                     }
                                                 }
+                                                @*@Html.EditorFor(model => model.TDProductKnowledge, new { htmlAttributes = new { @class = "form-control" } })*@
+                                                @Html.ValidationMessageFor(model => model.TDProductKnowledge, "", new { @class = "text-danger" })
+                                            </div>
                                             }
                                         </div>
                                     </div>
 
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.TDComments, htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.TextAreaFor(model => model.TDComments, new { htmlAttributes = new { @class = "form-control", @Value = "", @id="TDComments" } })
+                                                @Html.ValidationMessageFor(model => model.TDComments, "", new { @class = "text-danger" })
+                                            </div>
                                     <div class="form-group">
                                         @Html.LabelFor(model => model.TDComments, htmlAttributes: new { @class = "control-label col-md-2" })
                                         <div class="col-md-10">
@@ -215,6 +318,12 @@
                                 </ul>
                             </div>
 
+
+                                <div class="tab-pane" role="tabpanel" id="step2">
+                                    <h3></h3>
+                                    <p>Step 2</p>
+                                    <div class="form-horizontal">
+                                        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
                             <div class="tab-pane" role="tabpanel" id="step2">
                                 <h3></h3>
@@ -318,6 +427,17 @@
                                 </ul>
                             </div>
 
+                                <div class="tab-pane" role="tabpanel" id="step3">
+                                    <h3></h3>
+                                    <p>Step 3</p>
+                                    <div class="form-horizontal">
+                                        <div class="form-group">
+                                            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+
+                                            @Html.LabelFor(model => model.ADAttendence, htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @foreach (var item in Model.Points)
                             <div class="tab-pane" role="tabpanel" id="step3">
                                 <h3></h3>
                                 <p>Step 3</p>
@@ -421,6 +541,19 @@
                                 </ul>
                             </div>
 
+<<<<<<< HEAD
+                                <div class="tab-pane" role="tabpanel" id="step4">
+                                    <h3></h3>
+                                    <p>Step 4</p>
+                                    <div class="form-horizontal">
+                                        <div class="form-group">
+                                            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+
+                                            @Html.LabelFor(model => model.TMResourceUse, htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @foreach (var item in Model.Points)
+=======
                             <div class="tab-pane" role="tabpanel" id="step4">
                                 <h3></h3>
                                 <p>Step 4</p>
@@ -431,6 +564,7 @@
                                             @foreach (var item in Model.Points)
                                             {
                                                 foreach (var info in Model.Descriptions)
+>>>>>>> 9e359b33f56b12c02a80b460cdd30ac673be5cb8
                                                 {
                                                     if (info.AssessName == "TM_Resource_Use" && info.Number == item)
                                                     {
@@ -524,6 +658,17 @@
                                 </div>
                             </div>
 
+<<<<<<< HEAD
+                                <div class="tab-pane" role="tabpanel" id="step5">
+                                    <h3></h3>
+                                    <p>Step 5</p>
+                                    <div class="form-horizontal">
+                                        <div class="form-group">
+
+                                            @Html.LabelFor(model => model.MIAttitudeWork, htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @foreach (var item in Model.Points)
+=======
                             <div class="tab-pane" role="tabpanel" id="step5">
                                 <h3></h3>
                                 <p>Step 5</p>
@@ -534,6 +679,7 @@
                                             @foreach (var item in Model.Points)
                                             {
                                                 foreach (var info in Model.Descriptions)
+>>>>>>> 9e359b33f56b12c02a80b460cdd30ac673be5cb8
                                                 {
                                                     if (info.AssessName == "MI_Attitude_Work" && info.Number == item)
                                                     {
@@ -545,7 +691,13 @@
                                                         </div>
                                                     }
                                                 }
+<<<<<<< HEAD
+                                                @*@Html.EditorFor(model => model.MIAttitudeWork, new { htmlAttributes = new { @class = "form-control" } })*@
+                                                @Html.ValidationMessageFor(model => model.MIAttitudeWork, "", new { @class = "text-danger" })
+                                            </div>
+=======
                                             }
+>>>>>>> 9e359b33f56b12c02a80b460cdd30ac673be5cb8
                                         </div>
                                     </div>
 
@@ -566,7 +718,13 @@
                                                         </div>
                                                     }
                                                 }
+<<<<<<< HEAD
+                                                @*@Html.EditorFor(model => model.MIGroomingAppearance, new { htmlAttributes = new { @class = "form-control" } })*@
+                                                @Html.ValidationMessageFor(model => model.MIGroomingAppearance, "", new { @class = "text-danger" })
+                                            </div>
+=======
                                             }
+>>>>>>> 9e359b33f56b12c02a80b460cdd30ac673be5cb8
                                         </div>
                                     </div>
 
@@ -587,7 +745,13 @@
                                                         </div>
                                                     }
                                                 }
+<<<<<<< HEAD
+                                                @*@Html.EditorFor(model => model.MIPersonalGrowth, new { htmlAttributes = new { @class = "form-control" } })*@
+                                                @Html.ValidationMessageFor(model => model.MIPersonalGrowth, "", new { @class = "text-danger" })
+                                            </div>
+=======
                                             }
+>>>>>>> 9e359b33f56b12c02a80b460cdd30ac673be5cb8
                                         </div>
                                     </div>
 
@@ -608,7 +772,13 @@
                                                         </div>
                                                     }
                                                 }
+<<<<<<< HEAD
+                                                @*@Html.EditorFor(model => model.MIPotentialAdvancement, new { htmlAttributes = new { @class = "form-control" } })*@
+                                                @Html.ValidationMessageFor(model => model.MIPotentialAdvancement, "", new { @class = "text-danger" })
+                                            </div>
+=======
                                             }
+>>>>>>> 9e359b33f56b12c02a80b460cdd30ac673be5cb8
                                         </div>
                                     </div>
 
@@ -620,12 +790,34 @@
                                         </div>
                                     </div>
 
+<<<<<<< HEAD
+                                        <ul class="list-inline pull-right">
+                                            <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
+                                            <li><button type="submit" class="btn btn-primary btn-info-full">Submit</button></li>
+                                        </ul>
+                                        @*<div class="form-group">
+                                                <div class="col-md-offset-2 col-md-10">
+                                                    <input type="submit" value="Create" class="btn btn-default" />
+                                                </div>
+                                            </div>*@
+                                    </div>
+                                </div>
+                                
+                                <div class="tab-pane" role="tabpanel" id="complete">
+                                    <h3>Complete</h3>
+                                    <p>You have successfully completed all steps.</p>
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="clearfix"></div>
+=======
 
                                     <ul class="list-inline pull-right">
                                         <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
                                         <li><button type="submit" class="btn btn-primary btn-info-full next-step">Submit</button></li>
                                     </ul>
                                 </div>
+>>>>>>> 9e359b33f56b12c02a80b460cdd30ac673be5cb8
                             </div>
 
                             <div class="tab-pane" role="tabpanel" id="complete">
@@ -638,6 +830,14 @@
                 </div>
             </section>
         </div>
+<<<<<<< HEAD
+    @*</div>*@
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+=======
     </div>
+>>>>>>> 9e359b33f56b12c02a80b460cdd30ac673be5cb8
 }
 
