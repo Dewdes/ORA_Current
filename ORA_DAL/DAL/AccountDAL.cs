@@ -9,6 +9,9 @@ namespace ORA_Data.DAL
     public class AccountDAL
     {
         private static ErrorLog errorLog = new ErrorLog();
+        public static string defaultStatus = "Edit your Status";
+        public static string defaultImg = "assets/img/sidebar-5.jpg";
+        public static string defaultColor = "green";
         /// <summary>
         /// Records
         /// </summary>
@@ -41,7 +44,6 @@ namespace ORA_Data.DAL
         public static void CreateBio(long id)
         {
             AccountBioDM bio = new AccountBioDM();
-            string defaultStatus = "Edit your Status";
             try
             {
                 using (SqlCommand cmd = new SqlCommand("CREATE_BIO", SqlConnect.Connection))
@@ -51,6 +53,8 @@ namespace ORA_Data.DAL
                     cmd.Parameters.AddWithValue("@Status", bio.AccountStatus ?? defaultStatus);
                     cmd.Parameters.AddWithValue("@BannerBackgroundImg", bio.BannerBackgroundImg);
                     cmd.Parameters.AddWithValue("@AboutMe", bio.AboutMe ?? defaultStatus);
+                    cmd.Parameters.AddWithValue("@SideMenuImage", bio.SideMenuImage ?? defaultImg);
+                    cmd.Parameters.AddWithValue("@SideMenuColor", bio.SideMenuColor ?? defaultColor);
                     cmd.Parameters.AddWithValue("@Employee_ID", id);
                     SqlConnect.Connection.Open();
                     cmd.ExecuteNonQuery();
@@ -68,10 +72,6 @@ namespace ORA_Data.DAL
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
         public static List<AccountBioDM> ReadBios()
         {
             List<AccountBioDM> bioList = new List<AccountBioDM>();
@@ -93,6 +93,8 @@ namespace ORA_Data.DAL
                                 bio.AccountStatus = (string)reader["Status"];
                                 bio.BannerBackgroundImg = (byte[])reader["BannerBackgroundImg"];
                                 bio.AboutMe = (string)reader["AboutMe"];
+                                bio.SideMenuImage = (string) reader["SideMenuImage"];
+                                bio.SideMenuColor = (string) reader["SideMenuColor"];
                                 bio.EmployeeID = (Int64)reader["Employee_ID"];
                                 bioList.Add(bio);
                             }
@@ -113,9 +115,6 @@ namespace ORA_Data.DAL
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         public static AccountBioDM ReadBioById(string id)
         {
             AccountBioDM bio = new AccountBioDM();
@@ -147,8 +146,16 @@ namespace ORA_Data.DAL
 
                                 if (reader["AboutMe"] != DBNull.Value)
                                     bio.AboutMe = (string)reader["AboutMe"];
+
+                                if (reader["SideMenuImage"] != DBNull.Value)
+                                    bio.SideMenuImage = (string)reader["SideMenuImage"];
                                 else
-                                    bio.AboutMe = "";
+                                    bio.SideMenuImage = defaultImg;
+
+                                if (reader["SideMenuColor"] != DBNull.Value)
+                                    bio.SideMenuColor = (string)reader["SideMenuColor"];
+                                else
+                                    bio.SideMenuColor = defaultColor;
                             }
                         }
                     }
@@ -291,6 +298,29 @@ namespace ORA_Data.DAL
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Employee_ID", empId);
                     cmd.Parameters.AddWithValue("@BannerBackgroundImg", account.BannerBackgroundImg);
+                    SqlConnect.Connection.Open();
+                    cmd.ExecuteNonQuery();
+                    SqlConnect.Connection.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                SqlConnect.Connection.Close();
+                throw (ex);
+            }
+        }
+
+        public static void UpdateSideMenu(AccountBioDM account, long empId)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("UPDATE_SIDE_MENU", SqlConnect.Connection))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Employee_ID", empId);
+                    cmd.Parameters.AddWithValue("@SideMenuImage", account.SideMenuImage);
+                    cmd.Parameters.AddWithValue("@SideMenuColor", account.SideMenuColor);
+
                     SqlConnect.Connection.Open();
                     cmd.ExecuteNonQuery();
                     SqlConnect.Connection.Close();

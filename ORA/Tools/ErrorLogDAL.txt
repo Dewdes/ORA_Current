@@ -55,3 +55,5 @@ Level: ReadSkillLibrary   Time: 11/29/2017 10:08:27 AM   Error: Procedure or fun
 Level: CreateEducation   Time: 11/29/2017 4:50:09 PM   Error: Object reference not set to an instance of an object.
 Level: CreateEducation   Time: 11/29/2017 4:51:15 PM   Error: Object reference not set to an instance of an object.
 Level: CreateEducation   Time: 11/29/2017 4:52:09 PM   Error: Object reference not set to an instance of an object.
+Level: ReadBioByID   Time: 11/30/2017 3:35:44 PM   Error: 
+Level: ReadBioByID   Time: 11/30/2017 3:38:35 PM   Error: 

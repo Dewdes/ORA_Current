@@ -3020,6 +3020,7 @@
     <Content Include="Views\Resume\ReadResumeBySkillsId.cshtml" />
     <Content Include="Views\Account\UploadProfileImage.cshtml" />
     <Content Include="Views\Account\UploadBannerImage.cshtml" />
+    <Content Include="Views\Account\EditLayout.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

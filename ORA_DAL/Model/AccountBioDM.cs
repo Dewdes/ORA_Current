@@ -14,6 +14,10 @@ namespace ORA_Data.Model
 
         public string AboutMe { get; set; }
 
+        public string SideMenuImage { get; set; }
+
+        public string SideMenuColor { get; set; }
+
         public long EmployeeID { get; set; }
 
         public HttpPostedFileBase File { get; set; }

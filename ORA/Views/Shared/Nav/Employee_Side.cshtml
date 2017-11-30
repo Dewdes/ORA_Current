@@ -1,5 +1,12 @@
-﻿
-<div class="sidebar" data-color="green" data-image="/Content/assets/img/sidebar-5.jpg">
+﻿@using AutoMapper
+@using ORA.Models
+@using ORA_Data.DAL
+@{
+    EmployeeVM employee = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById((long)Session["ID"]));
+    AccountBioVM bio = Mapper.Map<AccountBioVM>(AccountDAL.ReadBioById(employee.EmployeeId.ToString()));
+}
+
+<div class="sidebar" data-color=@bio.SideMenuColor data-image=@bio.SideMenuImage>
     <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
 
     <div class="sidebar-wrapper">
@@ -7,7 +14,7 @@
             <a href="~/Home/Index" style="color: #FFFFFF; text-decoration: none;">
                 <img src="~/Images/OnshoreLogo.png" width="50px" style="position: center;" />
                 @if ((bool)Session["LoggedIn"])
-            {
+                {
                     <span>@Session["Name"].ToString().Split(' ')[0]</span>
                 }
             </a>

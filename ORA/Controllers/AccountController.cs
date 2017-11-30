@@ -11,11 +11,12 @@ namespace ORA.Controllers
 {
     public class AccountController : Controller
     {
-        // GET: Account
-        public ActionResult Index()
+        public enum Color
         {
-            return View();
+            red,blue,azure,green,orange,purple
         }
+
+        public static string[] BackGroundImages = { "assets/img/sidebar-1.jpg", "assets/img/sidebar-2.jpg", "assets/img/sidebar-3.jpg", "assets/img/sidebar-4.jpg", "assets/img/sidebar-5.jpg" };
 
         /// <summary>
         /// Account Creation is for the Director role or administrator role to create a new account for a employee
@@ -141,6 +142,20 @@ namespace ORA.Controllers
             account.File.InputStream.Read(data, 0, account.File.ContentLength);
             account.BannerBackgroundImg = data;
             AccountDAL.UpdateBackground(Mapper.Map<AccountBioDM>(account), employee.EmployeeId);
+            return RedirectToAction("ReadAccount");
+        }
+
+        public ActionResult EditLayout()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult EditLayout(AccountBioVM account)
+        {
+            EmployeeVM employee = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById((long)Session["ID"]));
+            AccountDAL.UpdateSideMenu(Mapper.Map<AccountBioDM>(account), employee.EmployeeId);
+
             return RedirectToAction("ReadAccount");
         }
     }

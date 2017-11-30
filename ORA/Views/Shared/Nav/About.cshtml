@@ -7,12 +7,30 @@
 }
 <div class="card card-user">
     <div class="image">
-        <img src="data:image/png;base64,@Convert.ToBase64String(bio.BannerBackgroundImg, 0, bio.BannerBackgroundImg.Length)"/>
+        @{
+            if (bio.BannerBackgroundImg != null)
+            {
+                <img src="data:image/png;base64,@Convert.ToBase64String(bio.BannerBackgroundImg, 0, bio.BannerBackgroundImg.Length)"/>
+            }
+            else
+            {
+                <img src="https://static.decalgirl.com/assets/designs/large/library.jpg" />
+            }
+        }
     </div>
     <div class="content">
         <div class="author">
             <a href="#">
-                <img class="avatar border-gray" src="data:image/png;base64,@Convert.ToBase64String(bio.ProfileImage, 0, bio.ProfileImage.Length)"/>
+                @{
+                    if (bio.ProfileImage != null)
+                    {
+                        <img class="avatar border-gray" src="data:image/png;base64,@Convert.ToBase64String(bio.ProfileImage, 0, bio.ProfileImage.Length)"/>
+                    }
+                    else
+                    {
+                        <img src="https://community.yellowfinbi.com/public/avatars/default-avatar.svg" />
+                    }
+                }
                 <h4 class="title">
                     @*@Session["Name"].ToString().Split(' ')[0]<br />*@
                     @*<small>testname</small>*@

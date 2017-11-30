@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "EditLayout";
+}
+@using Microsoft.AspNetCore.Mvc.Rendering
+@using ORA.Controllers
+@using SelectListItem = System.Web.WebPages.Html.SelectListItem
+@model ORA.Models.AccountBioVM
+
+@using (Html.BeginForm("EditLayout", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+    <div class="row">
+        <div class="col-lg-12 ">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>
+                        <i class="glyphicon glyphicon-cog"></i>
+                        Edit Layout
+                    </h4>
+                </div>
+                <div class="panel-body">
+                    <div class="box box-info">
+                        <div class="box-body">
+                            @Html.AntiForgeryToken()
+                            <div class="form-horizontal col-lg-12">
+                                <hr />
+                            
+                                <input type="submit" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+
+
