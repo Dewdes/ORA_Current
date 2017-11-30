@@ -326,6 +326,7 @@
     <Compile Include="Model\LoginDM.cs" />
     <Compile Include="Model\ResumeDM.cs" />
     <Compile Include="Model\RolesDM.cs" />
+    <Compile Include="Model\SkillLibraryDM.cs" />
     <Compile Include="Model\SkillsDM.cs" />
     <Compile Include="Model\StatusDM.cs" />
     <Compile Include="Model\SprintDM.cs" />

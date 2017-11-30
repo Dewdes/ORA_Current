@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ORA.Models.SkillsVM>
+
+@{
+    ViewBag.Title = "ReadresumeBySkillsId";
+    Layout = null;
+}
+
+<link href="~/Content/Resume.css" rel="stylesheet" />
+<div class="row">
+    <div class="col-lg-12 ">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>
+                    <i class="glyphicon glyphicon-certificate"></i>
+                   Skills
+                </h4>
+            </div>
+            <div class="panel-body">
+                <div class="box box-info">
+                    <div class="box-body">
+                        <a class="btn btn-primary" href="AddResumeSkill">Add Skill</a>
+
+                        <div class="bot-border" style="border-bottom-width: 15px; border-bottom-color: darkgrey;"></div>
+                        @foreach (var item in Model)
+                        {
+                            <div>
+                                <div class="col-sm-5 col-xs-6 tital">
+                                    @Html.DisplayNameFor(model => model.SkillLibrary.SkillName)
+                                </div>
+                                <div class="col-sm-7">
+                                    @Html.DisplayFor(modelItem => item.SkillLibrary.SkillName)
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="bot-border"></div>
+                            </div>
+
+                            <div>
+                                <div class="col-sm-5 col-xs-6 tital">
+                                    @Html.DisplayNameFor(model => model.SkillLibrary.SkillCategory)
+                                </div>
+                                <div class="col-sm-7">
+                                    @Html.DisplayFor(modelItem => item.SkillLibrary.SkillCategory)
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="bot-border"></div>
+                            </div>
+
+                            <div class="bot-border"></div>
+
+                            <div class="bot-border" style="border-bottom-width: 15px; border-bottom-color: darkgrey;"></div>
+
+                            <a class="btn btn-primary" href="DeleteResumeSkill">Remove Skill</a>
+                        }
+                    </div>
+
+                    <div class="bot-border" style="border-bottom-width: 15px; border-bottom-color: darkgrey;"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

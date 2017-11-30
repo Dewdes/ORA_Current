@@ -6,8 +6,11 @@
 @using System.Text
 @using System.Web.Mvc;
 @using System.Web.Script.Serialization
+@using Microsoft.AspNetCore.Mvc.Rendering
 @using ORA.Models;
 @using ORA_Data.DAL;
+@using ORA_Logic
+@using ORA_Logic.Models
 
 @{
     ViewBag.Title = "AverageAssessmentCharts";
@@ -18,109 +21,62 @@
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/kendo")
 
-<base href="http://demos.telerik.com/kendo-ui/bar-charts/date-axis"/>
-
 <!DOCTYPE html>
 <html>
 <head>
-=======
-
->>>>>>> 7b547fffb1424bc8465c7ab721a87c9b918b09cd
     <style>
         html {
             font-size: 14px;
             font-family: Arial, Helvetica, sans-serif;
         }
     </style>
-    <title></title>
-
-    <!--        KENDO               -->
-    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.3.1026/styles/kendo.common.min.css">
-    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.3.1026/styles/kendo.rtl.min.css">
-    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.3.1026/styles/kendo.default.min.css">
-    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.3.1026/styles/kendo.mobile.all.min.css">
-
-    <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
-    <script src="https://kendo.cdn.telerik.com/2017.3.1026/js/angular.min.js"></script>
-    <script src="https://kendo.cdn.telerik.com/2017.3.1026/js/jszip.min.js"></script>
-    <script src="https://kendo.cdn.telerik.com/2017.3.1026/js/kendo.all.min.js"></script>
-
-
 </head>
 <body>
-
-    <div id="example">
+    @*<div id="example">
         <div class="demo-section k-content wide">
             <div class="container" style="padding-top:10px;">
                 @using (Html.BeginForm("FilterChartByDate", "Admin", FormMethod.Post))
-                {
+            {
                     <label>From:</label><input class="form-control" type="date" name="fromDate" id="fromDate" required="required" />
                     <label>To:</label><input class="form-control" type="date" name="toDate" id="toDate" required="required" />
                     <button type="submit" value="FilterChartByDate">Filter</button>
-
                 }
             </div>
             <div id="chart" style="background: center no-repeat url('../content/shared/styles/world-map.png');"></div>
         </div>
-        <script>
-
-            function createChart() {
-                $("#chart").kendoChart({
-                    title: {
-                        text: "Average Assessment Over Time"
-                    },
-                    legend: {
-                        position: "bottom"
-                    },
-                    chartArea: {
-                        background: ""
-                    },
-                    seriesDefaults: {
-                        type: "line",
-                        style: "smooth"
-                    },
-                    series: [{
-                        name: "Employee",
-                        data: [3.907, 7.943, 7.848, 9.284, 9.263, 9.801, 3.890, 8.238, 9.552, 6.855]
-                    }, {
-                        name: "Average Team Assessment",
-                        data: [3.907, 7.943, 7.848, 9.284, 9.263, 9.801, 3.890, 8.238, 9.552, 6.855]
-                    }, {
-                        name: "Average Role Assessment",
-                        data: [4.743, 7.295, 7.175, 6.376, 8.153, 8.535, 5.247, -7.832, 4.3, 4.3]
-                    }, {
-                        name: "Forecast",
-                        data: [-0.253, 0.362, -3.519, 1.799, 2.252, 3.343, 0.843, 2.877, -5.416, 5.590]
-                    }],
-                    valueAxis: {
-                        labels: {
-                            format: "{0}%"
-                        },
-                        line: {
-                            visible: false
-                        },
-                        axisCrossingValue: -10
-                    },
-                    categoryAxis: {
-                        categories: [2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011],
-                        majorGridLines: {
-                            visible: false
-                        },
-                        labels: {
-                            rotation: "auto"
-                        }
-                    },
-                    tooltip: {
-                        visible: true,
-                        format: "{0}%",
-                        template: "#= series.name #: #= value #"
-                    }
-                });
-            }
-
-            $(document).ready(createChart);
-            $(document).bind("kendo:skinChange", createChart);
-        </script>
-    </div>
+    </div>*@
 </body>
 </html>
+<html>
+<head>
+    @{
+        double[] avg = AssessmentFunctions.CalculateMeanForAllAssessments(AutoMapper.Mapper.Map<List<AssessmentBM>>(Model)).ToArray();
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+                google.charts.load('current', {'packages':['corechart']});
+                google.charts.setOnLoadCallback(drawChart);
+
+                function drawChart() {
+                    var data = google.visualization.arrayToDataTable([
+                        ['Average'],
+                        [@avg],
+                    ]);
+
+                    var options = {
+                        title: 'Company Performance',
+                        curveType: 'function',
+                        legend: { position: 'bottom' }
+                    };
+
+                    var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+                    chart.draw(data, options);
+                }
+        </script>
+    }
+</head>
+<body>
+    <div id="curve_chart" style="width: 900px; height: 500px"></div>
+</body>
+</html>
+

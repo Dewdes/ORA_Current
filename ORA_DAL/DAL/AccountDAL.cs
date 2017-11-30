@@ -34,20 +34,23 @@ namespace ORA_Data.DAL
         }
 
         /// <summary>
-        /// Bio CRUD
+        /// Create Bio creates a new Bio for a employee
         /// </summary>
-
-        public static void CreateBio(AccountBioDM bio, long id )
+        /// <param name="bio"></param>
+        /// <param name="id"></param>
+        public static void CreateBio(long id)
         {
+            AccountBioDM bio = new AccountBioDM();
+            string defaultStatus = "Edit your Status";
             try
             {
                 using (SqlCommand cmd = new SqlCommand("CREATE_BIO", SqlConnect.Connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@ProfileImg", bio.ProfileImage);
-                    cmd.Parameters.AddWithValue("@Status", bio.AccountStatus);
+                    cmd.Parameters.AddWithValue("@Status", bio.AccountStatus ?? defaultStatus);
                     cmd.Parameters.AddWithValue("@BannerBackgroundImg", bio.BannerBackgroundImg);
-                    cmd.Parameters.AddWithValue("@AboutMe", bio.AboutMe);
+                    cmd.Parameters.AddWithValue("@AboutMe", bio.AboutMe ?? defaultStatus);
                     cmd.Parameters.AddWithValue("@Employee_ID", id);
                     SqlConnect.Connection.Open();
                     cmd.ExecuteNonQuery();
@@ -86,9 +89,9 @@ namespace ORA_Data.DAL
                             {
                                 var bio = new AccountBioDM();
                                 bio.AccountBioID = (Int64)reader["EmployeeBio_ID"];
-                                bio.ProfileImage = (string)reader["ProfileImg"];
+                                bio.ProfileImage = (byte[])reader["ProfileImg"];
                                 bio.AccountStatus = (string)reader["Status"];
-                                bio.BannerBackgroundImg = (string)reader["BannerBackgroundImg"];
+                                bio.BannerBackgroundImg = (byte[])reader["BannerBackgroundImg"];
                                 bio.AboutMe = (string)reader["AboutMe"];
                                 bio.EmployeeID = (Int64)reader["Employee_ID"];
                                 bioList.Add(bio);
@@ -132,9 +135,7 @@ namespace ORA_Data.DAL
                                 bio.AccountBioID = (Int64)reader["EmployeeBio_ID"];
 
                                 if (reader["ProfileImg"] != DBNull.Value)
-                                    bio.ProfileImage = (string)reader["ProfileImg"];
-                                else
-                                    bio.ProfileImage = "";
+                                    bio.ProfileImage = (byte[])reader["ProfileImg"];
 
                                 if (reader["Status"] != DBNull.Value)
                                     bio.AccountStatus = (string)reader["Status"];
@@ -142,9 +143,7 @@ namespace ORA_Data.DAL
                                     bio.AccountStatus = "";
 
                                 if (reader["BannerBackgroundImg"] != DBNull.Value)
-                                    bio.BannerBackgroundImg = (string)reader["BannerBackgroundImg"];
-                                else
-                                    bio.BannerBackgroundImg = "";
+                                    bio.BannerBackgroundImg = (byte[]) reader["BannerBackgroundImg"];
 
                                 if (reader["AboutMe"] != DBNull.Value)
                                     bio.AboutMe = (string)reader["AboutMe"];
@@ -168,9 +167,6 @@ namespace ORA_Data.DAL
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         public static void UpdateBio(AccountBioDM bio)
         {
             try
@@ -199,9 +195,6 @@ namespace ORA_Data.DAL
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         public static void DeleteBio(AccountBioDM bio)
         {
             try
@@ -225,9 +218,8 @@ namespace ORA_Data.DAL
                 SqlConnect.Connection.Close();
             }
         }
-    
 
-    public static void UpdateAboutMe(long emp_ID, string aboutMe)
+        public static void UpdateAboutMe(long emp_ID, string aboutMe)
         {
             try
             {
@@ -269,15 +261,15 @@ namespace ORA_Data.DAL
             }
         }
 
-        public static void UpdateProfileImg(long emp_ID, string image)
+        public static void UpdateProfileImg(AccountBioDM account, long empId)
         {
             try
             {
                 using (SqlCommand cmd = new SqlCommand("UPDATE_PROFILE_IMAGE", SqlConnect.Connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@Employee_ID", emp_ID);
-                    cmd.Parameters.AddWithValue("@ProfileImg", image);
+                    cmd.Parameters.AddWithValue("@Employee_ID", empId);
+                    cmd.Parameters.AddWithValue("@ProfileImg", account.ProfileImage);
                     SqlConnect.Connection.Open();
                     cmd.ExecuteNonQuery();
                     SqlConnect.Connection.Close();
@@ -290,15 +282,15 @@ namespace ORA_Data.DAL
             }
         }
 
-        public static void UpdateBackground(long emp_ID, string image)
+        public static void UpdateBackground(AccountBioDM account, long empId)
         {
             try
             {
                 using (SqlCommand cmd = new SqlCommand("UPDATE_BACKGROUND_IMAGE", SqlConnect.Connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@Employee_ID", emp_ID);
-                    cmd.Parameters.AddWithValue("@BannerBackgroundImg", image);
+                    cmd.Parameters.AddWithValue("@Employee_ID", empId);
+                    cmd.Parameters.AddWithValue("@BannerBackgroundImg", account.BannerBackgroundImg);
                     SqlConnect.Connection.Open();
                     cmd.ExecuteNonQuery();
                     SqlConnect.Connection.Close();

@@ -1,49 +1,19 @@
-﻿namespace ORA.Models
+﻿using System.Collections.Generic;
+
+namespace ORA.Models
 {
     public class SkillsVM
     {
-        public int Skills_ID { get; set; }
+        public int SkillsId { get; set; }
 
-        public string Skill_1 { get; set; }
+        public int ResumeId { get; set; }
 
-        public int Skill_1_Proficiency { get; set; }
+        public int SkillLibraryId { get; set; }
 
-        public string Skill_2 { get; set; }
+        public int SkillProficiency { get; set; }
 
-        public int Skill_2_Proficiency { get; set; }
+        public SkillLibraryVM SkillLibrary {get; set;}
 
-        public string Skill_3 { get; set; }
-
-        public int Skill_3_Proficiency { get; set; }
-
-        public string Skill_4 { get; set; }
-
-        public int Skill_4_Proficiency { get; set; }
-
-        public string Skill_5 { get; set; }
-
-        public int Skill_5_Proficiency { get; set; }
-
-        public string Skill_6 { get; set; }
-
-        public int Skill_6_Proficiency { get; set; }
-
-        public string Skill_7 { get; set; }
-
-        public int Skill_7_Proficiency { get; set; }
-
-        public string Skill_8 { get; set; }
-
-        public int Skill_8_Proficiency { get; set; }
-
-        public string Skill_9 { get; set; }
-
-        public int Skill_9_Proficiency { get; set; }
-
-        public string Skill_10 { get; set; }
-
-        public int Skill_10_Proficiency { get; set; }
-
-        public int ResumeID { get; set; }
+        public List<SkillLibraryVM> SkillLibraryList { get; set; }
     }
 }

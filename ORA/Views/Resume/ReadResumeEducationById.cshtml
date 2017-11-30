@@ -5,186 +5,144 @@
     Layout = null;
 }
 
-<style>
-    /* The Modal (background) */
-    .modal {
-        display: none; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        z-index: 1; /* Sit on top */
-        left: 0;
-        top: 0;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        overflow: auto; /* Enable scroll if needed */
-        background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    }
-
-    /* Modal Content/Box */
-    .modal-content {
-        background-color: #fefefe;
-        margin: 15% auto; /* 15% from the top and centered */
-        padding: 20px;
-        border: 1px solid #888;
-        width: 80%; /* Could be more or less, depending on screen size */
-    }
-
-    /* The Close Button */
-    .close {
-        color: #aaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-    }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-</style>
-
 <link href="~/Content/Resume.css" rel="stylesheet" />
-<div class="row" id="readEducation">
-    <div class="col-lg-12 ">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4>
-                    <i class="glyphicon glyphicon-book"></i>
-                    EDUCATION
-                </h4>
-            </div>
-            <div class="panel-body">
-                <div class="box box-info">
-                    <div class="box-body">
-                        <div class="bot-border" style="border-bottom-width: 15px; border-bottom-color: darkgrey;"></div>
-                        @foreach (var item in Model)
-                        {
-                            <div>
-                                <div class="col-sm-5 col-xs-6 tital">
-                                    @Html.DisplayName("Insitution")
-                                </div>
-                                <div class="col-sm-7">
-                                    @Html.DisplayFor(modelItem => item.InsitutionName)
-                                </div>
-                                <div class="clearfix"></div>
-                                <div class="bot-border"></div>
-                            </div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
-                            <div>
-                                <div class="col-sm-5 col-xs-6 tital">
-                                    @Html.DisplayName("Start Date")
-                                </div>
-                                <div class="col-sm-7">
-                                    @Html.DisplayFor(modelItem => item.Attended_Start_Date)
-                                </div>
-                                <div class="clearfix"></div>
-                                <div class="bot-border"></div>
-                            </div>
-
-                            <div>
-                                <div class="col-sm-5 col-xs-6 tital">
-                                    @Html.DisplayName("End Date")
-                                </div>
-                                <div class="col-sm-7">
-                                    @Html.DisplayFor(modelItem => item.Attended_End_Date)
-                                </div>
-                                <div class="clearfix"></div>
-                                <div class="bot-border"></div>
-                            </div>
-
-                            <div>
-                                <div class="col-sm-5 col-xs-6 tital">
-                                    @Html.DisplayName("Location")
-                                </div>
-                                <div class="col-sm-7">
-                                    @Html.DisplayFor(modelItem => item.InstitutionLocation)
-                                </div>
-                                <div class="clearfix"></div>
-                                <div class="bot-border"></div>
-                            </div>
-
-                            <div>
-                                <div class="col-sm-5 col-xs-6 tital">
-                                    @Html.DisplayName("Level Of Education Earned")
-                                </div>
-                                <div class="col-sm-7">
-                                    @Html.DisplayFor(modelItem => item.EducationEarned)
-                                </div>
-                                <div class="clearfix"></div>
-                                <div class="bot-border"></div>
-                            </div>
-
-                            <div>
-                                <div class="col-sm-5 col-xs-6 tital">
-                                    @Html.DisplayName("Area of Study")
-                                </div>
-                                <div class="col-sm-7">
-                                    @Html.DisplayFor(modelItem => item.AreaOfStudy)
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="bot-border"></div>
-
-                            <div class="bot-border" style="border-bottom-width: 15px; border-bottom-color: darkgrey;"></div>
-
-                            <button id="myBtn" class="btn btn-primary btn-sm">Update Education</button>
-
-                            <div id="updateEducation" class="modal">
-                                <div class="modal-content">
-                                    @Html.Action("UpdateResumeEducation")
-                                </div>
-                            </div>
-                        }
+    <div class="form-horizontal" id="updateForm">
+        <div class="row" id="readEducation">
+            <div class="col-lg-12 ">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>
+                            <i class="glyphicon glyphicon-book"></i>
+                            EDUCATION
+                            <a class="btn btn-primary" href="CreateResumeEducation" align="right">Add Education</a>
+                        </h4>
                     </div>
-                    <button id="createEducation" class="btn btn-primary btn-sm">Add Education</button>
+                    <div class="panel-body">
+                        <div class="box box-info">
+                            <div class="box-body">
+                                
+                               
+                                <div class="bot-border" style="border-bottom-width: 15px; border-bottom-color: darkgrey;"></div>
 
-                    <div id="addEducation" class="modal">
-                        <div class="modal-content">
-                            @*@Html.Action("CreateResumeEducation")*@
+
+                                @foreach (var item in Model)
+                                {
+                                    <div>
+                                        <div class="col-sm-5 col-xs-6 tital">
+                                            @Html.DisplayName("Insitution")
+                                        </div>
+                                        <div class="col-sm-7">
+                                            @Html.DisplayFor(modelItem => item.InsitutionName)
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="bot-border"></div>
+                                    </div>
+
+                                    <div>
+                                        <div class="col-sm-5 col-xs-6 tital">
+                                            @Html.DisplayName("Start Date")
+                                        </div>
+                                        <div class="col-sm-7">
+                                            @Html.DisplayFor(modelItem => item.Attended_Start_Date)
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="bot-border"></div>
+                                    </div>
+
+                                    <div>
+                                        <div class="col-sm-5 col-xs-6 tital">
+                                            @Html.DisplayName("End Date")
+                                        </div>
+                                        <div class="col-sm-7">
+                                            @Html.DisplayFor(modelItem => item.Attended_End_Date)
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="bot-border"></div>
+                                    </div>
+
+                                    <div>
+                                        <div class="col-sm-5 col-xs-6 tital">
+                                            @Html.DisplayName("Location")
+                                        </div>
+                                        <div class="col-sm-7">
+                                            @Html.DisplayFor(modelItem => item.InstitutionLocation)
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="bot-border"></div>
+                                    </div>
+
+                                    <div>
+                                        <div class="col-sm-5 col-xs-6 tital">
+                                            @Html.DisplayName("Level Of Education Earned")
+                                        </div>
+                                        <div class="col-sm-7">
+                                            @Html.DisplayFor(modelItem => item.EducationEarned)
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="bot-border"></div>
+                                    </div>
+
+                                    <div>
+                                        <div class="col-sm-5 col-xs-6 tital">
+                                            @Html.DisplayName("Area of Study")
+                                        </div>
+                                        <div class="col-sm-7">
+                                            @Html.DisplayFor(modelItem => item.AreaOfStudy)
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="bot-border"></div>
+
+                                    <div class="bot-border" style="border-bottom-width: 15px; border-bottom-color: darkgrey;"></div>
+
+                                    <a class="btn btn-primary" href="UpdateResumeEducation">Update Education</a>
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+}
 <script>
+    //var modal = document.getElementById('updateEducation');
+    //var btn = document.getElementById("updateEducationBtn");
+    //var span = document.getElementsByClassName("close")[0];
 
-    var modal = document.getElementById('updateEducation');
-    var btn = document.getElementById("myBtn");
-    var span = document.getElementsByClassName("close")[0];
+    //btn.onclick = function () {
+    //    modal.style.display = "block";
+    //}
 
-    btn.onclick = function () {
-        modal.style.display = "block";
-    }
+    //span.onclick = function () {
+    //    modal.style.display = "none";
+    //}
 
-    span.onclick = function () {
-        modal.style.display = "none";
-    }
+    //window.onclick = function (event) {
+    //    if (event.target === modal) {
+    //        modal.style.display = "none";
+    //    }
+    //}
 
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
+    //var modal = document.getElementById('addEducation');
+    //var btn = document.getElementById("createEducation");
+    //var span = document.getElementsByClassName("close")[0];
 
-    var modal = document.getElementById('addEducation');
-    var btn = document.getElementById("createEducation");
-    var span = document.getElementsByClassName("close")[0];
+    //btn.onclick = function () {
+    //    modal.style.display = "block";
+    //}
 
-    btn.onclick = function () {
-        modal.style.display = "block";
-    }
+    //span.onclick = function () {
+    //    modal.style.display = "none";
+    //}
 
-    span.onclick = function () {
-        modal.style.display = "none";
-    }
-
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
+    //window.onclick = function (event) {
+    //    if (event.target == modal) {
+    //        modal.style.display = "none";
+    //    }
+    //}
 </script>

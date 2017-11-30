@@ -14,23 +14,36 @@ namespace ORA.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Reading employee information and getting the resume ID from the logged in employee
+        /// </summary>
+        /// <returns></returns>
         public ActionResult ReadResumeById()
         {
             ResumeVM resume = new ResumeVM();
             resume = Mapper.Map<ResumeVM>(ResumeDAL.GetResumeByID((long)Session["ID"]));
-            resume.Skills = Mapper.Map<SkillsVM>(ResumeDAL.GetSkillsByResumeID(resume.ResumeID));
             resume.Employee = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById((long)Session["ID"]));
             return View(resume);
         }
 
-        public ActionResult ReadResumeEducationById(EducationVM education)
+        /// <summary>
+        /// This action is getting the resume ID, the getting all educations for the given resume
+        /// </summary>
+        /// <param name="educationList"></param>
+        /// <returns></returns>
+        public ActionResult ReadResumeEducationById(IEnumerable<EducationVM> educationList)
         {
             ResumeVM resume = new ResumeVM();
             resume = Mapper.Map<ResumeVM>(ResumeDAL.GetResumeByID((long)Session["ID"]));
-            IEnumerable<EducationVM> list = Mapper.Map<List<EducationVM>>(ResumeDAL.GetListOfEducationsByResumeID(resume.ResumeID));
-            return View(list);
+            educationList = Mapper.Map<List<EducationVM>>(ResumeDAL.GetListOfEducationsByResumeID(resume.ResumeID));
+            return View(educationList);
         }
 
+        /// <summary>
+        /// This action is getting the resume ID, the getting all work history for the given resume
+        /// </summary>
+        /// <param name="workHistory"></param>
+        /// <returns></returns>
         public ActionResult ReadresumeByWorkHistoryId(WorkHistoryVM workHistory)
         {
             ResumeVM resume = new ResumeVM();
@@ -39,6 +52,27 @@ namespace ORA.Controllers
             return View(list);
         }
 
+        /// <summary>
+        /// This action is reading getting the resume ID, the getting all skills that were added to the given resume
+        /// </summary>
+        /// <param name="skills"></param>
+        /// <returns></returns>
+        public ActionResult ReadResumeBySkillsId(SkillsVM skills)
+        {
+            ResumeVM resume = new ResumeVM();
+            resume = Mapper.Map<ResumeVM>(ResumeDAL.GetResumeByID((long) Session["ID"]));
+            IEnumerable<SkillsVM> skillList = Mapper.Map<List<SkillsVM>>(ResumeDAL.GetListOfSkillsByResumeID(resume.ResumeID));
+            foreach (SkillsVM item in skillList)
+            {
+                item.SkillLibrary = Mapper.Map<SkillLibraryVM>(ResumeDAL.GetLibrarySkillsByID(item.SkillLibraryId));
+            }
+            return View(skillList);
+        }
+
+        /// <summary>
+        /// Gets the Resume ID then gets the education information where it has the given resumeID
+        /// </summary>
+        /// <returns></returns>
         public ActionResult UpdateResumeEducation()
         {
             ResumeVM resume = new ResumeVM();
@@ -53,9 +87,13 @@ namespace ORA.Controllers
             ResumeVM resume = new ResumeVM();
             resume.ResumeID = ResumeDAL.ReadResumeId((long)Session["ID"]);
             ResumeDAL.UpdateEducation(Mapper.Map<EducationDM>(education), resume.ResumeID);
-            return View(education);
+            return RedirectToAction("ReadResumeById");
         }
 
+        /// <summary>
+        /// Creates a new education for the provided employee
+        /// </summary>
+        /// <returns></returns>
         public ActionResult CreateResumeEducation()
         {
             EducationVM education = new EducationVM();
@@ -67,10 +105,14 @@ namespace ORA.Controllers
         {
             ResumeVM resume = new ResumeVM();
             resume.ResumeID = ResumeDAL.ReadResumeId((long)Session["ID"]);
-            ResumeDAL.CreateEducation(Mapper.Map<EducationDM>(resume.Education), resume.ResumeID);
-            return View();
+            ResumeDAL.CreateEducation(Mapper.Map<EducationDM>(education), resume.ResumeID);
+            return RedirectToAction("ReadResumeById");
         }
 
+        /// <summary>
+        /// Creates a new work history for the provided employee
+        /// </summary>
+        /// <returns></returns>
         public ActionResult CreateResumeWorkHistory()
         {
             WorkHistoryVM workHistory = new WorkHistoryVM();
@@ -82,8 +124,29 @@ namespace ORA.Controllers
         {
             ResumeVM resume = new ResumeVM();
             resume.ResumeID = ResumeDAL.ReadResumeId((long) Session["ID"]);
-            ResumeDAL.CreateWorkHistory(Mapper.Map<WorkHistoryDM>(resume.WorkHistory), resume.ResumeID);
+            ResumeDAL.UpdateWorkHistory(Mapper.Map<WorkHistoryDM>(workHistory), resume.ResumeID);
             return View();
+        }
+
+        /// <summary>
+        /// Updates the selected work history resume field
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult UpdateResumeWorkHistory()
+        {
+            ResumeVM resume = new ResumeVM();
+            resume.ResumeID = ResumeDAL.ReadResumeId((long)Session["ID"]);
+            WorkHistoryVM workHistory = Mapper.Map<WorkHistoryVM>(ResumeDAL.GetWorkHistoryByResumeID(resume.ResumeID));
+            return View(workHistory);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateResumeWorkHistory(WorkHistoryVM workHistory)
+        {
+            ResumeVM resume = new ResumeVM();
+            resume.ResumeID = ResumeDAL.ReadResumeId((long)Session["ID"]);
+            ResumeDAL.UpdateWorkHistory(Mapper.Map<WorkHistoryDM>(workHistory), resume.ResumeID);
+            return RedirectToAction("ReadResumeById");
         }
     }
 }
