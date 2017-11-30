@@ -11,7 +11,6 @@ namespace ORA.Models
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [RegularExpression("^(0[1-9]|1[0-9]|2[0-9]|3[0,1])([/+-])(0[1-9]|1[0-2])([/+-])(19|20)[0-9]{2}$", ErrorMessage ="Invalid Date.")]
         [DisplayName("Created Date")]
         public DateTime CreateDate { get; set; }
 
@@ -69,22 +68,26 @@ namespace ORA.Models
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [RegularExpression("^(0[1-9]|1[0-9]|2[0-9]|3[0,1])([/+-])(0[1-9]|1[0-2])([/+-])(19|20)[0-9]{2}$", ErrorMessage = "Invalid Date.")]
         [DisplayName("Start Date")]
+        [Required(ErrorMessage ="This is a required field.")]
         public DateTime Start_Date { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [RegularExpression("^(0[1-9]|1[0-9]|2[0-9]|3[0,1])([/+-])(0[1-9]|1[0-2])([/+-])(19|20)[0-9]{2}$", ErrorMessage = "Invalid Date.")]
         [DisplayName("End Date")]
+        [Required(ErrorMessage = "This is a required field.")]
         public DateTime End_Date { get; set; }
 
+        [DisplayName("Assignment")]
+        [Required(ErrorMessage ="This is a required field.")]
         public int AssignmentId { get; set; }
 
         public AssignmentVM Assignment { get; set; }
 
         public List<AssignmentVM> Assignments { get; set; }
 
+        [DisplayName("Employees")]
+        [Required(ErrorMessage = "This is a required field.")]
         public int EmployeeId { get; set; }
 
         public EmployeeVM Employee { get; set; }
@@ -92,18 +95,23 @@ namespace ORA.Models
         [DisplayName("Employees")]
         public List<EmployeeVM> EmployeeList { get; set; }
 
+        [DisplayName("Project")]
+        [Required(ErrorMessage = "This is a required field.")]
         public int ProjectId { get; set; }
 
         public ProjectVM Project { get; set; }
 
         public List<ProjectVM> Projects { get; set; }
 
+        [DisplayName("Sprint")]
+        [Required(ErrorMessage = "This is a required field.")]
         public int SprintId { get; set; }
 
         public SprintVM Sprint { get; set; }
 
         public List<SprintVM> Sprints { get; set; }
 
+        [Required(ErrorMessage = "This is a required field.")]
         public int StoryId { get; set; }
 
         public StoryVM Story { get; set; }
@@ -118,28 +126,31 @@ namespace ORA.Models
 
         public string CreatedBy { get; set; }
         //new stuff-----------------
+        [DisplayName("Reg. Test Cases Passed")]
         public int RTCPassed { get; set; }
 
+        [DisplayName("Reg. Test Cases Failed")]
         public int RTCFailed { get; set; }
 
+        [DisplayName("Reg. Test Cases Created")]
         public int RTCCreated { get; set; }
-
+        [DisplayName("Reg. Test Cases Updated")]
         public int RTCUpdated { get; set; }
-
+        [DisplayName("Sprint Test Cases Passed")]
         public int SprintTC_Passed { get; set; }
-
+        [DisplayName("Sprint Test Cases Failed")]
         public int SprintTC_Failed { get; set; }
-
+        [DisplayName("Sprint Test Cases Created")]
         public int SprintTC_Created { get; set; }
-
+        [DisplayName("Defects found in Testing")]
         public int Defects_FoundInTesting { get; set; }
-
+        [DisplayName("Defects found in Production")]
         public int Defects_FoundInProd { get; set; }
-
+        [DisplayName("Defects Retested & Failed")]
         public int Defects_RetestedFailed { get; set; }
-
+        [DisplayName("Defects Closed")]
         public int DefectsClosed { get; set; }
-
+        [DisplayName("Tasks Completed")]
         public string TasksCompleted { get; set; }
         //end of new stuff--------------
     }

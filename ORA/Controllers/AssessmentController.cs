@@ -55,12 +55,12 @@ namespace ORA.Controllers
             AssessmentVM assessment = new AssessmentVM();
             assessment.DateCreatedFor = DateTime.Now.Date;
             assessment.EmployeeList = Mapper.Map<List<EmployeeVM>>(EmployeeDAL.ReadEmployees());
+            assessment.Descriptions = Mapper.Map<List<DescriptionVM>>(AssessmentDAL.ReadAssessDescriptions());
             if ((string)Session["Role"] == "Director")
             {
                 assessment.EmployeeList.Remove(assessment.EmployeeList.Single(employee => employee.EmployeeId == (long)Session["ID"]));
                 assessment.EmployeeList.RemoveAll(employee => (int)employee.RoleId == 6);
 
-                assessment.Descriptions = Mapper.Map<List<DescriptionVM>>(AssessmentDAL.ReadAssessDescriptions());
                 return View(assessment);
             }
             else if((string)Session["Role"] == "Manager")
@@ -71,7 +71,6 @@ namespace ORA.Controllers
                 assessment.EmployeeList.RemoveAll(employee => employee.RoleId == 5);
                 assessment.EmployeeList.RemoveAll(employee => (int)employee.RoleId == 6);
 
-                assessment.Descriptions = Mapper.Map<List<DescriptionVM>>(AssessmentDAL.ReadAssessDescriptions());
                 return View(assessment);
             }
             else if((string)Session["Role"] == "Team Lead")
@@ -82,7 +81,6 @@ namespace ORA.Controllers
                 assessment.EmployeeList.RemoveAll(employee => (int)employee.RoleId == 5);
                 assessment.EmployeeList.RemoveAll(employee => (int)employee.RoleId == 6);
 
-                assessment.Descriptions = Mapper.Map<List<DescriptionVM>>(AssessmentDAL.ReadAssessDescriptions());
                 return View(assessment);
             }
             else
@@ -94,11 +92,44 @@ namespace ORA.Controllers
         [HttpPost]
         public ActionResult CreateAssessment(AssessmentVM assessment)
         {
+            assessment.EmployeeList = Mapper.Map<List<EmployeeVM>>(EmployeeDAL.ReadEmployees());
+            assessment.Descriptions = Mapper.Map<List<DescriptionVM>>(AssessmentDAL.ReadAssessDescriptions());
+            if ((string)Session["Role"] == "Director")
+            {
+                assessment.EmployeeList.Remove(assessment.EmployeeList.Single(employee => employee.EmployeeId == (long)Session["ID"]));
+                assessment.EmployeeList.RemoveAll(employee => (int)employee.RoleId == 6);
+            }
+            else if ((string)Session["Role"] == "Manager")
+            {
+                assessment.EmployeeList.Remove(assessment.EmployeeList.Single(employee => employee.EmployeeId == (long)Session["ID"]));
+                assessment.EmployeeList.RemoveAll(employee => employee.TeamId != (long)Session["TeamId"]);
+                assessment.EmployeeList.RemoveAll(employee => employee.RoleId == 4);
+                assessment.EmployeeList.RemoveAll(employee => employee.RoleId == 5);
+                assessment.EmployeeList.RemoveAll(employee => (int)employee.RoleId == 6);
+
+            }
+            else if ((string)Session["Role"] == "Team Lead")
+            {
+                assessment.EmployeeList.RemoveAll(employee => employee.TeamId != (long)Session["TeamId"]);
+                assessment.EmployeeList.RemoveAll(employee => (int)employee.RoleId == 3);
+                assessment.EmployeeList.RemoveAll(employee => (int)employee.RoleId == 4);
+                assessment.EmployeeList.RemoveAll(employee => (int)employee.RoleId == 5);
+                assessment.EmployeeList.RemoveAll(employee => (int)employee.RoleId == 6);
+
+            }
+          
+            assessment.Employee = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById(assessment.EmployeeID));
+            assessment.Employee.Assignment = Mapper.Map<AssignmentVM>(AssignmentDAL.ReadAssignmentByID(Convert.ToString(assessment.Employee.AssignmentId)));
             if (ModelState.IsValid)
             {
-                AssessmentBM assessmentBM = Mapper.Map<AssessmentVM, AssessmentBM>(assessment);
-                AssessmentFunctions.CalculateTotalAssessmentScore(assessmentBM);
-                assessment = Mapper.Map<AssessmentBM, AssessmentVM>(assessmentBM);
+                if(assessment.DateCreatedFor < assessment.Employee.Assignment.StartDate || assessment.DateCreatedFor > assessment.Employee.Assignment.EndDate)
+                {
+                    ViewBag.message = string.Format("Invalid Assessment Date. Please make sure the date is in between assignment range for the employee.");
+                    return View(assessment);
+                }
+                //AssessmentBM assessmentBM = Mapper.Map<AssessmentVM, AssessmentBM>(assessment);
+                //AssessmentFunctions.CalculateTotalAssessmentScore(assessmentBM);
+                //assessment = Mapper.Map<AssessmentBM, AssessmentVM>(assessmentBM);
                 assessment.CreatedBy = Session["Email"].ToString();
                 assessment.ModifiedBy = Session["Email"].ToString();
                 assessment.Created = DateTime.Now;
@@ -108,7 +139,10 @@ namespace ORA.Controllers
             }
             else
             {
-                
+                if (assessment.DateCreatedFor < assessment.Employee.Assignment.StartDate || assessment.DateCreatedFor > assessment.Employee.Assignment.EndDate)
+                {
+                    ViewBag.message = string.Format("Invalid Assessment Date. Please make sure the date is in between assignment range for the employee.");
+                }
                 return View(assessment);
             }
         }

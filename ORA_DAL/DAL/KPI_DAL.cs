@@ -64,7 +64,14 @@ namespace ORA_Data.DAL
                     cmd.Parameters.AddWithValue("@Defects_FoundInProd", _kpi.Defects_FoundInProd);
                     cmd.Parameters.AddWithValue("@Defects_RetestedFailed", _kpi.Defects_RetestedFailed);
                     cmd.Parameters.AddWithValue("@Defects_Closed", _kpi.DefectsClosed);
-                    cmd.Parameters.AddWithValue("@Tasks_Completed", _kpi.TasksCompleted);
+                    if (_kpi.TasksCompleted != null)
+                    {
+                        cmd.Parameters.AddWithValue("@Tasks_Completed", _kpi.TasksCompleted);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@Tasks_Completed", DBNull.Value);
+                    }
 
                     SqlConnect.Connection.Open();
                     cmd.ExecuteNonQuery();
@@ -490,7 +497,14 @@ namespace ORA_Data.DAL
                     cmd.Parameters.AddWithValue("@Defects_FoundInProd", _kpi.Defects_FoundInProd);
                     cmd.Parameters.AddWithValue("@Defects_RetestedFailed", _kpi.Defects_RetestedFailed);
                     cmd.Parameters.AddWithValue("@Defects_Closed", _kpi.DefectsClosed);
-                    cmd.Parameters.AddWithValue("@Tasks_Completed", _kpi.TasksCompleted);
+                    if (_kpi.TasksCompleted != null)
+                    {
+                        cmd.Parameters.AddWithValue("@Tasks_Completed", _kpi.TasksCompleted);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@Tasks_Completed", DBNull.Value);
+                    }
                     SqlConnect.Connection.Open();
                     cmd.ExecuteNonQuery();
                     SqlConnect.Connection.Close();

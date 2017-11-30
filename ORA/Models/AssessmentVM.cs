@@ -135,6 +135,7 @@ namespace ORA.Models
         public string ModifiedBy { get; set; }
 
         [DisplayName("Employees")]
+        [Required(ErrorMessage ="Required Field")]
         public long EmployeeID { get; set; }
 
         public EmployeeVM Employee { get; set; }

@@ -10,7 +10,7 @@ namespace ORA_Logic
 {
     public class AssessmentFunctions
     {
-        public static AssessmentBM CalculateTotalAssessmentScore(AssessmentBM assessment)
+        public static int CalculateTotalAssessmentScore(AssessmentBM assessment)
         {
             assessment.AssessmentScore = (
             assessment.ADAttendence + assessment.ADEthicalBehavior + assessment.ADMeetDeadlines + assessment.ADOrganizeDetailedWork +
@@ -19,7 +19,9 @@ namespace ORA_Logic
             assessment.MIAttitudeWork + assessment.MIGroomingAppearance + assessment.MIPersonalGrowth + assessment.MIPotentialAdvancement +
             assessment.CSRListeningSkills + assessment.CSRProfesionalismTeamwork + assessment.CSRVerbalSkills + assessment.CSRWrittenSkills
             );
-            return assessment;
+
+            int sum = assessment.AssessmentScore;
+            return sum;
         }
 
         /// <summary>

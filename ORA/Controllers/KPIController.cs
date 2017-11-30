@@ -24,8 +24,8 @@ namespace ORA.Controllers
             kpi.Projects = Mapper.Map<List<ProjectVM>>(ProjectDAL.ReadProjects());
             kpi.Sprints = Mapper.Map<List<SprintVM>>(SprintDAL.ReadSprints());
             kpi.Stories = Mapper.Map<List<StoryVM>>(StoryDAL.ReadStorys());
-            
-            if((string)Session["Role"] == "Director")
+
+            if ((string)Session["Role"] == "Director")
             {
                 kpi.EmployeeList.RemoveAll(employee => employee.EmployeeId == (long)Session["ID"]);
                 kpi.EmployeeList.RemoveAll(employee => employee.RoleId == 6);
@@ -33,7 +33,7 @@ namespace ORA.Controllers
 
                 return View(kpi);
             }
-            else if((string)Session["Role"] == "Manager")
+            else if ((string)Session["Role"] == "Manager")
             {
                 kpi.EmployeeList.RemoveAll(employee => employee.EmployeeId == (long)Session["ID"]);
                 kpi.EmployeeList.RemoveAll(employee => employee.RoleId == 4);
@@ -42,7 +42,7 @@ namespace ORA.Controllers
 
                 return View(kpi);
             }
-            else if((string)Session["Role"] == "Team Lead")
+            else if ((string)Session["Role"] == "Team Lead")
             {
                 kpi.EmployeeList.RemoveAll(employee => employee.EmployeeId == (long)Session["ID"]);
                 kpi.EmployeeList.RemoveAll(employee => employee.RoleId == 3);
@@ -61,12 +61,61 @@ namespace ORA.Controllers
         [HttpPost]
         public ActionResult CreateKPI(KPIVM kpi)
         {
-            kpi.CreateDate = DateTime.Now;
-            kpi.CreatedBy = Session["Email"].ToString();
-            kpi.Modified = DateTime.Now;
-            kpi.ModifiedBy = Session["Email"].ToString();
-            KPI_DAL.CreateKPI(Mapper.Map<KPIDM>(kpi));
-            return RedirectToAction("ReadKPIs", new { id = Session["ID"]});
+            kpi.Assignments = Mapper.Map<List<AssignmentVM>>(AssignmentDAL.ReadAssignments());
+            kpi.Projects = Mapper.Map<List<ProjectVM>>(ProjectDAL.ReadProjects());
+            kpi.Sprints = Mapper.Map<List<SprintVM>>(SprintDAL.ReadSprints());
+            kpi.Stories = Mapper.Map<List<StoryVM>>(StoryDAL.ReadStorys());
+            kpi.EmployeeList = Mapper.Map<List<EmployeeVM>>(EmployeeDAL.ReadEmployees());
+            kpi.Employee = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById(kpi.EmployeeId));
+            kpi.Employee.Assignment = Mapper.Map<AssignmentVM>(AssignmentDAL.ReadAssignmentByID(Convert.ToString(kpi.AssignmentId)));
+            if ((string)Session["Role"] == "Director")
+            {
+                kpi.EmployeeList.RemoveAll(employee => employee.EmployeeId == (long)Session["ID"]);
+                kpi.EmployeeList.RemoveAll(employee => employee.RoleId == 6);
+                kpi.EmployeeList.RemoveAll(employee => employee.RoleId == 5);
+
+            }
+            else if ((string)Session["Role"] == "Manager")
+            {
+                kpi.EmployeeList.RemoveAll(employee => employee.EmployeeId == (long)Session["ID"]);
+                kpi.EmployeeList.RemoveAll(employee => employee.RoleId == 4);
+                kpi.EmployeeList.RemoveAll(employee => employee.RoleId == 5);
+                kpi.EmployeeList.RemoveAll(employee => employee.RoleId == 6);
+
+                
+            }
+            else if ((string)Session["Role"] == "Team Lead")
+            {
+                kpi.EmployeeList.RemoveAll(employee => employee.EmployeeId == (long)Session["ID"]);
+                kpi.EmployeeList.RemoveAll(employee => employee.RoleId == 3);
+                kpi.EmployeeList.RemoveAll(employee => employee.RoleId == 4);
+                kpi.EmployeeList.RemoveAll(employee => employee.RoleId == 5);
+                kpi.EmployeeList.RemoveAll(employee => employee.RoleId == 6);
+            }
+
+            if (ModelState.IsValid)
+            {
+                if (kpi.Start_Date < kpi.Employee.Assignment.StartDate || kpi.End_Date > kpi.Employee.Assignment.EndDate)
+                {
+                    ViewBag.message = string.Format("Invalid KPI Date. Please make sure Dates are in between assignment range for the employee.");
+                    return View(kpi);
+                }
+                kpi.CreateDate = DateTime.Now;
+                kpi.CreatedBy = Session["Email"].ToString();
+                kpi.Modified = DateTime.Now;
+                kpi.ModifiedBy = Session["Email"].ToString();
+                KPI_DAL.CreateKPI(Mapper.Map<KPIDM>(kpi));
+                return RedirectToAction("ReadKPIs", new { id = Session["ID"] });
+            }
+            else
+            {
+                if (kpi.Start_Date < kpi.Employee.Assignment.StartDate || kpi.End_Date > kpi.Employee.Assignment.EndDate)
+                {
+                    ViewBag.message = string.Format("Invalid KPI Date. Please make sure Dates are in between assigned range for the employee.");
+                    return View(kpi);
+                }
+                return View(kpi);
+            }
         }
 
         public ActionResult ReadKPIs(int id)
@@ -166,5 +215,20 @@ namespace ORA.Controllers
                 return RedirectToAction("Index", "Home", new { area = "Default" });
             }
         }
+
+        //public ActionResult UpdateEmpListByDate(string startDate, string endDate)
+        //{
+        //    Convert.ToDateTime(startDate);
+        //    Convert.ToDateTime(endDate);
+        //    KPIVM kpi = new KPIVM();
+        //    kpi.EmployeeList = Mapper.Map<List<EmployeeVM>>(EmployeeDAL.ReadEmployees());
+        //    foreach(EmployeeVM employee in kpi.EmployeeList)
+        //    {
+        //        if(employee.Assignment.StartDate)
+        //    }
+
+        //    return View(kpi);
+
+        //}
     }
 }
