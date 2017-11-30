@@ -228,13 +228,30 @@ namespace ORA.Controllers
         [HttpPost]
         public ActionResult UpdateAssessment(AssessmentVM assessment)
         {
-            AssessmentBM assessmentBM = Mapper.Map<AssessmentVM, AssessmentBM>(assessment);
-            AssessmentFunctions.CalculateTotalAssessmentScore(assessmentBM);
-            assessment = Mapper.Map<AssessmentBM, AssessmentVM>(assessmentBM);
-            assessment.ModifiedBy = Session["Email"].ToString();
-            assessment.Modified = DateTime.Now;
-            AssessmentDAL.UpdateAssessment(Mapper.Map<AssessmentDM>(assessment));
-            return RedirectToAction("ReadAssessments", new { id = Session["ID"] });
+            assessment.Descriptions = Mapper.Map<List<DescriptionVM>>(AssessmentDAL.ReadAssessDescriptions());
+            assessment.Employee = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById(assessment.EmployeeID));
+            assessment.Employee.Assignment = Mapper.Map<AssignmentVM>(AssignmentDAL.ReadAssignmentByID(Convert.ToString(assessment.Employee.AssignmentId)));
+            if (ModelState.IsValid)
+            {
+                if(assessment.DateCreatedFor < assessment.Employee.Assignment.StartDate || assessment.DateCreatedFor > assessment.Employee.Assignment.EndDate)
+                {
+                    ViewBag.message = string.Format("Invalid Assessment Date. Please make sure the date is in between assignment range for the employee.");
+                    return View(assessment);
+                }
+                assessment.ModifiedBy = Session["Email"].ToString();
+                assessment.Modified = DateTime.Now;
+                AssessmentDAL.UpdateAssessment(Mapper.Map<AssessmentDM>(assessment));
+                return RedirectToAction("ReadAssessments", new { id = Session["ID"] });
+            }
+            else
+            {
+                if (assessment.DateCreatedFor < assessment.Employee.Assignment.StartDate || assessment.DateCreatedFor > assessment.Employee.Assignment.EndDate)
+                {
+                    ViewBag.message = string.Format("Invalid Assessment Date. Please make sure the date is in between assignment range for the employee.");
+                    return View(assessment);
+                }
+                return View(assessment);
+            }
         }
 
         public ActionResult DeleteAssessment(int id)

@@ -14,6 +14,20 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link href="~/Content/wizard.css" rel="stylesheet" />
 <script src="~/Content/js/wizard.js"></script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+@if (ViewBag.message != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.message");
+            };
+    </script>
+}
+
 <script>
     $(function () {
         $(document).tooltip();
@@ -38,6 +52,13 @@
 
     .form-horizontal .radio {
         min-height: 20px;
+    }
+    .validation-summary-valid {
+        display: none;
+    }
+
+    .validation-message-valid {
+        display: none;
     }
 </style>
 

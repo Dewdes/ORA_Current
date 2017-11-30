@@ -197,10 +197,33 @@ namespace ORA.Controllers
         [HttpPost]
         public ActionResult UpdateKPI(KPIVM kpi)
         {
-            kpi.Modified = DateTime.Now;
-            kpi.ModifiedBy = Session["Email"].ToString();
-            KPI_DAL.UpdateKPI(Mapper.Map<KPIDM>(kpi));
-            return RedirectToAction("ReadKPIs", new { id = Session["ID"] });
+            kpi.Assignments = Mapper.Map<List<AssignmentVM>>(AssignmentDAL.ReadAssignments());
+            kpi.Projects = Mapper.Map<List<ProjectVM>>(ProjectDAL.ReadProjects());
+            kpi.Sprints = Mapper.Map<List<SprintVM>>(SprintDAL.ReadSprints());
+            kpi.Stories = Mapper.Map<List<StoryVM>>(StoryDAL.ReadStorys());
+            kpi.Employee = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById(kpi.EmployeeId));
+            kpi.Employee.Assignment = Mapper.Map<AssignmentVM>(AssignmentDAL.ReadAssignmentByID(Convert.ToString(kpi.AssignmentId)));
+            if (ModelState.IsValid)
+            {
+                if (kpi.Start_Date < kpi.Employee.Assignment.StartDate || kpi.End_Date > kpi.Employee.Assignment.EndDate)
+                {
+                    ViewBag.message = string.Format("Invalid KPI Date. Please make sure Dates are in between assignment range for the employee.");
+                    return View(kpi);
+                }
+                kpi.Modified = DateTime.Now;
+                kpi.ModifiedBy = Session["Email"].ToString();
+                KPI_DAL.UpdateKPI(Mapper.Map<KPIDM>(kpi));
+                return RedirectToAction("ReadKPIs", new { id = Session["ID"] });
+            }
+            else
+            {
+                if (kpi.Start_Date < kpi.Employee.Assignment.StartDate || kpi.End_Date > kpi.Employee.Assignment.EndDate)
+                {
+                    ViewBag.message = string.Format("Invalid KPI Date. Please make sure Dates are in between assignment range for the employee.");
+                    return View(kpi);
+                }
+                return View(kpi);
+            }
         }
 
         public ActionResult DeleteKPI(int id)
