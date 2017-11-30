@@ -27,10 +27,10 @@
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something</a></li>
+                        <li>@Html.ActionLink("Change Banner Image", "UploadBannerImage", "Account")</li>                        
+                        <li>@Html.ActionLink("Change Profile Image", "UploadProfileImage", "Account")</li>
                         <li class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
+                        <li>@Html.ActionLink("Edit Layout", "EditLayout", "Account")</li>
                     </ul>
                 </li>
                 @if (Session["Role"].ToString().ToUpper().Contains("MANAGER") || Session["Role"].ToString().ToUpper().Contains("TEAM LEAD"))
@@ -44,8 +44,6 @@
                             <li>@Html.ActionLink("Create Assessment", "CreateAssessment", "Assessment")</li>
                             <li>@Html.ActionLink("Create KPI", "CreateKPI", "KPI")</li>
                             <li>@Html.ActionLink("View Employees", "ViewEmployees", "Employee")</li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something</a></li>
                             <li class="divider"></li>
                             <li><a href="#">Separated link</a></li>
                         </ul>

@@ -1,18 +1,22 @@
-﻿namespace ORA_Data.Model
+﻿using System.Web;
+
+namespace ORA_Data.Model
 {
     public class AccountBioDM
     {
         public long AccountBioID { get; set; }
 
-        public string ProfileImage { get; set; }
+        public byte[] ProfileImage { get; set; }
 
         public string AccountStatus { get; set; }
 
-        public string BannerBackgroundImg { get; set; }
+        public byte[] BannerBackgroundImg { get; set; }
 
         public string AboutMe { get; set; }
 
         public long EmployeeID { get; set; }
+
+        public HttpPostedFileBase File { get; set; }
 
         public EmployeeDM employee { get; set; }
     }

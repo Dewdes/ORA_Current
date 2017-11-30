@@ -105,8 +105,8 @@ namespace ORA.Controllers
         {
             ResumeVM resume = new ResumeVM();
             resume.ResumeID = ResumeDAL.ReadResumeId((long)Session["ID"]);
-            ResumeDAL.CreateEducation(Mapper.Map<EducationDM>(resume.Education), resume.ResumeID);
-            return View();
+            ResumeDAL.CreateEducation(Mapper.Map<EducationDM>(education), resume.ResumeID);
+            return RedirectToAction("ReadResumeById");
         }
 
         /// <summary>

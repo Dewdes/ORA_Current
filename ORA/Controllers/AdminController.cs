@@ -20,7 +20,8 @@ namespace ORA.Controllers
 
         public ActionResult AverageAssessmentCharts(List<AssessmentVM> assessment)
         {
-            return View();
+            assessment = Mapper.Map<List<AssessmentVM>>(AssessmentDAL.ReadAssessments());
+            return View(assessment);
         }
 
         public ActionResult TestView(AssessmentVM assessment)

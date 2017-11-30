@@ -48,3 +48,10 @@ Level: GetListOfSkillsByResumeID   Time: 11/28/2017 10:07:31 AM   Error: Specifi
 Level: GetListOfSkillsByResumeID   Time: 11/28/2017 10:10:55 AM   Error: Specified cast is not valid.
 Level: GetListOfSkillsByResumeID   Time: 11/28/2017 10:12:12 AM   Error: Invalid attempt to read when no data is present.
 Level: ReadSkillLibrary   Time: 11/28/2017 1:17:35 PM   Error: Resume_ID
+Level: Login   Time: 11/28/2017 9:29:39 PM   Error: Login failed for user '{tkjones92}'.
+Level: Login   Time: 11/28/2017 10:48:07 PM   Error: Database 'ORA-Data' on server 'ora' is not currently available.  Please retry the connection later.  If the problem persists, contact customer support, and provide them the session tracing ID of '6B74636F-553C-4585-B345-59C871A15F02'.
+Level: Login   Time: 11/29/2017 10:07:10 AM   Error: Cannot open server 'ora-data' requested by the login. Client with IP address '50.96.121.226' is not allowed to access the server.  To enable access, use the Windows Azure Management Portal or run sp_set_firewall_rule on the master database to create a firewall rule for this IP address or address range.  It may take up to five minutes for this change to take effect.
+Level: ReadSkillLibrary   Time: 11/29/2017 10:08:27 AM   Error: Procedure or function 'READ_SKILL_LIBRARY_BY_ID' expects parameter '@Skill_Library_ID', which was not supplied.
+Level: CreateEducation   Time: 11/29/2017 4:50:09 PM   Error: Object reference not set to an instance of an object.
+Level: CreateEducation   Time: 11/29/2017 4:51:15 PM   Error: Object reference not set to an instance of an object.
+Level: CreateEducation   Time: 11/29/2017 4:52:09 PM   Error: Object reference not set to an instance of an object.

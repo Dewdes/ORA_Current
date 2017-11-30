@@ -5,6 +5,7 @@ using ORA_Data.DAL;
 using AutoMapper;
 using ORA_Data.Model;
 using System.Collections.Generic;
+using System.Web;
 
 namespace ORA.Controllers
 {
@@ -16,6 +17,10 @@ namespace ORA.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Account Creation is for the Director role or administrator role to create a new account for a employee
+        /// </summary>
+        /// <returns></returns>
         public ActionResult AccountCreation()
         {
             EmployeeVM employee = new EmployeeVM();
@@ -42,6 +47,7 @@ namespace ORA.Controllers
                 //AccountDAL.CreateBio(Mapper.Map<AccountBioDM>(employee.Bio), employee.EmployeeId);
                 TimeDAL.CreateEmptyTime(employee.EmployeeId);
                 ResumeDAL.CreateResume(employee.EmployeeId);
+                AccountDAL.CreateBio(employee.EmployeeId);
                 return RedirectToAction("AdminDashboard","Home");
             //}
             //else
@@ -82,6 +88,60 @@ namespace ORA.Controllers
         public ActionResult DeleteAccount()
         {
             return View();
+        }
+
+        public ActionResult UploadProfileImage()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult UploadProfileImage(AccountBioVM account)
+        {
+            EmployeeVM employee = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById((long)Session["ID"]));
+            if (account.File.ContentLength > (2 * 1024 * 1024))
+            {
+                ModelState.AddModelError("CustomError", "File size must be less than 2 MB");
+                return View();
+            }
+            if (!(account.File.ContentType == "image/jpeg" || account.File.ContentType == "image/gif"))
+            {
+                ModelState.AddModelError("CustomError", "File type allowed : jpeg and gif");
+                return View();
+            }
+
+            byte[] data = new byte[account.File.ContentLength];
+            account.File.InputStream.Read(data, 0, account.File.ContentLength);
+            account.ProfileImage = data;
+            AccountDAL.UpdateProfileImg(Mapper.Map<AccountBioDM>(account), employee.EmployeeId);
+            return RedirectToAction("ReadAccount");
+        }
+
+        public ActionResult UploadBannerImage()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult UploadBannerImage(AccountBioVM account)
+        {
+            EmployeeVM employee = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById((long)Session["ID"]));
+            if (account.File.ContentLength > (2 * 1024 * 1024))
+            {
+                ModelState.AddModelError("CustomError", "File size must be less than 2 MB");
+                return View();
+            }
+            if (!(account.File.ContentType == "image/jpeg" || account.File.ContentType == "image/gif"))
+            {
+                ModelState.AddModelError("CustomError", "File type allowed : jpeg and gif");
+                return View();
+            }
+
+            byte[] data = new byte[account.File.ContentLength];
+            account.File.InputStream.Read(data, 0, account.File.ContentLength);
+            account.BannerBackgroundImg = data;
+            AccountDAL.UpdateBackground(Mapper.Map<AccountBioDM>(account), employee.EmployeeId);
+            return RedirectToAction("ReadAccount");
         }
     }
 }

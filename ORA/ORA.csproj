@@ -434,6 +434,7 @@
     <Compile Include="Models\TeamsVM.cs" />
     <Compile Include="Models\WorkHistoryVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\ImageConverter.cs" />
     <Compile Include="Tools\Mapping.cs" />
     <Compile Include="Tools\Salt.cs" />
     <Compile Include="Tools\SessionTool.cs" />
@@ -953,7 +954,8 @@
     <Content Include="Content\Kendo\kendo.silver.mobile.min.css.map" />
     <Content Include="Content\Kendo\kendo.uniform.min.css.map" />
     <Content Include="Content\Kendo\kendo.uniform.mobile.min.css.map" />
-    <None Include="Properties\PublishProfiles\ORA-Azure - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\OnshoreReportingApp - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\OnshoreReportingApp - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -3016,6 +3018,8 @@
     <Content Include="Views\Admin\TestView.cshtml" />
     <Content Include="Views\Resume\UpdateResumeWorkHistory.cshtml" />
     <Content Include="Views\Resume\ReadResumeBySkillsId.cshtml" />
+    <Content Include="Views\Account\UploadProfileImage.cshtml" />
+    <Content Include="Views\Account\UploadBannerImage.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

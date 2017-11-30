@@ -1,16 +1,20 @@
-﻿namespace ORA.Models
+﻿using System.Web;
+
+namespace ORA.Models
 {
     public class AccountBioVM
     {
         public int AccountBioID { get; set; }
 
-        public string ProfileImage { get; set; }
+        public byte[] ProfileImage { get; set; }
 
         public string AccountStatus { get; set; }
 
-        public string BannerBackgroundImg { get; set; }
+        public byte[] BannerBackgroundImg { get; set; }
 
         public string AboutMe { get; set; }
+
+        public HttpPostedFileBase File { get; set; }
 
         public EmployeeVM employee { get; set; }
 
