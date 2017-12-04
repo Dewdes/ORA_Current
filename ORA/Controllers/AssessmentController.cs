@@ -56,36 +56,31 @@ namespace ORA.Controllers
             assessment.DateCreatedFor = DateTime.Now.Date;
             assessment.EmployeeList = Mapper.Map<List<EmployeeVM>>(EmployeeDAL.ReadEmployees());
             assessment.Descriptions = Mapper.Map<List<DescriptionVM>>(AssessmentDAL.ReadAssessDescriptions());
-            if ((string)Session["Role"] == "Director")
+            switch ((string)Session["Role"])
             {
-                assessment.EmployeeList.Remove(assessment.EmployeeList.Single(employee => employee.EmployeeId == (long)Session["ID"]));
-                assessment.EmployeeList.RemoveAll(employee => (int)employee.RoleId == 6);
+                case "Director":
+                    assessment.EmployeeList.Remove(assessment.EmployeeList.Single(employee => employee.EmployeeId == (long)Session["ID"]));
+                    assessment.EmployeeList.RemoveAll(employee => (int)employee.RoleId == 6);
 
-                return View(assessment);
-            }
-            else if((string)Session["Role"] == "Manager")
-            {
-                assessment.EmployeeList.Remove(assessment.EmployeeList.Single(employee => employee.EmployeeId == (long)Session["ID"]));
-                assessment.EmployeeList.RemoveAll(employee => employee.TeamId != (long)Session["TeamId"]);
-                assessment.EmployeeList.RemoveAll(employee => employee.RoleId == 4);
-                assessment.EmployeeList.RemoveAll(employee => employee.RoleId == 5);
-                assessment.EmployeeList.RemoveAll(employee => (int)employee.RoleId == 6);
+                    return View(assessment);
+                case "Manager":
+                    assessment.EmployeeList.Remove(assessment.EmployeeList.Single(employee => employee.EmployeeId == (long)Session["ID"]));
+                    assessment.EmployeeList.RemoveAll(employee => employee.TeamId != (long)Session["TeamId"]);
+                    assessment.EmployeeList.RemoveAll(employee => employee.RoleId == 4);
+                    assessment.EmployeeList.RemoveAll(employee => employee.RoleId == 5);
+                    assessment.EmployeeList.RemoveAll(employee => (int)employee.RoleId == 6);
 
-                return View(assessment);
-            }
-            else if((string)Session["Role"] == "Team Lead")
-            {
-                assessment.EmployeeList.RemoveAll(employee => employee.TeamId != (long)Session["TeamId"]);
-                assessment.EmployeeList.RemoveAll(employee => (int)employee.RoleId == 3);
-                assessment.EmployeeList.RemoveAll(employee => (int)employee.RoleId == 4);
-                assessment.EmployeeList.RemoveAll(employee => (int)employee.RoleId == 5);
-                assessment.EmployeeList.RemoveAll(employee => (int)employee.RoleId == 6);
+                    return View(assessment);
+                case "Team Lead":
+                    assessment.EmployeeList.RemoveAll(employee => employee.TeamId != (long)Session["TeamId"]);
+                    assessment.EmployeeList.RemoveAll(employee => (int)employee.RoleId == 3);
+                    assessment.EmployeeList.RemoveAll(employee => (int)employee.RoleId == 4);
+                    assessment.EmployeeList.RemoveAll(employee => (int)employee.RoleId == 5);
+                    assessment.EmployeeList.RemoveAll(employee => (int)employee.RoleId == 6);
 
-                return View(assessment);
-            }
-            else
-            {
-                return RedirectToAction("Index", "Home", new { area = "Default" });
+                    return View(assessment);
+                default:
+                    return RedirectToAction("Index", "Home", new { area = "Default" });
             }
         }
 
@@ -94,28 +89,26 @@ namespace ORA.Controllers
         {
             assessment.EmployeeList = Mapper.Map<List<EmployeeVM>>(EmployeeDAL.ReadEmployees());
             assessment.Descriptions = Mapper.Map<List<DescriptionVM>>(AssessmentDAL.ReadAssessDescriptions());
-            if ((string)Session["Role"] == "Director")
+            switch ((string)Session["Role"])
             {
-                assessment.EmployeeList.Remove(assessment.EmployeeList.Single(employee => employee.EmployeeId == (long)Session["ID"]));
-                assessment.EmployeeList.RemoveAll(employee => (int)employee.RoleId == 6);
-            }
-            else if ((string)Session["Role"] == "Manager")
-            {
-                assessment.EmployeeList.Remove(assessment.EmployeeList.Single(employee => employee.EmployeeId == (long)Session["ID"]));
-                assessment.EmployeeList.RemoveAll(employee => employee.TeamId != (long)Session["TeamId"]);
-                assessment.EmployeeList.RemoveAll(employee => employee.RoleId == 4);
-                assessment.EmployeeList.RemoveAll(employee => employee.RoleId == 5);
-                assessment.EmployeeList.RemoveAll(employee => (int)employee.RoleId == 6);
-
-            }
-            else if ((string)Session["Role"] == "Team Lead")
-            {
-                assessment.EmployeeList.RemoveAll(employee => employee.TeamId != (long)Session["TeamId"]);
-                assessment.EmployeeList.RemoveAll(employee => (int)employee.RoleId == 3);
-                assessment.EmployeeList.RemoveAll(employee => (int)employee.RoleId == 4);
-                assessment.EmployeeList.RemoveAll(employee => (int)employee.RoleId == 5);
-                assessment.EmployeeList.RemoveAll(employee => (int)employee.RoleId == 6);
-
+                case "Director":
+                    assessment.EmployeeList.Remove(assessment.EmployeeList.Single(employee => employee.EmployeeId == (long)Session["ID"]));
+                    assessment.EmployeeList.RemoveAll(employee => (int)employee.RoleId == 6);
+                    break;
+                case "Manager":
+                    assessment.EmployeeList.Remove(assessment.EmployeeList.Single(employee => employee.EmployeeId == (long)Session["ID"]));
+                    assessment.EmployeeList.RemoveAll(employee => employee.TeamId != (long)Session["TeamId"]);
+                    assessment.EmployeeList.RemoveAll(employee => employee.RoleId == 4);
+                    assessment.EmployeeList.RemoveAll(employee => employee.RoleId == 5);
+                    assessment.EmployeeList.RemoveAll(employee => (int)employee.RoleId == 6);
+                    break;
+                case "Team Lead":
+                    assessment.EmployeeList.RemoveAll(employee => employee.TeamId != (long)Session["TeamId"]);
+                    assessment.EmployeeList.RemoveAll(employee => (int)employee.RoleId == 3);
+                    assessment.EmployeeList.RemoveAll(employee => (int)employee.RoleId == 4);
+                    assessment.EmployeeList.RemoveAll(employee => (int)employee.RoleId == 5);
+                    assessment.EmployeeList.RemoveAll(employee => (int)employee.RoleId == 6);
+                    break;
             }
           
             assessment.Employee = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById(assessment.EmployeeID));
@@ -157,32 +150,31 @@ namespace ORA.Controllers
                 item.Employee.Team = Mapper.Map<TeamsVM>(TeamsDAL.ReadTeamById(item.Employee.TeamId.ToString()));
                 item.Employee.Assignment = Mapper.Map<AssignmentVM>(AssignmentDAL.ReadAssignmentByID(item.Employee.AssignmentId.ToString()));
             }
-            if (Session["Role"].ToString() == "Team Lead")
+            switch (Session["Role"].ToString())
             {
-                EmployeeVM lead = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById(id));
-                foreach (AssessmentVM assess in list)
-                {
-                    if (assess.Employee.TeamId == lead.TeamId && assess.Employee.EmployeeId != lead.EmployeeId && assess.Employee.RoleId != 3)
+                case "Team Lead":
+                    EmployeeVM lead = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById(id));
+                    foreach (AssessmentVM assess in list)
                     {
-                        teamList.Add(assess);
+                        if (assess.Employee.TeamId == lead.TeamId && assess.Employee.EmployeeId != lead.EmployeeId && assess.Employee.RoleId != 3)
+                        {
+                            teamList.Add(assess);
+                        }
                     }
-                }
-                teamList = teamList.OrderBy(x => x.Employee.EmployeeFirstName).ToList();
-                return View(teamList);
-            }
-            if (Session["Role"].ToString() == "Manager")
-            {
-                EmployeeVM manager = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById(id));
-                manager.Assignment = Mapper.Map<AssignmentVM>(AssignmentDAL.ReadAssignmentByID(manager.AssignmentId.ToString()));
-                foreach (AssessmentVM assess in list)
-                {
-                    if (assess.Employee.Assignment.ClientId == manager.Assignment.ClientId && assess.Employee.EmployeeId != manager.EmployeeId)
+                    teamList = teamList.OrderBy(x => x.Employee.EmployeeFirstName).ToList();
+                    return View(teamList);
+                case "Manager":
+                    EmployeeVM manager = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById(id));
+                    manager.Assignment = Mapper.Map<AssignmentVM>(AssignmentDAL.ReadAssignmentByID(manager.AssignmentId.ToString()));
+                    foreach (AssessmentVM assess in list)
                     {
-                        teamList.Add(assess);
+                        if (assess.Employee.Assignment.ClientId == manager.Assignment.ClientId && assess.Employee.EmployeeId != manager.EmployeeId)
+                        {
+                            teamList.Add(assess);
+                        }
                     }
-                }
-                teamList = teamList.OrderBy(x => x.Employee.EmployeeFirstName).ToList();
-                return View(teamList);
+                    teamList = teamList.OrderBy(x => x.Employee.EmployeeFirstName).ToList();
+                    return View(teamList);
             }
             return View(list);
         }

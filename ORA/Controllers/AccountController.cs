@@ -16,8 +16,6 @@ namespace ORA.Controllers
             red,blue,azure,green,orange,purple
         }
 
-        public static string[] BackGroundImages = { "assets/img/sidebar-1.jpg", "assets/img/sidebar-2.jpg", "assets/img/sidebar-3.jpg", "assets/img/sidebar-4.jpg", "assets/img/sidebar-5.jpg" };
-
         /// <summary>
         /// Account Creation is for the Director role or administrator role to create a new account for a employee
         /// </summary>
