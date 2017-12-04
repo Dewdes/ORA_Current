@@ -120,9 +120,7 @@ namespace ORA.Controllers
                     ViewBag.message = string.Format("Invalid Assessment Date. Please make sure the date is in between assignment range for the employee.");
                     return View(assessment);
                 }
-                //AssessmentBM assessmentBM = Mapper.Map<AssessmentVM, AssessmentBM>(assessment);
-                //AssessmentFunctions.CalculateTotalAssessmentScore(assessmentBM);
-                //assessment = Mapper.Map<AssessmentBM, AssessmentVM>(assessmentBM);
+                
                 assessment.CreatedBy = Session["Email"].ToString();
                 assessment.ModifiedBy = Session["Email"].ToString();
                 assessment.Created = DateTime.Now;
