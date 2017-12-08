@@ -57,3 +57,8 @@ Level: CreateEducation   Time: 11/29/2017 4:51:15 PM   Error: Object reference n
 Level: CreateEducation   Time: 11/29/2017 4:52:09 PM   Error: Object reference not set to an instance of an object.
 Level: ReadBioByID   Time: 11/30/2017 3:35:44 PM   Error: 
 Level: ReadBioByID   Time: 11/30/2017 3:38:35 PM   Error: 
+Level: Login   Time: 11/30/2017 4:54:05 PM   Error: A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 26 - Error Locating Server/Instance Specified)
+Level: Login   Time: 12/3/2017 2:50:51 PM   Error: Cannot open server 'ora-data' requested by the login. Client with IP address '174.218.8.85' is not allowed to access the server.  To enable access, use the Windows Azure Management Portal or run sp_set_firewall_rule on the master database to create a firewall rule for this IP address or address range.  It may take up to five minutes for this change to take effect.
+Level: ReadBioByID   Time: 12/3/2017 2:53:00 PM   Error: SideMenuImage
+Level: Login   Time: 12/5/2017 2:06:15 PM   Error: Login failed for user 'DEV1'.
+Level: Login   Time: 12/7/2017 5:44:32 PM   Error: Login failed for user 'DEV1'.

@@ -4,10 +4,10 @@
 }
 @using Microsoft.AspNetCore.Mvc.Rendering
 @using ORA.Controllers
-@using SelectListItem = System.Web.WebPages.Html.SelectListItem
+@using SelectList = System.Web.Mvc.SelectList
 @model ORA.Models.AccountBioVM
 
-@using (Html.BeginForm("EditLayout", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm())
 {
     @Html.ValidationSummary(true)
     <div class="row">
@@ -25,7 +25,8 @@
                             @Html.AntiForgeryToken()
                             <div class="form-horizontal col-lg-12">
                                 <hr />
-                            
+                                @Html.DropDownListFor(m => m.SideMenuImage, new SelectList(Model.ImageOptions), "--Select--")
+                                @Html.DropDownListFor(m => m.SideMenuColor, new SelectList(Model.ColorOptions), "--Select--")
                                 <input type="submit" />
                             </div>
                         </div>
@@ -34,7 +35,7 @@
             </div>
         </div>
     </div>
-
+}
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

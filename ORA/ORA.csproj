@@ -954,8 +954,11 @@
     <Content Include="Content\Kendo\kendo.silver.mobile.min.css.map" />
     <Content Include="Content\Kendo\kendo.uniform.min.css.map" />
     <Content Include="Content\Kendo\kendo.uniform.mobile.min.css.map" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\OnshoreReportingApp - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\OnshoreReportingApp - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\ORAdev - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\ORAdev - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />

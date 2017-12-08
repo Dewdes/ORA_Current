@@ -11,11 +11,6 @@ namespace ORA.Controllers
 {
     public class AccountController : Controller
     {
-        public enum Color
-        {
-            red,blue,azure,green,orange,purple
-        }
-
         /// <summary>
         /// Account Creation is for the Director role or administrator role to create a new account for a employee
         /// </summary>
@@ -56,12 +51,6 @@ namespace ORA.Controllers
             //}
         }
 
-        public ActionResult CreateAccount()
-        {
-            return View();
-        }
-
-
         public ActionResult ReadAccount()
         {
             EmployeeVM employee = Mapper.Map<EmployeeVM>(EmployeeDAL.ReadEmployeeById((long)Session["ID"]));
@@ -77,16 +66,6 @@ namespace ORA.Controllers
             AddressDAL.UpdateAddress(Mapper.Map<AddressDM>(item.Address));
             AccountDAL.UpdateAboutMe(item.EmployeeId, item.Bio.AboutMe);
             return View(item);
-        }
-
-        public ActionResult UpdateAccount()
-        {
-            return View();
-        }
-
-        public ActionResult DeleteAccount()
-        {
-            return View();
         }
 
         public ActionResult UploadProfileImage()
@@ -145,7 +124,14 @@ namespace ORA.Controllers
 
         public ActionResult EditLayout()
         {
-            return View();
+            AccountBioVM account = new AccountBioVM();
+            account.ColorOptions = new List<string>(); account.ImageOptions = new List<string>(); 
+            account.ColorOptions.Add("red"); account.ColorOptions.Add("azure"); account.ColorOptions.Add("purple");
+            account.ColorOptions.Add("green"); account.ColorOptions.Add("orange"); account.ColorOptions.Add("blue");
+            account.ImageOptions.Add("/Content/assets/img/sidebar-1.jpg"); account.ImageOptions.Add("/Content/assets/img/sidebar-2.jpg");
+            account.ImageOptions.Add("/Content/assets/img/sidebar-3.jpg"); account.ImageOptions.Add("/Content/assets/img/sidebar-4.jpg");
+            account.ImageOptions.Add("/Content/assets/img/sidebar-5.jpg");
+            return View(account);
         }
 
         [HttpPost]

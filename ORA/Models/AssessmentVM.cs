@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
 using AutoMapper;
 using ORA_Logic;
 
@@ -164,6 +165,25 @@ namespace ORA.Models
         public List<double> MeanList;
 
         public List<double> StandardDeviationList;
+
+        //DataContract for Serializing Data - required to serve in JSON format
+        [DataContract]
+        public class DataPoint
+        {
+            public DataPoint(double x, double y)
+            {
+                X = x;
+                Y = y;
+            }
+
+            //Explicitly setting the name to be used while serializing to JSON.
+            [DataMember(Name = "x")]
+            public Nullable<double> X = null;
+
+            //Explicitly setting the name to be used while serializing to JSON.
+            [DataMember(Name = "y")]
+            public Nullable<double> Y = null;
+        }
     }
     public class DescriptionVM
     {

@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System.Collections.Generic;
+using System.Web;
 
 namespace ORA.Models
 {
@@ -22,5 +23,8 @@ namespace ORA.Models
 
         public EmployeeVM employee { get; set; }
 
+        public List<string> ColorOptions { get; set; }
+
+        public List<string> ImageOptions { get; set; }
     }
 }
