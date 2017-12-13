@@ -42,7 +42,7 @@ namespace ORA.Controllers
             TimeDAL.CreateEmptyTime(employee.EmployeeId);
             ResumeDAL.CreateResume(employee.EmployeeId);
             //AccountDAL.CreateBio(employee.EmployeeId);
-            return RedirectToAction("AdminDashboard", "Home");
+            return RedirectToAction("Index", "Home");
             //}
             //else
             //{
