@@ -85,7 +85,7 @@ namespace ORA_Data.DAL
         {
             try
             {
-                using (SqlCommand cmd = new SqlCommand("ADD_SKILLS", SqlConnect.Connection))
+                using (SqlCommand cmd = new SqlCommand("CREATE_Skills", SqlConnect.Connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@SkillLibraryId", _skills.SkillLibraryId);

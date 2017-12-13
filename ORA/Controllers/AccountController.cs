@@ -30,19 +30,19 @@ namespace ORA.Controllers
             //LoginVM login = Mapper.Map<LoginVM>(LoginDAL.ReadLoginById(LoginDAL.ReadLoginByEmail(employee.Address.Email).ToString()));
             //if (login == null)
             //{
-                EmployeeDAL.CreateEmployee(Mapper.Map<EmployeeDM>(employee));
-                employee.EmployeeId = EmployeeDAL.ReadEmployeeId(employee.EmployeeNumber);
-                employee.Login.Email = employee.Address.Email;
-                employee.Login.Salt = Convert.ToBase64String(Salt.GenerateSalt());
-                employee.Login.Password = ORA_Data.Hash.GetHash(employee.Login.Password + employee.Login.Salt);
-                LoginDAL.Register(Mapper.Map<LoginDM>(employee.Login), employee.EmployeeId);
-                AddressDAL.CreateAddress(Mapper.Map<AddressDM>(employee.Address), employee.EmployeeId);
-                Work_StatusDAL.CreateStatus(Mapper.Map<StatusDM>(employee.Status), employee.EmployeeId);
-                //AccountDAL.CreateBio(Mapper.Map<AccountBioDM>(employee.Bio), employee.EmployeeId);
-                TimeDAL.CreateEmptyTime(employee.EmployeeId);
-                ResumeDAL.CreateResume(employee.EmployeeId);
-                AccountDAL.CreateBio(employee.EmployeeId);
-                return RedirectToAction("AdminDashboard","Home");
+            EmployeeDAL.CreateEmployee(Mapper.Map<EmployeeDM>(employee));
+            employee.EmployeeId = EmployeeDAL.ReadEmployeeId(employee.EmployeeNumber);
+            employee.Login.Email = employee.Address.Email;
+            employee.Login.Salt = Convert.ToBase64String(Salt.GenerateSalt());
+            employee.Login.Password = ORA_Data.Hash.GetHash(employee.Login.Password + employee.Login.Salt);
+            LoginDAL.Register(Mapper.Map<LoginDM>(employee.Login), employee.EmployeeId);
+            AddressDAL.CreateAddress(Mapper.Map<AddressDM>(employee.Address), employee.EmployeeId);
+            Work_StatusDAL.CreateStatus(Mapper.Map<StatusDM>(employee.Status), employee.EmployeeId);
+            //AccountDAL.CreateBio(Mapper.Map<AccountBioDM>(employee.Bio), employee.EmployeeId);
+            TimeDAL.CreateEmptyTime(employee.EmployeeId);
+            ResumeDAL.CreateResume(employee.EmployeeId);
+            //AccountDAL.CreateBio(employee.EmployeeId);
+            return RedirectToAction("AdminDashboard", "Home");
             //}
             //else
             //{
@@ -125,7 +125,7 @@ namespace ORA.Controllers
         public ActionResult EditLayout()
         {
             AccountBioVM account = new AccountBioVM();
-            account.ColorOptions = new List<string>(); account.ImageOptions = new List<string>(); 
+            account.ColorOptions = new List<string>(); account.ImageOptions = new List<string>();
             account.ColorOptions.Add("red"); account.ColorOptions.Add("azure"); account.ColorOptions.Add("purple");
             account.ColorOptions.Add("green"); account.ColorOptions.Add("orange"); account.ColorOptions.Add("blue");
             account.ImageOptions.Add("/Content/assets/img/sidebar-1.jpg"); account.ImageOptions.Add("/Content/assets/img/sidebar-2.jpg");

@@ -62,3 +62,9 @@ Level: Login   Time: 12/3/2017 2:50:51 PM   Error: Cannot open server 'ora-data'
 Level: ReadBioByID   Time: 12/3/2017 2:53:00 PM   Error: SideMenuImage
 Level: Login   Time: 12/5/2017 2:06:15 PM   Error: Login failed for user 'DEV1'.
 Level: Login   Time: 12/7/2017 5:44:32 PM   Error: Login failed for user 'DEV1'.
+Level: Login   Time: 12/12/2017 8:14:17 AM   Error: Login failed for user 'DEV1'.
+Level: Login   Time: 12/12/2017 8:20:30 AM   Error: Login failed for user 'DEV1'.
+Level: CreateBio   Time: 12/12/2017 1:41:51 PM   Error: Procedure or function CREATE_BIO has too many arguments specified.
+Level: CreateWorkStatus   Time: 12/13/2017 8:45:13 AM   Error: Procedure or function 'CREATE_WORK_STATUS' expects parameter '@Service_Length', which was not supplied.
+Level: CreateBio   Time: 12/13/2017 8:46:51 AM   Error: Procedure or function CREATE_BIO has too many arguments specified.
+Level: CreateBio   Time: 12/13/2017 9:14:46 AM   Error: Procedure or function 'CREATE_BIO' expects parameter '@ProfileImg', which was not supplied.

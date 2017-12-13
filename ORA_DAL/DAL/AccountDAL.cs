@@ -53,8 +53,8 @@ namespace ORA_Data.DAL
                     cmd.Parameters.AddWithValue("@Status", bio.AccountStatus ?? defaultStatus);
                     cmd.Parameters.AddWithValue("@BannerBackgroundImg", bio.BannerBackgroundImg);
                     cmd.Parameters.AddWithValue("@AboutMe", bio.AboutMe ?? defaultStatus);
-                    cmd.Parameters.AddWithValue("@SideMenuImage", bio.SideMenuImage ?? defaultImg);
-                    cmd.Parameters.AddWithValue("@SideMenuColor", bio.SideMenuColor ?? defaultColor);
+                    //cmd.Parameters.AddWithValue("@SideMenuImage", bio.SideMenuImage ?? defaultImg);
+                    //cmd.Parameters.AddWithValue("@SideMenuColor", bio.SideMenuColor ?? defaultColor);
                     cmd.Parameters.AddWithValue("@Employee_ID", id);
                     SqlConnect.Connection.Open();
                     cmd.ExecuteNonQuery();
